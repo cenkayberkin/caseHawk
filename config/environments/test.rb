@@ -22,4 +22,10 @@ config.action_controller.allow_forgery_protection    = false
 config.action_mailer.delivery_method = :test
 config.gem "mocha", :version => "~> 0.9.3"
 config.gem "redgreen", :version => "~> 1.2.2"
-config.gem "thoughtbot-shoulda", :lib => 'shoulda', :version => "~> 2.0.6", :source => 'http://gems.github.com'
+config.gem "thoughtbot-shoulda", 
+              :lib => 'shoulda', 
+              :version => "~> 2.0.6", 
+              :source => 'http://gems.github.com'
+config.gem "thoughtbot-factory_girl",
+              :lib    => "factory_girl",
+              :source => "http://gems.github.com"
