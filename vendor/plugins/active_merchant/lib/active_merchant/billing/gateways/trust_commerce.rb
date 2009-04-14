@@ -101,6 +101,9 @@ module ActiveMerchant #:nodoc:
         "failtoprocess" => "The bank servers are offline and unable to authorize transactions"
       }
       
+      TEST_LOGIN = 'TestMerchant'
+      TEST_PASSWORD = 'password'
+      
       self.money_format = :cents
       self.supported_cardtypes = [:visa, :master, :discover, :american_express, :diners_club, :jcb]
       self.supported_countries = ['US']
@@ -137,7 +140,8 @@ module ActiveMerchant #:nodoc:
       end
       
       def test?
-        @options[:test] || super
+        @options[:login] == TEST_LOGIN &&
+          @options[:password] == TEST_PASSWORD || @options[:test] || super
       end
       
       # authorize() is the first half of the preauth(authorize)/postauth(capture) model. The TC API docs call this
@@ -281,12 +285,7 @@ module ActiveMerchant #:nodoc:
         }
                                                   
         commit('unstore', parameters)
-      end
-      
-      # To update a card you just store with the existing billingid
-      def update(identification, creditcard, options = {})
-        store(creditcard, options.merge(:billingid => identification))
-      end  
+      end      
           
       private
       def add_payment_source(params, source)
@@ -382,7 +381,7 @@ module ActiveMerchant #:nodoc:
         # to be considered successful, transaction status must be either "approved" or "accepted"
         success = SUCCESS_TYPES.include?(data["status"])
         message = message_from(data)
-        TrustCommerceResponse.new(success, message, data, 
+        Response.new(success, message, data, 
           :test => test?, 
           :authorization => data["transid"],
           :cvv_result => data["cvv"],
@@ -415,14 +414,5 @@ module ActiveMerchant #:nodoc:
       end
       
     end
-
-    class TrustCommerceResponse < Response
-      # add a method to response so we can easily get the token
-      # for Citadel transactions
-      def token
-        @params["billingid"]
-      end
-    end
-
   end
 end

@@ -21,7 +21,7 @@ module ActiveMerchant #:nodoc:
       self.homepage_url = 'http://www.paymentexpress.com/'
       self.display_name = 'PaymentExpress'
       
-      PAYMENT_URL = 'https://www.paymentexpress.com/pxpost.aspx'
+      URL = 'https://www.paymentexpress.com/pxpost.aspx'
       
       APPROVED = '1'
       
@@ -92,16 +92,6 @@ module ActiveMerchant #:nodoc:
         request  = build_token_request(credit_card, options)
         commit(:validate, request)
       end
-      
-      # Unsupported
-      def unstore(identification, options = {})
-        # no-op
-      end
-      
-      # Unsupported.  Just create a new record and return it.
-      def update(identification, creditcard, options = {})
-        store(creditcard, options)
-      end  
       
       private
       
@@ -206,7 +196,7 @@ module ActiveMerchant #:nodoc:
         add_transaction_type(request, action)
         
         # Parse the XML response
-        response = parse( ssl_post(PAYMENT_URL, request.to_s) )
+        response = parse( ssl_post(URL, request.to_s) )
         
         # Return a response
         PaymentExpressResponse.new(response[:success] == APPROVED, response[:response_text], response,

@@ -6,7 +6,7 @@ module ActiveMerchant #:nodoc:
       URL = 'https://secure.braintreepaymentgateway.com/api/transact.php'
     
       self.supported_countries = ['US']
-      self.supported_cardtypes = [:visa, :master, :american_express]
+      self.supported_cardtypes = [:visa, :master, :american_express, :discover]
       self.homepage_url = 'http://www.braintreepaymentsolutions.com'
       self.display_name = 'Braintree'
 
@@ -22,11 +22,11 @@ module ActiveMerchant #:nodoc:
       # Pass :store => some_number_or_string to specify the
       # customer_vault_id BrainTree should use (make sure it's
       # unique).
-      def authorize(money, creditcard, options = {})
+      def authorize(money, payment_source, options = {})
         post = {}
         add_invoice(post, options)
-        add_payment_source(post, creditcard,options)        
-        add_address(post, creditcard, options)        
+        add_payment_source(post, payment_source, options)        
+        add_address(post, payment_source, options)        
         add_customer_data(post, options)
         
         commit('auth', money, post)
@@ -68,17 +68,26 @@ module ActiveMerchant #:nodoc:
         commit(nil, nil, post)
       end
     
-      def delete(vault_id, options = {})
-        post = options.merge(:customer_vault => "delete_customer")
+      def delete(vault_id)
+        post = {}
+        post[:customer_vault] = "delete_customer"
         add_customer_vault_id(post, vault_id)         
         commit(nil, nil, post)
       end
-      
+    
       # To match the other stored-value gateways, like TrustCommerce,
       # store and unstore need to be defined
-      def store(creditcard, options = {})
+      def store(payment_source, options = {})
         billing_id = options.delete(:billing_id).to_s || true
-        authorize(100, creditcard, options.merge(:store => billing_id))
+        post = {}
+        post[:customer_vault] = 'add_customer'
+        if billing_id
+          post[:customer_vault_id] = billing_id
+        end
+        add_payment_source(post, payment_source, options)
+        add_address(post, payment_source, options)
+        add_customer_data(post, options)
+        commit(nil,nil, post)
       end
       
       alias_method :unstore, :delete
@@ -159,7 +168,7 @@ module ActiveMerchant #:nodoc:
         
         response = parse( ssl_post(URL, post_data(action,parameters)) )
 
-        BraintreeResponse.new(response["response"] == "1", message_from(response), response, 
+        Response.new(response["response"] == "1", message_from(response), response, 
           :authorization => response["transactionid"],
           :test => test?,
           :cvv_result => response["cvvresponse"],
@@ -207,14 +216,6 @@ module ActiveMerchant #:nodoc:
       end
     end
     
-    class BraintreeResponse < Response
-      # add a method to response so we can easily get the token
-      # for vault transactions
-      def token
-        @params["customer_vault_id"]
-      end
-    end
-
     BrainTreeGateway = BraintreeGateway
   end
 end
