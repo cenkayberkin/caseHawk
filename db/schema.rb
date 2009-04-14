@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20090414223047) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "updated_at"
     t.string   "full_domain"
     t.datetime "deleted_at"
-    t.integer  "subscription_discount_id", :limit => 11
+    t.integer  "subscription_discount_id", :limit => 8
   end
 
   create_table "bj_config", :primary_key => "bj_config_id", :force => true do |t|
@@ -32,12 +32,12 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table "bj_job", :primary_key => "bj_job_id", :force => true do |t|
     t.text     "command"
     t.text     "state"
-    t.integer  "priority",       :limit => 11
+    t.integer  "priority",       :limit => 8
     t.text     "tag"
-    t.integer  "is_restartable", :limit => 11
+    t.integer  "is_restartable", :limit => 8
     t.text     "submitter"
     t.text     "runner"
-    t.integer  "pid",            :limit => 11
+    t.integer  "pid",            :limit => 8
     t.datetime "submitted_at"
     t.datetime "started_at"
     t.datetime "finished_at"
@@ -45,18 +45,18 @@ ActiveRecord::Schema.define(:version => 0) do
     t.text     "stdin"
     t.text     "stdout"
     t.text     "stderr"
-    t.integer  "exit_status",    :limit => 11
+    t.integer  "exit_status",    :limit => 8
   end
 
   create_table "bj_job_archive", :primary_key => "bj_job_archive_id", :force => true do |t|
     t.text     "command"
     t.text     "state"
-    t.integer  "priority",       :limit => 11
+    t.integer  "priority",       :limit => 8
     t.text     "tag"
-    t.integer  "is_restartable", :limit => 11
+    t.integer  "is_restartable", :limit => 8
     t.text     "submitter"
     t.text     "runner"
-    t.integer  "pid",            :limit => 11
+    t.integer  "pid",            :limit => 8
     t.datetime "submitted_at"
     t.datetime "started_at"
     t.datetime "finished_at"
@@ -65,7 +65,21 @@ ActiveRecord::Schema.define(:version => 0) do
     t.text     "stdin"
     t.text     "stdout"
     t.text     "stderr"
-    t.integer  "exit_status",    :limit => 11
+    t.integer  "exit_status",    :limit => 8
+  end
+
+  create_table "events", :force => true do |t|
+    t.integer  "creator_id",                    :null => false
+    t.integer  "owner_id"
+    t.string   "type",                          :null => false
+    t.string   "name",                          :null => false
+    t.date     "start_date"
+    t.time     "start_time"
+    t.date     "end_date"
+    t.time     "end_time"
+    t.boolean  "remind",     :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "subscription_discounts", :force => true do |t|
@@ -80,9 +94,9 @@ ActiveRecord::Schema.define(:version => 0) do
   end
 
   create_table "subscription_payments", :force => true do |t|
-    t.integer  "account_id",      :limit => 11
-    t.integer  "subscription_id", :limit => 11
-    t.decimal  "amount",                        :precision => 10, :scale => 2, :default => 0.0
+    t.integer  "account_id",      :limit => 8
+    t.integer  "subscription_id", :limit => 8
+    t.decimal  "amount",                       :precision => 10, :scale => 2, :default => 0.0
     t.string   "transaction_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -91,27 +105,27 @@ ActiveRecord::Schema.define(:version => 0) do
 
   create_table "subscription_plans", :force => true do |t|
     t.string   "name"
-    t.decimal  "amount",                       :precision => 10, :scale => 2
+    t.decimal  "amount",                      :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_limit",     :limit => 11
-    t.integer  "renewal_period", :limit => 11,                                :default => 1
-    t.decimal  "setup_amount",                 :precision => 10, :scale => 2
-    t.integer  "trial_period",   :limit => 11,                                :default => 1
+    t.integer  "user_limit",     :limit => 8
+    t.integer  "renewal_period", :limit => 8,                                :default => 1
+    t.decimal  "setup_amount",                :precision => 10, :scale => 2
+    t.integer  "trial_period",   :limit => 8,                                :default => 1
   end
 
   create_table "subscriptions", :force => true do |t|
-    t.decimal  "amount",                             :precision => 10, :scale => 2
+    t.decimal  "amount",                            :precision => 10, :scale => 2
     t.datetime "next_renewal_at"
     t.string   "card_number"
     t.string   "card_expiration"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",                                                             :default => "trial"
-    t.integer  "subscription_plan_id", :limit => 11
-    t.integer  "account_id",           :limit => 11
-    t.integer  "user_limit",           :limit => 11
-    t.integer  "renewal_period",       :limit => 11,                                :default => 1
+    t.string   "state",                                                            :default => "trial"
+    t.integer  "subscription_plan_id", :limit => 8
+    t.integer  "account_id",           :limit => 8
+    t.integer  "user_limit",           :limit => 8
+    t.integer  "renewal_period",       :limit => 8,                                :default => 1
     t.string   "billing_id"
   end
 
@@ -125,7 +139,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "remember_token_expires_at"
     t.datetime "updated_at"
     t.datetime "created_at"
-    t.integer  "account_id",                :limit => 11
+    t.integer  "account_id",                :limit => 8
     t.boolean  "admin",                                   :default => false
   end
 
