@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: accounts
+#
+#  id                       :integer(4)      not null, primary key
+#  name                     :string(255)
+#  created_at               :datetime
+#  updated_at               :datetime
+#  full_domain              :string(255)
+#  deleted_at               :datetime
+#  subscription_discount_id :integer(8)
+#
+
 require File.dirname(__FILE__) + '/../spec_helper'
 include ActiveMerchant::Billing
 

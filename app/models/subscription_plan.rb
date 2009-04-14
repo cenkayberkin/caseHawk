@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: subscription_plans
+#
+#  id             :integer(4)      not null, primary key
+#  name           :string(255)
+#  amount         :decimal(10, 2)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  user_limit     :integer(8)
+#  renewal_period :integer(8)      default(1)
+#  setup_amount   :decimal(10, 2)
+#  trial_period   :integer(8)      default(1)
+#
+
 class SubscriptionPlan < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   

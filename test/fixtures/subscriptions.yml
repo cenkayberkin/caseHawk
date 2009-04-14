@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: subscriptions
+#
+#  id                   :integer(4)      not null, primary key
+#  amount               :decimal(10, 2)
+#  next_renewal_at      :datetime
+#  card_number          :string(255)
+#  card_expiration      :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
+#  state                :string(255)     default("trial")
+#  subscription_plan_id :integer(8)
+#  account_id           :integer(8)
+#  user_limit           :integer(8)
+#  renewal_period       :integer(8)      default(1)
+#  billing_id           :string(255)
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:

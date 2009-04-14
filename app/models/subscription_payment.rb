@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: subscription_payments
+#
+#  id              :integer(4)      not null, primary key
+#  account_id      :integer(8)
+#  subscription_id :integer(8)
+#  amount          :decimal(10, 2)  default(0.0)
+#  transaction_id  :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  setup           :boolean(1)
+#
+
 class SubscriptionPayment < ActiveRecord::Base
   belongs_to :subscription
   belongs_to :account
