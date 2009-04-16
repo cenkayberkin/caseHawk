@@ -5,21 +5,17 @@ require 'shoulda'
 require 'mocha'
 
 class ActiveSupport::TestCase
+
+  include AuthenticatedTestHelper
+  def logout
+    @controller.send :current_user=, nil
+    session[:user_id] = nil
+  end
+
   self.use_transactional_fixtures = true
   self.use_instantiated_fixtures  = false
   fixtures :all
 
-  def logout
-    @controller.send :current_user=, nil
-    session[:user] = nil
-  end
-
-  def login(user)
-    logout
-    session[:user] = user.id
-    @controller.send :current_user=, user
-  end  
-  
   def valid_address(attributes = {})
     {
       :first_name => 'John',
