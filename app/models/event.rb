@@ -17,4 +17,9 @@
 #
 
 class Event < ActiveRecord::Base
+
+  validates_presence_of :name
+  validates_presence_of :creator_id
+  validates_presence_of :kind
+
 end

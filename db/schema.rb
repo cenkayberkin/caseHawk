@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(:version => 20090414223047) do
   create_table "events", :force => true do |t|
     t.integer  "creator_id",                    :null => false
     t.integer  "owner_id"
-    t.string   "type",                          :null => false
+    t.string   "kind",                          :null => false
     t.string   "name",                          :null => false
     t.date     "start_date"
     t.time     "start_time"

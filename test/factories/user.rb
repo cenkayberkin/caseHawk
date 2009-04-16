@@ -3,6 +3,5 @@ Factory.define :user do |user|
   user.password 'password'
   user.password_confirmation 'password'
   user.email 'frank@casehawk.com'
-
-  user.association :account, :factory => :account
+  user.association :account
 end
