@@ -17,9 +17,12 @@
 #
 
 class Event < ActiveRecord::Base
-
+  
+  belongs_to :location
+  
   validates_presence_of :name
   validates_presence_of :creator_id
   validates_presence_of :kind
 
+  
 end
