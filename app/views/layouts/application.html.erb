@@ -3,58 +3,45 @@
 	<head>
 		<title><%= @page_title ? "#{@page_title} | #{AppConfig['app_name']}" : AppConfig['app_name'] %></title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<%= stylesheet_link_tag 'reset-fonts.css', 'gt-styles.css' %>
+		<%= stylesheet_link_tag 'reset-fonts.css', 'application.css' %>
 	</head>
 	<body>
-		<!-- head -->
-		<div class="gt-hd clearfix">
-			<!-- logo -->
-			<div class="gt-logo">
-				<%= AppConfig['app_name'] %>
-			</div>
-			<!-- / logo -->
+		<div id="page">
 			
-			<!-- navigation -->
-			<div class="gt-nav">
-				<ul>
-				  <% if logged_in? %>
-  					<li><a href="/">Home</a></li>
-  					<li><a href="/users">Users</a></li>
-  					<%= content_tag(:li, link_to("Account", account_url)) if admin? %>
-  					<li><%= link_to("Log out #{current_user.name}", session_url, :method => :delete) %></li>
-  				<% end %>
-				</ul>
+			<div id="header">
+				<div id="user-menu">
+					<%= yield :user_menu %>
+				</div>
+				<h1>CaseHawk</h1>
+				<div id="navigation"> 
+					<%= yield :menu %>
+				</div>
 			</div>
-			<!-- / navigation -->
+			
+			<div id="content">
+				<div id="notices">
+					<%= flash_notices %>
+				</div>
+				<div id="left">
+					<%= yield :left %>
+				</div>
+				<div id="main">
+					
+					<%= yield %>
+
+				</div>
+				<div id="right">
+					<%= yield :right %>
+				</div>				
+			</div>
+			
+			<div id="footer">
+				<%= yield :footer %>
+				<p>
+					Copyright &copy; 2006 &ndash; <%= Time.now.to_s(:year) %> <a href="http://lawfortress.com">CaseHawk &amp; Lawfortress LLC</a>
+				</p>	
+			</div>
 			
 		</div>
-		<!-- / head -->
-		
-		<!-- body -->
-		<div class="gt-bd gt-cols clearfix">
-			
-			<!-- main content -->
-			<div class="gt-content">
-				
-				<%= flash_notices %>
-				<%= yield %>
-				
-			</div>
-			<!-- / main content -->
-			
-			<!-- sidebar -->
-			<div class="gt-sidebar">
-				<%= yield :sidebar %>
-			</div>
-			<!-- / sidebar -->
-			
-		</div>
-		<!-- / body -->
-		
-		<!-- footer -->
-		<div class="gt-footer">
-			<p>Copyright &copy; 2008 Gooey Templates - <a href="http://www.gooeytemplates.com" target="_blank">GooeyTemplates.com</a></p>
-		</div>
-		<!-- /footer -->
 	</body>
 </html>

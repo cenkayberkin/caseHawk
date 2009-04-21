@@ -1,0 +1,470 @@
+/*
+	Colors
+	Red #FF3932
+	Light Blue #BEDEEF
+	Dark Blue #5793F5
+	Green #7CEB64
+	Darker Blue #3C459F
+
+ */
+/****************************************************************
+  REMOVE HTML DEFAULTS
+/***************************************************************/
+
+:link,:visited { text-decoration: none; }
+
+ul,ol { list-style: none; }
+
+h1,h2,h3,h4,h5,h6,pre,code { font-size: 1em; }
+
+ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input { margin: 0px; padding: 0px; }
+
+a img,:link img,:visited img { border:none; }
+  
+/****************************************************************
+  STRUCTURE
+/***************************************************************/
+* {
+}
+body {
+  color: #333;
+  font-size: 62.5%;
+  line-height: 1.5em; 
+  font-family: "Helvetica Neue", Helvetica, "Bitstream Vera Sans", Arial, sans-serif; 
+  background: #FFF;
+  margin: 0;
+  padding: 0;
+}
+body, div, td, table, p, textarea { }
+
+h1, h2, h3, h4, h5 {
+	font-family: Palatino, Georgia, "New Century Schoolbook", "Bitstream Vera Serif", Utopia, "Times New Roman", times, serif; 
+	margin: 0.25em 0 0.5em;
+	color: #555; 
+	font-weight: bold; 
+	line-height: 1.2em;  
+}
+	h1 { font-size: 2.4em; }
+	h2 { font-size: 2em; }
+	h3 { font-size: 1.6em; }
+a { color: #FF3932; }
+a:hover { color: #3C459F; text-decoration: underline; }
+
+ul, ol, p { margin: 0 0 1em; }
+
+#header {
+	margin: 0 auto; 
+	padding: 0; 
+	width: auto; 
+	height: 60px; 
+	background: #CCC; 
+}
+	#header-inner { margin: 0 auto; width: 900px; }
+	#header h1 { margin: 0; line-height: 60px; 
+	}
+
+#logbox {
+  float: right;
+  width: 230px;
+  height: 50px;
+  margin: 5px 0; 
+  border-left: 1px dashed #FFF;
+  padding: 0 10px;
+}
+	#logbox {
+		font-size: 1em; font-weight: bold; text-align: left; color: #666; 
+	}
+	#logbox a { color: #5793F5; }
+	#logbox a:hover { color: #FFF; }
+	
+#wrapper {
+	margin: 10px auto 30px; 
+	width: 900px; 
+	padding: 0; 
+	text-align: left; 
+}
+
+#menu {
+	margin: 0; 
+	padding: 0; 
+	float: left; 
+	width: 120px;
+}
+
+	#menu h2 {
+		text-align: center; 
+		border-bottom: 1px dashed #999; 
+		padding-bottom: 0.25em; 
+		font-size: 1.3em; 
+		text-transform: uppercase; 
+		margin-bottom: 0; 
+	}
+	
+	#menu ul {
+		font-size: 1.1em; 
+		margin: 0px;
+		padding: 0px;
+		list-style: none;
+		list-style-type: none; 
+	}
+	#menu ul  li{
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+		#menu ul li a {
+			display: block; 
+			padding: 0.5em 0 0.5em 0.25em; 
+			border-bottom: 1px solid #CCC; 		
+		}
+			#menu ul li a:hover {
+				border-bottom: 1px solid #999; 
+				text-decoration: none; 
+				background: #BEDEEF; 
+			}
+	#menu ul li div#menu_raquo {
+	  display: inline;
+	  font-size: 15px;
+	  color: #CCC;
+	}
+	
+#content {
+	float: left; 
+	margin: 0 0 0 9px; 
+	width: 750px; 
+	border-left: 1px solid #CCC; 
+	padding: 0 0 0 10px; 
+
+	font-size: 1.2em; 
+	line-height: 1.5em; 
+}
+
+	#content h2 {
+		color: #5793F5;
+		border-bottom: 1px dashed #999999;
+		padding-bottom: 0.25em;
+	}
+	
+	#content table { 
+		width: 100%; 
+		border-spacing: 0; 
+		border-collapse: collapse; 
+	}
+	
+	.survey_list {
+		border-bottom: 1px solid #CCC;
+	}
+		.survey_list th, .survey_list td {
+			padding: 0.5em; 
+			
+		}
+		.survey_list th {
+			border-bottom: 1px solid #999; 
+			background: #DDD;
+			text-transform: uppercase; 
+			font-weight: bold; 
+			color: #666;
+		}
+		.survey_list td {
+			border-bottom: 1px solid #DDDDDD;
+			background: #EEE;
+		}
+		.survey_list tr.even td {
+			background: #FFF;
+		}
+
+/****************************************************************
+  GENERAL POSITIONING
+/***************************************************************/
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.clear {
+  clear: both;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+/****************************************************************
+  FLASH OUTPUT
+/***************************************************************/
+#flashcontainer{
+	margin: 0 0.5em 1em; 
+	padding: 1em;
+	border-width: 5px 1px; 
+	border-color: #FFF633;
+	border-style: solid dashed;
+	font-size: 1.1em;
+	line-height: 1.1em;
+	color: #333;
+}
+	#flashcontainer p {
+		margin: 0.25em 0 0;
+		padding-bottom: 0.25em;
+	}
+.flash, .flashnotice, .flasherror, .flashsuccess, .flashdebug {
+  padding-left: 30px;
+  background-repeat: no-repeat;
+  background-position: 5px top;
+}
+.flash {
+
+}
+.flashnotice {
+  background-image: url('../images/icons/information.png');
+}
+.flasherror {
+  background-image: url('../images/icons/exclamation.png');
+  color: #CF0902;
+}
+.flashsuccess {
+  background-image: url('../images/success.png');
+  color: #7CEB64;
+}
+.flashdebug {
+  color: #559E44;
+}
+
+/****************************************************************
+  SURVEY DISPLAY
+/***************************************************************/
+#survey_page {
+  
+}  
+	#survey_title_bar {
+		margin: 0 auto; padding: 1em 0; 
+	}
+		#survey_title_bar img.left { margin: 0 1em 0 0; padding: 0 1em 0 0; border-right: 1px solid #EEE; }
+
+		#survey_title_bar p { margin-bottom: 0; }
+		#survey_title_bar p.welcome {
+			margin: 0.5em; padding: 1em; 
+			background: #EEE; color: #666; 
+			font-style: italic; font-size: 1.6em; line-height: 1.2em; 
+			font-family: Palatino, Georgia, "New Century Schoolbook", "Bitstream Vera Serif", Utopia, "Times New Roman", times, serif; 	
+		}
+
+.survey_moment {
+  font-weight: bold; 
+  color: #FF3932; 
+}
+
+#survey_page h2 {
+	color: #FF3932; 
+	border-bottom: 1px dashed #999; 
+	padding-bottom: 0.25em; 
+	clear: both; 
+	margin-top: 0.25em; 
+}
+#survey_page ul{
+  list-style-type: none;
+  margin: 0; padding: 0;
+  line-height: 1.2em;  
+}
+	#survey_page ul li {
+		padding: 0;
+		margin: 0; 
+		border-top: 1px solid #EEE; 
+		position: relative;
+		width: 490px;
+	}
+		#survey_page ul li.hide { border-bottom: none; padding: 0; }
+		#survey_page ul li.survey_subcode { 
+			margin: 0 0 0 15px; 
+			width: 475px; 
+		}
+			#survey_page ul li.survey_subcode label {
+				color: #FF3932; 
+			}
+		
+		#survey_page ul li.subcode_instruction {
+		  padding: 0.5em 0;
+		}
+		
+		#survey_page ul li input, #survey_page ul li label { float: left; }
+		
+		#survey_page ul li input { 
+			margin: 0.25em 1em 0.25em 0; 
+			width: 20px; 
+		}
+		#survey_page ul li label { 
+		  width: 90%;
+		  margin: 0.25em 0;
+		}
+		
+		#survey_page ul li .survey_activity_input {
+			clear: both;
+			padding: 0.125em 0.25em;
+		}
+		
+		#survey_page ul li .survey_desc {
+			position: absolute; 
+			width: 325px;
+			top: -105%;
+			left: 100%;
+			right: 0;
+			padding: 0.5em 10px 1em 15px; 
+			border-style: solid;
+			border-color: #EEE #CCC #CCC;
+			border-width: 1px 1px 2px 0;
+			background: #F3F3F3;
+			color: #5793F5;
+			line-height: 1.4em;
+		}
+		
+.code_num { font-weight: bold; }
+
+#survey_form {
+}
+#survey_activities {
+	float: left;  
+	margin: 0;
+	width: 100%;
+}
+#survey_activities ul {
+  padding-left: 5px;
+}
+#survey_description {
+  float: left;
+  width: 235px;
+	border-left: 1px dashed #CCC; 
+	padding: 1em 0 1em 10px; 
+	margin: 200px 0 0; 
+	color: #5793F5; 
+}
+#form_submit, #spmp_response, #non_spmp_response {
+	padding-top: 1em; 
+	clear: both; 
+}
+#spmp_response, #non_spmp_response { 
+  float: left; 
+  width: 100%; 
+}
+#spmp_response, #non_spmp_response { float: left; }
+.survey_textarea {
+  float: left;
+  width: 375px; 
+}
+.survey_textarea textarea {
+  margin: 5px;
+  padding: 2px; 
+  font-family: "Helvetica Neue", Helvetica, "Bitstream Vera Sans", Arial, sans-serif; 
+  font-size: 1em; 
+  width: 95%; 
+  background: #FFF url('../images/textarea-desc-bg.png') no-repeat center center; 
+  border: 1px inset #CCC;
+  border-style: 
+}
+.survey_textarea textarea:focus { 
+  background: #FFF; 
+}
+.response_text {
+  height: 200px;
+  clear: both;
+  float: left;
+}
+.survey_instructions {
+  float: right;
+  clear:right;
+  width: 325px;
+	border-left: 1px dashed #CCC; 
+	padding: 0 0 1em 10px; 
+}
+	.survey_instructions h3 { margin: 0.25em 0; }
+	.survey_instructions p {}
+	#survey_page .survey_instructions li {
+		margin: 0 0 0 0.5em; 
+		padding: 0.5em 0; 
+	}
+.example_text {
+	padding: 0.5em; 
+	border: 1px solid #999; 
+	color: #FF3932; 
+}
+.survey_subcodes {
+  margin-left: 15px;
+}
+#survey_submit {
+	font-family: Palatino, Georgia, "New Century Schoolbook", "Bitstream Vera Serif", Utopia, "Times New Roman", times, serif; 
+	color: #FF3932; 
+	border: 0 none; 
+	background: url('../images/submit-bg.jpg') no-repeat center center; 
+	font-weight: bold; font-size: 1.6em; 
+	text-align: center;
+	height: 80px; width: 300px; 
+	padding: 0; 
+	margin: 0; 
+	cursor: pointer; 
+}
+#survey_submit:hover {
+	background: url('../images/submit-bg-hover.jpg') no-repeat center center; 
+	color: #FF3932;  
+}
+
+
+#submit_instructions {
+  margin: 1em 0;
+	padding: 1em; 
+  border-top: 1px dashed #CCC;
+  clear: both;
+  
+  color: #666;
+  font-size: 0.9em; 
+}
+
+	#submit_instructions ol {
+		list-style-type: decimal; 
+		list-style-position: inside; 
+		list-style-image: none; 
+		padding: 0 0 0 1em; 
+		color: #444; 
+	}
+		#submit_instructions li {
+			margin: 0 0 0.25em; 
+		}
+
+.copyright { color: #5793F5; }
+
+/****************************************************************
+  FORM ERROR HANDLING
+/***************************************************************/
+.fieldWithErrors {
+  display: inline;
+}
+#errorExplanation {
+  border: 5px solid #FF3932;
+  padding: 1em;
+  margin-bottom: 0.5em;
+  background-color: #FFA9A6;
+	color: #333; 
+	font-size: 1.2em; 
+}
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 0 0 0.5em;
+  border-bottom: 1px dashed #FF3932; 
+	margin-bottom: 0.25em; 
+	font-size: 1.6em; 
+  color: #FF3932;
+}
+#errorExplanation p {
+  color: #333;
+  margin: 0 0 1em; 
+  padding: 0 1em; 
+}
+#errorExplanation ul li {
+  list-style: square;
+  margin: 0 0 0 2em;
+  border: none;
+}
+
+
+
+
