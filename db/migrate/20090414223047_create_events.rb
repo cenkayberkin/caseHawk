@@ -4,6 +4,7 @@ class CreateEvents < ActiveRecord::Migration
       
       t.integer     :creator_id, :null => false
       t.integer     :owner_id
+      t.references  :location
       t.string      :kind, :null => false
       t.string      :name, :null => false
       t.date        :start_date
