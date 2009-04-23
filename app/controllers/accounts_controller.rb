@@ -6,7 +6,7 @@ class AccountsController < ApplicationController
   before_filter :load_billing, :only => [ :new, :create, :billing, :paypal ]
   before_filter :load_subscription, :only => [ :billing, :plan, :paypal ]
   
-  ssl_required :billing, :cancel, :new, :create
+  # ssl_required :billing, :cancel, :new, :create
   ssl_allowed :plans, :thanks, :canceled, :paypal
   
   def new
