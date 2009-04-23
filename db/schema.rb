@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090423214338) do
+ActiveRecord::Schema.define(:version => 20090423214609) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -148,6 +148,15 @@ ActiveRecord::Schema.define(:version => 20090423214338) do
     t.integer  "user_limit",           :limit => 8
     t.integer  "renewal_period",       :limit => 8,                                :default => 1
     t.string   "billing_id"
+  end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "creator_id"
+    t.integer  "tag_id"
+    t.string   "taggable_type"
+    t.integer  "taggable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tags", :force => true do |t|
