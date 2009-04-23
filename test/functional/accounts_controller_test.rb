@@ -2,12 +2,12 @@ require File.dirname(__FILE__) + '/../test_helper'
 include ActiveMerchant::Billing
 
 class AccountsControllerTest < ActionController::TestCase
-  
-  context 'accounts' do 
+
+  context 'accounts' do
     setup do
       @controller.stubs(:current_account).returns(@account = accounts(:localhost))
     end
-  
+
     should 'create a new account' do
       @user = User.new(user_params = 
         { 'login' => 'foo', 'email' => 'foo@foo.com',
