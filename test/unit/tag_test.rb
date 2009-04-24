@@ -10,6 +10,6 @@ class TagTest < ActiveSupport::TestCase
     setup { Factory(:tag); Factory(:tag) }
     should_validate_presence_of   :name
     should_validate_uniqueness_of :name,
-                                  :message => 'must be unique'
+                                  :message => /must be unique/
   end
 end

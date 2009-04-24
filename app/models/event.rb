@@ -20,6 +20,8 @@
 class Event < ActiveRecord::Base
   
   belongs_to :location
+  has_many   :taggings, :as => :taggable
+  has_many   :tags, :through => :taggings
   
   validates_presence_of :name
   validates_presence_of :creator_id

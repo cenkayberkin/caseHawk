@@ -24,7 +24,9 @@ class EventTest < ActiveSupport::TestCase
   should_require_attributes :name
   should_require_attributes :creator_id
   should_require_attributes :kind
-  
+  should_have_many :taggings
+  should_have_many :tags, :through => :taggings
+
   context "creator" do
     setup { @event = Factory(:event) }
     should_eventually "be a user" do
