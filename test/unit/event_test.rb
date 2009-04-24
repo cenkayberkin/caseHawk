@@ -21,9 +21,9 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class EventTest < ActiveSupport::TestCase
 
-  should_require_attributes :name
-  should_require_attributes :creator_id
-  should_require_attributes :kind
+  should_validate_presence_of :name
+  should_validate_presence_of :creator_id
+  should_validate_presence_of :kind
   should_have_many :taggings
   should_have_many :tags, :through => :taggings
 
