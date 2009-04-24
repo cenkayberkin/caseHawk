@@ -4,7 +4,6 @@ class TaggingTest < ActiveSupport::TestCase
 
   should_validate_presence_of :tag
   should_validate_presence_of :taggable
-  should_validate_presence_of :creator
 
   should "be valid with factory" do
     assert_valid Factory.build(:tagging)
