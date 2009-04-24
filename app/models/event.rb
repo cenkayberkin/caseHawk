@@ -18,7 +18,7 @@
 #
 
 class Event < ActiveRecord::Base
-  
+
   belongs_to :location
   has_many   :taggings, :as => :taggable
   has_many   :tags, :through => :taggings
@@ -27,4 +27,19 @@ class Event < ActiveRecord::Base
   validates_presence_of :creator_id
   validates_presence_of :kind
 
+  def tags=(string)
+    old_tag_ids = tag_ids.dup
+    # break by comma and find a Tag for each piece
+    string.split(/,\s*/).map do |part|
+      Tag.find_or_create_by_name(part)
+    end.each do |tag|
+      # save an appropriate tagging
+      taggings.send new_record? ? :build : :create!,
+                    :tag => tag,
+                    :taggable => self
+      old_tag_ids.delete tag.id
+    end
+    # remove implicitly deleted tags (ones that weren't passed)
+    old_tag_ids.each {|tag_id| taggings.find_by_tag_id(tag_id).destroy }
+  end
 end

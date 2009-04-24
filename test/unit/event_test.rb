@@ -102,4 +102,85 @@ class EventTest < ActiveSupport::TestCase
     should_eventually "be able to span several days" do
     end
   end
+
+  context "Tagging an Event" do
+    context "tagging an event explicitly" do
+      setup do
+        @event = Factory(:event)
+        @event.taggings.create! :tag => Factory(:tag),
+                                :creator => Factory(:user)
+      end
+      should "have tag records" do
+        assert !@event.tags.blank?
+      end
+      should_change 'Tagging.count'
+      should_change 'Tag.count'
+    end
+  
+    context "tagging an event with a string" do
+      setup do
+        @event = Factory(:event)
+        @event.tags = "BIG, little, super awesome"
+      end
+      should "have tag records" do
+        assert !@event.tags.blank?
+      end
+      should_change 'Tagging.count'
+      should_change 'Tag.count'
+      should "have right tag count" do
+        assert_equal 3, @event.tags.size
+      end
+      should "have each tag" do
+        ["BIG", "little", "super awesome"].each {|name|
+          assert @event.tags.include?(Tag.find_by_name(name))
+        }
+      end
+      should "remove previous tags" do
+        @event.tags = "new, better"
+        ["BIG", "little", "super awesome"].each {|name|
+          assert !@event.tags.include?(Tag.find_by_name(name))
+        }
+      end
+    end
+  
+    context "tagging an unsaved event with a string" do
+      setup do
+        @event = Factory.build(:event)
+        @event.tags = "Another, Tag Test"
+      end
+      should "be an unsaved event" do
+        assert @event.new_record?
+      end
+      should "have right tagging count" do
+        assert_equal 2, @event.taggings.size
+      end
+      should "have built each tag record" do
+        assert Tag.find_by_name('Another')
+        assert Tag.find_by_name('Tag Test')
+      end
+      should "have built an unsaved tagging for each tag" do
+        ["Another", "Tag Test"].each do |name|
+          assert @event.taggings.detect {|tagging|
+            tagging.tag_id == Tag.find_by_name(name).id
+          }.new_record?
+        end
+      end
+    end
+  
+    context "tagging an unsaved event with a string and then saving it" do
+      setup do
+        @event = Factory.build(:event)
+        @event.tags = "Another, Tag Test"
+        @event.save
+      end
+      should "create valid tagging records" do
+        @event.taggings.each {|tagging| assert_valid tagging }
+      end
+      should_change 'Tag.count'
+      should_change 'Tagging.count'
+      should "save all tagging records" do
+        assert_equal 2, @event.taggings.count
+      end
+    end
+  end
 end
