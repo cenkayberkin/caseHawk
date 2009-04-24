@@ -146,50 +146,50 @@ class AccountTest < ActiveSupport::TestCase
     ##
   
     context "when being created with payment info" do
-      # setup do
-      #   @account = Account.new(:domain => 'foo', :user => User.new(valid_user), :plan => @plan, :creditcard => @card = CreditCard.new(valid_card), :address => @address = SubscriptionAddress.new(valid_address))
-      #   @account.expects(:build_subscription).with(:plan => @plan, :next_renewal_at => nil, :creditcard => @card, :address => @address).returns(@account.subscription = @subscription = Subscription.new(:plan => @plan, :creditcard => @card, :address => @address))
-      #   @subscription.stubs(:gateway).returns(@gw = BogusGateway.new)
-      # 
-      #   SubscriptionNotifier.stubs(:deliver_welcome).returns(true)
-      # end
-      # 
-      # context "saving account" do
-      #   setup { @account.save! }
-      #   should_change 'Account.count'
-      #   should_change 'Subscription.count'
-      #   should "set latest account" do
-      #     assert_equal @account, Account.find(:first, :order => 'id desc')
-      #   end
-      #   should "set latest account in subscription" do
-      #     assert_equal @account, Subscription.find(:first, :order => 'id desc').account
-      #   end
-      # end
-      # 
-      # context "when failing account save" do
-      #   setup do
-      #     @subscription.expects(:valid?).returns(false)
-      #     @subscription.errors.expects(:full_messages).returns(["Forced failure"])
-      #     assert @account.save
-      #   end
-      #   should_not_change 'Account.count'
-      #   should "report errors when failing to store the CC info with BrainTree" do
-      #     assert_equal ["Error with payment: Forced failure"], @account.errors.full_messages
-      #   end
-      # end
-      # 
-      # context "when saving purchase" do
-      #   setup do
-      #     @gw.stubs(:purchase).returns(BogusGateway::Response.new(true, 'Success'))
-      #     @plan.update_attribute(:trial_period, nil)
-      #     @account.save!
-      #   end
-      #   should_change 'SubscriptionPayment.count'
-      #   should "log the initial billing, if needed" do
-      #     assert_equal @account, (@sp = SubscriptionPayment.find(:first, :order => 'id desc')).account
-      #     assert_equal @account.subscription, @sp.subscription
-      #   end
-      # end
+      setup do
+        @account = Account.new(:domain => 'foo', :user => User.new(valid_user), :plan => @plan, :creditcard => @card = CreditCard.new(valid_card), :address => @address = SubscriptionAddress.new(valid_address))
+        @account.expects(:build_subscription).with(:plan => @plan, :next_renewal_at => nil, :creditcard => @card, :address => @address).returns(@account.subscription = @subscription = Subscription.new(:plan => @plan, :creditcard => @card, :address => @address))
+        @subscription.stubs(:gateway).returns(@gw = BogusGateway.new)
+      
+        SubscriptionNotifier.stubs(:deliver_welcome).returns(true)
+      end
+      
+      context "saving account" do
+        setup { @account.save! }
+        should_change 'Account.count'
+        should_change 'Subscription.count'
+        should "set latest account" do
+          assert_equal @account, Account.find(:first, :order => 'id desc')
+        end
+        should "set latest account in subscription" do
+          assert_equal @account, Subscription.find(:first, :order => 'id desc').account
+        end
+      end
+      
+      context "when failing account save" do
+        setup do
+          @subscription.expects(:valid?).returns(false)
+          @subscription.errors.expects(:full_messages).returns(["Forced failure"])
+          assert !@account.save
+        end
+        should_not_change 'Account.count'
+        should "report errors when failing to store the CC info with BrainTree" do
+          assert_equal ["Error with payment: Forced failure"], @account.errors.full_messages
+        end
+      end
+      
+      context "when saving purchase" do
+        setup do
+          @gw.stubs(:purchase).returns(BogusGateway::Response.new(true, 'Success'))
+          @plan.update_attribute(:trial_period, nil)
+          @account.save!
+        end
+        should_change 'SubscriptionPayment.count'
+        should "log the initial billing, if needed" do
+          assert_equal @account, (@sp = SubscriptionPayment.find(:first, :order => 'id desc')).account
+          assert_equal @account.subscription, @sp.subscription
+        end
+      end
     end
   
     context "when checking for a qualifying subscription plan" do
