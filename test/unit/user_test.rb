@@ -25,6 +25,10 @@ class UserTest < ActiveSupport::TestCase
   should_require_attributes :password
   should_require_attributes :password_confirmation
 
+  should "be valid with factory" do
+    assert_valid Factory.build(:user)
+  end
+
   context 'being created' do
     setup do
       @user = create_user
