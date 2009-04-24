@@ -2,9 +2,9 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class TaggingTest < ActiveSupport::TestCase
 
-  should_require_attributes :tag
-  should_require_attributes :taggable
-  should_require_attributes :creator
+  should_validate_presence_of :tag
+  should_validate_presence_of :taggable
+  should_validate_presence_of :creator
 
   should "be valid with factory" do
     assert_valid Factory.build(:tagging)
