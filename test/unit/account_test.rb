@@ -17,6 +17,11 @@ include ActiveMerchant::Billing
 
 class AccountTest < ActiveSupport::TestCase
 
+  should "be valid with factory" do
+    Factory(:account)
+    assert Factory.build(:account).save!, Factory.build(:account).errors.inspect
+  end
+
   context "Account" do
     setup do
       @account = accounts(:localhost)
