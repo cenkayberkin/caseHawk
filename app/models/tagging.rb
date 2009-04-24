@@ -7,5 +7,5 @@ class Tagging < ActiveRecord::Base
   validates_presence_of :tag
   validates_presence_of :taggable
   validates_presence_of :creator
-
+  validates_uniqueness_of :tag_id, :scope => [:taggable_type, :taggable_id]
 end
