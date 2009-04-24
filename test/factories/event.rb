@@ -9,6 +9,6 @@ Factory.define :event do |e|
   e.remind 0
 end
 
-Factory.define :task,         :parent => :event
-Factory.define :deadline,     :parent => :event
-Factory.define :appointment,  :parent => :event
+# Factory.define :task,         :parent => :event
+# Factory.define :deadline,     :parent => :event
+# Factory.define :appointment,  :parent => :event
