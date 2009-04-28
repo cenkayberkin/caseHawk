@@ -1,20 +1,18 @@
+AppConfig['gateway'] = 'bogus'
 Factory.define :account do |f|
   f.name 'some account'
-  f.full_domain 'casehawk.com'
+  f.user { User.last }
+  f.association :plan, :factory => :subscription_plan
+  f.sequence(:full_domain) {|n| "www#{n}.casehawk.com" }
+  f.creditcard do
+    card = ActiveMerchant::Billing::CreditCard.new :number => '1'
+    card.stubs(:valid?).returns(true)
+    card.stubs(:save).returns(true)
+    card
+  end
+  f.address do
+    address = Factory.build(:subscription_address)
+    address.stubs(:save!).returns(true)
+    address
+  end
 end
-Factory.define :subscription do |f|
-  f.association :account
-  f.association :subscription_plan
-  f.user_limit 3
-  f.next_renewal_at 1.day.ago
-  f.amount 10
-  f.card_number "XXXX-XXXX-XXXX-1111"
-  f.card_expiration "05-2012"
-  f.billing_id "foo"
-end
-Factory.define :subscription_plan do |f|
-  f.name "Free"
-  f.amount 0.00
-  f.renewal_period 5
-end
-

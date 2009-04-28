@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090421222039) do
+ActiveRecord::Schema.define(:version => 20090423214609) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -82,15 +82,23 @@ ActiveRecord::Schema.define(:version => 20090421222039) do
   end
 
   create_table "events", :force => true do |t|
-    t.integer  "creator_id",                    :null => false
+    t.integer  "creator_id",                     :null => false
     t.integer  "owner_id"
-    t.string   "kind",                          :null => false
-    t.string   "name",                          :null => false
+    t.integer  "location_id"
+    t.string   "kind",                           :null => false
+    t.string   "name",                           :null => false
     t.date     "start_date"
     t.time     "start_time"
     t.date     "end_date"
     t.time     "end_time"
-    t.boolean  "remind",     :default => false
+    t.boolean  "remind",      :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "locations", :force => true do |t|
+    t.integer  "event_id"
+    t.string   "name",       :limit => 50
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -147,6 +155,21 @@ ActiveRecord::Schema.define(:version => 20090421222039) do
     t.integer  "user_limit",           :limit => 8
     t.integer  "renewal_period",       :limit => 8,                                :default => 1
     t.string   "billing_id"
+  end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "creator_id"
+    t.integer  "tag_id"
+    t.string   "taggable_type"
+    t.integer  "taggable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

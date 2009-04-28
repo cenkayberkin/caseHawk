@@ -20,10 +20,14 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class UserTest < ActiveSupport::TestCase
 
-  should_require_attributes :login
-  should_require_attributes :email
-  should_require_attributes :password
-  should_require_attributes :password_confirmation
+  should_validate_presence_of :login
+  should_validate_presence_of :email
+  should_validate_presence_of :password
+  should_validate_presence_of :password_confirmation
+
+  should "be valid with factory" do
+    assert_valid Factory.build(:user)
+  end
 
   context 'being created' do
     setup do
