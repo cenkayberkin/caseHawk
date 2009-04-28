@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090414223047) do
+ActiveRecord::Schema.define(:version => 20090421222039) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,19 @@ ActiveRecord::Schema.define(:version => 20090414223047) do
     t.string   "full_domain"
     t.datetime "deleted_at"
     t.integer  "subscription_discount_id", :limit => 8
+  end
+
+  create_table "addresses", :force => true do |t|
+    t.string   "label"
+    t.integer  "addressable_id"
+    t.string   "addressable_type"
+    t.string   "street"
+    t.string   "unit"
+    t.string   "city",             :limit => 50
+    t.string   "postal_code",      :limit => 10
+    t.string   "state",            :limit => 50
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "bj_config", :primary_key => "bj_config_id", :force => true do |t|
@@ -78,6 +91,13 @@ ActiveRecord::Schema.define(:version => 20090414223047) do
     t.date     "end_date"
     t.time     "end_time"
     t.boolean  "remind",     :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "locations", :force => true do |t|
+    t.integer  "event_id"
+    t.string   "name",       :limit => 50
     t.datetime "created_at"
     t.datetime "updated_at"
   end
