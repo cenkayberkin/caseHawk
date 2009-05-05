@@ -1,3 +1,14 @@
+# == Schema Information
+# Schema version: 20090505212954
+#
+# Table name: tags
+#
+#  id         :integer(4)      not null, primary key
+#  name       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Tag < ActiveRecord::Base
 
   validates_presence_of   :name

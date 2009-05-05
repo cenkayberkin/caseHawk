@@ -1,20 +1,20 @@
 # == Schema Information
+# Schema version: 20090505212954
 #
 # Table name: events
 #
-#  id          :integer(4)      not null, primary key
-#  creator_id  :integer(4)      not null
-#  owner_id    :integer(4)
-#  location_id :integer(4)
-#  kind        :string(255)     not null
-#  name        :string(255)     not null
-#  start_date  :date
-#  start_time  :time
-#  end_date    :date
-#  end_time    :time
-#  remind      :boolean(1)
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id         :integer(4)      not null, primary key
+#  creator_id :integer(4)      not null
+#  owner_id   :integer(4)
+#  event_type :string(255)     not null
+#  name       :string(255)     not null
+#  start_date :date
+#  start_time :time
+#  end_date   :date
+#  end_time   :time
+#  remind     :boolean(1)
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 require File.dirname(__FILE__) + '/../test_helper'
@@ -23,7 +23,7 @@ class EventTest < ActiveSupport::TestCase
 
   should_validate_presence_of :name
   should_validate_presence_of :creator_id
-  should_validate_presence_of :kind
+  should_validate_presence_of :event_type
   should_have_many :taggings
   should_have_many :tags, :through => :taggings
 
@@ -36,70 +36,6 @@ class EventTest < ActiveSupport::TestCase
   context "owner" do
     setup { @event = Factory(:event) }
     should_eventually "be a user" do
-    end
-  end
-
-  context "Appointment" do
-    setup do
-      @event = Factory(:appointment)
-    end
-    should_eventually "have start date" do
-    end
-    should_eventually "have end date" do
-    end
-    should_eventually "have start time" do
-    end
-    should_eventually "have end time" do
-    end
-  end
-
-  context "Deadline" do
-    setup do
-      @event = Factory(:deadline)
-    end
-    should_eventually "have start date" do
-    end
-    should_eventually "have no end date" do
-    end
-    should_eventually "have start time" do
-    end
-    should_eventually "have no end time" do
-    end
-    should_eventually "be completable" do
-    end
-  end
-  
-  context "Task" do
-    setup do
-      @event = Factory(:task)
-    end
-    should_eventually "have a start date" do
-    end
-    should_eventually "have no end date" do
-    end
-    should_eventually "have no start time" do
-    end
-    should_eventually "have no end time" do
-    end
-    should_eventually "be completable" do
-    end
-  end
-  
-  context "AllDay" do
-    setup do
-      @event = Factory(:task)
-    end
-    should_eventually "have a start date" do
-    end
-    should_eventually "have an end date" do
-    end
-    should_eventually "have no start time" do
-    end
-    should_eventually "have no end time" do
-    end
-    should_eventually "be able to be only one day" do
-    end
-    should_eventually "be able to span several days" do
     end
   end
 
