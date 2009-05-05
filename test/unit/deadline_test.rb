@@ -5,19 +5,23 @@ class DeadlineTest < ActiveSupport::TestCase
     assert_valid Factory.build(:deadline)
   end
   
-  setup do
-    @event = Factory(:deadline)
+  context "given a valid deadline" do
+    setup do
+      @event = Factory(:deadline)
+    end
+    should "have start date" do
+      assert @event.start_date
+    end   
+    should "have start time" do
+      assert @event.start_time
+    end   
+    should "have no end date" do
+      assert_nil @event.end_date
+    end   
+    should "have no end time" do
+      assert_nil @event.end_time
+    end   
+    should_eventually "be completable" do
+    end
   end
-  
-  should_eventually "have start date" do
-  end
-  should_eventually "have no end date" do
-  end
-  should_eventually "have start time" do
-  end
-  should_eventually "have no end time" do
-  end
-  should_eventually "be completable" do
-  end
- 
 end

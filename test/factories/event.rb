@@ -43,6 +43,5 @@ Factory.define :task do |e|
   e.event_type "Task"
   e.name "Things to do"
   e.start_date "2009-05-15"
-  e.start_time "17:30"
   e.remind 0
 end
