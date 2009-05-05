@@ -5,17 +5,21 @@ class AppointmentTest < ActiveSupport::TestCase
     assert_valid Factory.build(:appointment)
   end
  
-  setup do
-    @event = Factory(:appointment)
+  context "given a valid appointment" do
+    setup do
+      @event = Factory(:appointment)
+    end
+    should "have start date" do
+      assert @event.start_date
+    end
+    should "have end date" do
+      assert @event.end_date
+    end
+    should "have start time" do
+      assert @event.start_time
+    end
+    should "have end time" do
+      assert @event.end_time
+    end
   end
-  
-  should_eventually "have start date" do
-  end
-  should_eventually "have end date" do
-  end
-  should_eventually "have start time" do
-  end
-  should_eventually "have end time" do
-  end
-
 end
