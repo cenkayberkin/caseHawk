@@ -1,44 +1,44 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<title><%= @page_title ? "#{@page_title} | #{AppConfig['app_name']}" : AppConfig['app_name'] %></title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<%= stylesheet_link_tag 'reset-fonts.css', 'application.css' %>
-	</head>
-	<body>
-		<div id="page">
+  <head>
+    <title><%= @page_title ? "#{@page_title} | #{AppConfig['app_name']}" : AppConfig['app_name'] %></title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <%= stylesheet_link_tag 'reset-fonts.css', 'application.css' %>
+  </head>
+  <body>
+    <div id="page">
+	
+      <div id="header">
+        <div id="user-menu">
+          <%= yield :user_menu %>
+        </div>
+        <h1>CaseHawk</h1>
+        <div id="nav"> 
+          <%= yield :menu %>
+        </div>
+      </div>
 
-			<div id="header">
-				<div id="user-menu">
-					<%= yield :user_menu %>
-				</div>
-				<h1>CaseHawk</h1>
-				<div id="nav"> 
-					<%= yield :menu %>
-				</div>
-			</div>
+      <div id="content">
+        <div id="notices">
+          <%= flash_notices %>
+        </div>
+        <div id="main">
 
-			<div id="content">
-				<div id="notices">
-					<%= flash_notices %>
-				</div>
-				<div id="main">
+          <%= yield %>
 
-					<%= yield %>
+        </div>
+        <div id="sidebar">
+          <%= yield :sidebar %>
+        </div>        
+      </div>
 
-				</div>
-				<div id="sidebar">
-					<%= yield :sidebar %>
-				</div>				
-			</div>
+      <div id="footer">
+        <%= yield :footer %>
+        <p>
+        Copyright &copy; 2006 &ndash; <%= Time.now.to_s(:year) %> <a href="http://lawfortress.com">CaseHawk by Lawfortress LLC</a>
+        </p>  
+      </div>
 
-			<div id="footer">
-				<%= yield :footer %>
-				<p>
-				Copyright &copy; 2006 &ndash; <%= Time.now.to_s(:year) %> <a href="http://lawfortress.com">CaseHawk by Lawfortress LLC</a>
-				</p>	
-			</div>
-
-		</div>
-	</body>
+    </div>
+  </body>
 </html>

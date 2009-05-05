@@ -29,6 +29,10 @@ class Event < ActiveRecord::Base
   validates_presence_of :creator_id
   validates_presence_of :event_type
 
+  named_scope :today, :conditions => "start_date LIKE '#{day}%'
+                                      OR end_date LIKE '#{day}%'
+                                      OR '#{day}' BETWEEN start_date AND end_date"
+
   named_scope :day, lambda { |day| { :conditions => "start_date LIKE '#{day}%'
                                       OR end_date LIKE '#{day}%'
                                       OR '#{day}' BETWEEN start_date AND end_date" } }
