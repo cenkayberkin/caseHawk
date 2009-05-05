@@ -19,6 +19,8 @@
 
 class Event < ActiveRecord::Base
 
+  self.inheritance_column = 'event_type'
+
   belongs_to :location
   has_many   :taggings, :as => :taggable
   has_many   :tags, :through => :taggings
@@ -27,6 +29,15 @@ class Event < ActiveRecord::Base
   validates_presence_of :creator_id
   validates_presence_of :kind
 
+  named_scope :day, lambda { |day| { :conditions => "start_date LIKE '#{day}%'
+                                      OR end_date LIKE '#{day}%'
+                                      OR '#{day}' BETWEEN start_date AND end_date" } }
+  
+  def self.today
+    # This is basically a named scope that extends the :day scope for DRYness
+    Event.day(Date.today)
+  end
+  
   def tags=(string)
     old_tag_ids = tag_ids.dup
     # break by comma and find a Tag for each piece
