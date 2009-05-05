@@ -39,9 +39,8 @@ body {
 body, div, td, table, p, textarea { }
 
 h1, h2, h3, h4, h5 {
-	font-family: Palatino, Georgia, "New Century Schoolbook", "Bitstream Vera Serif", Utopia, "Times New Roman", times, serif; 
 	margin: 0 0 0.5em;
-	color: #555; 
+	color: #999; 
 	font-weight: bold; 
 	line-height: 1.2em;  
 }
@@ -90,11 +89,12 @@ ul, ol, p { margin: 0 0 1em; }
 	#logbox a { color: #5793F5; }
 	#logbox a:hover { color: #FFF; }
 	
-#wrapper {
-	margin: 10px auto 30px; 
-	width: 900px; 
-	padding: 0; 
-	text-align: left; 
+
+#nav {
+  position: absolute; 
+  bottom: 0; 
+  left: 275px; 
+  height: 30px; 
 }
 
 #menu {
