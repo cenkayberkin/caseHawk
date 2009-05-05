@@ -1,0 +1,2 @@
+class AllDay < Event
+end
