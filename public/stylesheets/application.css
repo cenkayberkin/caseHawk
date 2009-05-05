@@ -1,10 +1,11 @@
 /*
-	Colors
-	Red #FF3932
-	Light Blue #BEDEEF
-	Dark Blue #5793F5
-	Green #7CEB64
-	Darker Blue #3C459F
+Colors
+Dark Blue 114499
+Light Blue 73A3D3
+Green 72D472
+Red B32914
+Orange D95C26
+Yellow F1BB16
 
  */
 /****************************************************************
@@ -47,20 +48,32 @@ h1, h2, h3, h4, h5 {
 	h1 { font-size: 2.4em; }
 	h2 { font-size: 2em; }
 	h3 { font-size: 1.6em; }
-a { color: #FF3932; }
-a:hover { color: #3C459F; text-decoration: underline; }
+a { color: #114499; }
+a:hover { color: #B32914; text-decoration: underline; }
 
 ul, ol, p { margin: 0 0 1em; }
 
+#page {
+  margin: 0 auto; padding: 0 20px;
+	background: url(/images/header-bg.png) repeat-x left top; 
+}
 #header {
-	margin: 0 auto; 
+	margin: 0 auto 20px; 
 	padding: 0; 
 	width: auto; 
-	height: 60px; 
-	background: #CCC; 
+  height: 120px;  
+  background: url(/images/header-inner.png) no-repeat 10px top;
+  position: relative;
 }
-	#header-inner { margin: 0 auto; width: 900px; }
-	#header h1 { margin: 0; line-height: 60px; 
+	#header h1 { 
+	  position: absolute;
+	  left: 0px; bottom: 10px; 
+	  margin: 0; padding: 0;
+	  font-size: 3.6em;
+	  letter-spacing: 1px;
+	  color: #FFF; 
+    font-family: "Helvetica Neue", Helvetica, "Bitstream Vera Sans", Arial, sans-serif;	   
+    font-weight: normal;
 	}
 
 #logbox {
@@ -127,18 +140,45 @@ ul, ol, p { margin: 0 0 1em; }
 	  font-size: 15px;
 	  color: #CCC;
 	}
-	
+
+#content, #footer { min-width: 900px; }	
 #content {
 	float: left; 
-	margin: 0 0 0 9px; 
-	width: 750px; 
-	border-left: 1px solid #CCC; 
-	padding: 0 0 0 10px; 
+	margin: 0 auto 20px; 
+	width: 100%; 
+	padding: 0; 
 
 	font-size: 1.2em; 
 	line-height: 1.5em; 
 }
-
+  #notices { width: 100%; }
+  #main, #sidebar {
+     
+  }
+  #main {
+    float: left;
+    margin: 0 20px 0 0; padding: 10px 0 0;
+    width: 72%; min-width: 650px;  
+  }
+  #sidebar {
+    float: right;
+    margin: 0; padding: 10px 0; 
+    width: 25%; min-width: 225px;
+    background: #F3F3F3;
+    border: 1px solid #E3E3E3;
+  }
+  
+#footer {
+  clear: both; 
+  margin: 0 0 20px 0;
+  padding: 10px 0 0;
+  border-top: 1px solid #E3E3E3;
+  width: 100%;
+  text-align: center;
+  font-size: 1.2em; 
+  line-height: 1.4em; 
+  color: #666;
+}
 	#content h2 {
 		color: #5793F5;
 		border-bottom: 1px dashed #999999;

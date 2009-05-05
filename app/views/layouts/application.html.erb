@@ -22,23 +22,20 @@
 				<div id="notices">
 					<%= flash_notices %>
 				</div>
-				<div id="left">
-					<%= yield :left %>
-				</div>
 				<div id="main">
 					
 					<%= yield %>
 
 				</div>
-				<div id="right">
-					<%= yield :right %>
+				<div id="sidebar">
+					<%= yield :sidebar %>
 				</div>				
 			</div>
 			
 			<div id="footer">
 				<%= yield :footer %>
 				<p>
-					Copyright &copy; 2006 &ndash; <%= Time.now.to_s(:year) %> <a href="http://lawfortress.com">CaseHawk &amp; Lawfortress LLC</a>
+					Copyright &copy; 2006 &ndash; <%= Time.now.to_s(:year) %> <a href="http://lawfortress.com">CaseHawk by Lawfortress LLC</a>
 				</p>	
 			</div>
 			
