@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<div id="page">
-			
+
 			<div id="header">
 				<div id="user-menu">
 					<%= yield :user_menu %>
@@ -17,13 +17,13 @@
 					<%= yield :menu %>
 				</div>
 			</div>
-			
+
 			<div id="content">
 				<div id="notices">
 					<%= flash_notices %>
 				</div>
 				<div id="main">
-					
+
 					<%= yield %>
 
 				</div>
@@ -31,14 +31,14 @@
 					<%= yield :sidebar %>
 				</div>				
 			</div>
-			
+
 			<div id="footer">
 				<%= yield :footer %>
 				<p>
-					Copyright &copy; 2006 &ndash; <%= Time.now.to_s(:year) %> <a href="http://lawfortress.com">CaseHawk by Lawfortress LLC</a>
+				Copyright &copy; 2006 &ndash; <%= Time.now.to_s(:year) %> <a href="http://lawfortress.com">CaseHawk by Lawfortress LLC</a>
 				</p>	
 			</div>
-			
+
 		</div>
 	</body>
 </html>
