@@ -39,9 +39,8 @@ body {
 body, div, td, table, p, textarea { }
 
 h1, h2, h3, h4, h5 {
-	font-family: Palatino, Georgia, "New Century Schoolbook", "Bitstream Vera Serif", Utopia, "Times New Roman", times, serif; 
 	margin: 0 0 0.5em;
-	color: #555; 
+	color: #999; 
 	font-weight: bold; 
 	line-height: 1.2em;  
 }
@@ -90,12 +89,41 @@ ul, ol, p { margin: 0 0 1em; }
 	#logbox a { color: #5793F5; }
 	#logbox a:hover { color: #FFF; }
 	
-#wrapper {
-	margin: 10px auto 30px; 
-	width: 900px; 
-	padding: 0; 
-	text-align: left; 
+
+#nav {
+  position: absolute; 
+  bottom: 0; 
+  left: 275px; 
+  height: 30px; 
 }
+  #nav ul {
+    margin: 0; padding: 0;
+    list-style: none;
+    text-transform: uppercase; 
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  #nav ul li {
+    float: left; 
+    margin: 0 10px 0 0;
+    height: 30px; 
+    border-left: 1px solid #F9F9F9; 
+    border-right: 1px solid #F9F9F9;
+  }
+  #nav ul li a, #nav ul li span {
+    display: block; 
+    height: 30px; line-height: 30px; 
+    padding: 0 15px; 
+    background: #FFF url(/images/nav-button-bg.png) repeat-x left bottom; 
+  }
+  #nav ul li span.active {
+    background-image: none; 
+    color: #999;
+  }
+  #nav ul li a:hover {
+    text-decoration: none;
+    background-image: none;
+  }
 
 #menu {
 	margin: 0; 
