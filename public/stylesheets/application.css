@@ -96,6 +96,34 @@ ul, ol, p { margin: 0 0 1em; }
   left: 275px; 
   height: 30px; 
 }
+  #nav ul {
+    margin: 0; padding: 0;
+    list-style: none;
+    text-transform: uppercase; 
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  #nav ul li {
+    float: left; 
+    margin: 0 10px 0 0;
+    height: 30px; 
+    border-left: 1px solid #F9F9F9; 
+    border-right: 1px solid #F9F9F9;
+  }
+  #nav ul li a, #nav ul li span {
+    display: block; 
+    height: 30px; line-height: 30px; 
+    padding: 0 15px; 
+    background: #FFF url(/images/nav-button-bg.png) repeat-x left bottom; 
+  }
+  #nav ul li span.active {
+    background-image: none; 
+    color: #999;
+  }
+  #nav ul li a:hover {
+    text-decoration: none;
+    background-image: none;
+  }
 
 #menu {
 	margin: 0; 
