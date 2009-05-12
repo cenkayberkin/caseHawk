@@ -33,7 +33,7 @@ class EventsController < ApplicationController
   protected
 
     def new_event(atts = {})
-      case params[:event] && params[:event][:event_type]
+      case params[:event] && params[:event][:type]
       when 'AllDay'       then AllDay.new(atts)
       when 'Appointment'  then Appointment.new(atts)
       when 'Deadline'     then Deadline.new(atts)

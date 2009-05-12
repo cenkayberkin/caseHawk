@@ -19,15 +19,13 @@
 
 class Event < ActiveRecord::Base
 
-  self.inheritance_column = 'event_type'
-
   belongs_to :location
   has_many   :taggings, :as => :taggable
   has_many   :tags, :through => :taggings
   
   validates_presence_of :name
   validates_presence_of :creator_id
-  validates_presence_of :event_type
+  validates_presence_of :type
 
   named_scope :day, proc {|day|
     { :conditions => "   start_date LIKE '#{day}%'
