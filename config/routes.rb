@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :calendars
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -37,6 +36,9 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :users, :events
   map.resource :session
+
+  map.connect '/calendar', :controller => 'calendars', :action => :index
+  map.connect '/calendar/:action', :controller => 'calendars'
 
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'

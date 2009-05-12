@@ -44,6 +44,8 @@ Rails::Initializer.run do |config|
     :secret      => '9cb7f8ec7e560956b38e35e5e3005adf68acaf1f64600950e2f7dc9e6485d6d9c65566d193204316936b924d7cc72f54cad84b10a70a0257c3fd16e732152565'
   }
 
+  config.gem "rubyredrick-ri_cal", :lib => 'ri_cal', :source => 'http://gems.github.com'
+
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with 'rake db:sessions:create')
