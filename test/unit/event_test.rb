@@ -24,7 +24,7 @@ class EventTest < ActiveSupport::TestCase
   should_validate_presence_of :name
   should_validate_presence_of :creator_id
   should_have_many :taggings
-  should_have_many :tags, :through => :taggings
+  should_have_many :tag_records, :through => :taggings
 
   context "creator" do
     setup { @event = Factory(:event) }
@@ -75,7 +75,7 @@ class EventTest < ActiveSupport::TestCase
                                 :creator => Factory(:user)
       end
       should "have tag records" do
-        assert !@event.tags.blank?
+        assert !@event.tag_records.blank?
       end
       should_change 'Tagging.count'
       should_change 'Tag.count'
@@ -87,22 +87,22 @@ class EventTest < ActiveSupport::TestCase
         @event.tags = "BIG, little, super awesome"
       end
       should "have tag records" do
-        assert !@event.tags.blank?
+        assert !@event.tag_records.blank?
       end
       should_change 'Tagging.count'
       should_change 'Tag.count'
       should "have right tag count" do
-        assert_equal 3, @event.tags.size
+        assert_equal 3, @event.tag_records.size
       end
       should "have each tag" do
         ["BIG", "little", "super awesome"].each {|name|
-          assert @event.tags.include?(Tag.find_by_name(name))
+          assert @event.tag_records.include?(Tag.find_by_name(name))
         }
       end
       should "remove previous tags" do
         @event.tags = "new, better"
         ["BIG", "little", "super awesome"].each {|name|
-          assert !@event.tags.include?(Tag.find_by_name(name))
+          assert !@event.tag_records.include?(Tag.find_by_name(name))
         }
       end
     end

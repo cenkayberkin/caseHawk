@@ -21,7 +21,7 @@ class Event < ActiveRecord::Base
 
   belongs_to :location
   has_many   :taggings, :as => :taggable
-  has_many   :tags, :through => :taggings
+  has_many   :tag_records, :through => :taggings, :source => :tag
   
   validates_presence_of :name
   validates_presence_of :creator_id
@@ -37,11 +37,14 @@ class Event < ActiveRecord::Base
     # This is basically a named scope that extends the :day scope for DRYness
     Event.day(Date.today)
   end
-  
+
+  def tags
+    TagParser.un_parse tag_records.map(&:name)
+  end
+
   def tags=(string)
-    old_tag_ids = tag_ids.dup
-    # break by comma and find a Tag for each piece
-    string.split(/,\s*/).map do |part|
+    old_tag_ids = tag_record_ids.dup
+    TagParser.parse(string).tags.map do |part|
       Tag.find_or_create_by_name(part)
     end.each do |tag|
       # save an appropriate tagging
