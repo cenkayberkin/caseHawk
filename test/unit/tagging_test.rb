@@ -28,7 +28,7 @@ class TaggingTest < ActiveSupport::TestCase
       @tagging = Factory.create(:tagging)
     end
     should "have tag show up in Event#tags" do
-      assert @tagging.taggable.tags.include?(@tagging.tag)
+      assert @tagging.taggable.tag_records.include?(@tagging.tag)
     end
     should "be invalid if the tagging is already applied" do
       assert !@tagging.taggable.taggings.build(:tag => @tagging.tag).valid?

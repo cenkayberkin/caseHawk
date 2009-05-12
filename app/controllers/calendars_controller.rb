@@ -1,20 +1,31 @@
 class CalendarsController < ApplicationController
 
-  def index
+  def show
+    @start_date = params[:start_date] ?
+                    Date.parse(params[:start_date]) :
+                    Date.today.beginning_of_week
+    @end_date =   params[:end_date] ?
+                    Date.parse(params[:end_date]) :
+                    Date.today.end_of_week
+    respond_to do |format|
+      format.html
+      format.js do
+        render :json => Event.all.to_json
+      end
+      format.ical
+    end
   end
 
-  def show
-    render :text =>  RiCal.Calendar do |cal|
-      cal.event do |event|
-        event.description = "MA-6 First US Manned Spaceflight"
-        event.dtstart =  DateTime.parse("2/20/1962 14:47:39")
-        event.dtend = DateTime.parse("2/20/1962 19:43:02")
-        event.location = "Cape Canaveral"
-        event.add_attendee "john.glenn@nasa.gov"
-        event.alarm do
-          description "Segment 51"
-        end
+  def today
+    @date = Date.today
+    respond_to do |format|
+      format.html do
+        render :action => :show
       end
+      format.js do
+        render :json => Event.today.to_json
+      end
+      format.ical
     end
   end
 end

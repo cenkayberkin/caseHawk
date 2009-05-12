@@ -31,9 +31,8 @@ class EventsControllerTest < ActionController::TestCase
 
     context 'POST to create with valid parameters' do
       setup do
-        post :create, :event => Factory.attributes_for(:all_day)
+        post :create, :event => Factory.attributes_for(:event).merge(:type => 'AllDay')
       end
-
       should_change 'Event.count', :by => 1
       should_set_the_flash_to /created/i
       should_redirect_to 'events_path'
@@ -47,7 +46,7 @@ class EventsControllerTest < ActionController::TestCase
 
       should_respond_with :success
       should_render_template :show
-      should_assign_to :event, :equals => '@event'
+      should_assign_to :event
     end
 
     context 'GET to edit for existing event' do
@@ -58,7 +57,7 @@ class EventsControllerTest < ActionController::TestCase
 
       should_respond_with :success
       should_render_template :edit
-      should_assign_to :event, :equals => '@event'
+      should_assign_to :event
     end
 
     context 'PUT to update for existing event' do

@@ -37,8 +37,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :events
   map.resource :session
 
-  map.connect '/calendar', :controller => 'calendars', :action => :index
-  map.connect '/calendar/:action', :controller => 'calendars'
+  map.resource :calendar, :collection => {:today => :get}
 
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'

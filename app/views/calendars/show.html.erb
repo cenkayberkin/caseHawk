@@ -1,0 +1,40 @@
+<% content_for :head do %>
+	<%= stylesheet_tag 'calendar-day' %>
+<% end %>
+
+<h2>Calendar: <%= @day.to_s %></h2>
+<div class="meta">Showing Tag1, Tag2, Tag3</div>
+<div id="<%= @day.to_s %>" class="day">
+	<div class="day-top">
+		<div class="day-top-tasks">
+			<h3>Tasks</h3>
+			<ul>
+				<% @events.tasks.
+						each do |task| %>
+					<li>
+						<label>
+							<input id="task-<%= task.id %>" name="task-<%= task.id %>" type="checkbox" />
+							<%= task.name %>
+						</label>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+		<div class="day-top-allday">
+			<h3>All-Day Events</h3>
+			<ul>
+			</ul>
+		</div>		
+	</div>
+	<ul class="day-hours">
+		<% ['am', 'pm'].each do |meridian| %>
+			<% (1..12).each do |n| %>
+				<li><%= @n %>:00<%= @meridian %></li>
+			<% end %>
+		<% end %>
+	</ul>
+	<div id="day-full">
+		
+	</div>
+</div>
+	

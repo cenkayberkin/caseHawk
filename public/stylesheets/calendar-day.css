@@ -1,0 +1,43 @@
+.day {
+  border-width: 1px 0 1px 0; 
+  border-color: #CCC; 
+  border-style: solid; 
+}
+
+  .day-top {
+    height: 250px; 
+    overflow-y: auto;
+    padding-left: 20px; 
+    border-width: 0 1px 1px 1px; 
+    border-color: #CCC;
+    border-style: solid; 
+  }
+    .day-top-tasks, .day-top-allday {
+      float: left; 
+      width: 50%; 
+    }
+    
+  .day-hours {
+    clear: both; 
+    width: 20px; 
+    float: left;
+    margin: 0; 
+    padding: 0; 
+    list-style: none inside;
+  }  
+    .day-hours li {
+      height: 30px; 
+      border-bottom: 1px solid #EEE; 
+      margin: 0; 
+      padding: 0; 
+    }
+    
+  .day-full {
+    float: left;
+    width: auto; 
+    border-left: 1px solid #EEE; 
+    margin: 0; 
+    padding: 0; 
+  }
+  
+  
