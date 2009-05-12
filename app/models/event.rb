@@ -38,6 +38,11 @@ class Event < ActiveRecord::Base
     Event.day(Date.today)
   end
 
+  def self.this_month
+    # This is basically a named scope that extends the :day scope for DRYness
+    Event.between(Date.today.beginning_of_month, Date.today.end_of_month)
+  end
+
   def tags
     TagParser.un_parse tag_records.map(&:name)
   end
