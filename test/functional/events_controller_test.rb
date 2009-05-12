@@ -46,7 +46,7 @@ class EventsControllerTest < ActionController::TestCase
 
       should_respond_with :success
       should_render_template :show
-      should_assign_to :event, :equals => '@event'
+      should_assign_to :event
     end
 
     context 'GET to edit for existing event' do
@@ -57,7 +57,7 @@ class EventsControllerTest < ActionController::TestCase
 
       should_respond_with :success
       should_render_template :edit
-      should_assign_to :event, :equals => '@event'
+      should_assign_to :event
     end
 
     context 'PUT to update for existing event' do
