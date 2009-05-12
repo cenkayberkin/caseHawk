@@ -39,6 +39,35 @@ class EventTest < ActiveSupport::TestCase
     end
   end
 
+  context "saving a record" do
+    setup { Event.create! Factory.attributes_for(:event) }
+    should_change "Event.count", :by => 1
+  end
+
+  context "finding events by day" do
+    setup do
+      @number_yesterday = 7
+      @number_today = 13
+      @number_yesterday.times {
+        Factory.create :event, :start_date => Date.yesterday
+      }
+      @number_today.times {
+        Factory.create :event, :start_date => Date.today
+      }
+    end
+    should "find just yesterday's" do
+      assert_equal @number_yesterday, Event.day(Date.yesterday).count
+    end
+    should "find just today's" do
+      assert_equal @number_today, Event.day(Date.today).count
+    end
+    should "find just today's with the Event#day scope" do
+      assert_equal @number_today, Event.today.count
+    end
+  end
+  
+  
+
   context "Tagging an Event" do
     context "tagging an event explicitly" do
       setup do

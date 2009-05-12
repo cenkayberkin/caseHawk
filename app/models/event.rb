@@ -29,17 +29,11 @@ class Event < ActiveRecord::Base
   validates_presence_of :creator_id
   validates_presence_of :event_type
 
-  named_scope :today do |day|
+  named_scope :day, proc {|day|
     { :conditions => "   start_date LIKE '#{day}%'
                       OR end_date LIKE '#{day}%'
                       OR '#{day}' BETWEEN start_date AND end_date" }
-  end
-
-  named_scope :day do |day|
-    { :conditions => "   start_date LIKE '#{day}%'
-                      OR end_date LIKE '#{day}%'
-                      OR '#{day}' BETWEEN start_date AND end_date" }
-  end
+  }
   
   def self.today
     # This is basically a named scope that extends the :day scope for DRYness
