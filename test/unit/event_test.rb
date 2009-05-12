@@ -23,7 +23,6 @@ class EventTest < ActiveSupport::TestCase
 
   should_validate_presence_of :name
   should_validate_presence_of :creator_id
-  should_validate_presence_of :type
   should_have_many :taggings
   should_have_many :tags, :through => :taggings
 

@@ -1,6 +1,5 @@
-Factory.define :event do |e|
+Factory.define :event, :class => 'AllDay' do |e|
   e.creator_id 1
-  e.type "Appointment"
   e.name "Meeting with staff at the office"
   e.start_date "2009-04-15"
   e.start_time "13:30"
@@ -11,7 +10,6 @@ end
 
 Factory.define :all_day do |e|
   e.creator_id 1
-  e.type "AllDay"
   e.name "Big Tuna Birthday"
   e.start_date "2009-05-15"
   e.end_date "2009-05-15"
@@ -20,7 +18,6 @@ end
 
 Factory.define :appointment do |e|
   e.creator_id 1
-  e.type "Appointment"
   e.name "Meeting with staff at the office"
   e.start_date "2009-04-15"
   e.start_time "13:30"
@@ -31,7 +28,6 @@ end
 
 Factory.define :deadline do |e|
   e.creator_id 1
-  e.type "Deadline"
   e.name "Turn it in!"
   e.start_date "2009-05-15"
   e.start_time "13:30"
@@ -40,7 +36,6 @@ end
 
 Factory.define :task do |e|
   e.creator_id 1
-  e.type "Task"
   e.name "Things to do"
   e.start_date "2009-05-15"
   e.remind 0

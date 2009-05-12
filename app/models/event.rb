@@ -25,7 +25,7 @@ class Event < ActiveRecord::Base
   
   validates_presence_of :name
   validates_presence_of :creator_id
-  validates_presence_of :type
+  validate :requires_subclassing
 
   named_scope :day, proc {|day|
     { :conditions => "   start_date LIKE '#{day}%'
@@ -53,4 +53,11 @@ class Event < ActiveRecord::Base
     # remove implicitly deleted tags (ones that weren't passed)
     old_tag_ids.each {|tag_id| taggings.find_by_tag_id(tag_id).destroy }
   end
+
+  protected
+
+    def requires_subclassing
+      errors.add_to_base "Event type must be specified" if Event == self.class
+    end
+
 end

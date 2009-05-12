@@ -31,7 +31,7 @@ class EventsControllerTest < ActionController::TestCase
 
     context 'POST to create with valid parameters' do
       setup do
-        post :create, :event => Factory.attributes_for(:event)
+        post :create, :event => Factory.attributes_for(:all_day)
       end
 
       should_change 'Event.count', :by => 1
@@ -73,7 +73,7 @@ class EventsControllerTest < ActionController::TestCase
     end
 
     context 'given a event' do
-      setup { @event = Factory(:event) } 
+      setup { @event = Factory(:event) }
       
       context 'DELETE to destroy' do
         setup { delete :destroy, :id => @event.to_param }
