@@ -40,7 +40,7 @@ class EventTest < ActiveSupport::TestCase
   end
 
   context "saving a record" do
-    setup { Event.create! Factory.attributes_for(:event) }
+    setup { AllDay.create! Factory.attributes_for(:all_day) }
     should_change "Event.count", :by => 1
   end
 
