@@ -65,7 +65,40 @@ class EventTest < ActiveSupport::TestCase
     end
   end
   
+  context "finding events by week offset" do
+    setup do
+      @number_future = 4
+      @number_past = 9
+      @number_future.times {
+        Factory.create :event, :start_date => Date.today + @number_future.weeks
+      }
+      @number_past.times {
+        Factory.create :event, :start_date => Date.today - @number_past.weeks
+      }
+    end
+    should "find events from the past" do
+      assert_equal @number_past, Event.weeks_ago(@number_past).count
+    end
+    should "find events from the FUTURE" do
+      assert_equal @number_future, Event.weeks_ahead(@number_future).count
+    end
+  end
   
+  context "finding events for a given week" do
+    setup do
+      @number = 14
+      @date = Date.today + @number.weeks
+      @number.times {
+        Factory.create :event, :start_date => @date
+      }
+    end
+    should "find the right number of events based on Date object" do
+      assert_equal @number, Event.week_of(@date).count
+    end
+    should "find the right number of events based on String" do
+      assert_equal @number, Event.week_of(@date.to_s).count
+    end
+  end
 
   context "Tagging an Event" do
     context "tagging an event explicitly" do

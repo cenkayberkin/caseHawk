@@ -32,17 +32,42 @@ class Event < ActiveRecord::Base
                       OR end_date LIKE '#{day}%'
                       OR '#{day}' BETWEEN start_date AND end_date" }
   }
+  named_scope :between, proc {|range_start, range_end|
+    { :conditions => "   start_date BETWEEN '#{range_start}' AND '#{range_end}'
+                      OR end_date BETWEEN '#{range_start}' AND '#{range_end}'"}
+  }
+  
+  #
+  # These class methods DRYly extend the named scopes
+  #
   
   def self.today
-    # This is basically a named scope that extends the :day scope for DRYness
     Event.day(Date.today)
   end
-
-  def self.this_month
-    # This is basically a named scope that extends the :day scope for DRYness
-    Event.between(Date.today.beginning_of_month, Date.today.end_of_month)
+    
+  def self.week_of(date)
+    day = case date 
+            when String then Date.parse(date)
+            when Date   then date
+            else p date.class
+          end
+          
+    Event.between(day.beginning_of_week, day.end_of_week)
   end
 
+  def self.this_week
+    Event.week_of(Date.today)
+  end
+
+  def self.weeks_ahead(w)
+    Event.week_of(Date.today + w.weeks)
+  end
+  
+  def self.weeks_ago(w)
+    Event.week_of(Date.today - w.weeks)
+  end
+  
+  
   def tags
     TagParser.un_parse tag_records.map(&:name)
   end
