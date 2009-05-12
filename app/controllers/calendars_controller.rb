@@ -8,10 +8,10 @@ class CalendarsController < ApplicationController
                     Date.parse(params[:end_date]) :
                     Date.today.end_of_week
     respond_to do |format|
+      format.html
       format.js do
         render :json => Event.all.to_json
       end
-      format.html
       format.ical
     end
   end
@@ -19,10 +19,12 @@ class CalendarsController < ApplicationController
   def today
     @date = Date.today
     respond_to do |format|
+      format.html do
+        render :action => :show
+      end
       format.js do
         render :json => Event.today.to_json
       end
-      format.html
       format.ical
     end
   end
