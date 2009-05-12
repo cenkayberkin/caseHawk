@@ -18,6 +18,8 @@ class CalendarsController < ApplicationController
 
   def today
     @date = Date.today
+    @events = Event.today || []
+    
     respond_to do |format|
       format.html do
         render :action => :show
@@ -25,7 +27,6 @@ class CalendarsController < ApplicationController
       format.js do
         render :json => Event.today.to_json
       end
-      format.ical
     end
   end
 end
