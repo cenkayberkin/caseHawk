@@ -2,8 +2,7 @@
   <%= stylesheet_tag 'calendar-day', {} %>
 <% end %>
 
-<h2>Calendar: <%= @day.to_s %></h2>
-<div class="meta">Showing Tag1, Tag2, Tag3</div>
+<h2>Calendar: <%= @date.to_s %></h2>
 <div id="<%= @day.to_s %>" class="day">
   <div class="day-top">
     <div class="day-top-tasks">
@@ -44,7 +43,7 @@
       <% end %>
     <% end %>
   </ul>
-  <div id="day-full">
+  <div class="day-full">
     <ul class="day-deadlines">
       <% get_deadlines(@events).
           each do |event| %>
@@ -66,4 +65,5 @@
       <% end %>
     </ul>
   </div>
+  <br class="clear" />
 </div>  
