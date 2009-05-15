@@ -1,22 +1,3 @@
-// 
-// Calendar = {tags: ''}
-// 
-// $.extend(Calendar, {
-//   url: function(){
-//     this.tags == '' ?
-//       '/calendar/' :
-//       '/tags/'+this.tags+'/calendar'
-//   },
-//   retrieve: function(weeks_ago){
-//     $.get(this.url(),
-//           {weeks_ago: weeks_ago || 0},
-//           function(content){
-//             console.log(content)
-//           })
-//   }
-// })
-// 
-
 // Interface:
 //
 //  Calendar.drawAlllWeeks # draws the top five weeks
@@ -44,5 +25,5 @@ Calendar = {
   drawDay: function(){},
   loadDayEvents: function(){},
   placeDayEvents: function(){},
-  boxDayEvents: function(){}
+  boxDayEvents: function(){},
 }
