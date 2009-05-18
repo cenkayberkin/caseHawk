@@ -1,16 +1,12 @@
 .day {
-  border-width: 1px 0 1px 0; 
-  border-color: #CCC; 
-  border-style: solid; 
+  border: 1px solid #CCC; 
 }
 
   .day-top {
-    height: 250px; 
+    height: 120px; 
     overflow-y: auto;
-    padding-left: 20px; 
-    border-width: 0 1px 1px 1px; 
-    border-color: #CCC;
-    border-style: solid; 
+    padding-left: 50px; 
+    border-bottom: 1px solid #DDD; 
   }
     .day-top-tasks, .day-top-allday {
       float: left; 
@@ -19,7 +15,8 @@
     
   .day-hours {
     clear: both; 
-    width: 20px; 
+    width: 50px; 
+    border-right: 1px solid #DDD; 
     float: left;
     margin: 0; 
     padding: 0; 
@@ -29,14 +26,13 @@
       height: 59px; 
       border-bottom: 1px solid #EEE; 
       margin: 0; 
-      padding: 0; 
+      padding: 0 4px;
+      font-size: 11px;
     }
     
   .day-full {
-    float: left;
     width: auto; 
-    border-left: 1px solid #EEE; 
-    margin: 0; 
+    margin: 0 0 0 51px; 
     padding: 0; 
   }
   
