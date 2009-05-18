@@ -16,3 +16,24 @@
 //     # which calls via callback:
 //     Event.instantiate(events)
 //       # adds helpful event methods to the json object's prototype
+
+Event = {
+  find: function(options, callback){
+    if (Number = options.constructor)
+      Event.retrieve({id: options}, callback)
+    else
+      Event.retrieve(options, callback)
+  },
+  retrieve: function(options, callback){
+    $.getJSON("/events/", options, function(events){
+      return $.map(events, function(){
+        return Event.instantiate(this)
+      }
+    })
+  },
+  instantiate: function(record){
+    return $.extend(record, {
+      // add methods for event objects here
+    })
+  }
+}
