@@ -99,6 +99,11 @@ class Event < ActiveRecord::Base
     old_tag_ids.each {|tag_id| taggings.find_by_tag_id(tag_id).destroy }
   end
 
+  def to_json(options = {})
+    options[:only] = attribute_names + ["type"]
+    super(options)
+  end
+
   protected
 
     def requires_subclassing
