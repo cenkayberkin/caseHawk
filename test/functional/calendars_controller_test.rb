@@ -17,13 +17,5 @@ class CalendarsControllerTest < ActionController::TestCase
       should_respond_with :success
       should_render_template :show
     end
-
-    context 'GET to :today' do
-      setup do
-        get :today
-      end
-      should_respond_with :success
-      should_render_template :show
-    end
   end
 end
