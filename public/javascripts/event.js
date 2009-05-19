@@ -7,6 +7,9 @@
 //   # defaults to timeframe of one month past and one month future
 // Event.find({start: '2009-03-04', end: '2009-08-09'})
 //   # returns all events in the given timeframe
+// Event.find({week: 2})
+//   # returns all events of the week 2-weeks before this one
+//   # (so, the third week on the list, starting with '0')
 // Event.find({tags: ["one", "two"],
 //             start: '2009-03-04',
 //             end: '2009-08-09'})
