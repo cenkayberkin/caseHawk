@@ -22,8 +22,15 @@
 Calendar = {
   drawAllWeeks: function(){},
   drawWeek: function(){},
+  loadWeekEvents: function(week){
+    return Event.find({week: week})
+  },
   drawDay: function(){},
-  loadDayEvents: function(){},
+  loadDayEvents: function(date, options){
+    return Event.find(
+      $.extend({start_date: date, end_date: date}, options)
+    }
+  },
   placeDayEvents: function(){},
   boxDayEvents: function(){},
 }
