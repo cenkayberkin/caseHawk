@@ -1,6 +1,6 @@
 // Interface:
 //
-//  Calendar.drawAlllWeeks # draws the top five weeks
+//  Calendar.drawAllWeeks # draws the top five weeks
 //  Calendar.drawWeek(4)
 //    # makes sure the 5th week from the top is available
 //    # calls via callback:
