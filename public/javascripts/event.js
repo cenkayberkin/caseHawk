@@ -29,14 +29,15 @@ Event = {
   },
   retrieve: function(options, callback){
     $.getJSON("/events/", options, function(events){
-      return $.map(events, function(){
-        return Event.instantiate(this)
+      $.each(events, function(_,event){
+        callback(Event.instantiate(event))
       })
     })
   },
   instantiate: function(record){
     return $.extend(record, {
       // add methods for event objects here
+      // e.g. Event#delete()
     })
   }
 }
