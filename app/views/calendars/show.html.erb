@@ -51,7 +51,7 @@
             class="event deadline <%= event.completed_at ? "complete" : "incomplete" %>">
             <label>
               <input id="event-complete-<%= event.id %>" name="deadline-complete-<%= event.id %>" type="checkbox" />
-              <%= event.start_time.to_s(:simple) %>&ndash;<%= event.end_time.to_s(:simple) %> <%= event.name %>
+              <%= event.start_time.to_s(:simple) %>&ndash;<%= event.end_time %> <%= event.name %>
             </label>
           </li>
       <% end %>
@@ -60,7 +60,7 @@
       <% get_appointments(@events).
           each do |event| %>
           <li id="event-<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" class="event appointment"> 
-            <%= event.start_time.to_s(:simple) %>&ndash;<%= event.end_time.to_s(:simple) %> <%= event.name %>
+            <%= event.start_time.to_s(:simple) %>&ndash;<%= event.end_time %> <%= event.name %>
           </li>
       <% end %>
     </ul>
