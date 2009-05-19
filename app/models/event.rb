@@ -111,7 +111,7 @@ class Event < ActiveRecord::Base
   end
   
   def start_string
-    "#{start_date} #{start_time}".strip
+    "#{start_date} #{start_time.to_s(:time)}".strip
   end
   
   def end_string=(end_string)
@@ -120,7 +120,7 @@ class Event < ActiveRecord::Base
   end
   
   def end_string
-    "#{end_date} #{end_time}".strip
+    "#{end_date} #{end_time.to_s(:time)}".strip
   end
 
   protected
