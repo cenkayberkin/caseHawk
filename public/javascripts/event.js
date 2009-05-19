@@ -28,7 +28,7 @@ Event = {
     $.getJSON("/events/", options, function(events){
       return $.map(events, function(){
         return Event.instantiate(this)
-      }
+      })
     })
   },
   instantiate: function(record){
