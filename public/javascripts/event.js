@@ -41,6 +41,25 @@ Event = {
     return $.extend(record, {
       // add methods for event objects here
       // e.g. Event#delete()
+      display: Event.displayFor(record.type)
     })
+  },
+  displayFor: function(type){
+    switch(type){
+      case 'Appointment':
+        return function(){
+           return this.start.getHours()
+                + ":"
+                + this.start.getMinutes()
+                + (this.end ? "&ndash;"+this.end.toString() : '')
+                + " "
+                + this.name
+ 
+        }
+      default:
+        return function(){
+           return this.name
+        }
+    }
   }
 }
