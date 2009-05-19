@@ -41,11 +41,12 @@ Event = {
     return $.extend(record, {
       // add methods for event objects here
       // e.g. Event#delete()
-      display: Event.displayFor(record.type)
+      display: Event.displayFor(record),
+      css:     Event.cssFor(record)
     })
   },
-  displayFor: function(type){
-    switch(type){
+  displayFor: function(record){
+    switch(record.type){
       case 'Appointment':
         return function(){
            return this.start.getHours()
@@ -60,6 +61,13 @@ Event = {
         return function(){
            return this.name
         }
+    }
+  cssFor: function(record){
+    switch(record.type){
+      case 'Appointment':
+        return {top: 60*record.start.getHours()}
+      default:
+        return {}
     }
   }
 }
