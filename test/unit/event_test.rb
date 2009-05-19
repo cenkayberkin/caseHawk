@@ -128,6 +128,12 @@ class EventTest < ActiveSupport::TestCase
                      @events
       end
     end
+    context "by param id" do
+      should "find only the events matching the right timeframe" do
+        assert_equal [Event.last],
+                     Event.find_by(:id => Event.last.id)
+      end
+    end
     context "by tags" do
       setup {
         Factory.create :event,   :tags => "one, two",    :start_date => Date.yesterday
