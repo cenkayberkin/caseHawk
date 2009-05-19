@@ -37,6 +37,11 @@ class Event < ActiveRecord::Base
                       OR end_date BETWEEN '#{range_start}' AND '#{range_end}'"}
   }
   
+  named_scope :with_tags, proc {|taglist|
+    { :conditions => [" tags.name IN (?) ", taglist],
+      :joins => {:taggings => :tag} }
+  }
+  
   #
   # These class methods DRYly extend the named scopes
   #
@@ -70,11 +75,10 @@ class Event < ActiveRecord::Base
   def self.find_by(params)
     return find_by_id(params[:id]) if params[:id]
     scope_builder do |builder| # from Ryan Bates' scope_builder
-      builder.find_weeks_ago(params[:week]) if params[:week]
-      builder.between(params[:start_date], params[:end_date])
-        if params[:start_date] and params[:end_date]
+      builder.weeks_ago(params[:week]) if params[:week]
+      builder.between(params[:start_date], params[:end_date]) if params[:start_date] and params[:end_date]
       builder.with_tags(params[:tags]) if params[:tags]
-    end.find(:all)
+    end.find(:all).uniq
   end
   
   def tags
