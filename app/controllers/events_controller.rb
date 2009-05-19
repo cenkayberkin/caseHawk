@@ -3,16 +3,11 @@ class EventsController < ApplicationController
   before_filter :find_or_initialize
 
   def index
-    @start_date = params[:start_date] ?
-                    Date.parse(params[:start_date]) :
-                    Date.today.beginning_of_week
-    @end_date =   params[:end_date] ?
-                    Date.parse(params[:end_date]) :
-                    Date.today.end_of_week
+    @events = Event.find_within(params.slice(:start_date, :end_date, :tags, :id))
     respond_to do |format|
       format.html
       format.js do
-        render :json => Event.all.to_json
+        render :json => @events.to_json
       end
       format.ical
     end
