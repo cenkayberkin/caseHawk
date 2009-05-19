@@ -1,16 +1,24 @@
 .day {
-  border: 1px solid #CCC; 
+  border: 1px solid #CCC;
 }
 
   .day-top {
-    height: 120px; 
+    height: 120px;
     overflow-y: auto;
-    padding-left: 50px; 
-    border-bottom: 1px solid #DDD; 
+    padding-left: 50px;
+    border-bottom: 1px solid #DDD;
   }
     .day-top-tasks, .day-top-allday {
-      float: left; 
-      width: 50%; 
+      float: left;
+      width: 50%;
+    }
+    .day-appointments,
+    .day-deadlines {
+      position: relative;
+    }
+    .day-appointments li,
+    .day-deadlines li {
+      position: absolute;
     }
     
   .day-hours {
