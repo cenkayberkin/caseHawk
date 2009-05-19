@@ -100,6 +100,54 @@ class EventTest < ActiveSupport::TestCase
     end
   end
 
+  context "finding events" do
+    setup {
+      3.times { Factory.create :event, :start_date => Date.today.beginning_of_week - 2.days }
+      6.times { Factory.create :event, :start_date => 1.week.ago.beginning_of_week - 2.days }
+      4.times { Factory.create :event, :start_date => 2.week.ago.beginning_of_week - 2.days }
+    }
+    context "by week param" do
+      setup { @events = Event.find_by(:week => 1) }
+      should "find only the events in the right week" do
+        assert_equal Event.find(:all, :conditions => ["start_date >= ? AND end_date <= ?",
+                                                      1.week.ago.beginning_of_week.to_date,
+                                                      1.week.ago.end_of_week.to_date]),
+                     @events.size
+      end
+    end
+    context "by start date and end date" do
+      setup {
+        @start_date = Date.today.beginning_of_week - 3.days
+        @end_date = Date.today.beginning_of_week - 1.days
+        @events = Event.find_by(:start_date => @start_date,
+                                :end_date   => @end_date)
+      }
+      should "find only the events matching the right timeframe" do
+        assert_equal Event.find(:all, :conditions => ["start_date >= ? AND end_date <= ?",
+                                                      @start_date, @end_date]),
+                     @events.size
+      end
+    end
+    context "by tags" do
+      setup {
+        Factory.create :event, :tags => "one, two",    :start_date => Date.yesterday
+        Factory.create :event, :tags => "two, three",  :start_date => Date.yesterday
+        Factory.create :event, :tags => "three, four", :start_date => Date.yesterday
+      }
+      should "find events by a single tag name" do
+        assert_equal Event.all.select {|e| e.tag_records.include? Tag.find_or_create_by_name("one") }
+                     Event.find_by(:tags => ['one'])
+      end
+      should "find events by multiple tags (must match all tags)" do
+        assert_equal Event.all.select {|e|
+                       e.tag_records.include?(Tag.find_or_create_by_name("two")) &&
+                       e.tag_records.include?(Tag.find_or_create_by_name("three"))
+                     },
+                     Event.find_by(:tags => ['two', 'three'])
+      end
+    end
+  end
+
   context "Tagging an Event" do
     context "tagging an event explicitly" do
       setup do
