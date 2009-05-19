@@ -59,7 +59,7 @@
     <ul class="day-appointments">
       <% get_appointments(@events).
           each do |event| %>
-          <li id="event-<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" class="event appointment"> 
+          <li id="event-<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-start-time="<%= event.start_time.strftime("%H-%M-%S") %>" data-end-time="<%= event.end_time %>" class="event appointment"> 
             <%= event.start_time.to_s(:simple) %>&ndash;<%= event.end_time %> <%= event.name %>
           </li>
       <% end %>
