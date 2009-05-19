@@ -38,7 +38,8 @@
   </div>
   <ul class="day-hours">
     <% ['am', 'pm'].each do |meridian| %>
-      <% (1..12).each do |n| %>
+      <% (0..11).each do |n| %>
+        <% n = n == 0 ? 12 : n %>
         <li><%= n %>:00<%= meridian %></li>
       <% end %>
     <% end %>
