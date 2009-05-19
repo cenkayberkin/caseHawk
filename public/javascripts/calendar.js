@@ -17,24 +17,26 @@
 Calendar = {
   drawAllWeeks: function(){
     for(i=0;i<5;i++)
-      drawWeek(i)
+      Calendar.drawWeek(i)
   },
   drawWeek: function(week){
     Event.find({week: week}, function(event){
-      placeWeekEvent(event)
+      Calendar.placeWeekEvent(event)
     })
   },
   placeWeekEvent: function(event){
     // draw the event on the page
+    console.debug(event)
   },
   drawDay: function(date, options){
     Event.find(
       $.extend({start_date: date, end_date: date}, options),
-      function(event){ placeDayEvent(event) }
+      function(event){ Calendar.placeDayEvent(event) }
     )
   },
-  placeDayEvent: function(){
+  placeDayEvent: function(event){
     // draw the event on the page
+    console.debug(event)
   },
   boxDayEvents: function(){
     // group adjacent events into boxes
