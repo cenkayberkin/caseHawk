@@ -26,7 +26,6 @@ Calendar = {
   },
   placeWeekEvent: function(event){
     // draw the event on the page
-    console.debug(event)
   },
   drawDay: function(date, options){
     Event.find(
@@ -36,7 +35,24 @@ Calendar = {
   },
   placeDayEvent: function(event){
     // draw the event on the page
-    console.debug(event)
+    if('Appointment' == event.type)
+      $("<li></li>")
+        .attr({
+          "data-event-id":   event.id,
+          "data-start-time": event.start_time,
+          "data-end-time":   event.end_time
+        })
+        .addClass("event")
+        .addClass("appointment")
+        .html(
+            event.start_time.getHours()
+          + ":"
+          + event.start_time.getMinutes()
+          + (event.end_time ? "&ndash;"+event.end_time.toString() : '')
+          + " "
+          + event.name
+         )
+        .appendTo("ul.day-appointments")
   },
   boxDayEvents: function(){
     // group adjacent events into boxes
