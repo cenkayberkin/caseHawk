@@ -35,9 +35,7 @@ ActionController::Routing::Routes.draw do |map|
   map.new_account '/signup/:plan', :controller => 'accounts', :action => 'new', :plan => nil
   
   map.resources :users, :events
-  map.resource :session
-
-  map.resource :calendar, :collection => {:today => :get}
+  map.resource :session, :calendar
 
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'
