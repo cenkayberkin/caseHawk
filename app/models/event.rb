@@ -54,7 +54,6 @@ class Event < ActiveRecord::Base
     day = case date 
             when String then Date.parse(date)
             when Date   then date
-            else p date.class
           end
           
     Event.between(day.beginning_of_week, day.end_of_week)
@@ -65,11 +64,11 @@ class Event < ActiveRecord::Base
   end
 
   def self.weeks_ahead(w)
-    Event.week_of(Date.today + w.weeks)
+    Event.week_of(Date.today + w.to_i.weeks)
   end
   
   def self.weeks_ago(w)
-    Event.week_of(Date.today - w.weeks)
+    Event.week_of(Date.today - w.to_i.weeks)
   end
   
   def self.find_by(params)
