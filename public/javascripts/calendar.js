@@ -48,10 +48,11 @@ Calendar = {
         .appendTo("ul.day-appointments")
     Calendar.positionEvents(element)
   },
-  positionEvents: function(){
-    $(arguments[0] ?
-        arguments[0] :
-        ".day-appointments .event, .day-deadlines .event")
+  positionEvents: function(element){
+    $(element ?
+        element :
+        ".day-appointments .event, .day-deadlines .event"
+      )
       .each(function(){
         $(this)
           .css({
