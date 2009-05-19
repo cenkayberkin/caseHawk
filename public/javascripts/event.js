@@ -35,8 +35,8 @@ Event = {
     })
   },
   instantiate: function(record){
-    record.start_time = (new Date(record.start_time))
-    record.end_time = Date.parse(record.end_time) ?
+    record.start = (new Date(record.start_time))
+    record.end   = Date.parse(record.end_time) ?
                         (new Date(record.end_time)) : undefined
     return $.extend(record, {
       // add methods for event objects here

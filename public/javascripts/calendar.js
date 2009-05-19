@@ -35,14 +35,16 @@ Calendar = {
   },
   placeDayEvent: function(event){
     // draw the event on the page
-    if('Appointment' == event.type)
+    var el =
       $("<li></li>")
         .attr({
-          "data-event-id":   event.id,
-          "data-start-time": event.start_time,
-          "data-end-time":   event.end_time
+          "data-event-id":  event.id,
+          "data-start":     event.start,
+          "data-end":       event.end
         })
         .addClass("event")
+    if('Appointment' == event.type)
+      el
         .addClass("appointment")
         .html(
             event.start_time.getHours()
