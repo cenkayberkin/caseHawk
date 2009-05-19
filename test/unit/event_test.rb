@@ -153,7 +153,22 @@ class EventTest < ActiveSupport::TestCase
       end
     end
   end
-
+  
+  context "setting events with a string" do
+    setup do
+      @starttime = "2/8/2005 2:30pm"
+      @endtime = "2/8/2005 6:14pm"
+      @event = Factory.create :appointment, :start_string => @starttime, :end_string => @endtime
+      p @event
+    end
+    should "fill in date and time attributes" do
+      assert_equal @event.start_date.class, Date
+      assert_equal @event.start_time.class, Time
+      assert_equal Time.parse(@starttime), Time.parse(@event.start_string)
+      assert_equal Time.parse(@endtime), Time.parse(@event.end_string)
+    end
+  end
+  
   context "Tagging an Event" do
     context "tagging an event explicitly" do
       setup do

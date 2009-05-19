@@ -21,4 +21,9 @@ module EventsHelper
   def get_all_days(records)
     get_type(records, AllDay)
   end
+  
+  # Return array of all the event types we are using
+  def event_types
+    %w[AllDay Appointment Deadline Task]
+  end
 end

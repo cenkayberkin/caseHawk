@@ -103,6 +103,25 @@ class Event < ActiveRecord::Base
     options[:only] = attribute_names + ["type"]
     super(options)
   end
+  
+  # These _string methods handle natural-language dates and times
+  def start_string=(start_string)
+    self.start_date = Date.parse(start_string)
+    self.start_time = Time.parse(start_string) rescue nil
+  end
+  
+  def start_string
+    "#{start_date} #{start_time}".strip
+  end
+  
+  def end_string=(end_string)
+    self.end_date = Date.parse(end_string) rescue nil
+    self.end_time = Time.parse(end_string) rescue nil
+  end
+  
+  def end_string
+    "#{end_date} #{end_time}".strip
+  end
 
   protected
 
