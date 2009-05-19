@@ -22,7 +22,7 @@
 
 Event = {
   find: function(options, callback){
-    if (Number = options.constructor)
+    if (Number == options.constructor)
       Event.retrieve({id: options}, callback)
     else
       Event.retrieve(options, callback)
