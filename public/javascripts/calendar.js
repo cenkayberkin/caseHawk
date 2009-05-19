@@ -20,25 +20,23 @@ Calendar = {
       drawWeek(i)
   },
   drawWeek: function(week){
-    Event.find({week: week}, function(,event){
+    Event.find({week: week}, function(event){
       placeWeekEvent(event)
     })
   },
   placeWeekEvent: function(event){
     // draw the event on the page
-  }
+  },
   drawDay: function(date, options){
     Event.find(
       $.extend({start_date: date, end_date: date}, options),
-      function(event){
-        placeDayEvent(event)
-      }
-    }
+      function(event){ placeDayEvent(event) }
+    )
   },
   placeDayEvent: function(){
     // draw the event on the page
   },
   boxDayEvents: function(){
     // group adjacent events into boxes
-  },
+  }
 }
