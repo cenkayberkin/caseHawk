@@ -35,7 +35,7 @@ Calendar = {
   },
   placeDayEvent: function(event){
     // draw the event on the page
-    var el =
+    var element =
       $("<li></li>")
         .attr({
           "data-event-id":  event.id,
@@ -43,17 +43,8 @@ Calendar = {
           "data-end":       event.end
         })
         .addClass("event")
-    if('Appointment' == event.type)
-      el
-        .addClass("appointment")
-        .html(
-            event.start_time.getHours()
-          + ":"
-          + event.start_time.getMinutes()
-          + (event.end_time ? "&ndash;"+event.end_time.toString() : '')
-          + " "
-          + event.name
-         )
+        .addClass(event.type.toLowerCase())
+        .html(event.display())
         .appendTo("ul.day-appointments")
   },
   boxDayEvents: function(){
