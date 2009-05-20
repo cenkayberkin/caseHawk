@@ -33,16 +33,17 @@ class AllDayTest < ActiveSupport::TestCase
     should "have an end date" do
       assert @event.end_date
     end
-    should "have no start time" do
-      assert_nil @event.start_time
-    end
-    should "have no end time" do
-      assert_nil @event.end_time
-    end
     should "be able to be only one day" do
       assert_equal @event.start_date, @event.end_date
     end
     should_eventually "be able to span several days" do
+      @event = Factory.create :starts_at => 2.days.ago,
+                              :ends_at   => 3.days.from_now
+      assert_valid @event
+      assert_equal 2.days.ago.to_date,
+                   @event.start_date
+      assert_equal 3.days.from_now.to_date,
+                   @event.end_date
     end
   end
 end
