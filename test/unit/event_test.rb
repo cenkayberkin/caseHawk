@@ -158,12 +158,13 @@ class EventTest < ActiveSupport::TestCase
     setup do
       @starttime = "2/8/2005 2:30pm"
       @endtime = "2/8/2005 6:14pm"
-      @event = Factory.create :appointment, :start_string => @starttime, :end_string => @endtime
-      p @event
+      @event = Appointment.new(:start_string => @starttime, :end_string => @endtime)
     end
     should "fill in date and time attributes" do
       assert_equal @event.start_date.class, Date
       assert_equal @event.start_time.class, Time
+      assert_equal @event.end_date.class, Date
+      assert_equal @event.end_time.class, Time
       assert_equal Time.parse(@starttime), Time.parse(@event.start_string)
       assert_equal Time.parse(@endtime), Time.parse(@event.end_string)
     end
