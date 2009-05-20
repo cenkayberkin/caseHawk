@@ -43,7 +43,7 @@ Calendar = {
           "data-end":       event.end
         })
         .addClass("event")
-        .addClass(event.type.toLowerCase())
+        .addClass(event.type.underscore())
         .html(event.display())
         .appendTo("ul.day-appointments")
     Calendar.positionEvents(element)
