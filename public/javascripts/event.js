@@ -35,17 +35,22 @@ Event = {
     })
   },
   instantiate: function(record){
+    if(record.nodeType) // build from a DOM object?
+      record = { start_time:  $(record).attr('data-start-time'),
+                 end_time:    $(record).attr('data-end-time'),
+                 id:          $(record).attr('data-event-id')
+                }
     record.start = (new Date(record.start_time))
     record.end   = Date.parse(record.end_time) ?
                         (new Date(record.end_time)) : undefined
     return $.extend(record, {
       // add methods for event objects here
       // e.g. Event#delete()
-      display: Event.displayFor(record.type)
+      display: Event.displayFor(record),
     })
   },
-  displayFor: function(type){
-    switch(type){
+  displayFor: function(record){
+    switch(record.type){
       case 'Appointment':
         return function(){
            return this.start.getHours()
@@ -54,7 +59,6 @@ Event = {
                 + (this.end ? "&ndash;"+this.end.toString() : '')
                 + " "
                 + this.name
- 
         }
       default:
         return function(){

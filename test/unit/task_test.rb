@@ -30,16 +30,7 @@ class TaskTest < ActiveSupport::TestCase
     end
     should "have a start date" do
       assert @event.start_date
-    end   
-    should "have no end date" do
-      assert_nil @event.end_date
-    end   
-    should "have no start time" do
-      assert_nil @event.start_time
-    end   
-    should "have no end time" do
-      assert_nil @event.end_time
-    end   
+    end
     should_eventually "be completable" do
     end
   end

@@ -2,19 +2,18 @@
 #
 # Table name: events
 #
-#  id          :integer(4)      not null, primary key
-#  creator_id  :integer(4)      not null
-#  owner_id    :integer(4)
-#  location_id :integer(4)
-#  type        :string(255)     not null
-#  name        :string(255)     not null
-#  start_date  :date
-#  start_time  :time
-#  end_date    :date
-#  end_time    :time
-#  remind      :boolean(1)
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id           :integer(4)      not null, primary key
+#  creator_id   :integer(4)      not null
+#  owner_id     :integer(4)
+#  location_id  :integer(4)
+#  type         :string(255)     not null
+#  name         :string(255)     not null
+#  remind       :boolean(1)
+#  created_at   :datetime
+#  updated_at   :datetime
+#  completed_at :datetime
+#  starts_at    :datetime
+#  ends_at      :datetime
 #
 
 class Event < ActiveRecord::Base
@@ -28,13 +27,13 @@ class Event < ActiveRecord::Base
   validate :requires_subclassing
 
   named_scope :day, proc {|day|
-    { :conditions => "   start_date LIKE '#{day}%'
-                      OR end_date LIKE '#{day}%'
-                      OR '#{day}' BETWEEN start_date AND end_date" }
+    { :conditions => "   starts_at LIKE '#{day}%'
+                      OR ends_at LIKE '#{day}%'
+                      OR DATE('#{day}') BETWEEN DATE(starts_at) AND DATE(ends_at)" }
   }
   named_scope :between, proc {|range_start, range_end|
-    { :conditions => "   start_date BETWEEN '#{range_start}' AND '#{range_end}'
-                      OR end_date BETWEEN '#{range_start}' AND '#{range_end}'"}
+    { :conditions => "   DATE(starts_at) BETWEEN DATE('#{range_start}') AND DATE('#{range_end}')
+                      OR DATE(ends_at) BETWEEN DATE('#{range_start}') AND DATE('#{range_end}')"}
   }
   
   named_scope :with_tags, proc {|taglist|
@@ -100,28 +99,43 @@ class Event < ActiveRecord::Base
   end
 
   def to_json(options = {})
-    options[:only] = attribute_names + ["type"]
+    options[:only] = attribute_names + ["type", "start", "end"]
     super(options)
   end
   
-  # These _string methods handle natural-language dates and times
-  def start_string=(start_string)
-    self.start_date = Date.parse(start_string)
-    self.start_time = Time.parse(start_string) rescue nil
+  # setting the start_time, start_date, end_time, or end_date
+  # allows for changing just a portion of the starts_at or
+  # ends_at values.
+  def start_time=(string)
+    return unless time = Time.parse(string.to_s) rescue nil
+    self.starts_at =
+         starts_at.beginning_of_day.advance :hours   => time.hour,
+                                            :minutes => time.min,
+                                            :seconds => time.sec
   end
+  def start_time; starts_at; end
   
-  def start_string
-    "#{start_date} #{start_time.to_s(:time)}".strip
+  def start_date=(string)
+    return unless date = Date.parse(string.to_s) rescue nil
+    self.starts_at = "#{date} #{(starts_at || Date.today).strftime("%T")}"
   end
+  def start_date; starts_at.to_date; end
   
-  def end_string=(end_string)
-    self.end_date = Date.parse(end_string) rescue nil
-    self.end_time = Time.parse(end_string) rescue nil
+
+  def end_time=(string)
+    return unless time = Time.parse(string.to_s) rescue nil
+    self.ends_at =
+         ends_at.beginning_of_day.advance :hours   => time.hour,
+                                          :minutes => time.min,
+                                          :seconds => time.sec
   end
+  def end_time; ends_at; end
   
-  def end_string
-    "#{end_date} #{end_time.to_s(:time)}".strip
+  def end_date=(string)
+    return unless date = Date.parse(string.to_s) rescue nil
+    self.ends_at = "#{date} #{(ends_at || Date.today).strftime("%T")}"
   end
+  def end_date; ends_at.to_date; end
 
   protected
 

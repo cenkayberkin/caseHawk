@@ -43,9 +43,22 @@ Calendar = {
           "data-end":       event.end
         })
         .addClass("event")
-        .addClass(event.type.toLowerCase())
+        .addClass(event.type.underscore())
         .html(event.display())
         .appendTo("ul.day-appointments")
+    Calendar.positionEvents(element)
+  },
+  positionEvents: function(element){
+    $(element ?
+        element :
+        ".day-appointments .event, .day-deadlines .event"
+      )
+      .each(function(){
+        $(this)
+          .css({
+            top: 60 * Event.instantiate(this).start.getHours()
+          })
+      })
   },
   boxDayEvents: function(){
     // group adjacent events into boxes
