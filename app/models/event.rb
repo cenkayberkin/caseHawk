@@ -100,28 +100,34 @@ class Event < ActiveRecord::Base
   end
 
   def to_json(options = {})
-    options[:only] = attribute_names + ["type"]
+    options[:only] = attribute_names + ["type", "start", "end"]
     super(options)
   end
   
   # These _string methods handle natural-language dates and times
-  def start_string=(start_string)
+  def start=(start_string)
     self.start_date = Date.parse(start_string)
     self.start_time = Time.parse(start_string) rescue nil
   end
   
-  def start_string
-    "#{start_date} #{start_time.to_s(:time)}".strip
+  def start
+    start_date.to_time.advance :hours   => start_time.hour,
+                               :minutes => start_time.min,
+                               :seconds => start_time.sec
   end
   
-  def end_string=(end_string)
+  def ending=(string)
     self.end_date = Date.parse(end_string) rescue nil
     self.end_time = Time.parse(end_string) rescue nil
   end
+  alias :end= :ending=
   
-  def end_string
-    "#{end_date} #{end_time.to_s(:time)}".strip
+  def ending
+    end_date.to_time.advance :hours   => end_time.hour,
+                             :minutes => end_time.min,
+                             :seconds => end_time.sec
   end
+  alias :end :ending
 
   protected
 
