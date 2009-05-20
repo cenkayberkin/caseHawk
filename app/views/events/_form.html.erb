@@ -1,0 +1,13 @@
+<%= error_messages_for :event %>
+<%= f.text_field :name %> <br />
+<%= f.select :type, event_types, {}, :class => "new_event_type" %> <br />
+<%= f.text_field :start_string %> <br />
+<%= f.text_field :end_string %> <br />
+<%= f.hidden_field :start_date %>
+<%= f.hidden_field :start_time %>
+<%= f.hidden_field :end_date %>
+<%= f.hidden_field :end_time %>
+<%= f.check_box :remind %> <br />
+<%= f.text_field :tags %> <br />
+
+<%= submit_or_cancel %>
