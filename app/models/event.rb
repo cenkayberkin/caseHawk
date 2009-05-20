@@ -103,30 +103,34 @@ class Event < ActiveRecord::Base
     super(options)
   end
   
-  # These _string methods handle natural-language dates and times
-  def start=(start_string)
-    self.start_date = Date.parse(start_string)
-    self.start_time = Time.parse(start_string) rescue nil
+  # setting the start_time, start_date, end_time, or end_date
+  # allows for changing just a portion of the starts_at or
+  # ends_at values.
+  def start_time=(string)
+    return unless time = Time.parse(string.to_s) rescue nil
+    self.starts_at =
+         starts_at.beginning_of_day.advance :hours   => time.hour,
+                                            :minutes => time.min,
+                                            :seconds => time.sec
   end
   
-  def start
-    start_date.to_time.advance :hours   => start_time.hour,
-                               :minutes => start_time.min,
-                               :seconds => start_time.sec
+  def start_date=(string)
+    return unless date = Date.parse(string.to_s) rescue nil
+    self.starts_at = "#{date} #{(starts_at || Date.today).strftime("%T")}"
   end
   
-  def ending=(string)
-    self.end_date = Date.parse(end_string) rescue nil
-    self.end_time = Time.parse(end_string) rescue nil
+  def end_time=(string)
+    return unless time = Time.parse(string.to_s) rescue nil
+    self.ends_at =
+         ends_at.beginning_of_day.advance :hours   => time.hour,
+                                          :minutes => time.min,
+                                          :seconds => time.sec
   end
-  alias :end= :ending=
   
-  def ending
-    end_date.to_time.advance :hours   => end_time.hour,
-                             :minutes => end_time.min,
-                             :seconds => end_time.sec
+  def end_date=(string)
+    return unless date = Date.parse(string.to_s) rescue nil
+    self.ends_at = "#{date} #{(ends_at || Date.today).strftime("%T")}"
   end
-  alias :end :ending
 
   protected
 
