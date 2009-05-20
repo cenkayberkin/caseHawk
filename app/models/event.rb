@@ -113,12 +113,15 @@ class Event < ActiveRecord::Base
                                             :minutes => time.min,
                                             :seconds => time.sec
   end
+  def start_time; starts_at; end
   
   def start_date=(string)
     return unless date = Date.parse(string.to_s) rescue nil
     self.starts_at = "#{date} #{(starts_at || Date.today).strftime("%T")}"
   end
+  def start_date; starts_at.to_date; end
   
+
   def end_time=(string)
     return unless time = Time.parse(string.to_s) rescue nil
     self.ends_at =
@@ -126,11 +129,13 @@ class Event < ActiveRecord::Base
                                           :minutes => time.min,
                                           :seconds => time.sec
   end
+  def end_time; ends_at; end
   
   def end_date=(string)
     return unless date = Date.parse(string.to_s) rescue nil
     self.ends_at = "#{date} #{(ends_at || Date.today).strftime("%T")}"
   end
+  def end_date; ends_at.to_date; end
 
   protected
 
