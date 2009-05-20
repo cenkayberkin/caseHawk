@@ -47,10 +47,10 @@ class EventTest < ActiveSupport::TestCase
       @number_yesterday = 7
       @number_today = 13
       @number_yesterday.times {
-        Factory.create :event, :start_date => Date.yesterday
+        Factory.create :event, :starts_at => Date.yesterday
       }
       @number_today.times {
-        Factory.create :event, :start_date => Date.today
+        Factory.create :event, :starts_at => Date.today
       }
     end
     should "find just yesterday's" do
@@ -69,10 +69,10 @@ class EventTest < ActiveSupport::TestCase
       @number_future = 4
       @number_past = 9
       @number_future.times {
-        Factory.create :event, :start_date => Date.today + @number_future.weeks
+        Factory.create :event, :starts_at => Date.today + @number_future.weeks
       }
       @number_past.times {
-        Factory.create :event, :start_date => Date.today - @number_past.weeks
+        Factory.create :event, :starts_at => Date.today - @number_past.weeks
       }
     end
     should "find events from the past" do
@@ -88,7 +88,7 @@ class EventTest < ActiveSupport::TestCase
       @number = 14
       @date = Date.today + @number.weeks
       @number.times {
-        Factory.create :event, :start_date => @date
+        Factory.create :event, :starts_at => @date
       }
     end
     should "find the right number of events based on Date object" do
@@ -101,14 +101,14 @@ class EventTest < ActiveSupport::TestCase
 
   context "finding events" do
     setup {
-      3.times { Factory.create :event, :start_date => Date.today.beginning_of_week - 2.days }
-      6.times { Factory.create :event, :start_date => 1.week.ago.beginning_of_week - 2.days }
-      4.times { Factory.create :event, :start_date => 2.week.ago.beginning_of_week - 2.days }
+      3.times { Factory.create :event, :starts_at => Date.today.beginning_of_week - 2.days }
+      6.times { Factory.create :event, :starts_at => 1.week.ago.beginning_of_week - 2.days }
+      4.times { Factory.create :event, :starts_at => 2.week.ago.beginning_of_week - 2.days }
     }
     context "by week param" do
       setup { @events = Event.find_by(:week => 1) }
       should "find only the events in the right week" do
-        assert_equal Event.find(:all, :conditions => ["start_date >= ? AND end_date <= ?",
+        assert_equal Event.find(:all, :conditions => ["starts_at >= ? AND ends_at <= ?",
                                                       1.week.ago.beginning_of_week.to_date,
                                                       1.week.ago.end_of_week.to_date]),
                      @events
@@ -122,7 +122,7 @@ class EventTest < ActiveSupport::TestCase
                                 :end_date   => @end_date)
       }
       should "find only the events matching the right timeframe" do
-        assert_equal Event.find(:all, :conditions => ["start_date >= ? AND end_date <= ?",
+        assert_equal Event.find(:all, :conditions => ["starts_at >= ? AND ends_at <= ?",
                                                       @start_date, @end_date]),
                      @events
       end
@@ -135,9 +135,9 @@ class EventTest < ActiveSupport::TestCase
     end
     context "by tags" do
       setup {
-        Factory.create :event,   :tags => "one, two",    :start_date => Date.yesterday
-        Factory.create :all_day, :tags => "two, three",  :start_date => Date.yesterday
-        Factory.create :task,    :tags => "three, four", :start_date => Date.yesterday
+        Factory.create :event,   :tags => "one, two",    :starts_at => Date.yesterday
+        Factory.create :all_day, :tags => "two, three",  :starts_at => Date.yesterday
+        Factory.create :task,    :tags => "three, four", :starts_at => Date.yesterday
       }
       should "find events by a single tag name" do
         assert_equal Event.all.select {|e| e.tag_records.include? Tag.find_or_create_by_name("one") },

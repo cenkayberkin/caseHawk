@@ -27,13 +27,13 @@ class Event < ActiveRecord::Base
   validate :requires_subclassing
 
   named_scope :day, proc {|day|
-    { :conditions => "   start_date LIKE '#{day}%'
-                      OR end_date LIKE '#{day}%'
-                      OR '#{day}' BETWEEN start_date AND end_date" }
+    { :conditions => "   starts_at LIKE '#{day}%'
+                      OR ends_at LIKE '#{day}%'
+                      OR DATE('#{day}') BETWEEN DATE(starts_at) AND DATE(ends_at)" }
   }
   named_scope :between, proc {|range_start, range_end|
-    { :conditions => "   start_date BETWEEN '#{range_start}' AND '#{range_end}'
-                      OR end_date BETWEEN '#{range_start}' AND '#{range_end}'"}
+    { :conditions => "   DATE(starts_at) BETWEEN DATE('#{range_start}') AND DATE('#{range_end}')
+                      OR DATE(ends_at) BETWEEN DATE('#{range_start}') AND DATE('#{range_end}')"}
   }
   
   named_scope :with_tags, proc {|taglist|
