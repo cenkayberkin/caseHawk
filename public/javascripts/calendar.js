@@ -14,11 +14,17 @@
 //    Calendar.boxDayEvents('2009-05-01')
 //      # finds intersecting events and groups them into a single event list
 
-
-$(Calendar.init)
+$(function(){
+  $("#day").each(Calendar.initDay)
+  $("#week").each(Calendar.initWeek)
+})
 
 Calendar = {
-  init: function(){},
+  initDay: function(){
+    Calendar.positionEvents()
+  },
+  initWeek: function(){
+  },
   drawAllWeeks: function(){
     for(i=0;i<5;i++)
       Calendar.drawWeek(i)
