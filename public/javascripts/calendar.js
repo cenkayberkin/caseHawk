@@ -64,9 +64,11 @@ Calendar = {
         ".day-appointments .event, .day-deadlines .event"
       )
       .each(function(){
+        var instance = Event.instantiate(this)
         $(this)
           .css({
-            top: 60 * Event.instantiate(this).start.getHours()
+            top: 60 * instance.start.getHours()
+                    + instance.start.getMinutes()
           })
       })
   },
