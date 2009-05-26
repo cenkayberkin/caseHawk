@@ -1,7 +1,11 @@
 
 // use log(whatever) in any script
-log = function(){
-  console.log.apply(console,arguments)
+debug = function(){
+  var args = arguments
+  // adding delay to let Firebug time to load
+  setTimeout(function(){
+    console.debug.apply(console, args)
+  }, 50)
 }
 
 /* allow jQuery to work with Rails' respond_to */
