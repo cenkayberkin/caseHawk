@@ -36,12 +36,12 @@ Event = {
   },
   instantiate: function(record){
     if(record.nodeType) // build from a DOM object?
-      record = { start_time:  $(record).attr('data-start-time'),
-                 end_time:    $(record).attr('data-end-time'),
-                 id:          $(record).attr('data-event-id')
+      record = { starts_at:  $(record).attr('data-starts-at'),
+                 ends_at:    $(record).attr('data-ends-at'),
+                 id:         $(record).attr('data-event-id')
                 }
-    record.start = (new Date(record.start_time))
-    record.end   = Date.parse(record.end_time) ?
+    record.start = (new Date(record.starts_at))
+    record.end   = Date.parse(record.ends_at) ?
                         (new Date(record.end_time)) : undefined
     return $.extend(record, {
       // add methods for event objects here
