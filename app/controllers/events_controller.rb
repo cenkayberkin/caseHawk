@@ -14,14 +14,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def new
-    @event = Event.new
-  end
-
-  # render :show
-
-  # render :edit
-
   protected
 
     def new_event(atts = {})
@@ -38,7 +30,7 @@ class EventsController < ApplicationController
     end
 
     def find_or_initialize
-      @obj = params[:id] ?
+      @event = @obj = params[:id] ?
                  Event.find(params[:id]) :
                  new_event(params[:event])
     end
