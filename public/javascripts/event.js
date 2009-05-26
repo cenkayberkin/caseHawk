@@ -42,7 +42,7 @@ Event = {
                 }
     record.start = (new Date(record.starts_at))
     record.end   = Date.parse(record.ends_at) ?
-                        (new Date(record.end_time)) : undefined
+                        (new Date(record.ends_at)) : undefined
     return $.extend(record, {
       // add methods for event objects here
       // e.g. Event#delete()
