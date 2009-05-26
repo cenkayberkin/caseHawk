@@ -19,6 +19,7 @@
 class Event < ActiveRecord::Base
 
   belongs_to :location
+  belongs_to :creator, :class_name => 'User'
   has_many   :taggings, :as => :taggable
   has_many   :tag_records, :through => :taggings, :source => :tag
   

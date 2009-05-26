@@ -1,11 +1,17 @@
 
-log = function(){
-  console.log.apply(console,arguments)
+// use log(whatever) in any script
+debug = function(){
+  var args = arguments
+  // adding delay to let Firebug time to load
+  setTimeout(function(){
+    console.debug.apply(console, args)
+  }, 50)
 }
 
 /* allow jQuery to work with Rails' respond_to */
 $.ajaxSetup({'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")} })
 
+// "SomeString".underscore() => "some_string"
 String.prototype.underscore = function(){
   var under = [];
   for each(var word in this.split(/([A-Z][a-z]*)/))
@@ -14,6 +20,7 @@ String.prototype.underscore = function(){
   return under.join("_")
 }
 
+// "some_string".camelcase() => "SomeString"
 String.prototype.camelcase = function(){
   var parts = this.split(/[ _-]+/), len = parts.length;
   if (len == 1) return parts[0];
@@ -24,5 +31,3 @@ String.prototype.camelcase = function(){
 
   return camelized;
 }
-
-

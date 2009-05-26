@@ -14,7 +14,17 @@
 //    Calendar.boxDayEvents('2009-05-01')
 //      # finds intersecting events and groups them into a single event list
 
+$(function(){
+  $("#day").each(Calendar.initDay)
+  $("#week").each(Calendar.initWeek)
+})
+
 Calendar = {
+  initDay: function(){
+    Calendar.positionEvents()
+  },
+  initWeek: function(){
+  },
   drawAllWeeks: function(){
     for(i=0;i<5;i++)
       Calendar.drawWeek(i)
@@ -54,13 +64,21 @@ Calendar = {
         ".day-appointments .event, .day-deadlines .event"
       )
       .each(function(){
+        var e = Event.instantiate(this)
+        var durationInMilliSeconds =
+          e.end && e.start ? e.end - e.start : 0
         $(this)
           .css({
-            top: 60 * Event.instantiate(this).start.getHours()
+            top: 60 * e.start.getHours()
+                    + e.start.getMinutes(),
+            height: durationInMilliSeconds > 0 ?
+                      ((durationInMilliSeconds/1000)/60)+"px" : 'auto'
           })
       })
   },
   boxDayEvents: function(){
-    // group adjacent events into boxes
-  }
+    /* iterate through each 15 minute span of time looking for events */
+    $(".day-appointments .event").each(function(){
+      
+    })
 }

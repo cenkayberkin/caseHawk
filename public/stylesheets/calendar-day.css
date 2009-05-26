@@ -19,6 +19,7 @@
     .day-appointments li,
     .day-deadlines li {
       position: absolute;
+      border: 1px solid #CCC; /* added by Jack for testing - please remove when you have something better! */
     }
     
   .day-hours {
