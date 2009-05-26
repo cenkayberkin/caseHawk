@@ -54,7 +54,6 @@ class Event < ActiveRecord::Base
             when String then Date.parse(date)
             when Date   then date
           end
-          
     Event.between(day.beginning_of_week, day.end_of_week)
   end
 

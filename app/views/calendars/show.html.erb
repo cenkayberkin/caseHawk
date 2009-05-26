@@ -2,6 +2,10 @@
   <%= stylesheet_link_tag 'calendar-day' %>
 <% end %>
 
+<% content_for :sidebar do %>
+  <%= render :partial => 'events/new_form' %>
+<% end %>
+
 <h2>Calendar: <%= @date.to_s %></h2>
 <div id="<%= @day.to_s %>" class="day">
   <div class="day-top">
