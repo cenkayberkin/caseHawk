@@ -14,7 +14,11 @@
 //    Calendar.boxDayEvents('2009-05-01')
 //      # finds intersecting events and groups them into a single event list
 
+
+$(Calendar.init)
+
 Calendar = {
+  init: function(){},
   drawAllWeeks: function(){
     for(i=0;i<5;i++)
       Calendar.drawWeek(i)
