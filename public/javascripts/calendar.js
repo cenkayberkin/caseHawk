@@ -79,6 +79,8 @@ Calendar = {
   boxDayEvents: function(){
     /* iterate through each 15 minute span of time looking for events */
     $(".day-appointments .event").each(function(){
+      var e = Event.instantiate(this)
       
     })
+  }
 }
