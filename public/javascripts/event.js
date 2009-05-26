@@ -34,20 +34,29 @@ Event = {
       })
     })
   },
+  cachedInstances: [],
   instantiate: function(record){
-    if(record.nodeType) // build from a DOM object?
+    // return from cache if found
+    if(cachedInstances[parseInt(record.id)])
+      return cachedInstances[parseInt(record.id)]
+
+    if(record.nodeType){ // build from a DOM object
       record = { starts_at:  $(record).attr('data-starts-at'),
                  ends_at:    $(record).attr('data-ends-at'),
                  id:         $(record).attr('data-event-id')
                 }
+
     record.start = (new Date(record.starts_at))
     record.end   = Date.parse(record.ends_at) ?
                         (new Date(record.ends_at)) : undefined
-    return $.extend(record, {
+    $.extend(record, {
       // add methods for event objects here
       // e.g. Event#delete()
       display: Event.displayFor(record),
     })
+    // save instance in the cache
+    cachedInstances[record.id] = record
+    return record
   },
   displayFor: function(record){
     switch(record.type){
