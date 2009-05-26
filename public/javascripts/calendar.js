@@ -64,20 +64,21 @@ Calendar = {
         ".day-appointments .event, .day-deadlines .event"
       )
       .each(function(){
-        var instance = Event.instantiate(this)
+        var e = Event.instantiate(this)
         var durationInMilliSeconds =
-          instance.end && instance.start ?
-            instance.end - instance.start : 0
+          e.end && e.start ? e.end - e.start : 0
         $(this)
           .css({
-            top: 60 * instance.start.getHours()
-                    + instance.start.getMinutes(),
+            top: 60 * e.start.getHours()
+                    + e.start.getMinutes(),
             height: durationInMilliSeconds > 0 ?
                       ((durationInMilliSeconds/1000)/60)+"px" : 'auto'
           })
       })
   },
   boxDayEvents: function(){
-    // group adjacent events into boxes
-  }
+    /* iterate through each 15 minute span of time looking for events */
+    $(".day-appointments .event").each(function(){
+      
+    })
 }
