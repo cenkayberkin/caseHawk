@@ -24,6 +24,7 @@ class EventTest < ActiveSupport::TestCase
   should_validate_presence_of :creator_id
   should_have_many :taggings
   should_have_many :tag_records, :through => :taggings
+  should_belong_to :creator, :location
 
   context "creator" do
     setup { @event = Factory(:event) }
