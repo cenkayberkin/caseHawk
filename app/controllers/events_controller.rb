@@ -25,7 +25,6 @@ class EventsController < ApplicationController
   protected
 
     def new_event(atts = {})
-      
       event = case params[:event] && params[:event][:type]
                 when 'AllDay'       then AllDay.new(atts)
                 when 'Appointment'  then Appointment.new(atts)
@@ -35,6 +34,7 @@ class EventsController < ApplicationController
                   Event.new(atts)
                 end
       event.creator = current_user
+      event
     end
 
     def find_or_initialize
