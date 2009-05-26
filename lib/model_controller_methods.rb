@@ -14,6 +14,7 @@ module ModelControllerMethods
       flash[:notice] = "The #{cname.humanize.downcase} has been created."
       redirect_back_or_default redirect_url
     else
+      logger.info(@obj.errors.inspect)
       render :action => 'new'
     end
   end
