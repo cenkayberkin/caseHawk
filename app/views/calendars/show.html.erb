@@ -11,7 +11,7 @@
         <% get_tasks(@events).
             each do |event| %>
             
-          <li id="event-<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" 
+          <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" 
             class="event task <%= event.completed_at ? "complete" : "incomplete" %>">
             <label>
               <input id="event-complete-<%= event.id %>" name="task-complete-<%= event.id %>" type="checkbox" />
@@ -28,7 +28,7 @@
         <% get_all_days(@events).
             each do |event| %>
             
-          <li id="event-<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" class="event allday">
+          <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" class="event allday">
             <%= event.name %>
           </li>
           
@@ -47,7 +47,7 @@
     <ul class="day-deadlines">
       <% get_deadlines(@events).
           each do |event| %>
-          <li id="event-<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" 
+          <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" 
             class="event deadline <%= event.completed_at ? "complete" : "incomplete" %>">
             <label>
               <input id="event-complete-<%= event.id %>" name="deadline-complete-<%= event.id %>" type="checkbox" />
@@ -59,7 +59,7 @@
     <ul class="day-appointments">
       <% get_appointments(@events).
           each do |event| %>
-          <li id="event-<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event appointment"> 
+          <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event appointment"> 
             <%= event.start_time.to_s(:simple) %>&ndash;<%= event.end_time %> <%= event.name %>
           </li>
       <% end %>
