@@ -65,10 +65,15 @@ Calendar = {
       )
       .each(function(){
         var instance = Event.instantiate(this)
+        var durationInMilliSeconds =
+          instance.end && instance.start ?
+            instance.end - instance.start : 0
         $(this)
           .css({
             top: 60 * instance.start.getHours()
-                    + instance.start.getMinutes()
+                    + instance.start.getMinutes(),
+            height: durationInMilliSeconds > 0 ?
+                      ((durationInMilliSeconds/1000)/60)+"px" : 'auto'
           })
       })
   },
