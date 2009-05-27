@@ -22,6 +22,7 @@ $(function(){
 Calendar = {
   initDay: function(){
     Calendar.positionEvents()
+    Calendar.boxDayEvents()
   },
   initWeek: function(){
   },
@@ -86,7 +87,7 @@ Calendar = {
                   })
                   .map(function(){return this})
     $.each(events, function(idx, event){
-      (events[idx+1] && events[idx+1].ends < event.start) ?
+      (events[idx+1] && events[idx+1].start < event.end) &&
         Calendar.Box(event, events[idx+1])
     })
     Calendar.Box.arrange()
@@ -94,11 +95,30 @@ Calendar = {
   Box: function(){
     var boxes = []
     var boxFn = function(a, b){
-      $.each(boxes, function(idx, box){
-        
+      debug("("+a.id+") "+a.start.getHours()+":"+a.start.getMinutes()+" - "+b.start.getHours()+":"+b.start.getMinutes()+" ("+b.id+")")
+      debug("box count:"+boxes.length)
+      var found = false
+      $.each(boxes, function(_, box){
+        debug("box: ", box)
+        $.each(box, function(_, cell){
+          if(cell == a){
+            box.push(b)
+            found = true
+          }
+          if(cell == b){
+            box.push(a)
+            found = true
+          }
+        })
       })
+      if(!found)
+        boxes.push([a, b])
+      debug("box count:"+boxes.length)
+      debug("box1: ", boxes[0])
     }
-    boxFn.arrange = function(){}
-    return box
+    boxFn.arrange = function(){
+      debug(boxes)
+    }
+    return boxFn
   }()
 }
