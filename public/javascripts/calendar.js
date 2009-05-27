@@ -95,11 +95,8 @@ Calendar = {
   Box: function(){
     var boxes = []
     var boxFn = function(a, b){
-      debug("("+a.id+") "+a.start.getHours()+":"+a.start.getMinutes()+" - "+b.start.getHours()+":"+b.start.getMinutes()+" ("+b.id+")")
-      debug("box count:"+boxes.length)
       var found = false
       $.each(boxes, function(_, box){
-        debug("box: ", box)
         $.each(box, function(_, cell){
           if(cell == a){
             box.push(b)
@@ -113,8 +110,6 @@ Calendar = {
       })
       if(!found)
         boxes.push([a, b])
-      debug("box count:"+boxes.length)
-      debug("box1: ", boxes[0])
     }
     boxFn.arrange = function(){
       debug(boxes)
