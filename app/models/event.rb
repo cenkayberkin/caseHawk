@@ -106,11 +106,11 @@ class Event < ActiveRecord::Base
 
   # Parse any input from the user with Chronic to allow natural language entry
   def starts_at=(string)
-    self.starts_at = Chronic.parse(string)
+    write_attribute :starts_at, Chronic.parse(string.to_s)
   end
 
   def ends_at=(string)
-    self.ends_at = Chronic.parse(string)
+    write_attribute :ends_at, Chronic.parse(string.to_s)
   end
 
   protected
