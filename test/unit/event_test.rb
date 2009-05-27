@@ -117,8 +117,8 @@ class EventTest < ActiveSupport::TestCase
     end
     context "by start date and end date" do
       setup {
-        @start_date = Date.today.beginning_of_week - 3.days
-        @end_date = Date.today.beginning_of_week - 1.days
+        @starts_at = Date.today.beginning_of_week - 3.days
+        @ends_at = Date.today.beginning_of_week - 1.days
         @events = Event.find_by(:starts_at => @starts_at,
                                 :ends_at   => @ends_at)
       }
