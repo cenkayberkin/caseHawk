@@ -74,7 +74,7 @@ class Event < ActiveRecord::Base
     return [find_by_id(params[:id])] if params[:id]
     scope_builder do |builder| # from Ryan Bates' scope_builder
       builder.weeks_ago(params[:week]) if params[:week]
-      builder.between(params[:start_date], params[:end_date]) if params[:start_date] and params[:end_date]
+      builder.between(params[:starts_at], params[:ends_at]) if params[:starts_at] and params[:ends_at]
       builder.with_tags(params[:tags]) if params[:tags]
     end.find(:all).uniq
   end
@@ -103,39 +103,15 @@ class Event < ActiveRecord::Base
     super(options)
   end
   
-  # setting the start_time, start_date, end_time, or end_date
-  # allows for changing just a portion of the starts_at or
-  # ends_at values.
-  def start_time=(string)
-    return unless time = Time.parse(string.to_s) rescue nil
-    self.starts_at =
-         starts_at.beginning_of_day.advance :hours   => time.hour,
-                                            :minutes => time.min,
-                                            :seconds => time.sec
-  end
-  def start_time; starts_at; end
-  
-  def start_date=(string)
-    return unless date = Date.parse(string.to_s) rescue nil
-    self.starts_at = "#{date} #{(starts_at || Date.today).strftime("%T")}"
-  end
-  def start_date; starts_at.to_date; end
-  
 
-  def end_time=(string)
-    return unless time = Time.parse(string.to_s) rescue nil
-    self.ends_at =
-         ends_at.beginning_of_day.advance :hours   => time.hour,
-                                          :minutes => time.min,
-                                          :seconds => time.sec
+  # Parse any input from the user with Chronic to allow natural language entry
+  def starts_at=(string)
+    self.starts_at = Chronic.parse(string)
   end
-  def end_time; ends_at; end
-  
-  def end_date=(string)
-    return unless date = Date.parse(string.to_s) rescue nil
-    self.ends_at = "#{date} #{(ends_at || Date.today).strftime("%T")}"
+
+  def ends_at=(string)
+    self.ends_at = Chronic.parse(string)
   end
-  def end_date; ends_at.to_date; end
 
   protected
 

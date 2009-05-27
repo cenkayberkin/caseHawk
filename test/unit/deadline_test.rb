@@ -27,11 +27,8 @@ class DeadlineTest < ActiveSupport::TestCase
     setup do
       @event = Factory.create :deadline
     end
-    should "have start date" do
-      assert @event.start_date
-    end   
-    should "have start time" do
-      assert @event.start_time
+    should "have no end time" do
+      assert_nil @event.ends_at
     end   
     should_eventually "be completable" do
     end

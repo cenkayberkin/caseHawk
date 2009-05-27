@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_filter :find_or_initialize
 
   def index
-    @events = Event.find_by(params.slice(:start_date, :end_date, :tags, :id, :week))
+    @events = Event.find_by(params.slice(:starts_at, :ends_at, :tags, :id, :week))
     respond_to do |format|
       format.html
       format.js do
@@ -15,7 +15,6 @@ class EventsController < ApplicationController
   end
 
   protected
-
     def new_event(atts = {})
       event = case params[:event] && params[:event][:type]
                 when 'AllDay'       then AllDay.new(atts)

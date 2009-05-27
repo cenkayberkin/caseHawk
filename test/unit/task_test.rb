@@ -28,8 +28,8 @@ class TaskTest < ActiveSupport::TestCase
     setup do
       @event = Factory(:task)
     end
-    should "have a start date" do
-      assert @event.start_date
+    should "have a no end date" do
+      assert_nil @event.ends_at
     end
     should_eventually "be completable" do
     end

@@ -119,12 +119,12 @@ class EventTest < ActiveSupport::TestCase
       setup {
         @start_date = Date.today.beginning_of_week - 3.days
         @end_date = Date.today.beginning_of_week - 1.days
-        @events = Event.find_by(:start_date => @start_date,
-                                :end_date   => @end_date)
+        @events = Event.find_by(:starts_at => @starts_at,
+                                :ends_at   => @ends_at)
       }
       should "find only the events matching the right timeframe" do
         assert_equal Event.find(:all, :conditions => ["starts_at >= ? AND ends_at <= ?",
-                                                      @start_date, @end_date]),
+                                                      @starts_at, @ends_at]),
                      @events
       end
     end
@@ -150,50 +150,6 @@ class EventTest < ActiveSupport::TestCase
                        e.tag_records.include?(Tag.find_or_create_by_name("three"))
                      },
                      Event.find_by(:tags => ['two', 'three'])
-      end
-    end
-  end
-  
-  context "setting events times" do
-    setup do
-      @start = "2/8/2005 2:30pm"
-      @end = "2/8/2005 6:14pm"
-      @event = Factory.build :appointment, :starts_at => @start, :ends_at => @end
-    end
-    should "set proper datetime attributes" do
-      assert_equal Time.parse(@start), @event.starts_at
-      assert_equal Time.parse(@end), @event.ends_at
-    end
-    context "using date-format attribute setters" do
-      setup do
-        @event.start_date = 5.days.ago.to_date
-        @event.end_date   = 3.days.from_now.to_date
-      end
-      should "save datetime attributes with updated date" do
-        assert_equal 5.days.ago.to_date,      @event.starts_at.to_date
-        assert_equal 3.days.from_now.to_date, @event.ends_at.to_date
-      end
-      should "keep the time portion of datetimes" do
-        assert_equal Time.parse(@start).strftime("%T"),
-                     @event.starts_at.strftime("%T")
-        assert_equal Time.parse(@end).strftime("%T"),
-                     @event.ends_at.strftime("%T")
-      end
-    end
-    context "using time-format attribute setters" do
-      setup do
-        @event.start_time = "10:15 am"
-        @event.end_time   = "9:45 pm"
-      end
-      should "save datetime attributes with updated time" do
-        assert_equal Time.parse("10:15 am"),
-                     Time.parse(@event.starts_at.strftime("%T"))
-        assert_equal Time.parse("9:45 pm"),
-                     Time.parse(@event.ends_at.strftime("%T"))
-      end
-      should "keep the date portion of datetimes" do
-        assert_equal Date.parse(@start), @event.starts_at.to_date
-        assert_equal Date.parse(@end),   @event.ends_at.to_date
       end
     end
   end

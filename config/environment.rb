@@ -46,7 +46,8 @@ Rails::Initializer.run do |config|
 
   config.gem "rubyredrick-ri_cal", :lib => 'ri_cal', :source => 'http://gems.github.com'
   config.gem 'ryanb-scope-builder', :lib => 'scope_builder', :source => 'http://gems.github.com'
-
+  config.gem 'mojombo-chronic', :lib => 'chronic', :source => 'http://gems.github.com'
+  
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with 'rake db:sessions:create')
