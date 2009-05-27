@@ -22,6 +22,7 @@ $(function(){
 Calendar = {
   initDay: function(){
     Calendar.positionEvents()
+    Calendar.boxDayEvents()
   },
   initWeek: function(){
   },
@@ -72,15 +73,47 @@ Calendar = {
             top: 60 * e.start.getHours()
                     + e.start.getMinutes(),
             height: durationInMilliSeconds > 0 ?
-                      ((durationInMilliSeconds/1000)/60)+"px" : 'auto'
+                      ((durationInMilliSeconds/1000)/60)+"px" : '15px'
           })
       })
   },
   boxDayEvents: function(){
-    /* iterate through each 15 minute span of time looking for events */
-    $(".day-appointments .event").each(function(){
-      var e = Event.instantiate(this)
-      
+    var events = $(".day-appointments .event")
+                  .map(function(){
+                    return Event.instantiate(this)
+                  })
+                  .sort(function(a,b){
+                    return a.starts_at > b.starts_at
+                  })
+                  .map(function(){return this})
+    $.each(events, function(idx, event){
+      (events[idx+1] && events[idx+1].start < event.end) &&
+        Calendar.Box(event, events[idx+1])
     })
-  }
+    Calendar.Box.arrange()
+  },
+  Box: function(){
+    var boxes = []
+    var boxFn = function(a, b){
+      var found = false
+      $.each(boxes, function(_, box){
+        $.each(box, function(_, cell){
+          if(cell == a){
+            box.push(b)
+            found = true
+          }
+          if(cell == b){
+            box.push(a)
+            found = true
+          }
+        })
+      })
+      if(!found)
+        boxes.push([a, b])
+    }
+    boxFn.arrange = function(){
+      debug(boxes)
+    }
+    return boxFn
+  }()
 }
