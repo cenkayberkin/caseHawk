@@ -25,6 +25,7 @@
     .collision_box {
       position: absolute;
       width: 38%;
+      overflow: scroll;
       background-color: #CFC; /* added by Jack for testing - please remove when you have something better! */
     }
     .collision_box .event {
