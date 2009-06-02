@@ -4,30 +4,14 @@
 
 <% content_for :sidebar do %>
   <%= render :partial => 'events/new_form' %>
+  <%= render :partial => 'task_list',
+              :locals => { :events => @events }
+  %>
 <% end %>
 
 <h2>Calendar: <%= @date.to_s %></h2>
 <div id="day" class="day" data-date="<%= @day.to_s %>">
   <div class="day-top">
-    <div class="day-top-tasks">
-      <div class="content">
-      <h3>Tasks</h3>
-      <ul>
-        <% get_tasks(@events).
-            each do |event| %>
-            
-          <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" 
-            class="event task <%= event.completed_at ? "complete" : "incomplete" %>">
-            <label>
-              <input id="event-complete-<%= event.id %>" name="task-complete-<%= event.id %>" type="checkbox" />
-              <%= event.name %>
-            </label>
-          </li>
-          
-        <% end %>
-      </ul>
-      </div>
-    </div>
     <div class="day-top-allday">
       <div class="content">
       <h3>All-Day Events</h3>
