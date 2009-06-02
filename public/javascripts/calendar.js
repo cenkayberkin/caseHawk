@@ -76,27 +76,45 @@ Calendar = {
                     + e.start.getMinutes(),
             height: Calendar.heightInPixels(
                       e.end && e.start ? e.end - e.start : 0
-                    )
+                    )+'px'
           })
       })
   },
   adjustViewport: function(){
-    var earliest =
-      $(".day-wrapper .event, .day-wrapper .collision_box")
-        .map(function(){return Event.instantiate(this)})
-        .sort(function(a, b){
-          return a.starts_at > b.starts_at ? 1 : -1
-        })[0]
-    $(".day-hours, .day-full").css(
-      "margin-top",
-      "-"
-      + (parseInt($(earliest).css("top")) -30)
-      +"px"
-    )
+    var events =
+          $(".day-wrapper .event, .day-wrapper .collision_box")
+            .map(function(){return Event.instantiate(this)})
+    var earliest = 
+          events.sort(function(a, b){
+            return a.starts_at > b.starts_at ? 1 : -1
+          })[0]
+    var latest = 
+          events.sort(function(a, b){
+            return (a.ends_at || a.starts_at + (60*1000)) <
+                   (b.ends_at || b.starts_at + (60*1000))
+                      ? 1 : -1
+          })[0]
+    debug(Calendar.heightInPixels(
+      (latest.end || latest.start + (60*1000))
+        - earliest.start
+    ))
+    $(".day-hours, .day-full").css({
+      "margin-top":
+        "-"
+        + (parseInt($(earliest).css("top")) -30)
+        +"px",
+      "height":
+        (Calendar.heightInPixels(
+          (latest.end || latest.start + (60*1000))
+            - earliest.start
+        )
+        + parseInt($(earliest).css("top"))
+        - 30) + 'px'
+    })
   },
   heightInPixels: function(durationInMilliSeconds){
     return durationInMilliSeconds > 0 ?
-              ((durationInMilliSeconds/1000)/60)+"px" : '15px'
+              ((durationInMilliSeconds/1000)/60) : 15
   },
   boxDayEvents: function(){
     var events = $(".day-appointments .event")
@@ -140,7 +158,7 @@ Calendar = {
           height: Calendar.heightInPixels(
                       box[box.length-1].end && box[0].start ?
                         box[box.length-1].end - box[0].start : 0
-                    )
+                    )+'px'
         })
         $.each(box, function(_,e){
           $(e)
