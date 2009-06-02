@@ -36,10 +36,13 @@
     .day-appointments li,
     .day-deadlines li {
       position: absolute;
-      background: #EEE; 
+      background: #ECECFF; 
       width: 50%; 
       font-size: 11px; 
       line-height: 15px; 
+    }
+    .day-deadlines li {
+      background: #FDDCDC;
     }
     
     .day-deadlines li input  {
@@ -49,10 +52,13 @@
       position: absolute;
       width: 50%;
       overflow: auto;
-      background-color: #CFC; /* added by Jack for testing - please remove when you have something better! */
+      background-color: #ECECFF; /* added by Jack for testing - please remove when you have something better! */
+    }
+    .day-deadlines .collision_box {
+      background: #FDDCDC;
     }
     .collision_box .event {
-      width: auto;
+      width: 100%;
       border-width: 0px;
     }
     
