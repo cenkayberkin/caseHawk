@@ -32,6 +32,9 @@
       width: 33%;
     }
     
+  .day-wrapper {
+    overflow: hidden;
+  }
     .day-appointments,
     .day-deadlines {
       position: relative;

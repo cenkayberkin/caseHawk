@@ -11,6 +11,9 @@
 //    Calendar.placeDayEvents('2009-05-01')
 //      # calculates positions for each event in the current day calendar
 //      # adds height according to time length
+//      # calls:
+//      Calendar.adjustViewport()
+//        # hides the portion of the day where no events are scheduled
 //    Calendar.boxDayEvents('2009-05-01')
 //      # finds intersecting events and groups them into a single event list
 
@@ -22,6 +25,7 @@ $(function(){
 Calendar = {
   initDay: function(){
     Calendar.positionEvents()
+    Calendar.adjustViewport()
     Calendar.boxDayEvents()
   },
   initWeek: function(){
@@ -76,6 +80,20 @@ Calendar = {
           })
       })
   },
+  adjustViewport: function(){
+    var earliest =
+      $(".day-wrapper .event, .day-wrapper .collision_box")
+        .map(function(){return Event.instantiate(this)})
+        .sort(function(a, b){
+          return a.starts_at > b.starts_at ? 1 : -1
+        })[0]
+    $(".day-hours, .day-full").css(
+      "margin-top",
+      "-"
+      + (parseInt($(earliest).css("top")) -30)
+      +"px"
+    )
+  },
   heightInPixels: function(durationInMilliSeconds){
     return durationInMilliSeconds > 0 ?
               ((durationInMilliSeconds/1000)/60)+"px" : '15px'
@@ -86,7 +104,7 @@ Calendar = {
                     return Event.instantiate(this)
                   })
                   .sort(function(a,b){
-                    return a.starts_at > b.starts_at
+                    return a.starts_at > b.starts_at ? 1 : -1
                   })
                   .map(function(){return this})
     $.each(events, function(idx, event){
