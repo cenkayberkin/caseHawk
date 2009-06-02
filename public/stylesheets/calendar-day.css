@@ -3,15 +3,14 @@
 }
 
   .day-top {
-    height: 120px;
+    height: 60px;
     overflow-y: auto;
     margin-left: 50px;
     border-left: 1px solid #DDD;
     border-bottom: 1px solid #DDD;
   }
-    .day-top-tasks, .day-top-allday {
+    .day-top-allday {
       float: left;
-      width: 50%;
     }
     
     .day-top h3 {
@@ -22,7 +21,16 @@
       text-decoration: underline;
     }
     
-    .day-top ul { margin-bottom: 0; }
+    .day-top ul { 
+      margin-bottom: 0;
+      width: 100%;
+    }
+    
+    .day-top li {
+      display: block;
+      float: left;
+      width: 33%;
+    }
     
     .day-appointments,
     .day-deadlines {
