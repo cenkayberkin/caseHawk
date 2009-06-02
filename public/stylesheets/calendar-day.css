@@ -19,7 +19,17 @@
     .day-appointments li,
     .day-deadlines li {
       position: absolute;
+      width: 38%;
       border: 1px solid #CCC; /* added by Jack for testing - please remove when you have something better! */
+    }
+    .collision_box {
+      position: absolute;
+      width: 38%;
+      background-color: #CFC; /* added by Jack for testing - please remove when you have something better! */
+    }
+    .collision_box .event {
+      width: auto;
+      border-width: 0px;
     }
     
   .day-hours {
