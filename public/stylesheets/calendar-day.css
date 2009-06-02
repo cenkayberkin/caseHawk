@@ -47,10 +47,11 @@
       width: 50%; 
       font-size: 11px; 
       line-height: 15px; 
+      left: 50%;
     }
     .day-deadlines li {
       background: #FDDCDC;
-      left: 50%;
+      left: 0;
     }
     
     .day-deadlines li input  {
@@ -59,6 +60,7 @@
     .collision_box {
       position: absolute;
       width: 50%;
+      left: 50%; 
       overflow: auto;
       background-color: #ECECFF; /* added by Jack for testing - please remove when you have something better! */
     }
@@ -68,6 +70,7 @@
     .collision_box .event {
       width: 100%;
       border-width: 0px;
+      left: 0%;
     }
     
   .day-hours {
