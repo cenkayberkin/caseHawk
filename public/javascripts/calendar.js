@@ -66,16 +66,19 @@ Calendar = {
       )
       .each(function(){
         var e = Event.instantiate(this)
-        var durationInMilliSeconds =
-          e.end && e.start ? e.end - e.start : 0
         $(this)
           .css({
             top: 60 * e.start.getHours()
                     + e.start.getMinutes(),
-            height: durationInMilliSeconds > 0 ?
-                      ((durationInMilliSeconds/1000)/60)+"px" : '15px'
+            height: Calendar.heightInPixels(
+                      e.end && e.start ? e.end - e.start : 0
+                    )
           })
       })
+  },
+  heightInPixels: function(durationInMilliSeconds){
+    return durationInMilliSeconds > 0 ?
+              ((durationInMilliSeconds/1000)/60)+"px" : '15px'
   },
   boxDayEvents: function(){
     var events = $(".day-appointments .event")
@@ -87,7 +90,7 @@ Calendar = {
                   })
                   .map(function(){return this})
     $.each(events, function(idx, event){
-      (events[idx+1] && events[idx+1].start < event.end) &&
+      (events[idx+1] && events[idx+1].start <= event.end) &&
         Calendar.Box(event, events[idx+1])
     })
     Calendar.Box.arrange()
@@ -112,7 +115,26 @@ Calendar = {
         boxes.push([a, b])
     }
     boxFn.arrange = function(){
-      debug(boxes)
+      $.each(boxes, function(_,box){
+        var holder = $("<div class='collision_box'></div>")
+        holder.css({
+          top:    $(box[0]).css("top"),
+          height: Calendar.heightInPixels(
+                      box[box.length-1].end && box[0].start ?
+                        box[box.length-1].end - box[0].start : 0
+                    )
+        })
+        $.each(box, function(_,e){
+          $(e)
+            .css(
+              { height:   'auto',
+                position: 'relative',
+                top:      '0px'
+              })
+            .appendTo(holder)
+        })
+        holder.appendTo($("ul.day-appointments"))
+      })
     }
     return boxFn
   }()
