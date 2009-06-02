@@ -14,9 +14,10 @@ $.ajaxSetup({'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/j
 // "SomeString".underscore() => "some_string"
 String.prototype.underscore = function(){
   var under = [];
-  for each(var word in this.split(/([A-Z][a-z]*)/))
-    if(word)
-      under.push(word.toLowerCase())
+  var split = this.split(/([A-Z][a-z]*)/)
+  for(var i=0; i < split.length; i++)
+    if(split[i])
+      under.push(split[i].toLowerCase())
   return under.join("_")
 }
 
