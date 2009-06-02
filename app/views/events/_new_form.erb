@@ -3,8 +3,6 @@
 <% end %>
 
 <h2>Add a New Event</h2>
-<p>
-  <% form_for @event || Event.new do |f| -%>
-    <%= render :partial => 'events/fields', :locals => { :f => f } %>
-  <% end -%>
-</p>
+<% form_for @event || Event.new do |f| -%>
+  <%= render :partial => 'events/fields', :locals => { :f => f } %>
+<% end -%>
