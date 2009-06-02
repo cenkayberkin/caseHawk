@@ -1,0 +1,19 @@
+<div class="sidebar-tasks">
+  <div class="content">
+  <h2>Tasks</h2>
+  <ul>
+    <% get_tasks(events).
+        each do |event| %>
+        
+      <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" 
+        class="event task <%= event.completed_at ? "complete" : "incomplete" %>">
+        <label>
+          <input id="event-complete-<%= event.id %>" name="task-complete-<%= event.id %>" type="checkbox" />
+          <%= event.name %>
+        </label>
+      </li>
+      
+    <% end %>
+  </ul>
+  </div>
+</div>
