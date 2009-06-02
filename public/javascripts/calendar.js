@@ -86,7 +86,7 @@ Calendar = {
                     return Event.instantiate(this)
                   })
                   .sort(function(a,b){
-                    return a.starts_at > b.starts_at
+                    return (a.starts_at > b.starts_at) ? 1 : -1
                   })
                   .map(function(){return this})
     $.each(events, function(idx, event){
