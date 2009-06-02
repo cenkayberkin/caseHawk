@@ -40,12 +40,30 @@ Event = {
     if(Event.cachedInstances[parseInt(record.id)])
       return Event.cachedInstances[parseInt(record.id)]
 
-    if(record.nodeType) // build from a DOM object
+    // if this is an existing DOM object then copy some
+    // attributes into the same format as the JSON object has
+    if(record.nodeType)
       $.extend(record,
                { starts_at:  $(record).attr('data-starts-at'),
                  ends_at:    $(record).attr('data-ends-at'),
                  id:         $(record).attr('data-event-id')
-                }
+                })
+    // otherwise assume the record is a JSON object literal
+    // and extend it with a jQuerified DOM object
+    else
+      $.extend($("<li></li>")
+                  .attr(
+                    { "data-starts-at": record.starts_at,
+                      "data-ends-at":   record.ends_at,
+                      "id":             record.id
+                    })
+                  .addClass("event")
+                  .addClass(record.type)
+                  [0]
+               ,
+               record
+               )
+    
     // .starts_at and .ends_at are the string attributes
     // but .start and .end are javascript Date objects
     record.start = (new Date(record.starts_at))
