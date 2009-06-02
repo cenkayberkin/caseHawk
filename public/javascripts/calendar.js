@@ -90,7 +90,7 @@ Calendar = {
                   })
                   .map(function(){return this})
     $.each(events, function(idx, event){
-      (events[idx+1] && events[idx+1].start < event.end) &&
+      (events[idx+1] && events[idx+1].start <= event.end) &&
         Calendar.Box(event, events[idx+1])
     })
     Calendar.Box.arrange()
