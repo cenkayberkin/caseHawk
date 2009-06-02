@@ -4,73 +4,56 @@
 
 <% content_for :sidebar do %>
   <%= render :partial => 'events/new_form' %>
+  <%= render :partial => 'task_list',
+              :locals => { :events => @events }
+  %>
 <% end %>
 
 <h2>Calendar: <%= @date.to_s %></h2>
 <div id="day" class="day" data-date="<%= @day.to_s %>">
   <div class="day-top">
-    <div class="day-top-tasks">
-      <div class="content">
-      <h3>Tasks</h3>
-      <ul>
-        <% get_tasks(@events).
-            each do |event| %>
-            
-          <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" 
-            class="event task <%= event.completed_at ? "complete" : "incomplete" %>">
-            <label>
-              <input id="event-complete-<%= event.id %>" name="task-complete-<%= event.id %>" type="checkbox" />
-              <%= event.name %>
-            </label>
-          </li>
-          
-        <% end %>
-      </ul>
-      </div>
-    </div>
     <div class="day-top-allday">
       <div class="content">
-      <h3>All-Day Events</h3>
       <ul class="day-allday">
         <% get_all_days(@events).
             each do |event| %>
-            
           <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" class="event allday">
             <%= event.name %>
           </li>
-          
         <% end %>
       </ul>
       </div>
     </div>
   </div>
-  <ul class="day-hours">
-    <% ['am', 'pm'].each do |meridian| %>
-      <% (0..11).each do |n| %>
-        <li><%= n == 0 ? 12 : n %>:00<%= meridian %></li>
-      <% end %>
-    <% end %>
-  </ul>
-  <div class="day-full">
-    <ul class="day-deadlines">
-      <% get_deadlines(@events).
-          each do |event| %>
-          <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event deadline <%= event.completed_at ? "complete" : "incomplete" %>">
-            <label>
-              <input id="event-complete-<%= event.id %>" name="deadline-complete-<%= event.id %>" type="checkbox" />
-              <%= event.starts_at.to_s(:simple) %>&ndash;<%= event.ends_at %> <%= event.name %>
-            </label>
-          </li>
+  <div class="day-wrapper">
+    <ul class="day-hours">
+      <% ['am', 'pm'].each do |meridian| %>
+        <% (0..11).each do |n| %>
+          <li><%= n == 0 ? 12 : n %>:00<%= meridian %></li>
+        <% end %>
       <% end %>
     </ul>
-    <ul class="day-appointments">
-      <% get_appointments(@events).
-          each do |event| %>
-          <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event appointment"> 
-            <%= event.starts_at.to_s(:simple) %>&ndash;<%= event.ends_at.to_s(:simple) %> <%= event.name %>
-          </li>
-      <% end %>
-    </ul>
+    <div class="day-full">
+      <ul class="day-deadlines">
+        <% get_deadlines(@events).
+            each do |event| %>
+            <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event deadline <%= event.completed_at ? "complete" : "incomplete" %>">
+              <label>
+                <input id="event-complete-<%= event.id %>" name="deadline-complete-<%= event.id %>" type="checkbox" />
+                <%= event.starts_at.to_s(:simple) %>&ndash;<%= event.ends_at %> <%= event.name %>
+              </label>
+            </li>
+        <% end %>
+      </ul>
+      <ul class="day-appointments">
+        <% get_appointments(@events).
+            each do |event| %>
+            <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event appointment"> 
+              <%= event.starts_at.to_s(:simple) %>&ndash;<%= event.ends_at.to_s(:simple) %> <%= event.name %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
   <br class="clear" />
 </div>  
