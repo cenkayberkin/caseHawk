@@ -16,6 +16,9 @@
     .day-deadlines {
       position: relative;
     }
+    .day-deadlines {
+      left: 50%;
+    }
     .day-appointments li,
     .day-deadlines li {
       position: absolute;
