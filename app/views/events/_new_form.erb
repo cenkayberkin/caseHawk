@@ -2,9 +2,9 @@
   <%= stylesheet_link_tag 'event-new' %>
 <% end %>
 
-<h2>Add a New Event</h2>
-<p>
-  <% form_for @event || Event.new do |f| -%>
-    <%= render :partial => 'events/fields', :locals => { :f => f } %>
-  <% end -%>
-</p>
+<div class="sidebar-block">
+  <h2>Add a New Event</h2>
+    <% form_for @event || Event.new do |f| -%>
+      <%= render :partial => 'events/fields', :locals => { :f => f } %>
+    <% end -%>
+</div>
