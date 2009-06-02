@@ -11,6 +11,9 @@
 //    Calendar.placeDayEvents('2009-05-01')
 //      # calculates positions for each event in the current day calendar
 //      # adds height according to time length
+//      # calls:
+//      Calendar.adjustViewport()
+//        # hides the portion of the day where no events are scheduled
 //    Calendar.boxDayEvents('2009-05-01')
 //      # finds intersecting events and groups them into a single event list
 
@@ -43,6 +46,7 @@ Calendar = {
       $.extend({start_date: date, end_date: date}, options),
       function(event){ Calendar.placeDayEvent(event) }
     )
+    Calendar.adjustViewport()
   },
   placeDayEvent: function(event){
     // draw the event on the page
@@ -75,6 +79,9 @@ Calendar = {
                     )
           })
       })
+  },
+  adjustViewport: function(){
+    $("#day_full .event")
   },
   heightInPixels: function(durationInMilliSeconds){
     return durationInMilliSeconds > 0 ?
