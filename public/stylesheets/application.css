@@ -52,12 +52,16 @@ a:hover { color: #B32914; text-decoration: underline; }
 
 ul, ol, p { margin: 0 0 1em; }
 
+.content {
+  padding: 0 5px;
+}
+
 #page {
   margin: 0 auto; padding: 0 20px;
 	background: url(/images/header-bg.png) repeat-x left top; 
 }
 #header {
-	margin: 0 auto 20px; 
+	margin: 0 auto 10px; 
 	padding: 0; 
 	width: auto; 
   height: 120px;  

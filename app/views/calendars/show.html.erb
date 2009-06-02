@@ -10,6 +10,7 @@
 <div id="day" class="day" data-date="<%= @day.to_s %>">
   <div class="day-top">
     <div class="day-top-tasks">
+      <div class="content">
       <h3>Tasks</h3>
       <ul>
         <% get_tasks(@events).
@@ -25,8 +26,10 @@
           
         <% end %>
       </ul>
+      </div>
     </div>
     <div class="day-top-allday">
+      <div class="content">
       <h3>All-Day Events</h3>
       <ul class="day-allday">
         <% get_all_days(@events).
@@ -38,6 +41,7 @@
           
         <% end %>
       </ul>
+      </div>
     </div>
   </div>
   <ul class="day-hours">

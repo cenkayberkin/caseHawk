@@ -5,21 +5,42 @@
   .day-top {
     height: 120px;
     overflow-y: auto;
-    padding-left: 50px;
+    margin-left: 50px;
+    border-left: 1px solid #DDD;
     border-bottom: 1px solid #DDD;
   }
     .day-top-tasks, .day-top-allday {
       float: left;
       width: 50%;
     }
+    
+    .day-top h3 {
+      text-transform: uppercase; 
+      font-size: 1.4em;
+      color: #72D472;
+      margin: 0.25em 0;
+      text-decoration: underline;
+    }
+    
+    .day-top ul { margin-bottom: 0; }
+    
     .day-appointments,
     .day-deadlines {
       position: relative;
+      margin: 0; 
+      padding: 0;
     }
     .day-appointments li,
     .day-deadlines li {
       position: absolute;
-      border: 1px solid #CCC; /* added by Jack for testing - please remove when you have something better! */
+      background: #EEE; 
+      width: 100%; 
+      font-size: 11px; 
+      line-height: 15px; 
+    }
+    
+    .day-deadlines li input  {
+      vertical-align: middle;
     }
     
   .day-hours {
@@ -45,4 +66,7 @@
     padding: 0; 
   }
   
-  
+  #sidebar h2 {
+    text-align: center; 
+    color: #D95C26;
+  }
