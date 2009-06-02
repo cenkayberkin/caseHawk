@@ -25,6 +25,7 @@ $(function(){
 Calendar = {
   initDay: function(){
     Calendar.positionEvents()
+    Calendar.adjustViewport()
     Calendar.boxDayEvents()
   },
   initWeek: function(){
@@ -46,7 +47,6 @@ Calendar = {
       $.extend({start_date: date, end_date: date}, options),
       function(event){ Calendar.placeDayEvent(event) }
     )
-    Calendar.adjustViewport()
   },
   placeDayEvent: function(event){
     // draw the event on the page
@@ -81,7 +81,18 @@ Calendar = {
       })
   },
   adjustViewport: function(){
-    $("#day_full .event")
+    var earliest =
+      $(".day-wrapper .event, .day-wrapper .collision_box")
+        .map(function(){return Event.instantiate(this)})
+        .sort(function(a, b){
+          return a.starts_at > b.starts_at ? 1 : -1
+        })[0]
+    $(".day-hours, .day-full").css(
+      "margin-top",
+      "-"
+      + (parseInt($(earliest).css("top")) -30)
+      +"px"
+    )
   },
   heightInPixels: function(durationInMilliSeconds){
     return durationInMilliSeconds > 0 ?
@@ -93,7 +104,7 @@ Calendar = {
                     return Event.instantiate(this)
                   })
                   .sort(function(a,b){
-                    return (a.starts_at > b.starts_at) ? 1 : -1
+                    return a.starts_at > b.starts_at ? 1 : -1
                   })
                   .map(function(){return this})
     $.each(events, function(idx, event){
