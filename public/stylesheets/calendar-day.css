@@ -39,7 +39,6 @@
       padding: 0;
     }
     .day-deadlines {
-      left: 50%;
     }
     .day-appointments li,
     .day-deadlines li {
@@ -51,6 +50,7 @@
     }
     .day-deadlines li {
       background: #FDDCDC;
+      left: 50%;
     }
     
     .day-deadlines li input  {
@@ -91,8 +91,4 @@
     width: auto; 
     margin: 0 0 0 51px; 
     padding: 0; 
-
-  #sidebar h2 {
-    text-align: center; 
-    color: #D95C26;
   }

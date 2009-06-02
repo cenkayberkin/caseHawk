@@ -45,7 +45,12 @@ h1, h2, h3, h4, h5 {
 	line-height: 1.2em;  
 }
 	h1 { font-size: 2.4em; }
-	h2 { font-size: 2em; }
+	h2 { 
+	  font-size: 2em; 
+	  color: #73A3D3;
+		border-bottom: 1px dashed #999999;
+		padding-bottom: 0.25em;
+	}
 	h3 { font-size: 1.6em; }
 a { color: #114499; }
 a:hover { color: #B32914; text-decoration: underline; }
@@ -199,6 +204,14 @@ ul, ol, p { margin: 0 0 1em; }
     background: #F3F3F3;
     border: 1px solid #E3E3E3;
   }
+    .sidebar-block {
+      padding: 0 0.5em; 
+      margin: 0 0 1em; 
+    }
+    .sidebar-block h2 {
+        text-align: center; 
+        color: #D95C26;      
+    }
   
 #footer {
   clear: both; 
@@ -211,11 +224,6 @@ ul, ol, p { margin: 0 0 1em; }
   line-height: 1.4em; 
   color: #666;
 }
-	#content h2 {
-		color: #5793F5;
-		border-bottom: 1px dashed #999999;
-		padding-bottom: 0.25em;
-	}
 	
 	#content table { 
 		width: 100%; 
