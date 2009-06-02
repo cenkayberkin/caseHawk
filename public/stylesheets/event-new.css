@@ -1,0 +1,27 @@
+form.new_event {
+  
+}
+
+.new_event input, .new_event label, .new_event select {
+  display: inline-block; 
+  vertical-align: middle;
+  margin-bottom: 5px; 
+}
+
+.new_event label {
+  text-align: right; 
+  padding-right: 10px; 
+  width: 25%;
+}
+
+.new_event input {
+  width: 65%;
+}
+.new_event input[type=hidden] {
+  width: 0; 
+}
+.new_event input[type=submit] {
+  width: auto; 
+  margin-left: 25%; 
+  padding-left: 10px;
+}
