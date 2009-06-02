@@ -37,7 +37,7 @@
     .day-deadlines li {
       position: absolute;
       background: #EEE; 
-      width: 100%; 
+      width: 50%; 
       font-size: 11px; 
       line-height: 15px; 
     }
@@ -47,7 +47,7 @@
     }
     .collision_box {
       position: absolute;
-      width: 38%;
+      width: 50%;
       overflow: auto;
       background-color: #CFC; /* added by Jack for testing - please remove when you have something better! */
     }
