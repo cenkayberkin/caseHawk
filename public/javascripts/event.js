@@ -41,11 +41,13 @@ Event = {
       return Event.cachedInstances[parseInt(record.id)]
 
     if(record.nodeType) // build from a DOM object
-      record = { starts_at:  $(record).attr('data-starts-at'),
+      $.extend(record,
+               { starts_at:  $(record).attr('data-starts-at'),
                  ends_at:    $(record).attr('data-ends-at'),
                  id:         $(record).attr('data-event-id')
                 }
-
+    // .starts_at and .ends_at are the string attributes
+    // but .start and .end are javascript Date objects
     record.start = (new Date(record.starts_at))
     record.end   = Date.parse(record.ends_at) ?
                         (new Date(record.ends_at)) : undefined
