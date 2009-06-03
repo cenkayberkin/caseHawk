@@ -94,10 +94,6 @@ Calendar = {
                    (b.ends_at || b.starts_at + (60*1000))
                       ? 1 : -1
           })[0]
-    debug(Calendar.heightInPixels(
-      (latest.end || latest.start + (60*1000))
-        - earliest.start
-    ))
     $(".day-hours, .day-full").css({
       "margin-top":
         "-"
