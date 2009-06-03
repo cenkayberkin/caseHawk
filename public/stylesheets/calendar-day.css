@@ -5,25 +5,29 @@
   .day-top {
     height: 60px;
     overflow-y: auto;
-    margin-left: 50px;
-    border-left: 1px solid #DDD;
     border-bottom: 1px solid #DDD;
   }
     .day-top-allday {
-      float: left;
+      margin: 0 0 0 51px;
+      padding: 0; 
+      width: auto;
     }
     
     .day-top h3 {
       text-transform: uppercase; 
-      font-size: 1.4em;
+      text-align: center;
       color: #72D472;
-      margin: 0.25em 0;
-      text-decoration: underline;
+      margin: 0;
+      padding: 5px 0;
+      width: 50px; 
+      border-right: 1px solid #DDD; 
+      float: left;      
+      height: 50px; 
     }
     
-    .day-top ul { 
-      margin-bottom: 0;
-      width: 100%;
+    .day-top-allday ul { 
+      margin: 5px 10px; 
+      width: auto;
     }
     
     .day-top li {
@@ -46,7 +50,6 @@
     .day-appointments li,
     .day-deadlines li {
       position: absolute;
-      background: #ECECFF; 
       width: 50%; 
       font-size: 11px; 
       line-height: 15px; 
@@ -65,17 +68,17 @@
       width: 50%;
       left: 50%; 
       overflow: auto;
-      background-color: #ECECFF; /* added by Jack for testing - please remove when you have something better! */
+      background-color: #ECECFF;
     }
     .day-deadlines .collision_box {
       background: #FDDCDC;
     }
     .collision_box .event {
-      width: 100%;
-      border-width: 0px;
+      padding: 0 5px; 
+      width: auto;
       left: 0%;
     }
-    
+        
   .day-hours {
     clear: both; 
     width: 50px; 
