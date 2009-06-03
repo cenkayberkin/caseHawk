@@ -205,8 +205,10 @@ ul, ol, p { margin: 0 0 1em; }
     border: 1px solid #E3E3E3;
   }
     .sidebar-block {
-      padding: 0 0.5em; 
+      padding: 0 0.5em 0.5em; 
       margin: 0 0 1em; 
+      border-bottom: 1px dashed #CCC;
+      
     }
     .sidebar-block h2 {
         text-align: center; 
