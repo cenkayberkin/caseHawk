@@ -94,18 +94,31 @@ Calendar = {
                    (b.ends_at || b.starts_at + (60*1000))
                       ? 1 : -1
           })[0]
+
+    // set an approximate end time if the last event has none
+    if(latest)
+      latest.end || (latest.end = new Date((latest.start-0) + (60*1000)))
+
+    var start_px = Math.min(
+                     earliest ?
+                       parseInt($(earliest).css("top")) : 100000000 ,
+                     8*60 // 8:00 am
+                   ) -30
+    var end_px   = Math.max(
+                     latest ?
+                       latest.end.getHours()*60 + latest.end.getMinutes()
+                       : 0,
+                     17*60 // 5:00 pm
+                   ) +30
+    debug(start_px)
+    debug(end_px)
     $(".day-hours, .day-full").css({
       "margin-top":
         "-"
-        + (parseInt($(earliest).css("top")) -30)
+        + start_px
         +"px",
       "height":
-        (Calendar.heightInPixels(
-          (latest.end || latest.start + (60*1000))
-            - earliest.start
-        )
-        + parseInt($(earliest).css("top"))
-        - 30) + 'px'
+        end_px +'px'
     })
   },
   heightInPixels: function(durationInMilliSeconds){
