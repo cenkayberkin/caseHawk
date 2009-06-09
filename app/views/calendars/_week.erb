@@ -1,15 +1,15 @@
-<table class="week" id="week-<%= @date.year %>-<%= @date.cweek %>">
+<table class="week" id="week-<%= date.year %>-<%= date.cweek %>">
   <thead>
 
   </thead>
   <tbody>
     <% render :partial => 'week_dates_header', 
-                :locals => { :week_num => @date.cweek } %>
+                :locals => { :date => date } %>
     <% render :partial => 'week_allday', 
-                :locals => { :week_num => @date.cweek, :events => get_all_days(@events) } %>
-    <% render :partial => 'week_day_full', 
-                :locals => { :week_num => @date.cweek, 
-                              :deadlines => get_deadlines(@events), 
-                              :appointments => get_appointments(@events) } %>
+                :locals => { :date => date, :events => get_all_days(events) } %>
+    <% render :partial => 'week_days_full', 
+                :locals => { :date => date, 
+                              :deadlines => get_deadlines(events), 
+                              :appointments => get_appointments(events) } %>
   </tbody>
 </table>

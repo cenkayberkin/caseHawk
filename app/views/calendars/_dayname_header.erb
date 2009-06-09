@@ -2,13 +2,13 @@
   <thead>
     <tr>
       <th></th>
-      <th>Sunday</th>
-      <th>Monday</th>
-      <th>Tuesday</th>
-      <th>Wednesday</th>
-      <th>Thursday</th>
-      <th>Friday</th>
-      <th>Saturday</th>
+      <% (0..6).each do |day| %>
+        <th>
+        <%= (day == 0 || day == 6) ? 
+                Date::ABBR_DAYNAMES[day] : 
+                Date::DAYNAMES[day] %>
+        </th>
+      <% end %>
     </tr>
   </thead>
 </table>

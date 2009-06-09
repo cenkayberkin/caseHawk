@@ -1,8 +1,3 @@
-<h1>Calendars#index</h1>
-<% @events.each do |e| %>
-  <%=h e.inspect %> <br />
-<% end %>
-
 <% content_for :head do %>
   <%= stylesheet_link_tag 'calendar-day' %>
 <% end %>
@@ -17,5 +12,8 @@
 <h2>Calendar: <%= @date.to_s %></h2>
 
 <%= render :partial => 'dayname_header' %>
-<%= render :partial => 'week', 
-            :locals => { :date => @date, :events => @events } %>
+<div id="all_weeks">
+  <%= render :partial => 'week', 
+              :locals => { :date => @date, 
+                           :events => @events } %>
+</div>
