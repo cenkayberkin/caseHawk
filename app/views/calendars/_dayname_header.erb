@@ -1,9 +1,9 @@
 <table class="week" id="week-dayname-header">
   <thead>
     <tr>
-      <th></th>
+      <th class="week-hours"></th>
       <% (0..6).each do |day| %>
-        <th>
+        <th class="day-<%= day %>">
         <%= (day == 0 || day == 6) ? 
                 Date::ABBR_DAYNAMES[day] : 
                 Date::DAYNAMES[day] %>

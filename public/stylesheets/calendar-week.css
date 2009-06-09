@@ -1,0 +1,26 @@
+table.week {
+  border-collapse: collapse; 
+  border-spacing: 0; 
+  
+}
+table.week td, 
+table.week th {
+  border: 1px solid #CCC; 
+  padding: 2px; 
+}
+table.week th {
+  text-align: center; 
+  text-transform: uppercase; 
+  color: #666;
+  font-weight: bold; 
+}
+.week-hours {
+  width: 50px; 
+}
+table.week .day-0, table.week .day-6 {
+  width: 2.5%;
+  font-weight: normal;
+}
+.day-1, .day-2, .day-3, .day-4, .day-5 {
+  width: 17%; 
+}

@@ -1,10 +1,9 @@
 <table class="week" id="week-<%= date.year %>-<%= date.cweek %>">
   <thead>
-
-  </thead>
-  <tbody>
     <% render :partial => 'week_dates_header', 
                 :locals => { :date => date } %>
+  </thead>
+  <tbody>
     <% render :partial => 'week_allday', 
                 :locals => { :date => date, :events => get_all_days(events) } %>
     <% render :partial => 'week_days_full', 
