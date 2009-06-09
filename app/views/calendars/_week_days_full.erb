@@ -1,5 +1,18 @@
-<ul id="deadlines">
-<% deadlines.each do |e| %>
-  
-  <%=h e.inspect %> <br />
+
+<% (date.beginning_of_week.yesterday..date.end_of_week.yesterday).each do |day| %>
+  <tr>
+    <td>
+      <ul id="deadlines">
+        <% deadlines.select{ |e| e.starts_at.to_date == day }.each do |d| %>
+          <%= d.starts_at.to_s(:simple) + ": " + d.name %> <br />
+        <% end %>
+      </ul>
+
+      <ul id="appointments">
+        <% appointments.select{ |e| e.starts_at.to_date == day }.each do |a| %>
+          <%= a.starts_at.to_s(:simple) + ": " + a.name %><br />
+        <% end %>
+      </ul>
+    </td>
+  </tr>
 <% end %>
