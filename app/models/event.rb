@@ -26,7 +26,8 @@ class Event < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :creator_id
   validate :requires_subclassing
-
+  
+  named_scope :ordered, :order => :starts_at
   named_scope :day, proc {|day|
     { :conditions => "   starts_at LIKE '#{day}%'
                       OR ends_at LIKE '#{day}%'
@@ -55,7 +56,7 @@ class Event < ActiveRecord::Base
             when String then Date.parse(date)
             when Date   then date
           end
-    Event.between(day.beginning_of_week, day.end_of_week)
+    Event.between(day.beginning_of_week - 1.day, day.end_of_week - 1.day)
   end
 
   def self.this_week
