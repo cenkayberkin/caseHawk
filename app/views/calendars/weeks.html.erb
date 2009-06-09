@@ -2,3 +2,20 @@
 <% @events.each do |e| %>
   <%=h e.inspect %> <br />
 <% end %>
+
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'calendar-day' %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'events/new_form' %>
+  <%= render :partial => 'task_list',
+              :locals => { :events => @events }
+  %>
+<% end %>
+
+<h2>Calendar: <%= @date.to_s %></h2>
+
+<%= render :partial => 'dayname_header' %>
+<%= render :partial => 'week', 
+            :locals => { :date => @date, :events => @events } %>
