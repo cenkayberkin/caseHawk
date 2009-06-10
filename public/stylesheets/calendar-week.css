@@ -16,9 +16,10 @@ table.week th {
   font-weight: bold; 
 }
 table.week td {
+  font-size: 11px; 
 }
 .week-hours {
-  width: 50px; 
+  width: auto; 
 }
 table.week .day-0, table.week .day-6 {
   width: 2.5%;

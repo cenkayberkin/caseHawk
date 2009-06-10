@@ -11,7 +11,7 @@
 
       <ul id="appointments">
         <% appointments.select{ |e| e.starts_at.to_date == day }.each do |a| %>
-          <%= a.starts_at.to_s(:simple) + ": " + a.name %><br />
+          <%= a.name %><br />
         <% end %>
       </ul>
     </td>
