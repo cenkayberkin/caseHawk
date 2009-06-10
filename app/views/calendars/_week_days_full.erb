@@ -1,17 +1,25 @@
 
-<tr>
-    <td class="week-hours"></td>
+<tr class="week-day-full">
+    <td class="week-hours">
+      <ul class="week-hours">
+        <% ['am', 'pm'].each do |meridian| %>
+          <% (0..11).each do |n| %>
+            <li><%= n == 0 ? 12 : n %><%= meridian %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </td>
     <% (date.beginning_of_week.yesterday..date.end_of_week.yesterday).each do |day| %>
     <td class="day-<%= day.wday %>">
-      <ul id="deadlines">
+      <ul class="deadlines">
         <% deadlines.select{ |e| e.starts_at.to_date == day }.each do |d| %>
-          <%= d.starts_at.to_s(:simple) + ": " + d.name %> <br />
+          <li><%= d.starts_at.to_s(:simple) + ": " + d.name %></li>
         <% end %>
       </ul>
 
-      <ul id="appointments">
+      <ul class="appointments">
         <% appointments.select{ |e| e.starts_at.to_date == day }.each do |a| %>
-          <%= a.name %><br />
+          <li><%= a.name %></li>
         <% end %>
       </ul>
     </td>
