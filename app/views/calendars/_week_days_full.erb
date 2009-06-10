@@ -1,7 +1,8 @@
 
-<% (date.beginning_of_week.yesterday..date.end_of_week.yesterday).each do |day| %>
-  <tr>
-    <td>
+<tr>
+    <td class="week-hours"></td>
+    <% (date.beginning_of_week.yesterday..date.end_of_week.yesterday).each do |day| %>
+    <td class="day-<%= day.wday %>">
       <ul id="deadlines">
         <% deadlines.select{ |e| e.starts_at.to_date == day }.each do |d| %>
           <%= d.starts_at.to_s(:simple) + ": " + d.name %> <br />
@@ -14,5 +15,5 @@
         <% end %>
       </ul>
     </td>
-  </tr>
-<% end %>
+    <% end %>  
+</tr>
