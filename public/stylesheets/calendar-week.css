@@ -18,14 +18,17 @@ table.week th {
 table.week td {
   font-size: 11px; 
 }
-.week-hours {
-  width: auto; 
+.week-hours, .day-0, .day-6 {
+  width: 28px; 
 }
 table.week .day-0, table.week .day-6 {
-  width: 2.5%;
   font-weight: normal;
   overflow: hidden; 
 }
 .day-1, .day-2, .day-3, .day-4, .day-5 {
   width: 17%; 
+}
+
+.day-0 ul, .day-6 ul {
+  display: none; 
 }
