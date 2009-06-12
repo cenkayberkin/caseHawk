@@ -6,16 +6,42 @@ ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(
   :short_day => '%e %B %Y',
   :long_day => '%A, %e %B %Y',
   :year => '%Y',
-  :friendly => proc { |time|
+  :md => '%b %e',
+  :mdth => proc { |time|
     if time.year == Time.now.year
       time.strftime "%b #{time.day.ordinalize}"
     else
       time.strftime "%b #{time.day.ordinalize}, %Y"
     end
+  },
+  :Mdth => proc { |time|
+    if time.year == Time.now.year
+      time.strftime "%B #{time.day.ordinalize}"
+    else
+      time.strftime "%B #{time.day.ordinalize}, %Y"
+    end
   }
 )
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
   :simple => proc { |time| 
-    time.strftime('%l:%M%p').downcase
+    time.strftime("%M") == "00" ? 
+      time.strftime('%l%p').downcase.chop :
+      time.strftime('%l:%M%p').downcase.chop
+  },
+  :md => '%b %e',
+  :mdth => proc { |time|
+    if time.year == Time.now.year
+      time.strftime "%b #{time.day.ordinalize}"
+    else
+      time.strftime "%b #{time.day.ordinalize}, %Y"
+    end
+  },
+  :Mdth => proc { |time|
+    if time.year == Time.now.year
+      time.strftime "%B #{time.day.ordinalize}"
+    else
+      time.strftime "%B #{time.day.ordinalize}, %Y"
+    end
   }
+  
 )

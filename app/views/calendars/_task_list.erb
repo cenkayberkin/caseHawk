@@ -9,7 +9,7 @@
         class="event task <%= event.completed_at ? "complete" : "incomplete" %>">
         <label>
           <input id="event-complete-<%= event.id %>" name="task-complete-<%= event.id %>" type="checkbox" />
-          <%= event.name %>
+          <%= event.starts_at.to_date.to_s(:md) %>: <%= event.name %>
         </label>
       </li>
       
