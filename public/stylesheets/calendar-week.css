@@ -29,3 +29,20 @@ table.week .day-0, table.week .day-6 {
 .day-1, .day-2, .day-3, .day-4, .day-5 {
   width: 17%; 
 }
+
+.week-hours {
+  clear: both; 
+  border-right: 1px solid #DDD; 
+  float: left;
+  margin: 0; 
+  padding: 0; 
+  list-style: none inside;
+}  
+  .week-hours li {
+    height: 59px; 
+    border-bottom: 1px solid #EEE; 
+    margin: 0; 
+    padding: 0 4px;
+    font-size: 11px;
+  }
+  
