@@ -5,7 +5,7 @@
     <% get_tasks(events).
         each do |event| %>
         
-      <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" 
+      <li id="event-<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" 
         class="event task <%= event.completed_at ? "complete" : "incomplete" %>">
         <label>
           <input id="event-complete-<%= event.id %>" name="task-complete-<%= event.id %>" type="checkbox" />

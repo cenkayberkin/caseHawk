@@ -18,11 +18,10 @@ table.week th {
 table.week td {
   font-size: 11px; 
 }
-.week-hours {
-  width: auto; 
+.week-hours, .day-0, .day-6 {
+  width: 28px; 
 }
 table.week .day-0, table.week .day-6 {
-  width: 2.5%;
   font-weight: normal;
   overflow: hidden; 
 }
@@ -30,19 +29,22 @@ table.week .day-0, table.week .day-6 {
   width: 17%; 
 }
 
-.week-hours {
-  clear: both; 
-  border-right: 1px solid #DDD; 
-  float: left;
-  margin: 0; 
+.day-0 ul, .day-6 ul {
+  display: none; 
+}
+
+table.week .week-hours {
   padding: 0; 
-  list-style: none inside;
-}  
-  .week-hours li {
-    height: 59px; 
-    border-bottom: 1px solid #EEE; 
-    margin: 0; 
-    padding: 0 4px;
-    font-size: 11px;
-  }
-  
+}
+.week-hours ul {
+  padding: 0; 
+  margin: 0; 
+}
+.week-hours li {
+  height: 59px; 
+  border-bottom: 1px solid #EEE; 
+  margin: 0; 
+  padding: 0 4px;
+  font-size: 11px;
+}
+>>>>>>> 9f99ca1c498fdcb2062f54820404485661528969:public/stylesheets/calendar-week.css
