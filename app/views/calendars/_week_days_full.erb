@@ -8,13 +8,27 @@
     <td class="day-<%= day.wday %>">
       <ul class="deadlines">
         <% deadlines.select{ |e| e.starts_at.to_date == day }.each do |d| %>
-          <li><%= d.starts_at.to_s(:simple) + ": " + d.name %></li>
+          <li>
+            <span class="event-title">
+              <%= d.starts_at.to_s(:simple) + ": " + d.name %>
+            </span>
+            <div class="event-details details_<%= d.id %>">
+              <%= render :partial => "events/details", :locals => { :event => d } %>
+            </div>
+          </li>
         <% end %>
       </ul>
 
       <ul class="appointments">
         <% appointments.select{ |e| e.starts_at.to_date == day }.each do |a| %>
-          <li><%= a.name %></li>
+          <li>
+            <span class="event-title">
+              <%= a.name %>
+            </span>
+            <div class="event-details details_<%= a.id %>">
+              <%= render :partial => "events/details", :locals => { :event => a } %>
+            </div>
+          </li>
         <% end %>
       </ul>
     </td>

@@ -27,6 +27,17 @@ class EventsController < ApplicationController
     end
   end
 
+  def details
+    @event = Event.find_by_id(params[:id])
+    respond_to do |format|
+      format.html
+      format.js do
+        render :json => @events.to_json
+      end
+      format.ical
+    end
+  end
+
   protected
     def new_event(atts = {})
       event = case params[:event] && params[:event][:type]

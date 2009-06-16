@@ -19,14 +19,12 @@
 
 $(function(){
   $("#day").each(Calendar.initDay)
-  $("#week").each(Calendar.initWeek)
+  $(".week").each(Calendar.initWeek)
 })
 
-$(function() {
+$(function(){
   $(".expandable").hide()
   $(".expandable, .collapsible").prev().addClass("toggle")
-})
-$(function(){
   $(".expandable, .collapsible").prev().click(function() {
     $(this).next().slideToggle()
   }
@@ -40,6 +38,7 @@ Calendar = {
     Calendar.boxDayEvents()
   },
   initWeek: function(){
+    Calendar.makeEventsClickable()
   },
   drawAllWeeks: function(){
     for(i=0;i<5;i++)
@@ -135,6 +134,13 @@ Calendar = {
   heightInPixels: function(durationInMilliSeconds){
     return durationInMilliSeconds > 0 ?
               ((durationInMilliSeconds/1000)/60) : 15
+  },
+  makeEventsClickable: function(){
+    $(".event-details").hide()
+    $(".event-title").addClass("toggle")
+    $(".event-title").click(function(){
+      $(this).next().toggle("normal")
+    })
   },
   boxDayEvents: function(){
     var events = $(".day-appointments .event")
