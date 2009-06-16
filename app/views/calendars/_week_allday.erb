@@ -4,7 +4,14 @@
   <td class="day-<%= day.wday %>">
     <ul class="alldays">
       <% events.select{ |e| e.starts_at.to_date == day }.each do |a| %>
-        <li><%= a.name %></li>
+        <li id="<%= a.id %>" data-event-id="<%= a.id %>" data-name="<%= a.name %>" class="event allday">
+          <span class="event-title">
+            <%= a.name %>
+          </span>
+          <div class="event-details details_<%= a.id %>">
+            <%= render :partial => "events/details", :locals => { :event => a } %>
+          </div>
+        </li>
       <% end %>
     </ul>
   </td>
