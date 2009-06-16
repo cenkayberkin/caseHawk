@@ -5,6 +5,8 @@
 //    # makes sure the 5th week from the top is available
 //    # calls via callback:
 //    Calendar.placeWeekEvent
+//  Calendar.prepEvents
+//    # sets up events for toggling the details callout
 //  Calendar.drawDay('2009-05-01')
 //    # loads and places all events on the given day
 //    # calls via callback:
@@ -31,7 +33,7 @@ $(function(){
   })
 })
 
-// Setup event-details callout action
+// Setup a few actions for events
 $(function(){
   $(".event-title").click(function(){
     if ($(this).next(".event-details").css("display") == "none") {

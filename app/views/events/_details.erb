@@ -14,7 +14,7 @@
     </span>
     <% end %>
     <span class="event_ends_at">
-      <%= event.ends_at %>
+      <%= event.ends_at.to_s(:simple) %>
     </span>
   <% end %>
 </p>
