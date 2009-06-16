@@ -47,4 +47,17 @@ table.week .week-hours {
   padding: 0 4px;
   font-size: 11px;
 }
->>>>>>> 9f99ca1c498fdcb2062f54820404485661528969:public/stylesheets/calendar-week.css
+
+table.week .week-dates th {
+  text-align: right; 
+  font-weight: bold; 
+  font-size: 13px; 
+  text-transform: uppercase; 
+}
+.week-dates .day-mon {
+  color: #B32914;
+}
+.week-dates .day-mday {
+  font-size: 14px; 
+  color: #444; 
+}
