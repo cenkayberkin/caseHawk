@@ -34,8 +34,10 @@ $(function(){
 // Setup event-details callout action
 $(function(){
   $(".event-title").click(function(){
-    $(".event-details").hide()
-    $(this).next(".event-details").slideToggle("normal")
+    if ($(this).next(".event-details").css("display") == "none") {
+      $(".event-details").hide()
+    }
+    $(this).next(".event-details").toggle("normal")
   })
 })
 
