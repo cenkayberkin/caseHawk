@@ -70,12 +70,12 @@ ul, ol, p { margin: 0 0 1em; }
 	padding: 0; 
 	width: auto; 
   height: 70px;  
-  background: url(/images/header-inner.png) no-repeat 10px top;
+  background: url(/images/header-inner.png) no-repeat 80px top;
   position: relative;
 }
 	#header h1 { 
 	  position: absolute;
-	  left: 0px; bottom: 10px; 
+	  left: 0px; bottom: 5px; 
 	  margin: 0; padding: 0;
 	  font-size: 3.6em;
 	  letter-spacing: 1px;
@@ -194,19 +194,19 @@ ul, ol, p { margin: 0 0 1em; }
   }
   #main {
     float: left;
-    margin: 0 20px 0 0; padding: 10px 0 0;
+    margin: 0 20px 0 0; padding: 5px 0 0;
     width: 72%; min-width: 650px;  
   }
   #sidebar {
     float: right;
-    margin: 0; padding: 10px 0; 
+    margin: 0; padding: 5px 0; 
     width: 25%; min-width: 225px;
     background: #F3F3F3;
     border: 1px solid #E3E3E3;
   }
     .sidebar-block {
       padding: 0 0.5em 0.5em; 
-      margin: 0 0 10px; 
+      margin: 0 0 5px; 
       border-bottom: 1px dashed #CCC;
       
     }
