@@ -35,6 +35,7 @@ table.week .day-0, table.week .day-6 {
 
 table.week .week-hours {
   padding: 0; 
+  background: #F9F9F9;
 }
 .week-hours ul {
   padding: 0; 
@@ -42,7 +43,7 @@ table.week .week-hours {
 }
 .week-hours li {
   height: 59px; 
-  border-bottom: 1px solid #EEE; 
+  border-bottom: 1px solid #CCC; 
   margin: 0; 
   padding: 0 4px;
   font-size: 11px;
@@ -62,9 +63,20 @@ table.week .week-dates th {
   float: left; 
   padding: 0 0.5em;
   background: #FFF;  
+  border-right: 1px solid #CCC;
 }
 .week-dates .day-mday {
   font-size: 14px; 
   color: #444; 
   padding-right: 5px; 
+}
+.week .week-allday th {
+  text-transform: uppercase; 
+  text-align: center;
+  vertical-align: middle; 
+  color: #72D472;
+  margin: 0;
+  font-size: 12px;
+  line-height: 14px;
+  background: #F9F9F9;
 }

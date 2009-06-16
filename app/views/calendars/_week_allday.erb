@@ -1,3 +1,12 @@
 <tr class="week-allday">
-  <td colspan="8"></td>
+  <th>All Day</th>
+  <% (date.beginning_of_week.yesterday..date.end_of_week.yesterday).each do |day| %>
+  <td class="day-<%= day.wday %>">
+    <ul class="alldays">
+      <% events.select{ |e| e.starts_at.to_date == day }.each do |a| %>
+        <li><%= a.name %></li>
+      <% end %>
+    </ul>
+  </td>
+  <% end %>
 </tr>
