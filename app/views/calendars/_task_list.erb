@@ -2,15 +2,15 @@
   <h2>Tasks</h2>
   <div class="content">
   <ul>
-    <% get_tasks(events).
-        each do |event| %>
-        
-      <li id="event-<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" 
-        class="event task <%= event.completed_at ? "complete" : "incomplete" %>">
-        <label>
-          <input id="event-complete-<%= event.id %>" name="task-complete-<%= event.id %>" type="checkbox" />
-          <%= event.starts_at.to_date.to_s(:md) %>: <%= event.name %>
-        </label>
+    <% get_tasks(events).each do |t| %>
+      <li id="<%= t.id %>" data-event-id="<%= t.id %>" data-name="<%= t.name %>" 
+        class="event task <%= t.completed_at ? "complete" : "incomplete" %>">
+          <input id="event-complete-<%= t.id %>" name="task-complete-<%= t.id %>" type="checkbox" />
+          <label class="event-title">
+            <%= t.starts_at.to_date.to_s(:md) %>: <%= t.name %>
+          </label>
+          <div class="event-details detail_<%= t.id %>">
+            <%= render :partial => "events/details", :locals => { :event => t } %>
       </li>
       
     <% end %>

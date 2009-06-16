@@ -35,7 +35,7 @@ $(function(){
 $(function(){
   $(".event-title").click(function(){
     if ($(this).next(".event-details").css("display") == "none") {
-      $(".event-details").hide()
+      $(".event-details").fadeOut()
     }
     $(this).next(".event-details").toggle("normal")
   })
