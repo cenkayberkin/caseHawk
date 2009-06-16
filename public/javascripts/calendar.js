@@ -22,13 +22,21 @@ $(function(){
   $(".week").each(Calendar.initWeek)
 })
 
+// Set up hidable sidebar elements
 $(function(){
   $(".expandable").hide()
   $(".expandable, .collapsible").prev().addClass("toggle")
   $(".expandable, .collapsible").prev().click(function() {
     $(this).next().slideToggle()
-  }
-  )
+  })
+})
+
+// Setup event-details callout action
+$(function(){
+  $(".event-title").click(function(){
+    $(".event-details").hide()
+    $(this).next(".event-details").slideToggle("normal")
+  })
 })
 
 Calendar = {
@@ -38,7 +46,7 @@ Calendar = {
     Calendar.boxDayEvents()
   },
   initWeek: function(){
-    Calendar.makeEventsClickable()
+    Calendar.prepEvents()
   },
   drawAllWeeks: function(){
     for(i=0;i<5;i++)
@@ -135,12 +143,9 @@ Calendar = {
     return durationInMilliSeconds > 0 ?
               ((durationInMilliSeconds/1000)/60) : 15
   },
-  makeEventsClickable: function(){
+  prepEvents: function(){
     $(".event-details").hide()
     $(".event-title").addClass("toggle")
-    $(".event-title").click(function(){
-      $(this).next().toggle("normal")
-    })
   },
   boxDayEvents: function(){
     var events = $(".day-appointments .event")
