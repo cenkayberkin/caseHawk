@@ -30,7 +30,8 @@ class DeadlineTest < ActiveSupport::TestCase
     should "have no end time" do
       assert_nil @event.ends_at
     end   
-    should_eventually "be completable" do
+    should "be completable" do
+      assert @event.completable?
     end
   end
 end

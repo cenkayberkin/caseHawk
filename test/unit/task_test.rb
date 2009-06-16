@@ -31,7 +31,8 @@ class TaskTest < ActiveSupport::TestCase
     should "have a no end date" do
       assert_nil @event.ends_at
     end
-    should_eventually "be completable" do
+    should "be completable" do
+      @event.completable?
     end
   end
 end

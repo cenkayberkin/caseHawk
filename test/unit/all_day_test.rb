@@ -39,5 +39,8 @@ class AllDayTest < ActiveSupport::TestCase
       assert_equal 3.days.from_now.to_date,
                    @event.ends_at
     end
+    should "not be completable" do
+      assert !@event.completable?
+    end
   end
 end

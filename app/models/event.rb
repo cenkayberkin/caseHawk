@@ -20,6 +20,8 @@ class Event < ActiveRecord::Base
 
   belongs_to :location
   belongs_to :creator, :class_name => 'User'
+  belongs_to :owner, :class_name => 'User'
+  belongs_to :completed_by, :class_name => 'User', :foreign_key => "completed_by"
   has_many   :taggings, :as => :taggable
   has_many   :tag_records, :through => :taggings, :source => :tag
   
@@ -113,7 +115,15 @@ class Event < ActiveRecord::Base
   def ends_at=(string)
     write_attribute :ends_at, Chronic.parse(string.to_s)
   end
-
+  
+  def completable?
+    case type.to_s
+      when "Deadline": true
+      when "Task": true
+      else false
+    end
+  end
+  
   protected
 
     def requires_subclassing

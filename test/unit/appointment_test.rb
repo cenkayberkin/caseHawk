@@ -27,5 +27,8 @@ class AppointmentTest < ActiveSupport::TestCase
     setup do
       @event = Factory(:appointment)
     end
+    should "not be completable" do
+      assert !@event.completable?
+    end
   end
 end
