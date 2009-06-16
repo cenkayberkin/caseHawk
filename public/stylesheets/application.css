@@ -69,7 +69,7 @@ ul, ol, p { margin: 0 0 1em; }
 	margin: 0 auto 10px; 
 	padding: 0; 
 	width: auto; 
-  height: 120px;  
+  height: 70px;  
   background: url(/images/header-inner.png) no-repeat 10px top;
   position: relative;
 }
