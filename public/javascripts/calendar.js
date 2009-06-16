@@ -22,6 +22,17 @@ $(function(){
   $("#week").each(Calendar.initWeek)
 })
 
+$(function() {
+  $(".expandable").hide()
+  $(".expandable, .collapsible").prev().addClass("toggle")
+})
+$(function(){
+  $(".expandable, .collapsible").prev().click(function() {
+    $(this).next().slideToggle()
+  }
+  )
+})
+
 Calendar = {
   initDay: function(){
     Calendar.positionEvents()

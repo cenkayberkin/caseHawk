@@ -547,6 +547,14 @@ ul, ol, p { margin: 0 0 1em; }
   border: none;
 }
 
+/******
+  COLLAPSIBLE / EXPANDABLE
+/******/
 
+.toggle {
+  cursor: pointer;
+}
+.collapsible, .expandable {
+}
 
 
