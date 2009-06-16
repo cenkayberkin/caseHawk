@@ -1,0 +1,50 @@
+<p class="event_type"><%= @event.type %></p>
+<h1><%= @event.name %></h1>
+<p class="event_time">
+  <% unless @event.starts_at.nil? %>
+    <%= @event.completable? ? "Due at " : "" %>
+    <span class="event_starts_at">
+      <%= @event.starts_at.to_s(:simple) %>
+    </span>
+  <% end %>
+  <% unless @event.ends_at.nil? %>
+    <% unless @event.starts_at.nil? %>
+    <span class"event_time_separator">
+      &#8212;
+    </span>
+    <% end %>
+    <span class="event_ends_at">
+      <%= @event.ends_at %>
+    </span>
+  <% end %>
+</p>
+<% unless @event.location.nil? %>
+  <p class="event_location">
+    At <%= @event.location.name %>
+  </p>
+<% end %>
+<% unless @event.owner.nil? %>
+  <p>
+    <span class="event_owner">
+      <%= @event.owner.name %> owns this event,
+    </span>
+    <span class="event_reminder">
+      and will <%= @event.reminder.nil? ? "not " : "" %>be reminded.
+    </span>
+  </p>
+<% end %>
+<% if @event.completable? %>
+  <% if @event.completed_at.nil? %>
+    <p class="event_completable">
+      <%= check_box(:event, :completed_by, { :class => "event_completed_checkbox" }) %> Done!
+    </p>
+  <% else %>
+    <p class="event_completable" title="On <%= @event.completed_at.to_s(:mdth) + 
+                                        " by " + @event.completed_by.name %>">
+      Completed!
+    </p>
+  <% end %>
+<% end %>
+<p class="event_creator">
+  This event was created by <%= @event.creator.name %>
+</p>

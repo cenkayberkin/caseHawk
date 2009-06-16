@@ -3,6 +3,8 @@ class EventsController < ApplicationController
 
   before_filter :find_or_initialize
 
+  layout "application", :except => :details
+
   def index
     @events = Event.find_by(params.slice(:starts_at, :ends_at, :tags, :id, :week))
     respond_to do |format|
