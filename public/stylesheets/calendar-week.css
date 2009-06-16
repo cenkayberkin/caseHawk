@@ -53,11 +53,18 @@ table.week .week-dates th {
   font-weight: bold; 
   font-size: 13px; 
   text-transform: uppercase; 
+  padding: 0; 
+  vertical-align: middle; 
+  background: #EEE; 
 }
 .week-dates .day-mon {
   color: #B32914;
+  float: left; 
+  padding: 0 0.5em;
+  background: #FFF;  
 }
 .week-dates .day-mday {
   font-size: 14px; 
   color: #444; 
+  padding-right: 5px; 
 }
