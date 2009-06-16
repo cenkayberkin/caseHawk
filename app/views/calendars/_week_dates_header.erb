@@ -1,7 +1,11 @@
 <tr class="week-dates">
-  <td>  </td>
+  <th>  </th>
   <% (date.beginning_of_week.yesterday..date.end_of_week.yesterday).each do |day| %>
-  <td class="day-<%= day.wday %>">
-  </td>
+  <th class="day-<%= day.wday %>">
+    <% if day.mday == 1 or day.wday == 1 %>
+    <span class="day-mon"><%= day.strftime("%B") %></span>
+    <% end %>
+    <span class="day-mday"><%= day.mday %></span>
+  </th>
   <% end %>  
 </tr>
