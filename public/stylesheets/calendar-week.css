@@ -1,7 +1,7 @@
 table.week {
   border-collapse: collapse; 
   border-spacing: 0; 
-  
+  z-index: 1;
 }
 table.week td, 
 table.week th {
@@ -81,4 +81,22 @@ table.week .week-dates th {
   font-size: 12px;
   line-height: 14px;
   background: #F9F9F9;
+}
+
+li.event {
+  position: relative; 
+}
+
+li.event .event-details {
+  z-index: 99; 
+  position: absolute; 
+  left: 100%; 
+  top: -3px;
+  border-style: solid; 
+  border-width: 1px; 
+  border-color: #CCC #CCC #CCC #FFF; 
+  background: #FFF;
+  width: 150%; 
+  margin-left: 2px; 
+  padding: 2px 2px 2px 1em; 
 }
