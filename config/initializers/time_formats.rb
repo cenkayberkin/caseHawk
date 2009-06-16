@@ -28,6 +28,16 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
       time.strftime('%l%p').downcase.chop :
       time.strftime('%l:%M%p').downcase.chop
   },
+  :hmmdth => proc { |time| 
+    if time.year == Time.now.year
+      day = time.strftime "%b #{time.day.ordinalize}"
+    else
+      day = time.strftime "%b #{time.day.ordinalize}, %Y"
+    end
+    time.strftime("%M") == "00" ? 
+      time.strftime('%l%p').downcase.chop + " " + day :
+      time.strftime('%l:%M%p').downcase.chop + " " + day
+  },
   :md => '%b %e',
   :mdth => proc { |time|
     if time.year == Time.now.year
