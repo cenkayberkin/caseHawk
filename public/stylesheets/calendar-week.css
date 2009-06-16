@@ -98,5 +98,32 @@ li.event .event-details {
   background: #FFF;
   width: 150%; 
   margin-left: 2px; 
-  padding: 2px 2px 2px 1em; 
+  padding: 2px 0.5em; 
+}
+
+.event-details h4 {
+  text-align: center; 
+  color: #999; 
+  text-transform: uppercase; 
+  font-weight: bold; 
+  font-size: 1em;
+  padding: 0.25em 0; 
+  border-bottom: 1px solid #EEE; 
+  margin-bottom: 0.25em; 
+}
+.event-details h3 {
+  font-weight: normal; 
+  color: #D95C26; 
+  text-align: left; 
+  font-size: 1.4em; 
+  margin-bottom: 0.25em; 
+}
+.event-details ul {
+  margin: 0 0 1em; 
+  font-size: 1.1em; 
+}
+.event-details li {
+  border-bottom: 1px solid #EEE; 
+  padding: 2px 0.25em 2px 0.5em; 
+  margin: 0;
 }
