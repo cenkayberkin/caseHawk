@@ -41,6 +41,29 @@ $(function(){
     }
     $(this).next(".event-details").toggle("normal")
   })
+
+  $(".appointment").hover(
+    function(){
+      e = Event.instantiate(this)
+      // Treat time parts as string for concatenation with +
+      hour = "" + e.start.getHours()
+      min = e.start.getMinutes() == 0 ? "00" : "" + e.start.getMinutes()
+      endStamp = "" +e.end.getHours() + (e.end.getMinutes() == 0 ? "00" : e.end.getMinutes())
+      do {
+        $("#timerow-" + hour + min).css("background-color","yellow")
+        if (min == "45") {
+          hour = "" + (parseInt(hour) + 1)
+          min = "00"
+        }
+        else {
+          min = "" + (parseInt(min) + 15)
+        }
+      } while (hour + min != endStamp && hour + min != "2400")
+    },
+    function(){
+      $('.hourslice').css("background-color", "white")
+    }
+  )
 })
 
 Calendar = {

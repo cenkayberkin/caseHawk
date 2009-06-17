@@ -96,6 +96,14 @@
       font-size: 11px;
     }
     
+  .hourslice {
+    height: 15px;
+  }
+  
+  .hourslice-last {
+    height: 14px;
+  }
+    
   .day-full {
     width: auto; 
     margin: 0 0 0 51px; 

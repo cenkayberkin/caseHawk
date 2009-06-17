@@ -1,5 +1,16 @@
 <% ['am', 'pm'].each do |meridian| %>
   <% (0..11).each do |n| %>
-    <li><%= n == 0 ? 12 : n %><%= meridian %></li>
+    <% h = meridian == 'am' ? n : n + 12 %>
+    <li>
+      <div id="timerow-<%= h %>00" class="hourslice">
+        <%= n == 0 ? 12 : n %><%= meridian %>
+      </div>
+      <div id="timerow-<%= h %>15" class="hourslice">
+      </div>
+      <div id="timerow-<%= h %>30" class="hourslice">
+      </div>
+      <div id="timerow-<%= h %>45" class="hourslice">
+      </div>
+    </li>
   <% end %>
 <% end %>
