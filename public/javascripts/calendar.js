@@ -71,6 +71,7 @@ Calendar = {
     Calendar.positionEvents()
     Calendar.adjustViewport()
     Calendar.boxDayEvents()
+    Calendar.prepEvents()
   },
   initWeek: function(){
     Calendar.prepEvents()

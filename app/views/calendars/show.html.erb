@@ -1,5 +1,6 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag 'calendar-day' %>
+  <%= stylesheet_link_tag 'event-details' %>
 <% end %>
 
 <% content_for :sidebar do %>
@@ -23,7 +24,12 @@
         <% get_all_days(@events).
             each do |event| %>
           <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" class="event allday">
-            <%= event.name %>
+            <span class="event-title">
+              <%= event.name %>
+            </span>
+            <div class="event-details details_<%= event.id %>">
+               <%= render :partial => "events/details", :locals => { :event => event } %>
+             </div>
           </li>
         <% end %>
       </ul>
@@ -38,10 +44,15 @@
         <% get_deadlines(@events).
             each do |event| %>
             <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event deadline <%= event.completed_at ? "complete" : "incomplete" %>">
-              <label>
-                <input id="event-complete-<%= event.id %>" name="deadline-complete-<%= event.id %>" type="checkbox" />
-                <%= event.starts_at.to_s(:simple) %> <%= event.name %>
-              </label>
+              <span class="event-title">
+                <label>
+                  <input id="event-complete-<%= event.id %>" name="deadline-complete-<%= event.id %>" type="checkbox" />
+                  <%= event.starts_at.to_s(:simple) %> <%= event.name %>
+                </label>
+              </span>
+              <div class="event-details details_<%= event.id %>">
+                 <%= render :partial => "events/details", :locals => { :event => event } %>
+               </div>
             </li>
         <% end %>
       </ul>
@@ -49,7 +60,12 @@
         <% get_appointments(@events).
             each do |event| %>
             <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event appointment"> 
-              <%= event.starts_at.to_s(:simple) %> &ndash; <%= event.ends_at.to_s(:simple) %> <%= event.name %>
+              <span class="event-title">
+                <%= event.starts_at.to_s(:simple) %> &ndash; <%= event.ends_at.to_s(:simple) %> <%= event.name %>
+              </span>
+              <div class="event-details details_<%= event.id %>">
+                 <%= render :partial => "events/details", :locals => { :event => event } %>
+               </div>
             </li>
         <% end %>
       </ul>

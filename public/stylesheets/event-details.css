@@ -1,0 +1,67 @@
+li.event {
+  position: relative; 
+}
+
+li.event .event-details {
+  z-index: 99; 
+  position: absolute; 
+  left: 100%; 
+  top: -3px;
+  border-style: solid; 
+  border-width: 1px; 
+  border-color: #CCC #CCC #CCC #FFF; 
+  background: #FFF;
+  width: 150%; 
+  margin-left: 2px; 
+  padding: 2px 0.5em; 
+}
+  #sidebar .event-details {
+    left: auto;
+    right: 100%; 
+    margin: 0 0 0 11px; 
+    border-color: #CCC #F3F3F3 #CCC #CCC;
+    width: 100%; 
+    margin: 0 11px 0 0;
+  }
+  li.event .event-details li {
+    background: #FFF; 
+  }
+
+.event-details h4 {
+  text-align: center; 
+  color: #999; 
+  text-transform: uppercase; 
+  font-weight: bold; 
+  font-size: 1em;
+  padding: 0.25em 0; 
+  border-bottom: 1px solid #EEE; 
+  margin-bottom: 0.25em; 
+}
+.event-details h3 {
+  font-weight: normal; 
+  color: #D95C26; 
+  text-align: left; 
+  font-size: 1.4em; 
+  margin-bottom: 2px; 
+}
+.event-details ul {
+  margin: 0 0 1em; 
+  border-top: 1px solid #CCC; 
+}
+.event-details li {
+  border-bottom: 1px solid #EEE; 
+  padding: 2px 0.25em 2px 1em; 
+  margin: 0;
+  font-size: 1.2em; 
+}
+.event-details li.event_time {
+  font-size: 1.4em; 
+  color: #73A3D3;
+  padding-left: 0;
+}
+.event-details li.event_creator {
+  font-size: 1em; 
+  color: #666;
+}
+.event-details li input {
+}

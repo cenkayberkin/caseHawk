@@ -1,6 +1,7 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag 'calendar-day' %>
   <%= stylesheet_link_tag 'calendar-week' %>
+  <%= stylesheet_link_tag 'event-details' %>
 <% end %>
 
 <% content_for :sidebar do %>
@@ -10,7 +11,7 @@
   %>
 <% end %>
 
-<h2>Calendar: <%= @date.to_s %></h2>
+<h2 class="week-date"><span>Week of</span> <%= @date.to_s(:short_day_month_first) %></h2>
 
 <%= render :partial => 'dayname_header' %>
 <div id="all_weeks">

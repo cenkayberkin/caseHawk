@@ -1,6 +1,8 @@
 .day {
   border: 1px solid #CCC;
+  z-index: 1; 
 }
+  .day li { position: relative; z-index: 1; }
 
   .day-top {
     height: 60px;
@@ -112,7 +114,7 @@
 
 h2.day-date {
   text-align: center;
-  border-top: 1px solid #DDD; 
+  border-top: 1px solid #E3E3E3; 
 }
 a.day-nav {
   font-size: 1.2em; 
