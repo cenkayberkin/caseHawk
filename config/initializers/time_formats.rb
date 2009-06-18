@@ -3,7 +3,9 @@
 ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(
   :us => '%m/%d/%y',
   :us_with_time => '%m/%d/%y, %l:%M %p',
+  :us_long_year => '%m/%d/%Y', 
   :short_day => '%e %B %Y',
+  :short_day_month_first => '%B %e, %Y', 
   :long_day => '%A, %e %B %Y',
   :year => '%Y',
   :md => '%b %e',
