@@ -1,24 +1,26 @@
 <h4 class="event_type"><%= event.type %></h4>
 <h3><%= event.name %></h3>
 <ul>
-  <li class="event_time">
-    <% unless event.starts_at.nil? %>
-      <%= event.completable? ? "Due at " : "" %>
-      <span class="event_starts_at">
-        <%= event.starts_at.to_s(:simple) %>
-      </span>
-    <% end %>
-    <% unless event.ends_at.nil? %>
+  <% unless event.type == 'AllDay' %>
+    <li class="event_time">
       <% unless event.starts_at.nil? %>
-      <span class"event_time_separator">
-        &#8212;
-      </span>
+        <%= event.completable? ? "Due at " : "" %>
+        <span class="event_starts_at">
+          <%= event.starts_at.to_s(:simple) %>
+        </span>
       <% end %>
-      <span class="event_ends_at">
-        <%= event.ends_at.to_s(:simple) %>
-      </span>
-    <% end %>
-  </li>
+      <% unless event.ends_at.nil? %>
+        <% unless event.starts_at.nil? %>
+        <span class"event_time_separator">
+          &#8212;
+        </span>
+        <% end %>
+        <span class="event_ends_at">
+          <%= event.ends_at.to_s(:simple) %>
+        </span>
+      <% end %>
+    </li>
+  <% end %>
   <% unless event.location.nil? %>
     <li class="event_location">
       At <%= event.location.name %>
