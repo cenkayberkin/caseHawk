@@ -110,28 +110,25 @@
     padding: 0; 
   }
 
-.day-nav {
-  float: right; 
+h2.day-date {
+  text-align: center;
+  border-top: 1px solid #DDD; 
+}
+a.day-nav {
   font-size: 1.2em; 
   line-height: 2.4em; 
   text-transform: uppercase;
-  margin: 0; 
-  padding: 0; 
+  margin: 1px 0 0; 
+  padding: 0 1em;
+  display: block;  
+  color: #999; 
+  text-decoration: none; 
+  font-weight: bold; 
 }
-  .day-nav li {
-    display: inline;
-    padding: 0; 
+  a.day-nav.prev { float: left; }
+  a.day-nav.next { float: right; }
+  a.day-nav:hover {
+    background: #EEE;
+    color: #73A3D3;
+    text-decoration: none; 
   }
-    .day-nav li a {
-      display: block; 
-      padding: 0 0.5em 0 1em; 
-      text-decoration: none; 
-      color: #999; 
-      font-weight: bold; 
-      float: left; 
-    }
-    .day-nav li.prev a { padding: 0 1em 0 0.5em; }
-      .day-nav li a:hover {
-        background: #EEE;
-        color: #73A3D3;
-      }

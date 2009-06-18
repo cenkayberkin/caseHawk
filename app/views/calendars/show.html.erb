@@ -12,11 +12,9 @@
   next_day = @date + 1; 
   prev_day = @date - 1; 
 %>
-<ul class="day-nav">
-  <li class="prev"><a href="/calendars/show?date=<%= prev_day.to_s(:us_long_year) %>">&laquo; <%= prev_day.to_s(:short_day_month_first) %></a></li>
-  <li class="next"><a href="/calendars/show?date=<%= next_day.to_s(:us_long_year) %>"><%= next_day.to_s(:short_day_month_first) %> &raquo;</a></li>
-</ul>
-<h2><%= @date.to_s(:short_day_month_first) %></h2>
+<a class="day-nav prev" href="/calendars/show?date=<%= prev_day.to_s(:us_long_year) %>">&laquo; <%= prev_day.to_s(:short_day_month_first) %></a>
+<a class="day-nav next" href="/calendars/show?date=<%= next_day.to_s(:us_long_year) %>"><%= next_day.to_s(:short_day_month_first) %> &raquo;</a>
+<h2 class="day-date"><%= @date.to_s(:short_day_month_first) %></h2>
 <div id="day" class="day" data-date="<%= @day.to_s %>">
   <div class="day-top">
     <h3>All Day</h3>
