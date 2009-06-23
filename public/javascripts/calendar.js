@@ -81,7 +81,7 @@ Calendar = {
           })
       })
   },
-  // Trip the top and bottom off of the calendar
+  // Trim the top and bottom off of the calendar
   // to hide the blank space.
   adjustViewport: function(){
     var events =
