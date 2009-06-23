@@ -5,8 +5,6 @@
 
   .day-top {
     height: 60px;
-    overflow-y: auto;
-    overflow-x: hidden;
     border-bottom: 1px solid #DDD;
   }
     .day-top-allday {
@@ -15,7 +13,7 @@
       width: auto;
     }
     
-    .day-top h3 {
+    .day-top h3.gutter {
       text-transform: uppercase; 
       text-align: center;
       color: #72D472;
