@@ -49,7 +49,8 @@ Calendar = {
     )
   },
   placeDayEvent: function(event){
-    // draw the event on the page
+    // TODO: remove redundancy between this
+    //       and Even.instantiate
     var element =
       $("<li></li>")
         .attr({
