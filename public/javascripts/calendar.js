@@ -63,6 +63,9 @@ Calendar = {
         .appendTo("ul.day-appointments")
     Calendar.positionEvents(element)
   },
+  // attach the appropriate 'height' and 'top'
+  // to the event given or (if none given)
+  // to all appointments and deadlines on the page
   positionEvents: function(element){
     $(element ?
         element :
