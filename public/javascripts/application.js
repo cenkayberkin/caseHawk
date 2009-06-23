@@ -37,7 +37,7 @@ String.prototype.camelcase = function(){
 // Set up hidable sidebar elements
 $(function(){
   $(".expandable").hide()
-  $(".expandable, .collapsible").prev().addClass("toggle")
+  $(".expandable, .collapsible").prev().addClass("clickable")
   $(".expandable, .collapsible").prev().click(function() {
     $(this).next().slideToggle()
   })

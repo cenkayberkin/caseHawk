@@ -5,8 +5,6 @@
 //    # makes sure the 5th week from the top is available
 //    # calls via callback:
 //    Calendar.placeWeekEvent
-//  Calendar.prepEvents
-//    # sets up events for toggling the details callout
 //  Calendar.drawDay('2009-05-01')
 //    # loads and places all events on the given day
 //    # calls via callback:
@@ -29,10 +27,8 @@ Calendar = {
     Calendar.positionEvents()
     Calendar.adjustViewport()
     Calendar.boxDayEvents()
-    Calendar.prepEvents()
   },
   initWeek: function(){
-    Calendar.prepEvents()
   },
   drawAllWeeks: function(){
     for(i=0;i<5;i++)
@@ -128,10 +124,6 @@ Calendar = {
   heightInPixels: function(durationInMilliSeconds){
     return durationInMilliSeconds > 0 ?
               ((durationInMilliSeconds/1000)/60) : 15
-  },
-  prepEvents: function(){
-    $(".event-details").hide()
-    $(".event-title").addClass("toggle")
   },
   // Sort all the events and find ones that are touching
   // For each pair of adjacent events call Calendar.Box()
