@@ -8,7 +8,12 @@ $(function(){
   $(".event-title")
     .addClass("clickable")
     .click(function(){
-      $(this).next(".event-details").toggle("normal")
+      // hide any (other) open detail elements
+      $(".event-details").filter(function(el){
+        return el != $(this).next(".event-details")[0]
+      }).fadeOut()
+      // show/hide the appropriate detail element
+      $(this).next(".event-details").toggle('normal')
     })
 
   // When the user mouses over an event that spans a period of time
