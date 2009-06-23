@@ -148,6 +148,15 @@ Calendar = {
     })
     Calendar.Box.arrange()
   },
+  // function Box(a, b)
+  //  Combine two events at a time into a box.
+  //  If event A is already in a box then add
+  //  event B to the existing box (and vice versa)
+  //  this will store an array of arrays representing
+  //  an array of boxes of events.
+  // function Box.arrange()
+  //  draw each box based on the start time of the
+  //  earliest event and the end time of the latest
   Box: function(){
     var boxes = []
     var boxFn = function(a, b){
