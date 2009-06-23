@@ -4,7 +4,6 @@
   .day li { position: relative; }
 
   .day-top {
-    height: 60px;
     border-bottom: 1px solid #DDD;
   }
     .day-top-allday {
@@ -21,8 +20,8 @@
       padding: 5px 0;
       width: 50px; 
       border-right: 1px solid #DDD; 
+      border-bottom: 1px solid #DDD; 
       float: left;      
-      height: 50px; 
     }
     
     .day-top-allday ul { 
@@ -35,9 +34,16 @@
     .day-top li {
       display: block;
       float: left;
-      width: 33%;
+      width: 32%;
       position: relative; 
+      border-bottom: 1px solid #EEE; 
+      padding: 0.1em 0 0 0.25em; 
+      margin: 0 0.25em 0.1em 0;
     }
+    
+  .day-top .clear {
+    height: 5px;
+  }
     
   .day-wrapper {
     overflow: hidden;
