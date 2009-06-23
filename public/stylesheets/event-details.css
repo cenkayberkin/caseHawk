@@ -1,9 +1,10 @@
-li.event {
+li.event, li.event span {
   position: relative; 
+  z-index: 1;
 }
 
 li.event .event-details {
-  z-index: 99; 
+  z-index: 100; 
   position: absolute; 
   left: 100%; 
   top: -3px;
@@ -29,6 +30,8 @@ li.event .event-details {
       left: 100%; 
       right: auto; 
       border-color: #CCC #CCC #CCC #FDDCDC;
+      z-index: 200;
+      margin-left: 0;
     }
     .event-details li {
       position: relative; 
