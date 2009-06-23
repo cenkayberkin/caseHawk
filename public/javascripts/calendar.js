@@ -133,6 +133,9 @@ Calendar = {
     $(".event-details").hide()
     $(".event-title").addClass("toggle")
   },
+  // Sort all the events and find ones that are touching
+  // For each pair of adjacent events call Calendar.Box()
+  // with the two events as arguments.
   boxDayEvents: function(){
     var events = $(".day-appointments .event")
                   .map(function(){
@@ -156,7 +159,7 @@ Calendar = {
   //  an array of boxes of events.
   // function Box.arrange()
   //  draw each box based on the start time of the
-  //  earliest event and the end time of the latest
+  //  earliest event and the end time of the latest.
   Box: function(){
     var boxes = []
     var boxFn = function(a, b){
