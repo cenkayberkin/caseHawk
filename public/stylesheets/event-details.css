@@ -34,13 +34,13 @@ li.event .event-details {
     }
     
     li.event.allday .event-details {
-      left: 100%; 
+      left: 0; 
       margin-left: 0; 
-      top: 0;
-      left: 100%; 
+      top: 100%;
       right: auto; 
-      width: 100%; 
+      width: 95%; 
       z-index: 200; 
+      border-color: #F3F3F3 #CCC #CCC;
     }
     
   #sidebar .event-details {
