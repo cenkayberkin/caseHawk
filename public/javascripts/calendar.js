@@ -24,48 +24,6 @@ $(function(){
   $(".week").each(Calendar.initWeek)
 })
 
-// Set up hidable sidebar elements
-$(function(){
-  $(".expandable").hide()
-  $(".expandable, .collapsible").prev().addClass("toggle")
-  $(".expandable, .collapsible").prev().click(function() {
-    $(this).next().slideToggle()
-  })
-})
-
-// Setup a few actions for events
-$(function(){
-  $(".event-title").click(function(){
-    if ($(this).next(".event-details").css("display") == "none") {
-      $(".event-details").fadeOut()
-    }
-    $(this).next(".event-details").toggle("normal")
-  })
-
-  $(".appointment").hover(
-    function(){
-      e = Event.instantiate(this)
-      // Treat time parts as string for concatenation with +
-      hour = "" + e.start.getHours()
-      min = e.start.getMinutes() == 0 ? "00" : "" + e.start.getMinutes()
-      endStamp = "" +e.end.getHours() + (e.end.getMinutes() == 0 ? "00" : e.end.getMinutes())
-      do {
-        $("#timerow-" + hour + min).css("background-color","yellow")
-        if (min == "45") {
-          hour = "" + (parseInt(hour) + 1)
-          min = "00"
-        }
-        else {
-          min = "" + (parseInt(min) + 15)
-        }
-      } while (hour + min != endStamp && hour + min != "2400")
-    },
-    function(){
-      $('.hourslice').css("background-color", "white")
-    }
-  )
-})
-
 Calendar = {
   initDay: function(){
     Calendar.positionEvents()
@@ -175,6 +133,9 @@ Calendar = {
     $(".event-details").hide()
     $(".event-title").addClass("toggle")
   },
+  // Sort all the events and find ones that are touching
+  // For each pair of adjacent events call Calendar.Box()
+  // with the two events as arguments.
   boxDayEvents: function(){
     var events = $(".day-appointments .event")
                   .map(function(){
@@ -190,6 +151,15 @@ Calendar = {
     })
     Calendar.Box.arrange()
   },
+  // function Box(a, b)
+  //  Combine two events at a time into a box.
+  //  If event A is already in a box then add
+  //  event B to the existing box (and vice versa)
+  //  this will store an array of arrays representing
+  //  an array of boxes of events.
+  // function Box.arrange()
+  //  draw each box based on the start time of the
+  //  earliest event and the end time of the latest.
   Box: function(){
     var boxes = []
     var boxFn = function(a, b){
