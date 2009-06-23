@@ -84,6 +84,8 @@ Calendar = {
           })
       })
   },
+  // Trip the top and bottom off of the calendar
+  // to hide the blank space.
   adjustViewport: function(){
     var events =
           $(".day-wrapper .event, .day-wrapper .collision_box")
