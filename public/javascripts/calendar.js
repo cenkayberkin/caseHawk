@@ -49,7 +49,8 @@ Calendar = {
     )
   },
   placeDayEvent: function(event){
-    // draw the event on the page
+    // TODO: remove redundancy between this
+    //       and Even.instantiate
     var element =
       $("<li></li>")
         .attr({
@@ -63,6 +64,9 @@ Calendar = {
         .appendTo("ul.day-appointments")
     Calendar.positionEvents(element)
   },
+  // attach the appropriate 'height' and 'top'
+  // to the event given or (if none given)
+  // to all appointments and deadlines on the page
   positionEvents: function(element){
     $(element ?
         element :
