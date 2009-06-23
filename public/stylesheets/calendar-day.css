@@ -69,7 +69,6 @@
       position: absolute;
       width: 50%;
       left: 50%; 
-      overflow: auto;
       background-color: #ECECFF;
     }
     .day-deadlines .collision_box {
