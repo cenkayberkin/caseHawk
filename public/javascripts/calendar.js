@@ -76,14 +76,13 @@ Calendar = {
         var e = Event.instantiate(this)
         $(this)
           .css({
-            top: 60 * e.start.getHours()
-                    + e.start.getMinutes(),
-            height: Calendar.heightInPixels(
-                      e.end && e.start ? e.end - e.start : 0
-                    )+'px'
+            top: Calendar.top(e)+'px',
+            height: Calendar.height(e)+'px'
           })
       })
   },
+  // Trip the top and bottom off of the calendar
+  // to hide the blank space.
   adjustViewport: function(){
     var events =
           $(".day-wrapper .event, .day-wrapper .collision_box")
@@ -114,8 +113,6 @@ Calendar = {
                        : 0,
                      17*60 // 5:00 pm
                    ) +30
-    debug(start_px)
-    debug(end_px)
     $(".day-hours, .day-full").css({
       "margin-top":
         "-"
@@ -124,10 +121,6 @@ Calendar = {
       "height":
         end_px +'px'
     })
-  },
-  heightInPixels: function(durationInMilliSeconds){
-    return durationInMilliSeconds > 0 ?
-              ((durationInMilliSeconds/1000)/60) : 15
   },
   // Sort all the events and find ones that are touching
   // For each pair of adjacent events call Calendar.Box()
@@ -180,7 +173,7 @@ Calendar = {
         var holder = $("<div class='collision_box'></div>")
         holder.css({
           top:    $(box[0]).css("top"),
-          height: Calendar.heightInPixels(
+          height: Calendar.timeDifferentInPixels(
                       box[box.length-1].end && box[0].start ?
                         box[box.length-1].end - box[0].start : 0
                     )+'px'
@@ -198,5 +191,26 @@ Calendar = {
       })
     }
     return boxFn
-  }()
+  }(),
+
+
+  // determine the number of pixels between the start
+  // of the calendar and the event start time
+  top: function(event){
+    var e = Event.instantiate(event)
+    return 60 * e.start.getHours() + e.start.getMinutes()
+  },
+  // determine the number of pixels required to draw the event's height
+  height: function(event){
+    var e = Event.instantiate(event)
+    return Calendar.timeDifferentInPixels(
+                      e.end && e.start ? e.end - e.start : 0
+                    )
+  },
+  // given the difference between two times return the number
+  // of pixels that should be used to represent the interval
+  timeDifferentInPixels: function(durationInMilliSeconds){
+    return durationInMilliSeconds > 0 ?
+              ((durationInMilliSeconds/1000)/60) : 15
+  },
 }
