@@ -113,8 +113,6 @@ Calendar = {
                        : 0,
                      17*60 // 5:00 pm
                    ) +30
-    debug(start_px)
-    debug(end_px)
     $(".day-hours, .day-full").css({
       "margin-top":
         "-"
