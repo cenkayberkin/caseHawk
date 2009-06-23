@@ -131,7 +131,7 @@ Calendar = {
   },
   prepEvents: function(){
     $(".event-details").hide()
-    $(".event-title").addClass("toggle")
+    $(".event-title").addClass("clickable")
   },
   // Sort all the events and find ones that are touching
   // For each pair of adjacent events call Calendar.Box()

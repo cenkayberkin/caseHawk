@@ -551,7 +551,7 @@ ul, ol, p { margin: 0 0 1em; }
   COLLAPSIBLE / EXPANDABLE
 /******/
 
-.toggle {
+.clickable {
   cursor: pointer;
 }
 .collapsible, .expandable {
