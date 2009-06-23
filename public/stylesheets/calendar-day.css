@@ -1,12 +1,10 @@
 .day {
   border: 1px solid #CCC;
-  z-index: 1; 
 }
-  .day li { position: relative; z-index: 1; }
+  .day li { position: relative; }
 
   .day-top {
     height: 60px;
-    overflow-y: auto;
     border-bottom: 1px solid #DDD;
   }
     .day-top-allday {
@@ -15,7 +13,7 @@
       width: auto;
     }
     
-    .day-top h3 {
+    .day-top h3.gutter {
       text-transform: uppercase; 
       text-align: center;
       color: #72D472;
@@ -30,12 +28,14 @@
     .day-top-allday ul { 
       margin: 5px 10px; 
       width: auto;
+      position: relative; 
     }
     
     .day-top li {
       display: block;
       float: left;
       width: 33%;
+      position: relative; 
     }
     
   .day-wrapper {
@@ -46,10 +46,8 @@
       position: relative;
       margin: 0; 
       padding: 0;
-      z-index: 0; 
     }
     .day-deadlines {
-      z-index: 1;
     }
     .day-appointments li,
     .day-deadlines li {
@@ -72,7 +70,6 @@
       width: 50%;
       left: 50%; 
       background-color: #ECECFF;
-      z-index: 0; 
     }
     .day-deadlines .collision_box {
       background: #FDDCDC;

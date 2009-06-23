@@ -1,6 +1,5 @@
 li.event, li.event span {
   position: relative; 
-  z-index: 1;
 }
 
 li.event .event-details {
@@ -33,13 +32,17 @@ li.event .event-details {
       z-index: 200;
       margin-left: 0;
     }
-    .event-details li {
-      position: relative; 
-      display: list-item; 
-      top: auto; 
-      left: auto; 
-      width: auto;
+    
+    li.event.allday .event-details {
+      left: 100%; 
+      margin-left: 0; 
+      top: 0;
+      left: 100%; 
+      right: auto; 
+      width: 100%; 
+      z-index: 200; 
     }
+    
   #sidebar .event-details {
     left: auto;
     right: 100%; 
@@ -68,6 +71,7 @@ li.event .event-details {
   text-align: left; 
   font-size: 1.4em; 
   margin-bottom: 2px; 
+  float: none; 
 }
 .event-details ul {
   margin: 0 0 1em; 
@@ -78,7 +82,14 @@ li.event .event-details {
   padding: 2px 0.25em 2px 1em; 
   margin: 0;
   font-size: 1.2em; 
+  position: relative; 
+  display: list-item; 
+  top: auto; 
+  left: auto; 
+  width: auto;
+  float: none; 
 }
+
 .event-details li.event_time {
   font-size: 1.4em; 
   color: #73A3D3;
