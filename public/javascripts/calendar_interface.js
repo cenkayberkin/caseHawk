@@ -1,9 +1,15 @@
 $(function(){
-  // Slide in/out a view of event details
+
+  // Let the user know the event details can slide out
+  // by giving them a 'pointer' cursor.
+  // Slide in/out of view the event's details
   // when the user clicks an event
-  $(".event-title").click(function(){
-    $(this).next(".event-details").toggle("normal")
-  })
+  $(".event-details").hide()
+  $(".event-title")
+    .addClass("clickable")
+    .click(function(){
+      $(this).next(".event-details").toggle("normal")
+    })
 
   // When the user mouses over an event that spans a period of time
   // the timeslot on the left side of the calendar should highlight
