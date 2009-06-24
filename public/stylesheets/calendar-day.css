@@ -5,6 +5,7 @@
 
   .day-top {
     border-bottom: 1px solid #DDD;
+    background: #F9F9F9;
   }
     .day-top-allday {
       margin: 0 0 0 51px;
@@ -19,6 +20,7 @@
       margin: 0;
       padding: 5px 0;
       width: 50px; 
+      background: #FFF; 
       border-right: 1px solid #DDD; 
       border-bottom: 1px solid #DDD; 
       float: left;      
@@ -36,7 +38,7 @@
       float: left;
       width: 32%;
       position: relative; 
-      border-bottom: 1px solid #EEE; 
+      border-bottom: 1px solid #DDD; 
       padding: 0.1em 0 0 0.25em; 
       margin: 0 0.25em 0.1em 0;
     }

@@ -23,24 +23,24 @@ li.event .event-details {
     .day li.event.appointment .event-details {
       left: auto; 
       right: 100%; 
-      border-color: #CCC #ECECFF #CCC #CCC;
+      border-color: #ECECFF #ECECFF #CCC #CCC;
     }
     .day li.event.deadline .event-details {
-      left: 100%; 
+      left: 95%; 
       right: auto; 
-      border-color: #CCC #CCC #CCC #FDDCDC;
+      border-color: #FDDCDC #CCC #CCC #FDDCDC;
       z-index: 200;
       margin-left: 0;
     }
     
     li.event.allday .event-details {
-      left: 0; 
+      left: 2%; 
       margin-left: 0; 
       top: 100%;
       right: auto; 
-      width: 95%; 
+      width: 90%; 
       z-index: 200; 
-      border-color: #F3F3F3 #CCC #CCC;
+      border-color: #EEE #CCC #CCC;
     }
     
   #sidebar .event-details {
