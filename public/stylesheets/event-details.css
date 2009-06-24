@@ -33,7 +33,7 @@ li.event .event-details {
       margin-left: 0;
     }
     
-    li.event.allday .event-details {
+    .day li.event.allday .event-details {
       left: 2%; 
       margin-left: 0; 
       top: 100%;
