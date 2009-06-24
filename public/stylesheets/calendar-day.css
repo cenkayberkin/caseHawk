@@ -57,6 +57,7 @@
       padding: 0;
     }
     .day-deadlines {
+      height: 0px;
     }
     .day-appointments li,
     .day-deadlines li {
@@ -108,6 +109,8 @@
     
   .hourslice {
     height: 15px;
+    z-index: -100;
+    position: relative;
   }
   
   .hourslice-last {
