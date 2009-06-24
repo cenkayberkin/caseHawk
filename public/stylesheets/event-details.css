@@ -1,5 +1,7 @@
 li.event, li.event span {
-  position: relative; 
+/*  position: relative; */
+/*  ^ removed because it prevented the deadlines from
+      being positioned by time of day.*/
 }
 
 li.event .event-details {
