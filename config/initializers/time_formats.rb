@@ -7,6 +7,7 @@ ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(
   :short_day => '%e %B %Y',
   :short_day_month_first => '%B %e, %Y', 
   :long_day => '%A, %e %B %Y',
+  :long_day_month_first => '%A, %B %e, %Y', 
   :year => '%Y',
   :md => '%b %e',
   :mdth => proc { |time|
