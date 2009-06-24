@@ -135,8 +135,10 @@ Calendar = {
                   })
                   .map(function(){return this})
     $.each(events, function(idx, event){
-      (events[idx+1] && events[idx+1].start <= event.end) &&
+      if((events[idx+1] && events[idx+1].start <= event.end))
         Calendar.Box(event, events[idx+1])
+      else
+        Calendar.Box(event)
     })
     Calendar.Box.arrange()
   },
@@ -146,6 +148,8 @@ Calendar = {
   //  event B to the existing box (and vice versa)
   //  this will store an array of arrays representing
   //  an array of boxes of events.
+  //  if B wasn't provided then just check that A isn't
+  //  boxed yet and put it by itself
   // function Box.arrange()
   //  draw each box based on the start time of the
   //  earliest event and the end time of the latest.
@@ -156,7 +160,7 @@ Calendar = {
       $.each(boxes, function(_, box){
         $.each(box, function(_, cell){
           if(cell == a){
-            box.push(b)
+            if(b) box.push(b)
             found = true
           }
           if(cell == b){
@@ -166,7 +170,10 @@ Calendar = {
         })
       })
       if(!found)
-        boxes.push([a, b])
+        if(b)
+          boxes.push([a, b])
+        else
+          boxes.push([a])
     }
     boxFn.arrange = function(){
       $.each(boxes, function(_,box){
