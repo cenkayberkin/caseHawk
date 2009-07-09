@@ -16,6 +16,13 @@ class ActiveSupport::TestCase
   self.use_instantiated_fixtures  = false
   fixtures :all
 
+  if ENV['TIMER']
+    def setup_timing; @timer = Time.new; puts ''; end
+    def teardown_timing; print "#{"%2.3f" % (Time.new - @timer)} - #{self} "; end
+    setup :setup_timing
+    teardown :teardown_timing
+  end
+
   def valid_address(attributes = {})
     {
       :first_name => 'John',
