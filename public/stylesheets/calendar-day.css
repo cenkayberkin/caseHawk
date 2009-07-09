@@ -66,10 +66,12 @@
       font-size: 11px; 
       line-height: 15px; 
       left: 50%;
+      color: #114499;
     }
     .day-deadlines li {
-      background: #f0d4cc;
+      background: #EEE;
       left: 0;
+      color: #B32914;
     }
     
     .day-deadlines li input  {
@@ -78,14 +80,14 @@
     .collision_box {
       position: absolute;
       width: 50%;
-      background-color: #E3E6FF;
     }
+    .day-appointments li, .collision_box { background: #F9F9F9; }
+    .day-deadlines li, .day-deadlines .collision-box { background: #F9F9F9; }
+
     .day-appointments .collision_box {
       left: 50%;
 		}
-    .day-deadlines .collision_box {
-      background: #f0d4cc;
-    }
+
     .collision_box .event {
       padding: 0 5px; 
       width: auto;
