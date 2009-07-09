@@ -13,9 +13,9 @@ class CalendarsControllerTest < ActionController::TestCase
     context 'GET to :show' do
       setup {
         2.times { Factory.create :event,       :starts_at => Date.today }
-        9.times { Factory.create :deadline,    :starts_at => Date.today }
-        4.times { Factory.create :all_day,     :starts_at => Date.yesterday }
-        3.times { Factory.create :appointment, :starts_at => Date.yesterday }
+        3.times { Factory.create :deadline,    :starts_at => Date.today }
+        2.times { Factory.create :all_day,     :starts_at => Date.yesterday }
+        1.times { Factory.create :appointment, :starts_at => Date.yesterday }
       }
       context "with no date given" do
         setup { get :show }
