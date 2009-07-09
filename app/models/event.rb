@@ -81,7 +81,8 @@ class Event < ActiveRecord::Base
       builder.with_tags(params[:tags]) if params[:tags]
     end.find(:all).uniq
   end
-  
+
+  # reads the tag records and returns a string of the tag names
   def tags
     TagParser.un_parse tag_records.map(&:name)
   end
@@ -105,7 +106,11 @@ class Event < ActiveRecord::Base
     options[:only] = attribute_names + ["type", "start", "end"]
     super(options)
   end
-  
+
+  # the 'completed' param can set completed_at to now
+  def completed=(value)
+    self.completed_at = Time.now unless value.blank?
+  end
 
   # Parse any input from the user with Chronic to allow natural language entry
   def starts_at=(string)

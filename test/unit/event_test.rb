@@ -153,7 +153,19 @@ class EventTest < ActiveSupport::TestCase
       end
     end
   end
-  
+
+  context "completing events" do
+    setup { @event = Factory(:task) }
+    context "by setting the completed attribute" do
+      setup { @event.update_attributes(:completed => '1') }
+      should_change "@event.completed_at"
+      should "set event completed to right about now" do
+        assert @event.completed_at > 2.seconds.ago
+        assert @event.completed_at < 1.second.from_now
+      end
+    end
+  end
+
   context "Tagging an Event" do
     context "tagging an event explicitly" do
       setup do
