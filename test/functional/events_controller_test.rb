@@ -60,15 +60,32 @@ class EventsControllerTest < ActionController::TestCase
       should_assign_to :event
     end
 
-    context 'PUT to update for existing event' do
-      setup do
-        @event = Factory(:event)
-        put :update, :id => @event.to_param,
-          :event => Factory.attributes_for(:event)
-      end
+    # UPDATE
 
-      should_set_the_flash_to /updated/i
-      should_redirect_to 'events_path'
+    context 'PUT to update' do
+      setup { @event = Factory.create(:task) }
+      context 'for existing event' do
+        setup {
+          put :update, :id => @event.to_param,
+                       :event => Factory.attributes_for(:event)
+        }
+        should_change "@event.reload.attributes"
+        should_not_change "Event.count"
+        should_set_the_flash_to /updated/i
+        should_redirect_to 'events_path'
+      end
+      context "via ajax to complete event" do
+        setup {
+          put :update, :id => @event.to_param,
+                       :event => {:completed => 'true'}
+          @event.reload
+        }
+        should_change "@event.reload.completed_at"
+        should "set event completed at to now" do
+          assert @event.completed_at > 2.seconds.ago
+          assert @event.completed_at < 1.second.from_now
+        end
+      end
     end
 
     context 'given a event' do
