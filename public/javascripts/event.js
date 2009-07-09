@@ -34,6 +34,15 @@ Event = {
       })
     })
   },
+  update: function(event, options, callback){
+    event = Event.instantiate($(event))
+    $.post(
+      "/events/"+event.attr('id'),
+       $.extend(options, {'_method': "PUT"}),
+       callback,
+       "json"
+    )
+  },
   cachedInstances: [],
   instantiate: function(record){
     // return from cache if found
