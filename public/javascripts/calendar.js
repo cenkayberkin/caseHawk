@@ -85,8 +85,7 @@ Calendar = {
   // to hide the blank space.
   adjustViewport: function(){
     var events =
-          $(".day-wrapper .event,
-             .day-wrapper .collision_box")
+          $(".day-wrapper .event, .day-wrapper .collision_box")
             .map(function(){return Event.instantiate(this)})
     var earliest = 
           events.sort(function(a, b){
