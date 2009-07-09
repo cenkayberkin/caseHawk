@@ -3,8 +3,6 @@ class EventsController < ApplicationController
 
   before_filter :find_or_initialize, :except => :index
 
-  layout "application", :except => :details
-
   def index
     @events = Event.find_by(params.slice(:starts_at, :ends_at, :tags, :id, :week))
     respond_to do |format|
@@ -17,16 +15,6 @@ class EventsController < ApplicationController
   end
   
   def show
-    respond_to do |format|
-      format.html
-      format.js do
-        render :json => @events.to_json
-      end
-      format.ical
-    end
-  end
-
-  def details
     respond_to do |format|
       format.html
       format.js do
