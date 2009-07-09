@@ -78,9 +78,11 @@
     .collision_box {
       position: absolute;
       width: 50%;
-      left: 50%; 
       background-color: #E3E6FF;
     }
+    .day-appointments .collision_box {
+      left: 50%;
+		}
     .day-deadlines .collision_box {
       background: #f0d4cc;
     }
