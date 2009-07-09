@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_account, :admin?
   
   # See ActionController::RequestForgeryProtection for details
-  # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery # :secret => '779a6e2f0fe7736f0a73da4a7d9f13d4'
+  # uncomment to use forgery protection
+  # protect_from_forgery # :secret => '779a6e2f0fe7736f0a73da4a7d9f13d4'
   
   filter_parameter_logging :password, :creditcard
 
