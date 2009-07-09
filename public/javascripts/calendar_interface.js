@@ -5,10 +5,10 @@ $(function(){
   // Slide in/out of view the event's details
   // when the user clicks an event
   $(".event-details").hide()
-  $(".event-title")
+  $(".event-title label")
     .addClass("clickable")
     .click(function(){
-      var detail = $(this).next(".event-details")
+      var detail = $(this).parents("li").find(".event-details")
       // hide any (other) open detail elements
       $(".event-details").filter(function(){
         return this != detail[0]
