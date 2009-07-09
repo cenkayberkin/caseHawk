@@ -68,7 +68,7 @@
       left: 50%;
     }
     .day-deadlines li {
-      background: #FDDCDC;
+      background: #f0d4cc;
       left: 0;
     }
     
@@ -78,13 +78,13 @@
     .collision_box {
       position: absolute;
       width: 50%;
-      background-color: #ECECFF;
+      background-color: #E3E6FF;
     }
     .day-appointments .collision_box {
       left: 50%;
 		}
     .day-deadlines .collision_box {
-      background: #FDDCDC;
+      background: #f0d4cc;
     }
     .collision_box .event {
       padding: 0 5px; 
@@ -113,6 +113,9 @@
     height: 15px;
     z-index: -100;
     position: relative;
+    width: 50px; 
+    padding: 0; 
+    left: -4px; 
   }
   
   .hourslice-last {
