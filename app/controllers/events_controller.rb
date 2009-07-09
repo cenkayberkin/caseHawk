@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   include ModelControllerMethods
 
-  before_filter :find_or_initialize
+  before_filter :find_or_initialize, :except => :index
 
   layout "application", :except => :details
 
@@ -17,7 +17,6 @@ class EventsController < ApplicationController
   end
   
   def show
-    @event = Event.find_by_id(params[:id])
     respond_to do |format|
       format.html
       format.js do
@@ -28,7 +27,6 @@ class EventsController < ApplicationController
   end
 
   def details
-    @event = Event.find_by_id(params[:id])
     respond_to do |format|
       format.html
       format.js do
