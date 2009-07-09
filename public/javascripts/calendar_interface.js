@@ -27,7 +27,7 @@ $(function(){
       min = e.start.getMinutes() == 0 ? "00" : "" + e.start.getMinutes()
       endStamp = "" +e.end.getHours() + (e.end.getMinutes() == 0 ? "00" : e.end.getMinutes())
       do {
-        $("#timerow-" + hour + min).css("background-color","yellow")
+        $("#timerow-" + hour + min).css("background-color","#e3e6f9")
         if (min == "45") {
           hour = "" + (parseInt(hour) + 1)
           min = "00"

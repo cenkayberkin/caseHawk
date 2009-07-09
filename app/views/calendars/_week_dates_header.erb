@@ -1,5 +1,5 @@
 <tr class="week-dates">
-  <th>  </th>
+  <th class="week-hours">  </th>
   <% (date.beginning_of_week.yesterday..date.end_of_week.yesterday).each do |day| %>
   <th class="day-<%= day.wday %>">
     <% if day.mday == 1 or day.wday == 1 %>

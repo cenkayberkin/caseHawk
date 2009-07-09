@@ -39,10 +39,10 @@
       width: 32%;
       position: relative; 
       border-bottom: 1px solid #DDD; 
-      padding: 0.1em 0 0 0.25em; 
+      padding: 0.1em 0 0.1em 0.25em; 
       margin: 0 0.25em 0.1em 0;
     }
-    
+
   .day-top .clear {
     height: 5px;
   }
@@ -66,13 +66,17 @@
       font-size: 11px; 
       line-height: 15px; 
       left: 50%;
-      color: #114499;
     }
     .day-deadlines li {
       background: #EEE;
       left: 0;
       color: #B32914;
     }
+    
+    li.appointment { color: #114499; }
+    li.deadline { color: #B32914; }
+    li.task { color: #B32914; }
+    li.allday { color: #5ead5e; }
     
     .day-deadlines li input  {
       vertical-align: middle;
@@ -105,7 +109,7 @@
   }  
     .day-hours li {
       height: 59px; 
-      border-bottom: 1px solid #EEE; 
+      border-bottom: 1px solid #CCC; 
       margin: 0; 
       padding: 0 4px;
       font-size: 11px;
@@ -115,10 +119,11 @@
     height: 15px;
     z-index: -100;
     position: relative;
-    width: 50px; 
+    width: 100%; 
     padding: 0; 
     left: -4px; 
   }
+  .day .hourslice { padding: 0 4px; }
   
   .hourslice-last {
     height: 14px;
