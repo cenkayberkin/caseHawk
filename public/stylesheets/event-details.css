@@ -15,6 +15,10 @@ li.event .event-details {
   margin-left: 2px; 
   padding: 20px; 
 }
+  .week li.deadline .event-details { border-color: #E6E6E6 #B32914 #B32914 #E6E6E6; }
+  .week li.appointment .event-details { border-color: #E6E6E6 #114499 #114499 #E6E6E6; }
+  .week li.allday .event-details { border-color: #E6E6E6 #72D472 #72D472 #E6E6E6; }
+  
   .day li.event.appointment .event-details, 
   .day li.event.deadline .event-details {
     top: 0;
@@ -42,9 +46,9 @@ li.event .event-details {
       margin-left: 0; 
       top: 100%;
       right: auto; 
-      width: 90%; 
+      width: 100%; 
       z-index: 200; 
-      border-color: #FFF #CCC #CCC;
+      border-color: #FFF #72D472 #72D472 #DDD;
       border-width: 0 4px 4px;
     }
     
