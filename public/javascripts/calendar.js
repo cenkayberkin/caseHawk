@@ -50,7 +50,7 @@ Calendar = {
   },
   placeDayEvent: function(event){
     // TODO: remove redundancy between this
-    //       and Even.instantiate
+    //       and Event.instantiate
     var element =
       $("<li></li>")
         .attr({
@@ -131,7 +131,7 @@ Calendar = {
        $(".day-deadlines")],
       function(_,eventList){
         var events = eventList
-						  .find(".event")
+              .find(".event")
               .map(function(){
                 return Event.instantiate(this)
               })
