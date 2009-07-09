@@ -24,6 +24,26 @@ class EventsController < ApplicationController
     end
   end
 
+  def create
+    update
+  end
+
+  def update
+    @saved = @event.update_attributes(params[:event])
+    respond_to do |format|
+      format.html {
+        @saved ?
+          flash[:success] = "The event has been saved" :
+          flash[:error] = "There was an error saving that event"
+        redirect_to_back_or calendar_path(:date => @event.starts_at.to_date.to_s)
+      }
+      format.js {
+        render :json => {:record => @event,
+                         :errors => @event.errors }
+      }
+    end
+  end
+
   protected
     def new_event(atts = {})
       event = case params[:event] && params[:event][:type]
