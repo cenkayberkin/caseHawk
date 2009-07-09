@@ -23,13 +23,17 @@ li.event .event-details {
     .day li.event.appointment .event-details {
       left: auto; 
       right: 100%; 
-      border-color: #EEE #EEE #114499 #114499;
+      border-color: #E6E6E6 #E6E6E6 #114499 #114499;
       border-width: 4px 1px 4px 4px; 
+    }
+    .week li.event.appointment .event-details {
+      
+      
     }
     .day li.event.deadline .event-details {
       left: 90%; 
       right: auto; 
-      border-color: #EEE #B32914 #B32914 #EEE;
+      border-color: #E6E6E6 #B32914 #B32914 #E6E6E6;
       z-index: 200;
       margin-left: 0;
     }        
