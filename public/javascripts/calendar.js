@@ -126,21 +126,28 @@ Calendar = {
   // For each pair of adjacent events call Calendar.Box()
   // with the two events as arguments.
   boxDayEvents: function(){
-    var events = $(".day-appointments .event")
-                  .map(function(){
-                    return Event.instantiate(this)
-                  })
-                  .sort(function(a,b){
-                    return a.starts_at > b.starts_at ? 1 : -1
-                  })
-                  .map(function(){return this})
-    $.each(events, function(idx, event){
-      if((events[idx+1] && events[idx+1].start <= event.end))
-        Calendar.Box(event, events[idx+1])
-      else
-        Calendar.Box(event)
-    })
-    Calendar.Box.arrange()
+    $.each(
+      [$(".day-appointments"),
+       $(".day-deadlines")],
+      function(_,eventList){
+        var events = eventList
+						  .find(".event")
+              .map(function(){
+                return Event.instantiate(this)
+              })
+              .sort(function(a,b){
+                return a.starts_at > b.starts_at ? 1 : -1
+              })
+              .map(function(){return this})
+        $.each(events, function(idx, event){
+          if((events[idx+1] && events[idx+1].start <= event.end))
+            Calendar.Box(event, events[idx+1])
+          else
+            Calendar.Box(event)
+        })
+        Calendar.Box.arrange(eventList)
+      }
+    )
   },
   // function Box(a, b)
   //  Combine two events at a time into a box.
@@ -175,7 +182,7 @@ Calendar = {
         else
           boxes.push([a])
     }
-    boxFn.arrange = function(){
+    boxFn.arrange = function(eventList){
       $.each(boxes, function(_,box){
         var holder = $("<div class='collision_box'></div>")
         holder.css({
@@ -194,8 +201,10 @@ Calendar = {
               })
             .appendTo(holder)
         })
-        holder.appendTo($("ul.day-appointments"))
+        holder.appendTo(eventList)
       })
+      // and clear the boxes
+      boxes = []
     }
     return boxFn
   }(),
