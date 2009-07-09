@@ -27,4 +27,8 @@ class ApplicationController < ActionController::Base
     def admin?
       logged_in? && current_user.admin?
     end
+
+    def redirect_to_back_or(other)
+      redirect_to request.env["HTTP_REFERER"] || other
+    end
 end
