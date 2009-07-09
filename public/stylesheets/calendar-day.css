@@ -80,9 +80,11 @@
       width: 50%;
       background-color: #ECECFF;
     }
+    .day-appointments .collision_box {
+      left: 50%;
+		}
     .day-deadlines .collision_box {
       background: #FDDCDC;
-      left: 50%;
     }
     .collision_box .event {
       padding: 0 5px; 
