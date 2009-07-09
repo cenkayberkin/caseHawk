@@ -25,17 +25,16 @@ li.event .event-details {
     .day li.event.appointment .event-details {
       left: auto; 
       right: 100%; 
-      border-color: #999 #ECECFF #999 #999;
+      border-color: #999 #E3E6FF #999 #999;
       border-width: 4px 1px 4px 4px; 
     }
     .day li.event.deadline .event-details {
-      left: 95%; 
+      left: 90%; 
       right: auto; 
-      border-color: #999 #999 #999 #FDDCDC;
+      border-color: #999 #999 #999 #f0d4cc;
       z-index: 200;
       margin-left: 0;
-    }
-    
+    }        
     .day li.event.allday .event-details {
       left: 0; 
       margin-left: 0; 
@@ -70,12 +69,17 @@ li.event .event-details {
   border-bottom: 1px solid #EEE; 
   margin-bottom: 0.25em; 
 }
+  .day li.event.appointment .event-details h4 { color: #114499; }
+  .day li.event.deadline .event-details h4 { color: #B32914; }
+  li.event.allday .event-details h4 { color: #f1bb16; }
+  
 .event-details h3 {
   font-weight: normal; 
   color: #D95C26; 
   text-align: left; 
-  font-size: 1.4em; 
-  margin-bottom: 2px; 
+  font-size: 1.5em; 
+  margin-bottom: 8px; 
+  margin-top: 8px; 
   float: none; 
 }
 .event-details ul {
@@ -84,7 +88,7 @@ li.event .event-details {
 }
 .event-details li {
   border-bottom: 1px solid #EEE; 
-  padding: 2px 0.25em 2px 1em; 
+  padding: 4px 0.25em 4px 1em; 
   margin: 0;
   font-size: 1.2em; 
   position: relative; 
