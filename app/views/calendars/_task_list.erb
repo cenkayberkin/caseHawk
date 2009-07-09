@@ -5,12 +5,11 @@
     <% get_tasks(events).each do |t| %>
       <li id="<%= t.id %>" data-event-id="<%= t.id %>" data-name="<%= t.name %>" 
         class="event task <%= t.completed_at ? "complete" : "incomplete" %>">
-          <input id="event-complete-<%= t.id %>" name="task-complete-<%= t.id %>" type="checkbox" />
-          <label class="event-title">
-            <%= t.starts_at.to_date.to_s(:md) %>: <%= t.name %>
-          </label>
+          <%= check_box_tag t.id, '1', t.completed_at, :id => t.id, :class => 'task', :name => t.id %>
+          <%= label_tag "#{t.starts_at.to_date.to_s(:md)}: #{t.name}", :class => 'event-title', :for => t.id %>
           <div class="event-details detail_<%= t.id %>">
             <%= render :partial => "events/details", :locals => { :event => t } %>
+          </div>
       </li>
       
     <% end %>
