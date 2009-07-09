@@ -3,7 +3,7 @@ class CalendarsController < ApplicationController
   def show
     @date = params[:date] ?
               Date.parse(params[:date]) : Date.today
-    @events = Event.day(@date) || []
+    @events = Event.day(@date).find(:all, :include => :creator) || []
     respond_to do |format|
       format.html do
         render :action => :show
@@ -17,7 +17,8 @@ class CalendarsController < ApplicationController
   def weeks
     @date = params[:date] ?
               Date.parse(params[:date]) : Date.today
-    @events = Event.ordered.week_of(@date)
+    @events = Event.ordered.week_of(@date).find(:all,
+                                                :include => :creator)
     respond_to do |format|
       format.html
       format.js do
