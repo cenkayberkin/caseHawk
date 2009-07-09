@@ -10,12 +10,12 @@ li.event .event-details {
   left: 100%; 
   top: -3px;
   border-style: solid; 
-  border-width: 1px; 
-  border-color: #CCC #CCC #CCC #FFF; 
+  border-width: 4px 4px 4px 1px;  
+  border-color: #999 #999 #999 #FFF; 
   background: #FFF;
   width: 150%; 
   margin-left: 2px; 
-  padding: 2px 0.5em; 
+  padding: 20px; 
 }
   .day li.event.appointment .event-details, 
   .day li.event.deadline .event-details {
@@ -25,24 +25,26 @@ li.event .event-details {
     .day li.event.appointment .event-details {
       left: auto; 
       right: 100%; 
-      border-color: #ECECFF #ECECFF #CCC #CCC;
+      border-color: #999 #ECECFF #999 #999;
+      border-width: 4px 1px 4px 4px; 
     }
     .day li.event.deadline .event-details {
       left: 95%; 
       right: auto; 
-      border-color: #FDDCDC #CCC #CCC #FDDCDC;
+      border-color: #999 #999 #999 #FDDCDC;
       z-index: 200;
       margin-left: 0;
     }
     
     .day li.event.allday .event-details {
-      left: 2%; 
+      left: 0; 
       margin-left: 0; 
       top: 100%;
       right: auto; 
       width: 90%; 
       z-index: 200; 
-      border-color: #EEE #CCC #CCC;
+      border-color: #FFF #CCC #CCC;
+      border-width: 0 4px 4px;
     }
     
   #sidebar .event-details {
@@ -50,6 +52,7 @@ li.event .event-details {
     right: 100%; 
     margin: 0 0 0 11px; 
     border-color: #CCC #F3F3F3 #CCC #CCC;
+    border-width: 4px 1px 4px 4px;
     width: 100%; 
     margin: 0 11px 0 0;
   }
