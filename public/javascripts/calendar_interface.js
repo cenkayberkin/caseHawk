@@ -41,5 +41,18 @@ $(function(){
       $('.hourslice').css("background-color", "white")
     }
   )
+
+  // support ajax completion of completable events
+  $(".day-deadlines, .sidebar-tasks")
+    .find("li.event input[type=checkbox]")
+    .click(function(){
+      var li = $(this).parents("li.event")
+      Event.update(li,
+                   {'event[completed]': li.hasClass('incomplete') ? '1' : ''},
+                   function(event){
+                     li.removeClass('complete incomplete')
+                     li.addClass(event.completed_at ? 'complete' : 'incomplete')
+                   })
+    })
 })
 
