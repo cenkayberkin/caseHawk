@@ -166,6 +166,17 @@ class EventTest < ActiveSupport::TestCase
     end
   end
 
+  context "uncompleting events" do
+    setup { @event = Factory(:task, :completed_at => 2.days.ago) }
+    context "by setting the completed attribute to something blank" do
+      setup { @event.update_attributes(:completed => '') }
+      should_change "@event.completed_at"
+      should "set event completed to nil" do
+        assert !@event.completed_at
+      end
+    end
+  end
+
   context "Tagging an Event" do
     context "tagging an event explicitly" do
       setup do

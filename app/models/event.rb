@@ -107,9 +107,9 @@ class Event < ActiveRecord::Base
     super(options)
   end
 
-  # the 'completed' param can set completed_at to now
+  # the 'completed' param can set intelligently set completed_at
   def completed=(value)
-    self.completed_at = Time.now unless value.blank?
+    self.completed_at = value.blank? ? nil : Time.now
   end
 
   # Parse any input from the user with Chronic to allow natural language entry
