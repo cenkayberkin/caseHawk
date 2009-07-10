@@ -1,117 +1,117 @@
 .week li.event {
-  position: relative; 
+  position: relative;
 }
 
 li.event .event-details {
-  z-index: 100; 
-  position: absolute; 
-  left: 100%; 
+  z-index: 100;
+  position: absolute;
+  left: 100%;
   top: -3px;
-  border-style: solid; 
-  border-width: 4px 4px 4px 1px;  
-  border-color: #999 #999 #999 #FFF; 
+  border-style: solid;
+  border-width: 4px 4px 4px 1px;
+  border-color: #999 #999 #999 #FFF;
   background: #FFF;
-  width: 150%; 
-  margin-left: 2px; 
-  padding: 20px; 
+  width: 150%;
+  margin-left: 2px;
+  padding: 20px;
 }
   .week li.deadline .event-details { border-color: #E6E6E6 #B32914 #B32914 #E6E6E6; }
   .week li.appointment .event-details { border-color: #E6E6E6 #114499 #114499 #E6E6E6; }
   .week li.allday .event-details { border-color: #E6E6E6 #72D472 #72D472 #E6E6E6; }
-  
-  .day li.event.appointment .event-details, 
+
+  .day li.event.appointment .event-details,
   .day li.event.deadline .event-details {
     top: 0;
     width: 75%;
   }
     .day li.event.appointment .event-details {
-      left: auto; 
-      right: 100%; 
+      left: auto;
+      right: 100%;
       border-color: #E6E6E6 #E6E6E6 #114499 #114499;
-      border-width: 4px 1px 4px 4px; 
+      border-width: 4px 1px 4px 4px;
     }
     .week li.event.appointment .event-details {
-      
-      
+
+
     }
     .day li.event.deadline .event-details {
-      left: 90%; 
-      right: auto; 
+      left: 90%;
+      right: auto;
       border-color: #E6E6E6 #B32914 #B32914 #E6E6E6;
       z-index: 200;
       margin-left: 0;
-    }        
+    }
     .day li.event.allday .event-details {
-      left: 0; 
-      margin-left: 0; 
+      left: 0;
+      margin-left: 0;
       top: 100%;
-      right: auto; 
-      width: 100%; 
-      z-index: 200; 
+      right: auto;
+      width: 100%;
+      z-index: 200;
       border-color: #FFF #72D472 #72D472 #DDD;
       border-width: 0 4px 4px;
     }
-    
+
   #sidebar .event-details {
     left: auto;
-    right: 100%; 
-    margin: 0 0 0 11px; 
+    right: 100%;
+    margin: 0 0 0 11px;
     border-color: #CCC #F3F3F3 #CCC #CCC;
     border-width: 4px 1px 4px 4px;
-    width: 100%; 
+    width: 100%;
     margin: 0 11px 0 0;
   }
   li.event .event-details li {
-    background: #FFF; 
+    background: #FFF;
   }
 
 .event-details h4 {
-  text-align: center; 
-  color: #999; 
-  text-transform: uppercase; 
-  font-weight: bold; 
+  text-align: center;
+  color: #999;
+  text-transform: uppercase;
+  font-weight: bold;
   font-size: 1em;
-  padding: 0.25em 0; 
-  border-bottom: 1px solid #EEE; 
-  margin-bottom: 0.25em; 
+  padding: 0.25em 0;
+  border-bottom: 1px solid #EEE;
+  margin-bottom: 0.25em;
 }
   li.event.appointment .event-details h4 { color: #114499; }
   li.event.deadline .event-details h4 { color: #B32914; }
   li.event.allday .event-details h4 { color: #72D472; }
-  
+
 .event-details h3 {
-  font-weight: normal; 
-  color: #D95C26; 
-  text-align: left; 
-  font-size: 1.5em; 
-  margin-bottom: 8px; 
-  margin-top: 8px; 
-  float: none; 
+  font-weight: normal;
+  color: #D95C26;
+  text-align: left;
+  font-size: 1.5em;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  float: none;
 }
 .event-details ul {
-  margin: 0 0 1em; 
-  border-top: 1px solid #CCC; 
+  margin: 0 0 1em;
+  border-top: 1px solid #CCC;
 }
 .event-details li {
-  border-bottom: 1px solid #EEE; 
-  padding: 4px 0.25em 4px 1em; 
+  border-bottom: 1px solid #EEE;
+  padding: 4px 0.25em 4px 1em;
   margin: 0;
-  font-size: 1.2em; 
-  position: relative; 
-  display: list-item; 
-  top: auto; 
-  left: auto; 
+  font-size: 1.2em;
+  position: relative;
+  display: list-item;
+  top: auto;
+  left: auto;
   width: auto;
-  float: none; 
+  float: none;
 }
 
 .event-details li.event_time {
-  font-size: 1.4em; 
+  font-size: 1.4em;
   color: #73A3D3;
   padding-left: 0;
 }
 .event-details li.event_creator {
-  font-size: 1em; 
+  font-size: 1em;
   color: #666;
 }
 .event-details li input {
