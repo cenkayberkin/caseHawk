@@ -4,9 +4,9 @@
   <ul>
     <% get_tasks(events).each do |t| %>
       <li id="<%= t.id %>" data-event-id="<%= t.id %>" data-name="<%= t.name %>" class="event task <%= t.completed_at ? "complete" : "incomplete" %>">
-        <span class="event-title">
-          <%= check_box_tag t.id, '1', t.completed_at, :id => "event-complete-#{t.id}", :class => 'task', :name => t.id %>
-          <%= label_tag "#{t.starts_at.to_date.to_s(:md)}: #{t.name}" %>
+        <%= check_box_tag t.id, '1', t.completed_at, :id => "event-complete-#{t.id}", :class => 'task', :name => t.id %>
+        <span id="event-label-<%= t.id %>" class='event-title'>
+          <%= t.starts_at.to_date.to_s(:md) %>: <%= t.name %>
         </span>
         <div class="event-details detail_<%= t.id %>">
           <%= render :partial => "events/details", :locals => { :event => t } %>
