@@ -2,6 +2,12 @@
   position: relative;
 }
 
+/* marking completed tasks and deadlines */
+li.complete .event-title {
+  color: #AAA;
+  font-size: 0.8em;
+}
+
 li.event .event-details {
   z-index: 100;
   position: absolute;
