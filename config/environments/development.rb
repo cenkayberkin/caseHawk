@@ -19,3 +19,5 @@ config.action_mailer.raise_delivery_errors = false
 config.after_initialize do
   ActiveMerchant::Billing::Base.gateway_mode = :test
 end
+
+require 'descriptive_sql_load_log'
