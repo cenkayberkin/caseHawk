@@ -129,23 +129,34 @@ Calendar = {
   // For each pair of adjacent events call Calendar.Box()
   // with the two events as arguments.
   boxDayEvents: function(){
+    // for each element with the .collidable class
     $(".collidable").each(function(){
+        // consider this element to be a list of events
         var eventList = $(this)
+        // for each event in this list
         var events = eventList
               .find(".event")
+              // make this into an array of Event instances
               .map(function(){
                 return Event.instantiate(this)
               })
+              // arrange them by start time (ascending)
               .sort(function(a,b){
+                debug(a.starts_at)
                 return a.starts_at > b.starts_at ? 1 : -1
               })
               .map(function(){return this})
+        // for each of these events
         $.each(events, function(idx, event){
+          // box this event with the one that comes right after it
+          // if the next one begins before this one ends
           if((events[idx+1] && events[idx+1].start <= event.end))
             Calendar.Box(event, events[idx+1])
+          // or just put it in a box by itself
           else
             Calendar.Box(event)
         })
+        // place all these boxes into the .collidable
         Calendar.Box.arrange(eventList)
       }
     )
