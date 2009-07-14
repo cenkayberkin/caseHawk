@@ -38,15 +38,14 @@
   <% end %>
   <% if event.completable? %>
     <% if event.completed_at.nil? %>
-      <li class="event_completable">
-        <%= check_box(:event, :completed_by, { :class => "event_completed_checkbox" }) %> Done!
-      </li>
+      <li class="completable">
     <% else %>
-      <li class="event_completable" title="On <%= event.completed_at.to_s(:mdth) + 
-                                         " by " + event.completed_by.name %>">
-        Completed!
-      </li>
+      <li class="completable" title="On <%= event.completed_at.to_s(:mdth) + 
+                                    " by " + event.completed_by.name %>">
     <% end %>
+    <%= check_box_tag event.id, '1', event.completed_at, :id => "event-complete-#{event.id}", :name => event.id %>
+    Done!
+  </li>
   <% end %>
   <li class="event_creator">
     Created by <%= event.creator.name %>

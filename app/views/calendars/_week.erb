@@ -6,7 +6,7 @@
   <tbody>
     <%= render :partial => 'week_allday', 
                 :locals => { :date => date, :events => get_all_days(events) } %>
-    <%= render :partial => 'week_days_full', 
+    <%= render :partial => 'week_days_full',
                 :locals => { :date => date, 
                               :deadlines => get_deadlines(events), 
                               :appointments => get_appointments(events) } %>

@@ -3,7 +3,7 @@
   <div class="content">
   <ul>
     <% get_tasks(events).each do |t| %>
-      <li id="<%= t.id %>" data-event-id="<%= t.id %>" data-name="<%= t.name %>" class="event task <%= t.completed_at ? "complete" : "incomplete" %>">
+      <li id="<%= t.id %>" data-event-id="<%= t.id %>" data-name="<%= t.name %>" class="event event_completable task <%= t.completed_at ? "complete" : "incomplete" %>">
         <%= check_box_tag t.id, '1', t.completed_at, :id => "event-complete-#{t.id}", :class => 'task', :name => t.id %>
         <span id="event-label-<%= t.id %>" class='event-title'>
           <%= t.starts_at.to_date.to_s(:md) %>: <%= t.name %>

@@ -8,7 +8,7 @@
     <td class="day-<%= day.wday %>">
       <ul class="deadlines">
         <% deadlines.select{ |e| e.starts_at.to_date == day }.each do |d| %>
-          <li id="<%= d.id %>" data-event-id="<%= d.id %>" data-name="<%= d.name %>" data-starts-at="<%= d.starts_at %>" class="event deadline">
+          <li id="<%= d.id %>" data-event-id="<%= d.id %>" data-name="<%= d.name %>" data-starts-at="<%= d.starts_at %>" class="event event_completable deadline <%= d.completed_at ? "complete" : "incomplete" %>">
             <span class="event-title">
               <%= d.starts_at.to_s(:simple) + ": " + d.name %>
             </span>
@@ -19,7 +19,7 @@
         <% end %>
       </ul>
       <ul class="appointments">
-        <% appointments.select{ |e| e.starts_at.to_date == day }.each do |a| %>          
+        <% appointments.select{ |e| e.starts_at.to_date == day }.each do |a| %>
           <li id="<%= a.id %>" data-event-id="<%= a.id %>" data-name="<%= a.name %>" data-starts-at="<%= a.starts_at %>" data-ends-at="<%= a.ends_at %>" class="event appointment">
             <span class="event-title">
               <%= a.name %>
