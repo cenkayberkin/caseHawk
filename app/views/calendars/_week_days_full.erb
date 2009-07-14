@@ -18,7 +18,6 @@
           </li>
         <% end %>
       </ul>
-
       <ul class="appointments">
         <% appointments.select{ |e| e.starts_at.to_date == day }.each do |a| %>          
           <li id="<%= a.id %>" data-event-id="<%= a.id %>" data-name="<%= a.name %>" data-starts-at="<%= a.starts_at %>" data-ends-at="<%= a.ends_at %>" class="event appointment">
