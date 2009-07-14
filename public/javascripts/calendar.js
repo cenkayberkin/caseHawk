@@ -129,7 +129,7 @@ Calendar = {
   // For each pair of adjacent events call Calendar.Box()
   // with the two events as arguments.
   boxDayEvents: function(){
-    $(".day-appointments, .day-deadlines").each(function(){
+    $(".appointments, .deadlines").each(function(){
         var eventList = $(this)
         var events = eventList
               .find(".event")
