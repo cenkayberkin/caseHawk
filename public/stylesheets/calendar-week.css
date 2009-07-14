@@ -90,3 +90,35 @@ table.week .week-dates th {
   line-height: 14px;
   background: #F9F9F9;
 }
+
+/* And now I try to put in place fixed header, sidebar, and calendar header with infinite scroll weeks */
+
+#header,
+#week-headers, 
+#sidebar, 
+#footer {
+  position: fixed;
+  z-index: 1000;
+}
+#header {
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+}
+#sidebar {
+  top: 80px; 
+  right: 20px; 
+}
+#footer {
+  bottom: 0; 
+  left: 0; 
+}
+
+#week-headers {
+  background: #FFF; 
+  left: 0; 
+  top: 70px; 
+  width: 70%;
+  margin: 0 20px; 
+  padding: 10px 0 0;
+}

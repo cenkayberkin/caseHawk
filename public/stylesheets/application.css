@@ -62,26 +62,26 @@ ul, ol, p { margin: 0 0 1em; }
 }
 
 #page {
-  margin: 0 auto; padding: 0 20px;
-	background: url(/images/header-bg.png) repeat-x left top; 
+  margin: 0 auto; padding: 0;
 }
 #header {
 	margin: 0 auto 10px; 
 	padding: 0; 
 	width: auto; 
   height: 70px;  
-  background: url(/images/header-inner.png) no-repeat 80px top;
+	background: url(/images/header-bg.png) repeat-x left top; 
   position: relative;
 }
 	#header h1 { 
-	  position: absolute;
-	  left: 0px; bottom: 5px; 
-	  margin: 0; padding: 0;
+	  margin: 0; padding: 0 20px;
+	  height: 70px; 
+	  line-height: 70px; 
 	  font-size: 3.6em;
 	  letter-spacing: 1px;
 	  color: #FFF; 
     font-family: "Helvetica Neue", Helvetica, "Bitstream Vera Sans", Arial, sans-serif;	   
     font-weight: normal;
+    background: url(/images/header-inner.png) no-repeat 100px top;
 	}
 
 #logbox {
@@ -194,8 +194,8 @@ ul, ol, p { margin: 0 0 1em; }
   }
   #main {
     float: left;
-    margin: 0 20px 0 0; padding: 0;
-    width: 72%; min-width: 650px;  
+    margin: 0 20px 0 20px; padding: 0;
+    width: 70%; min-width: 630px;  
   }
   #sidebar {
     float: right;
@@ -217,15 +217,19 @@ ul, ol, p { margin: 0 0 1em; }
   
 #footer {
   clear: both; 
-  margin: 0 0 20px 0;
-  padding: 10px 0 0;
+  margin: 0 0;
+  padding: 10px;
   border-top: 1px solid #E3E3E3;
   width: 100%;
   text-align: center;
   font-size: 1.2em; 
   line-height: 1.4em; 
   color: #666;
+  background: #FFF; 
 }
+  #footer p {
+    margin: 0; 
+  }
 	
 	#content table { 
 		width: 100%; 
