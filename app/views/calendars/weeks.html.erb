@@ -11,19 +11,21 @@
   %>
 <% end %>
 
-<div id="week-headers">
-  <h2 class="week-date"><span>Week of</span> <%= @date.to_s(:short_day_month_first) %></h2>
+<div id="week">
+  <div id="week-headers">
+    <h2 class="week-date"><span>Week of</span> <%= @date.to_s(:short_day_month_first) %></h2>
 
-  <%= render :partial => 'dayname_header' %>
-</div>
-<div id="all_weeks">
-  <%= render :partial => 'week', 
-              :locals => { :date => @date - 1.week, 
-                           :events => @events } %>
-  <%= render :partial => 'week', 
-              :locals => { :date => @date, 
-                           :events => @events } %>
-  <%= render :partial => 'week', 
-              :locals => { :date => @date + 1.week, 
-                           :events => @events } %>
+    <%= render :partial => 'dayname_header' %>
+  </div>
+  <div id="all_weeks">
+    <%= render :partial => 'week', 
+                :locals => { :date => @date - 1.week, 
+                             :events => @events } %>
+    <%= render :partial => 'week', 
+                :locals => { :date => @date, 
+                             :events => @events } %>
+    <%= render :partial => 'week', 
+                :locals => { :date => @date + 1.week, 
+                             :events => @events } %>
+  </div>
 </div>
