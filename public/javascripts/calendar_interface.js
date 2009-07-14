@@ -48,13 +48,19 @@ $(function(){
   // support ajax completion of completable events
   $("li.event_completable input[type=checkbox]")
     .click(function(){
-      var li = $(this).parents("li.event_completable")
+      var checkbox = $(this)
+      var li = checkbox.parents("li.event_completable")
       Event.update(li,
                    {'event[completed]': li.hasClass('incomplete') ? '1' : ''},
                    function(event){
                      li.removeClass('complete incomplete')
                      li.addClass(event.completed_at ? 'complete' : 'incomplete')
                    })
+      // if there are multiple checkboxes make sure they all
+      // have the same state as this one
+      li.find("input[type=checkbox]").each(function(){
+        $(this).attr('checked', checkbox.attr('checked'))
+      })
     })
 })
 
