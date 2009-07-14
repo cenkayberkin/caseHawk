@@ -36,7 +36,7 @@
       <div class="clear"></div>
     </div>
   </div>
-  <div class="day-wrapper">
+  <div class="viewport">
     <ul class="day-hours">
       <%= render :partial => 'timeline' %>
     </ul>
@@ -44,7 +44,7 @@
       <ul class="day-deadlines">
         <% get_deadlines(@events).
             each do |event| %>
-            <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event deadline <%= event.completed_at ? "complete" : "incomplete" %>">
+            <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event event_completable deadline <%= event.completed_at ? "complete" : "incomplete" %>">
               <%= check_box_tag event.id, '1', event.completed_at, :id => "event-complete-#{event.id}", :class => 'task', :name => event.id %>
               <label class="event-title">
                 <%= event.starts_at.to_s(:simple) %> <%= event.name %>

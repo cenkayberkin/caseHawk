@@ -60,7 +60,8 @@ Event = {
     // otherwise assume the record is a JSON object literal
     // and extend it with a jQuerified DOM object
     else
-      $.extend($("<li></li>")
+      $.extend(record,
+               $("<li></li>")
                   .attr(
                     { "data-starts-at": record.starts_at,
                       "data-ends-at":   record.ends_at,
@@ -68,10 +69,7 @@ Event = {
                     })
                   .addClass("event")
                   .addClass(record.type)
-                  [0]
-               ,
-               record
-               )
+                  [0])
     
     // .starts_at and .ends_at are the string attributes
     // but .start and .end are javascript Date objects
