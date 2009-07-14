@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(:version => 20090602204856) do
   create_table "events", :force => true do |t|
     t.integer  "creator_id",                      :null => false
     t.integer  "owner_id"
-    t.integer  "location_id"
     t.string   "type",                            :null => false
     t.string   "name",                            :null => false
     t.boolean  "remind",       :default => false
@@ -93,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20090602204856) do
     t.datetime "completed_at"
     t.datetime "starts_at"
     t.datetime "ends_at"
+    t.integer  "location_id"
     t.integer  "completed_by"
   end
 

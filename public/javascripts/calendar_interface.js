@@ -20,13 +20,16 @@ $(function(){
   // When the user mouses over an event that spans a period of time
   // the timeslot on the left side of the calendar should highlight
   $(".appointment").hover(
-    function(){
+    function() {
       e = Event.instantiate(this)
       // Treat time parts as string for concatenation with +
       hour = "" + e.start.getHours()
       min = e.start.getMinutes() == 0 ? "00" : "" + e.start.getMinutes()
-      endStamp = "" +e.end.getHours() + (e.end.getMinutes() == 0 ? "00" : e.end.getMinutes())
-      do {
+      endStamp = "" + e.end.getHours() + (e.end.getMinutes() == 0 ? "00" : e.end.getMinutes())
+      // Start highlighting the timeline at the appt start time
+      $("#timerow-" + hour + min).css("background-color","#e3e6f9")
+      while (hour + min != endStamp && hour + min != "2400") {
+        // And keep highlighting until we reach the end time.
         $("#timerow-" + hour + min).css("background-color","#e3e6f9")
         if (min == "45") {
           hour = "" + (parseInt(hour) + 1)
@@ -35,7 +38,7 @@ $(function(){
         else {
           min = "" + (parseInt(min) + 15)
         }
-      } while (hour + min != endStamp && hour + min != "2400")
+      } 
     },
     function(){
       $('.hourslice').css("background-color", "white")
