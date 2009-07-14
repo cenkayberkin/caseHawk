@@ -8,18 +8,16 @@
 		<%= yield :head %>
   </head>
   <body>
-    <div id="page">
-	
-      <div id="header">
-        <div id="user-menu">
-          <%= yield :user_menu %>
-        </div>
-        <h1>CaseHawk</h1>
-        <div id="nav"> 
-          <%= yield :menu %>
-        </div>
+    <div id="header">
+      <div id="user-menu">
+        <%= yield :user_menu %>
       </div>
-
+      <h1>CaseHawk</h1>
+      <div id="nav"> 
+        <%= yield :menu %>
+      </div>
+    </div>
+    <div id="page">
       <div id="content">
         <div id="notices">
           <%= flash_notices %>
@@ -33,14 +31,12 @@
           <%= yield :sidebar %>
         </div>        
       </div>
-
-      <div id="footer">
-        <%= yield :footer %>
-        <p>
-        Copyright &copy; 2006 &ndash; <%= Time.now.to_s(:year) %> <a href="http://lawfortress.com">CaseHawk by Lawfortress LLC</a>
-        </p>  
-      </div>
-
+    </div>
+    <div id="footer">
+      <%= yield :footer %>
+      <p>
+      Copyright &copy; 2006 &ndash; <%= Time.now.to_s(:year) %> <a href="http://lawfortress.com">CaseHawk by Lawfortress LLC</a>
+      </p>  
     </div>
   </body>
 </html>
