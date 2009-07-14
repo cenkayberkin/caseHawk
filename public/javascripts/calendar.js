@@ -29,6 +29,9 @@ Calendar = {
     Calendar.boxDayEvents()
   },
   initWeek: function(){
+    Calendar.positionEvents()
+    Calendar.adjustViewport()
+    Calendar.boxDayEvents()
   },
   drawAllWeeks: function(){
     for(i=0;i<5;i++)
@@ -70,7 +73,7 @@ Calendar = {
   positionEvents: function(element){
     $(element ?
         element :
-        ".day-appointments .event, .day-deadlines .event"
+        ".viewport .event"
       )
       .each(function(){
         var e = Event.instantiate(this)

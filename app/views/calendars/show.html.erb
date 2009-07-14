@@ -41,7 +41,7 @@
       <%= render :partial => 'timeline' %>
     </ul>
     <div class="day-full">
-      <ul class="day-deadlines">
+      <ul class="day-deadlines deadlines">
         <% get_deadlines(@events).
             each do |event| %>
             <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event event_completable deadline <%= event.completed_at ? "complete" : "incomplete" %>">
@@ -55,7 +55,7 @@
             </li>
         <% end %>
       </ul>
-      <ul class="day-appointments">
+      <ul class="day-appointments appointments">
         <% get_appointments(@events).
             each do |event| %>
             <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event appointment"> 
