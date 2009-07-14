@@ -17,8 +17,9 @@ class CalendarsController < ApplicationController
   def weeks
     @date = params[:date] ?
               Date.parse(params[:date]) : Date.today
-    @events = Event.ordered.week_of(@date).find(:all,
-                                                :include => :creator)
+    @events = Event.ordered.week_of(@date).find(:all, :include => :creator) +
+              Event.ordered.week_of(@date - 1.week).find(:all, :include => :creator) +
+              Event.ordered.week_of(@date + 1.week).find(:all, :include => :creator)
     respond_to do |format|
       format.html
       format.js do
