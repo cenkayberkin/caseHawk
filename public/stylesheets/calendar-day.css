@@ -129,7 +129,7 @@
     height: 14px;
   }
     
-  .day-full {
+  #day .day-full {
     width: auto; 
     margin: 0 0 0 51px; 
     padding: 0; 
