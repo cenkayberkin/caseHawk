@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
       @current_account
     end
     
+    def events
+      current_account.events
+    end
+    
     def admin?
       logged_in? && current_user.admin?
     end
