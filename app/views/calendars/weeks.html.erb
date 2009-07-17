@@ -19,7 +19,13 @@
   </div>
   <div id="all_weeks">
     <%= render :partial => 'week', 
+                :locals => { :date => @date - 1.week, 
+                             :events => @events } %>
+    <%= render :partial => 'week', 
                 :locals => { :date => @date, 
+                             :events => @events } %>
+    <%= render :partial => 'week', 
+                :locals => { :date => @date + 1.week, 
                              :events => @events } %>
   </div>
 </div>
