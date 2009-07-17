@@ -17,10 +17,11 @@
 #
 
 class Event < ActiveRecord::Base
-
-  belongs_to :location
+  
+  belongs_to :account
   belongs_to :creator, :class_name => 'User'
   belongs_to :owner, :class_name => 'User'
+  belongs_to :location
   belongs_to :completed_by, :class_name => 'User', :foreign_key => "completed_by"
   has_many   :taggings, :as => :taggable
   has_many   :tag_records, :through => :taggings, :source => :tag
@@ -39,7 +40,6 @@ class Event < ActiveRecord::Base
     { :conditions => "   DATE(starts_at) BETWEEN DATE('#{range_start}') AND DATE('#{range_end}')
                       OR DATE(ends_at) BETWEEN DATE('#{range_start}') AND DATE('#{range_end}')"}
   }
-  
   named_scope :with_tags, proc {|taglist|
     { :conditions => [" tags.name IN (?) ", taglist],
       :joins => {:taggings => :tag} }

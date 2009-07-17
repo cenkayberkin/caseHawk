@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_filter :find_or_initialize, :except => :index
 
   def index
-    @events = Event.find_by(params.slice(:starts_at, :ends_at, :tags, :id, :week))
+    @events = events.find_by(params.slice(:starts_at, :ends_at, :tags, :id, :week))
     respond_to do |format|
       format.html
       format.js do
@@ -29,6 +29,8 @@ class EventsController < ApplicationController
   end
 
   def update
+    # Make sure the event stays within this account
+    params[:event][:account_id] = current_account.id
     @event.attributes = params[:event]
     if params[:event] && !params[:event][:completed].blank?
       @event.completed_by = current_user
@@ -55,7 +57,7 @@ class EventsController < ApplicationController
                 when 'Deadline'     then Deadline.new(atts)
                 when 'Task'         then Task.new(atts)
                 else
-                  Event.new(atts)
+                  events.new(atts)
                 end
       event.creator = current_user
       event
@@ -63,7 +65,7 @@ class EventsController < ApplicationController
 
     def find_or_initialize
       @event = @obj = params[:id] ?
-                 Event.find(params[:id]) :
+                 events.find_by_id(params[:id]) :
                  new_event(params[:event])
     end
 
