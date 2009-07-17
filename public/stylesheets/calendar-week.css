@@ -1,3 +1,6 @@
+#all_weeks {
+}
+
 h2.week-date {
   text-align: center; 
   border-top: 1px solid #E3E3E3; 
@@ -14,8 +17,8 @@ table.week {
 table.week td, 
 table.week th {
   border: 1px solid #CCC; 
-  padding: 2px; 
   vertical-align: top; 
+  padding: 0; 
 }
 table.week th {
   text-align: center; 
@@ -26,8 +29,11 @@ table.week th {
 table.week td {
   font-size: 11px; 
 }
-.week-hours, .day-0, .day-6 {
-  width: 28px; 
+.week-hours, .day-0, .day-6, 
+td:first-child, 
+th:first-child {
+  width: 28px;
+  padding: 0;  
 }
 table.week .day-0, table.week .day-6 {
   font-weight: normal;
@@ -37,7 +43,8 @@ table.week .day-0, table.week .day-6 {
   width: 17%; 
 }
 
-.day-0 ul, .day-6 ul {
+.day-0 ul, .day-6 ul,
+.day-0 .collision_box , .day-6 .collision_box {
   display: none; 
 }
 
@@ -57,6 +64,13 @@ table.week .week-hours {
   margin: 0; 
   padding: 0;
   font-size: 11px;
+}
+
+.week-day-full .day-hours {
+  border: 0 none; 
+  float: none; 
+  margin: 0; 
+  padding: 0;
 }
 
 table.week .week-dates th {
@@ -91,14 +105,24 @@ table.week .week-dates th {
   background: #F9F9F9;
 }
 
+/* collision boxes and such */
+
+.week td, 
+.collidable { position: relative; }
+
+.collision_box {
+  width: auto; 
+}
+
 /* And now I try to put in place fixed header, sidebar, and calendar header with infinite scroll weeks */
+
 
 #header,
 #week-headers, 
 #sidebar, 
 #footer {
   position: fixed;
-  z-index: 1000;
+  z-index: 1100;
 }
 #header {
   top: 0; 
@@ -108,6 +132,7 @@ table.week .week-dates th {
 #sidebar {
   top: 80px; 
   right: 20px; 
+  z-index: 100;
 }
 #footer {
   bottom: 0; 

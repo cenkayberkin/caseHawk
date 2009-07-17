@@ -85,8 +85,8 @@
       position: absolute;
       width: 50%;
     }
-    .day-appointments li, .collision_box { background: #F9F9F9; }
-    .day-deadlines li, .day-deadlines .collision-box { background: #F9F9F9; }
+    .day-appointments li, .collision_box { background: #F3F3F3; }
+    .day-deadlines li, .day-deadlines .collision-box { background: #F3F3F3; }
 
     .day-appointments .collision_box {
       left: 50%;
