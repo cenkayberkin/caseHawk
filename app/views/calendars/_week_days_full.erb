@@ -5,7 +5,7 @@
       </ul>
     </td>
     <% (date.beginning_of_week.yesterday..date.end_of_week.yesterday).each do |day| %>
-    <td class="day-<%= day.wday %>">
+    <td class="day day-<%= day.wday %>">
       <div class="day-full collidable">
         <ul class="day-deadlines">
           <% deadlines.select{ |e| e.starts_at.to_date == day }.each do |d| %>

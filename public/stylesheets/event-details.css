@@ -2,6 +2,21 @@
   position: relative;
 }
 
+/* make sure events are limited to column width*/
+.week .collision_box {
+  width: 100%;
+  overflow: hidden;
+}
+li.event .event-title {
+  white-space: nowrap;
+}
+/* but allow them to expand when
+   the user mouses over the column */
+.week td.day:hover .collision_box {
+  width: auto;
+  overflow: visible;
+}
+
 /* marking completed tasks and deadlines */
 li.complete .event-title {
   color: #AAA;
