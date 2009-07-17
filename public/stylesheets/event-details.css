@@ -65,13 +65,17 @@ li.event .event-details {
       border-width: 0 4px 4px;
     }
 
+  #sidebar li.event {
+    position: relative;
+  }
   #sidebar .event-details {
     left: auto;
     right: 100%;
-    margin: 0 0 0 11px;
-    border-color: #CCC #F3F3F3 #CCC #CCC;
+    margin: 0;
+    border-color: #D95C26; 
     border-width: 4px 1px 4px 4px;
     width: 100%;
+    z-index: 5000; 
     margin: 0 11px 0 0;
   }
   li.event .event-details li {
