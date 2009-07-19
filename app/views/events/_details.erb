@@ -3,14 +3,14 @@
 <ul>
   <% unless event.type == 'AllDay' %>
     <li class="event_time">
-      <% unless event.starts_at.nil? %>
+      <% if event.starts_at %>
         <%= event.completable? ? "Due at " : "" %>
         <span class="event_starts_at">
-          <%= event.starts_at.to_s(:simple) %>
+          <%= event.starts_at.to_s(:mdhm) %>
         </span>
       <% end %>
-      <% unless event.ends_at.nil? %>
-        <% unless event.starts_at.nil? %>
+      <% if event.ends_at %>
+        <% if event.starts_at %>
         <span class"event_time_separator">
           &#8212;
         </span>
@@ -21,12 +21,12 @@
       <% end %>
     </li>
   <% end %>
-  <% unless event.location.nil? %>
+  <% if event.location %>
     <li class="event_location">
       At <%= event.location.name %>
     </li>
   <% end %>
-  <% unless event.owner.nil? %>
+  <% if event.owner %>
     <li>
       <span class="event_owner">
         This event is for <%= event.owner.name %>,

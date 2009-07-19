@@ -1,10 +1,10 @@
 <tr class="week-dates">
   <th class="week-hours">
     <span class="day-mon">
-      <%= date.beginning_of_week.yesterday.strftime("%b") %>
+      <%= date.beginning_of_week.strftime("%b") %>
     </span>
   </th>
-  <% (date.beginning_of_week.yesterday..date.end_of_week.yesterday).each do |day| %>
+  <% (date.beginning_of_week..date.end_of_week).each do |day| %>
     <th class="day-<%= day.wday %>">
       <% if day.mday == 1 %>
         <span class="day-mon">

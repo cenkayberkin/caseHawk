@@ -38,7 +38,7 @@
   </div>
   <div class="viewport">
     <ul class="day-hours">
-      <%= render :partial => 'timeline' %>
+      <%= render :partial => 'timeline', :locals => { :date => @date } %>
     </ul>
     <div class="day-full">
       <ul class="day-deadlines deadlines collidable">
