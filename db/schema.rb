@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090602204856) do
+ActiveRecord::Schema.define(:version => 20090716234120) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20090602204856) do
   create_table "events", :force => true do |t|
     t.integer  "creator_id",                      :null => false
     t.integer  "owner_id"
+    t.integer  "location_id"
     t.string   "type",                            :null => false
     t.string   "name",                            :null => false
     t.boolean  "remind",       :default => false
@@ -92,8 +93,8 @@ ActiveRecord::Schema.define(:version => 20090602204856) do
     t.datetime "completed_at"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.integer  "location_id"
     t.integer  "completed_by"
+    t.integer  "account_id"
   end
 
   create_table "locations", :force => true do |t|
