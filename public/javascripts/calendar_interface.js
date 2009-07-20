@@ -23,14 +23,17 @@ $(function(){
     function() {
       e = Event.instantiate(this)
       // Treat time parts as string for concatenation with +
+      year = "" + e.start.getFullYear()
+      week = "" + e.start.getWeek()
       hour = "" + e.start.getHours()
       min = e.start.getMinutes() == 0 ? "00" : "" + e.start.getMinutes()
+      //alert("Coloring: " + "#" + year + "-w" + week + "-timerow-" + hour + min)
       endStamp = "" + e.end.getHours() + (e.end.getMinutes() == 0 ? "00" : e.end.getMinutes())
       // Start highlighting the timeline at the appt start time
-      $("#timerow-" + hour + min).css("background-color","#e3e6f9")
+      $("#" + year + "-w" + week + "-timerow-" + hour + min).css("background-color","#e3e6f9")
       while (hour + min != endStamp && hour + min != "2400") {
-        // And keep highlighting until we reach the end time.
-        $("#timerow-" + hour + min).css("background-color","#e3e6f9")
+        // And keep highlighting until we reachthe end time.
+        $("#" + year + "-w" + week + "-timerow-" + hour + min).css("background-color","#e3e6f9")
         if (min == "45") {
           hour = "" + (parseInt(hour) + 1)
           min = "00"

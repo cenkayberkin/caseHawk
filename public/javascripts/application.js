@@ -1,4 +1,13 @@
 
+// Extend the Date object to tell us the week of the yaer
+// This counts week 1 as the first week containing a Sunday (which 
+// matches the ruby strftime('%U') method)
+Date.prototype.getWeek = function() {
+var oneJan = new Date(this.getFullYear(),0,1)
+oneJan.setDate(oneJan.getDate() + ((7-oneJan.getDay())%7))
+return Math.ceil(((this - oneJan) / 86400000)/7)
+}
+
 // use log(whatever) in any script
 debug = function(){
   var args = arguments

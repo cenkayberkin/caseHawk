@@ -9,6 +9,7 @@ ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(
   :long_day => '%A, %e %B %Y',
   :long_day_month_first => '%A, %B %e, %Y', 
   :year => '%Y',
+  :yw => '%Y-w%U',
   :md => '%b %e',
   :mdth => proc { |time|
     if time.year == Time.now.year
@@ -26,6 +27,12 @@ ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(
   }
 )
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
+  :yw => '%Y-w%U',
+  :mdhm => proc { |time| 
+    time.strftime("%M") == "00" ? 
+      time.strftime('%b %e, %l%p').downcase.chop :
+      time.strftime('%b %e, %l:%M%p').downcase.chop
+  },
   :simple => proc { |time| 
     time.strftime("%M") == "00" ? 
       time.strftime('%l%p').downcase.chop :

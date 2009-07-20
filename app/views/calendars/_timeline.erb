@@ -2,15 +2,11 @@
   <% (0..11).each do |n| %>
     <% h = meridian == 'am' ? n : n + 12 %>
     <li>
-      <div id="timerow-<%= h %>00" class="hourslice">
-        <%= n == 0 ? 12 : n %><%= meridian %>
-      </div>
-      <div id="timerow-<%= h %>15" class="hourslice">
-      </div>
-      <div id="timerow-<%= h %>30" class="hourslice">
-      </div>
-      <div id="timerow-<%= h %>45" class="hourslice">
-      </div>
+      <% for m in ['00','15','30','45'] %>
+        <div id="<%= date.to_s(:yw) %>-timerow-<%= "#{h}#{m}" %>" class="hourslice">
+          <%= "#{n == 0 ? 12 : n}#{meridian}" if m == '00' %>
+        </div>
+      <% end %>
     </li>
   <% end %>
 <% end %>

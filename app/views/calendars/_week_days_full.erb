@@ -1,13 +1,13 @@
 <tr class="viewport week-day-full">
     <td>
       <ul class="day-hours">
-        <%= render :partial => 'timeline' %>
+        <%= render :partial => 'timeline', :locals => { :date => date } %>
       </ul>
     </td>
-    <% (date.beginning_of_week.yesterday..date.end_of_week.yesterday).each do |day| %>
-    <td class="day-<%= day.wday %>">
+    <% (date.beginning_of_week..date.end_of_week).each do |day| %>
+    <td class="day day-<%= day.wday %>">
       <div class="day-full collidable">
-        <ul class="deadlines">
+        <ul class="day-deadlines">
           <% deadlines.select{ |e| e.starts_at.to_date == day }.each do |d| %>
             <li id="<%= d.id %>" data-event-id="<%= d.id %>" data-name="<%= d.name %>" data-starts-at="<%= d.starts_at %>" class="event event_completable deadline <%= d.completed_at ? "complete" : "incomplete" %>">
               <span class="event-title">
@@ -19,7 +19,7 @@
             </li>
           <% end %>
         </ul>
-        <ul class="appointments">
+        <ul class="day-appointments">
           <% appointments.select{ |e| e.starts_at.to_date == day }.each do |a| %>
             <li id="<%= a.id %>" data-event-id="<%= a.id %>" data-name="<%= a.name %>" data-starts-at="<%= a.starts_at %>" data-ends-at="<%= a.ends_at %>" class="event appointment">
               <span class="event-title">
