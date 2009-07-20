@@ -2,58 +2,44 @@ li.event .event-details {
   z-index: 1000;
   position: absolute;
   left: 100%;
-  top: -3px;
+  top: 0;
   border-style: solid;
   border-width: 4px 4px 4px 1px;
   border-color: #999;
   background: #FFF;
-  width: 150%;
+  width: 75%;
   padding: 20px;
 }
-  .week li.deadline .event-details { border-color: #B32914; }
-  .week li.appointment .event-details { border-color: #114499; }
-  .week li.allday .event-details { border-color: #72D472; }
-
-  .week .day-4 li.event .event-details,
-  .week .day-5 li.event .event-details,
-  .week .day-6 li.event .event-details {
-    left: auto; 
-    right: 100%; 
-    border-width: 4px 1px 4px 4px;
+  .week li.event .event-details {
+    width: 150%;
+    left  
   }
 
-  .day li.event.appointment .event-details,
-  .day li.event.deadline .event-details {
-    top: 0;
-    width: 75%;
-  }
-    .day li.event.appointment .event-details {
+  li.deadline .event-details { border-color: #B32914; }
+  li.appointment .event-details { border-color: #114499; }
+  li.allday .event-details { border-color: #72D472; }
+
+    li.event.appointment .event-details {
       left: auto;
       right: 100%;
-      border-color: #E6E6E6 #E6E6E6 #114499 #114499;
       border-width: 4px 1px 4px 4px;
     }
     .week li.event.appointment .event-details {
-
-
+      left: 100%; 
+      right: auto; 
+      border-width: 4px 4px 4px 1px; 
     }
-    .day li.event.deadline .event-details {
-      left: 90%;
-      right: auto;
-      border-color: #E6E6E6 #B32914 #B32914 #E6E6E6;
-      z-index: 200;
-      margin-left: 0;
-    }
-    .day li.event.allday .event-details {
+    
+    li.event.allday .event-details {
       left: 0;
-      margin-left: 0;
       top: 100%;
       right: auto;
       width: 100%;
-      z-index: 200;
-      border-color: #FFF #72D472 #72D472 #DDD;
-      border-width: 0 4px 4px;
+      border-width: 1px 4px 4px;
     }
+      .week li.event.allday .event-details {
+        width: 150%; 
+      }
 
   #sidebar li.event {
     position: relative;

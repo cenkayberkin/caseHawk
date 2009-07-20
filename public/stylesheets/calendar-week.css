@@ -1,6 +1,10 @@
 #all_weeks {
 }
 
+.week .viewport {
+  overflow: visible; 
+}
+
 h2.week-date {
   text-align: center; 
   border-top: 1px solid #E3E3E3; 
@@ -111,7 +115,7 @@ table.week .week-dates th {
 .collidable { position: relative; }
 
 .collision_box {
-  width: auto; 
+  width: 100%; 
 }
 
 .week li.event {
@@ -123,10 +127,6 @@ li.event.allday {
 }
 
 /* make sure events are limited to column width*/
-.week .collision_box {
-  width: 100%;
-/*  overflow: hidden; */
-}
 li.event.appointment .event-title,
 li.event.deadline .event-title {
   display: block; 
@@ -134,20 +134,6 @@ li.event.deadline .event-title {
   height: 15px; 
   overflow: hidden; 
   white-space: nowrap;
-}
-/* but allow them to expand when
-   the user mouses over the column */
-.week td.day:hover .collision_box {
-/*
-  width: auto;
-  overflow: visible;
-*/
-}
-
-/* marking completed tasks and deadlines */
-li.complete .event-title {
-  color: #AAA;
-  font-size: 0.8em;
 }
 
 /* And now I try to put in place fixed header, sidebar, and calendar header with infinite scroll weeks */
