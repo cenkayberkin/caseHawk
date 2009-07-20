@@ -194,12 +194,12 @@ ul, ol, p { margin: 0 0 1em; }
   }
   #main {
     float: left;
-    margin: 0 20px 0 20px; padding: 0;
+    margin: 0 10px; padding: 0;
     width: 70%; min-width: 630px;  
   }
   #sidebar {
     float: right;
-    margin: 0; padding: 0 0 5px; 
+    margin: 0 10px 0 0; padding: 0 0 5px; 
     width: 25%; min-width: 225px;
     background: #F9F9F9;
     border: 1px solid #E3E3E3;
@@ -218,7 +218,7 @@ ul, ol, p { margin: 0 0 1em; }
 #footer {
   clear: both; 
   margin: 0 0;
-  padding: 10px;
+  padding: 10px 0;
   border-top: 1px solid #E3E3E3;
   width: 100%;
   text-align: center;

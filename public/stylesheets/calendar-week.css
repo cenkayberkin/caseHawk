@@ -153,7 +153,7 @@ li.event.deadline .event-title {
 }
 #sidebar {
   top: 80px; 
-  right: 20px; 
+  right: 10px; 
   z-index: 100;
 }
 #footer {
@@ -166,6 +166,6 @@ li.event.deadline .event-title {
   left: 0; 
   top: 70px; 
   width: 70%;
-  margin: 0 20px; 
+  margin: 0 10px; 
   padding: 10px 0 0;
 }
