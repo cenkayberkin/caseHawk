@@ -80,11 +80,16 @@ table.week .week-dates th {
   border-right: 1px solid #CCC;
   font-size: 11px; 
 }
-.week-dates .day-mday {
+.week-dates .day-mday a {
   font-size: 14px; 
   color: #444; 
-  padding-right: 5px; 
+  padding: 0 5px; 
 }
+  .week-dates .day-mday a:hover {
+    color: #B32914;
+    text-decoration: none; 
+    background: #FFF;
+  }
 .week .week-allday th {
   text-transform: uppercase; 
   text-align: center;
