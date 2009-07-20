@@ -11,8 +11,7 @@ li.event .event-details {
   padding: 20px;
 }
   .week li.event .event-details {
-    width: 150%;
-    left  
+    width: 200%;
   }
 
   li.deadline .event-details { border-color: #B32914; }

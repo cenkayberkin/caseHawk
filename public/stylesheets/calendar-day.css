@@ -113,24 +113,23 @@
     margin: 0; 
     padding: 0; 
     list-style: none inside;
+    text-align: center; 
   }  
     .day-hours li {
       height: 59px; 
       border-bottom: 1px solid #CCC; 
       margin: 0; 
-      padding: 0 4px;
       font-size: 11px;
+      width: 100%;
     }
     
   .hourslice {
     height: 15px;
     z-index: -100;
     position: relative;
-    width: 100%; 
-    padding: 0; 
-    left: -4px; 
+    width: auto; 
+    padding: 0;  
   }
-  .day .hourslice { padding: 0 4px; }
   
   .hourslice-last {
     height: 14px;
