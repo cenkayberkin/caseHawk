@@ -93,9 +93,10 @@
 		}
 
     .collision_box .event {
-      padding: 0 5px; 
+      padding: 0 4px; 
       width: auto;
       left: 0%;
+      height: 15px; 
     }
         
   .day-hours {

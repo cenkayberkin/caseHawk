@@ -1,5 +1,5 @@
 <h4 class="event_type"><%= event.type %></h4>
-<h3><%= event.name %></h3>
+<h3 class="edit"><%= event.name %></h3>
 <ul>
   <% unless event.type == 'AllDay' %>
     <li class="event_time">
@@ -22,7 +22,7 @@
     </li>
   <% end %>
   <% unless event.location.nil? %>
-    <li class="event_location">
+    <li class="event_location edit">
       At <%= event.location.name %>
     </li>
   <% end %>
