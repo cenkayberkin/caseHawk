@@ -6,9 +6,9 @@
   </th>
   <% (date.beginning_of_week..date.end_of_week).each do |day| %>
     <th class="day-<%= day.wday %>">
-      <% if day.mday == 1 %>
+      <% if day.mday == 1  and day.wday != 6 and day.wday != 0 %>
         <span class="day-mon">
-          <%= day.strftime("%B") %>
+          <%= day.strftime("%b") %>
         </span>
       <% end %>
       <span class="day-mday">
