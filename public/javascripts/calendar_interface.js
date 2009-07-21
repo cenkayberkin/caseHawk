@@ -36,31 +36,32 @@ $(function(){
       $('.hourslice').css("background-color", "white")
     }
   )
-
-  // support ajax completion of completable events
-  $("li.event_completable input[type=checkbox]")
-    .click(function(){
-      var checkbox = $(this)
-      var li = checkbox.parents("li.event_completable")
-      Event.update(li,
-                   {completed: li.hasClass('incomplete') ? '1' : ''},
-                   function(event){
-                     li.removeClass('complete incomplete')
-                     li.addClass(event.completed_at ? 'complete' : 'incomplete')
-                   })
-      // if there are multiple checkboxes make sure they all
-      // have the same state as this one
-      li.find("input[type=checkbox]").each(function(){
-        $(this).attr('checked', checkbox.attr('checked'))
-      })
-    })
   
-  $("li.event").each(function(){
-    var event = Event.instantiate($(this))
-    $(this)
-      .find('.editable')
+  var functionsThatNeedToBeReexecutedWhenFaceboxLoads = function(){
+
+    // support ajax completion of completable events
+    $("li.event_completable input[type=checkbox]")
+      .live('click', function(){
+        var checkbox = $(this)
+        var li = checkbox.parents("li.event_completable")
+        Event.update(li,
+                     {completed: li.hasClass('incomplete') ? '1' : ''},
+                     function(event){
+                       li.removeClass('complete incomplete')
+                       li.addClass(event.completed_at ? 'complete' : 'incomplete')
+                     })
+        // if there are multiple checkboxes make sure they all
+        // have the same state as this one
+        li.find("input[type=checkbox]").each(function(){
+          $(this).attr('checked', checkbox.attr('checked'))
+        })
+      })
+  
+    $('.editable')
       .each(function(){
         var editable = $(this)
+        var event = Event.instantiate($("#"+editable.attr("rel")))
+
         editable.editable(
           event.url,
           { name        : "event["+editable.attr("data-field-name")+"]",
@@ -77,8 +78,12 @@ $(function(){
           }
         )
       })
-  })
+  }
   
+  functionsThatNeedToBeReexecutedWhenFaceboxLoads()
+  $(document).bind("reveal.facebox", functionsThatNeedToBeReexecutedWhenFaceboxLoads)
+
   $('a[rel*=facebox]').facebox()
+
 })
 
