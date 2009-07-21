@@ -1,0 +1,2 @@
+class CourtDate < Event
+end
