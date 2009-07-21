@@ -54,20 +54,29 @@ $(function(){
         $(this).attr('checked', checkbox.attr('checked'))
       })
     })
-    
-  // support click to edit on event details fields
-  $(".editable").editable(function(value, settings){
-    var efield = $(this)
-    var params = {}
-    params[efield.attr("data-field-name")] = value
-    Event.update(efield.parents("li.event"),
-                  params,
-                  function() {
-                    alert("Success?")
-                  })
-  }, 
-  {
-    tooltip   : 'Click to Edit'
+  
+  $("li.event").each(function(){
+    var event = Event.instantiate($(this))
+    $(this)
+      .find('.editable')
+      .each(function(){
+        var editable = $(this)
+        editable.editable(
+          event.url,
+          { name        : "event["+editable.attr("data-field-name")+"]",
+            tooltip     : 'Click to Edit',
+            submitdata  : {"_method": "PUT"},
+            ajaxoptions : {dataType: 'json'},
+            callback    : function(savedEvent){
+              // using the actual saved value
+              // in the input field
+              $(this).html(
+                savedEvent[editable.attr("data-field-name")]
+              )
+            }
+          }
+        )
+      })
   })
   
   $('a[rel*=facebox]').facebox()

@@ -34,17 +34,21 @@ Event = {
       })
     })
   },
-  update: function(event, options, callback){
-    event = Event.instantiate($(event))
-    if(typeof(callback) == undefined)
-      callback = function(){}
+  updateParams: function(options){
     var params = {}
     $.each(options, function(key,value){
       params["event["+key+"]"] = value
     })
+    params['_method'] = "PUT"
+    return params
+  },
+  update: function(event, options, callback){
+    event = Event.instantiate($(event))
+    if(typeof(callback) == undefined)
+      callback = function(){}
     $.post(
-      "/events/"+event.id,
-       $.extend(params, {'_method': "PUT"}),
+      event.url,
+       Event.updateParams(options),
        callback,
        "json"
     )
@@ -88,7 +92,8 @@ Event = {
     $.extend(record, {
       // add methods for event objects here
       // e.g. Event#delete()
-      display: Event.displayFor(record)
+      display: Event.displayFor(record),
+      url: "/events/"+record.id,
     })
     // save instance in the cache
     Event.cachedInstances[record.id] = record
