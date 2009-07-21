@@ -1,16 +1,12 @@
 <h4 class="event_type"><%= event.type %></h4>
-<h3 class="edit"><%= event.name %></h3>
+<h3 class="editable" data-field-name="name" id="event-name-<%= event.id%>"><%= event.name %></h3>
 <ul>
-  <li class="event_date">
-    <%= event.starts_at.to_s(:Mdth) %>
-  </li>
+  <li class="event_date" data-field-name="starts_at_date" id="event-starts_at_date-<%= event.id%>"><%= event.starts_at.to_s(:Mdth) %></li>
   <% unless event.type == 'AllDay' %>
     <li class="event_time">
       <% if event.starts_at %>
         <%= event.completable? ? "Due at " : "" %>
-        <span class="event_starts_at">
-          <%= event.starts_at.to_s(:simple) %>
-        </span>
+        <span class="event_starts_at" data-field-name="starts_at_time" id="event-starts_at_time-<%= event.id%>"><%= event.starts_at.to_s(:simple) %></span>
       <% end %>
       <% if event.ends_at %>
         <% if event.starts_at %>
@@ -18,21 +14,19 @@
           &#8212;
         </span>
         <% end %>
-        <span class="event_ends_at">
-          <%= event.ends_at.to_s(:simple) %>
-        </span>
+        <span class="event_ends_at" data-field-name="ends_at_time" id="event-ends_at_time-<%= event.id%>"><%= event.ends_at.to_s(:simple) %></span>
       <% end %>
     </li>
   <% end %>
   <% if event.location %>
     <li class="event_location">
-      At <%= event.location.name %>
+      At <span class="" data-field-name="location" id="event-location-<%= event.id%>"><%= event.location.name %></span>
     </li>
   <% end %>
   <% if event.owner %>
     <li>
       <span class="event_owner">
-        This event is for <%= event.owner.name %>,
+        This event is for <span class="" data-field-name="owner" id="event-owner-<%= event.id%>"><%= event.owner.name %></span>,
       </span>
       <span class="event_reminder">
         who will <%= event.remind? ? "" : "not " %>be reminded.

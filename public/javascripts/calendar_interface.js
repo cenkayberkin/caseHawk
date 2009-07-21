@@ -65,5 +65,20 @@ $(function(){
         $(this).attr('checked', checkbox.attr('checked'))
       })
     })
+    
+  // support click to edit on event details fields
+  $(".editable").editable(function(value, settings){
+    var efield = $(this)
+    var fieldname = efield.attr("data-field-name")
+    var li = efield.parents("li.event")
+    Event.update(li,
+                  {fieldname : value},
+                  function() {
+                    alert("Success?")
+                  })
+  }, 
+  {
+    tooltip   : 'Click to Edit'
+  })
 })
 
