@@ -1,4 +1,5 @@
 #all_weeks {
+  margin-top: 150px; 
 }
 
 .week .viewport {
@@ -119,14 +120,15 @@ li.event.allday {
 }
 
 /* make sure events are limited to column width*/
+li.event.allday .event-title, 
 li.event.appointment .event-title,
 li.event.deadline .event-title {
   display: block; 
   width: 100%; 
   height: 15px; 
   overflow: hidden; 
-  white-space: nowrap;
 }
+li.event.allday .event-title { width: auto; }
 
 /* And now I try to put in place fixed header, sidebar, and calendar header with infinite scroll weeks */
 
