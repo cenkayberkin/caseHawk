@@ -44,43 +44,64 @@ Event = {
   },
   update: function(event, options, callback){
     event = Event.instantiate($(event))
-    if(typeof(callback) == undefined)
-      callback = function(){}
+    if(typeof(callback) == undefined) callback = function(){}
     $.post(
-      event.url,
+       event.url,
        Event.updateParams(options),
-       callback,
+       function(result){
+         event = Event.instantiate(result, 'skipCache')
+         callback.apply(event, [event, result])
+       },
        "json"
     )
   },
   cachedInstances: [],
-  instantiate: function(record){
+  instantiate: function(record, skipCache){
+
+    // if this is a jQuery object just return the
+    // actual element
+    if(record.jquery) return Event.instantiate(record[0], skipCache)
+
     // return from cache if found
-    var id = parseInt(record.id || (record.attr && record.attr("id")))
-    if(Event.cachedInstances[id])
+    var id = parseInt(record.id)
+    if(!skipCache && id && Event.cachedInstances[id]){
+      debug("returning cache")
       return Event.cachedInstances[id]
+    }
+
+    if(2959 == id)
+      debug("id for", record)
 
     // if this is an existing DOM object then copy some
     // attributes into the same format as the JSON object has
-    if(record.nodeType && !record.starts_at)
+    if(record.nodeType){
       $.extend(record,
                { starts_at:  $(record).attr('data-starts-at'),
                  ends_at:    $(record).attr('data-ends-at'),
+                 type:       $(record).attr('data-type'),
                  id:         $(record).attr('data-event-id')
                 })
+      // if(parseInt(record.id) == 2959)
+        debug("extending record")
+    }
     // otherwise assume the record is a JSON object literal
     // and extend it with a jQuerified DOM object
-    else if(!record.jquery)
+    else{
       $.extend(record,
-               $("<li></li>")
+               ($("li.event#"+record.id).length ?
+                $("li.event#"+record.id) : $("<li></li>"))
                   .attr(
                     { "data-starts-at": record.starts_at,
                       "data-ends-at":   record.ends_at,
+                      "type":           record.type,
                       "id":             record.id
                     })
                   .addClass("event")
                   .addClass(record.type)
                   [0])
+      // if(parseInt(record.id) == 2959)
+        debug("extending jQuery object")
+    }
     
     // .starts_at and .ends_at are the string attributes
     // but .start and .end are javascript Date objects
@@ -93,7 +114,7 @@ Event = {
       // add methods for event objects here
       // e.g. Event#delete()
       display: Event.displayFor(record),
-      url: "/events/"+record.id,
+      url: "/events/"+record.id
     })
     // save instance in the cache
     Event.cachedInstances[record.id] = record
