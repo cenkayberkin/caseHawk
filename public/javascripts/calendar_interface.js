@@ -54,7 +54,7 @@ $(function(){
       var checkbox = $(this)
       var li = checkbox.parents("li.event_completable")
       Event.update(li,
-                   {'event[completed]': li.hasClass('incomplete') ? '1' : ''},
+                   {completed: li.hasClass('incomplete') ? '1' : ''},
                    function(event){
                      li.removeClass('complete incomplete')
                      li.addClass(event.completed_at ? 'complete' : 'incomplete')
@@ -69,10 +69,10 @@ $(function(){
   // support click to edit on event details fields
   $(".editable").editable(function(value, settings){
     var efield = $(this)
-    var fieldname = efield.attr("data-field-name")
-    var li = efield.parents("li.event")
-    Event.update(li,
-                  {fieldname : value},
+    var params = {}
+    params[efield.attr("data-field-name")] = value
+    Event.update(efield.parents("li.event"),
+                  params,
                   function() {
                     alert("Success?")
                   })
