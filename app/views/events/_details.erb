@@ -1,12 +1,15 @@
 <h4 class="event_type"><%= event.type %></h4>
 <h3 class="edit"><%= event.name %></h3>
 <ul>
+  <li class="event_date">
+    <%= event.starts_at.to_s(:Mdth) %>
+  </li>
   <% unless event.type == 'AllDay' %>
     <li class="event_time">
       <% if event.starts_at %>
         <%= event.completable? ? "Due at " : "" %>
         <span class="event_starts_at">
-          <%= event.starts_at.to_s(:mdhm) %>
+          <%= event.starts_at.to_s(:simple) %>
         </span>
       <% end %>
       <% if event.ends_at %>

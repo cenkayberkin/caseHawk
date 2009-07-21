@@ -22,13 +22,13 @@ li.event .event-details {
     .week li.event.appointment .event-details, 
     .week li.event.deadline .event-details, 
     li.event.allday .event-details {
-      width: 120%;
+      width: 130%;
       left: 50%; 
       margin-left: -75%;
       top: 100%; 
       margin-top: 1px;
       border-width: 1px 4px 4px 4px; 
-      padding: 20px 15%; 
+      padding: 20px 10%; 
     }
 
   #sidebar li.event {
@@ -88,11 +88,13 @@ li.event .event-details {
   float: none;
 }
 
+.event-details li.event_date, 
 .event-details li.event_time {
   font-size: 1.4em;
   color: #73A3D3;
   padding-left: 0;
 }
+  .event-details li.event_date { color: #666; }
 .event-details li.event_creator {
   font-size: 1em;
   color: #666;
