@@ -36,9 +36,13 @@ Event = {
   },
   update: function(event, options, callback){
     event = Event.instantiate($(event))
+    var params = {}
+    $.each(options, function(key,value){
+      params["event["+key+"]"] = value
+    })
     $.post(
-      "/events/"+event.attr('id'),
-       $.extend(options, {'_method': "PUT"}),
+      "/events/"+event.id,
+       $.extend(params, {'_method': "PUT"}),
        callback,
        "json"
     )
