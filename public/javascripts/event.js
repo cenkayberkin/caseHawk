@@ -46,12 +46,13 @@ Event = {
   cachedInstances: [],
   instantiate: function(record){
     // return from cache if found
-    if(Event.cachedInstances[parseInt(record.id)])
-      return Event.cachedInstances[parseInt(record.id)]
+    var id = parseInt(record.id || (record.attr && record.attr("id")))
+    if(Event.cachedInstances[id])
+      return Event.cachedInstances[id]
 
     // if this is an existing DOM object then copy some
     // attributes into the same format as the JSON object has
-    if(record.nodeType)
+    if(record.nodeType && !record.starts_at)
       $.extend(record,
                { starts_at:  $(record).attr('data-starts-at'),
                  ends_at:    $(record).attr('data-ends-at'),
@@ -59,7 +60,7 @@ Event = {
                 })
     // otherwise assume the record is a JSON object literal
     // and extend it with a jQuerified DOM object
-    else
+    else if(!record.jquery)
       $.extend(record,
                $("<li></li>")
                   .attr(
@@ -75,7 +76,9 @@ Event = {
     // but .start and .end are javascript Date objects
     record.start = (new Date(record.starts_at))
     record.end   = Date.parse(record.ends_at) ?
-                        (new Date(record.ends_at)) : undefined
+                        (new Date(record.ends_at)) :
+                        record.start.addMinutes(15)
+
     $.extend(record, {
       // add methods for event objects here
       // e.g. Event#delete()
