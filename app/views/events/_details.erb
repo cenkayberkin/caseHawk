@@ -1,5 +1,5 @@
 <h4 class="event_type event_type-<%= event.type.downcase %>"><%= event.type %></h4>
-<h3 class="editable" data-field-name="name" id="event-name-<%= event.id%>"><%= event.name %></h3>
+<h3 class="editable" data-field-name="name" id="event-name-<%= event.id%>" rel="<%= event.id %>"><%= event.name %></h3>
 <ul>
   <li class="event_date" data-field-name="starts_at_date" id="event-starts_at_date-<%= event.id%>"><%= event.starts_at.to_s(:Mdth) %></li>
   <% unless event.type == 'AllDay' %>
