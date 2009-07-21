@@ -32,6 +32,7 @@ Calendar = {
     Calendar.positionEvents()
     Calendar.adjustViewport()
     Calendar.boxDayEvents()
+    Calendar.fixCongestedBoxes()
   },
   drawAllWeeks: function(){
     for(i=0;i<5;i++)
@@ -159,6 +160,15 @@ Calendar = {
         Calendar.Box.arrange(eventList)
       }
     )
+  },
+  // Some collision boxes may have too many events
+  // in them for their time frame.  In this case replace
+  // the bottom two lines with a link that displays
+  // the events better
+  fixCongestedBoxes : function(){
+    $(".collision_box").each(function(_,box){
+      
+    })
   },
   // function Box(a, b)
   //  Combine two events at a time into a box.
