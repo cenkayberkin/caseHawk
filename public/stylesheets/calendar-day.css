@@ -114,6 +114,7 @@
     padding: 0; 
     list-style: none inside;
     text-align: center; 
+    overflow: hidden;
   }  
     .day-hours li {
       height: 59px; 
