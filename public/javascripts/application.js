@@ -29,7 +29,7 @@ Date.prototype.addMinutes = function(minutes) {
   var newMinutes = this.getMinutes() + minutes
   var newHours   = this.getHours()
 
-  if(newMinutes > 60){
+  if(newMinutes > 59){
     newMinutes = newMinutes % 60
     newHours   = newHours + 1
     // TODO: build more comprehensive function
