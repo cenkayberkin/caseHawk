@@ -36,6 +36,8 @@ Event = {
   },
   update: function(event, options, callback){
     event = Event.instantiate($(event))
+    if(typeof(callback) == undefined)
+      callback = function(){}
     var params = {}
     $.each(options, function(key,value){
       params["event["+key+"]"] = value
