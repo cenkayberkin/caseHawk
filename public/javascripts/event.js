@@ -64,29 +64,22 @@ Event = {
 
     // return from cache if found
     var id = parseInt(record.id)
-    if(!skipCache && id && Event.cachedInstances[id]){
-      debug("returning cache")
+    if(!skipCache && id && Event.cachedInstances[id])
       return Event.cachedInstances[id]
-    }
-
-    if(2959 == id)
-      debug("id for", record)
 
     // if this is an existing DOM object then copy some
     // attributes into the same format as the JSON object has
-    if(record.nodeType){
+    if(record.nodeType)
       $.extend(record,
                { starts_at:  $(record).attr('data-starts-at'),
                  ends_at:    $(record).attr('data-ends-at'),
                  type:       $(record).attr('data-type'),
                  id:         $(record).attr('data-event-id')
                 })
-      // if(parseInt(record.id) == 2959)
-        debug("extending record")
-    }
+
     // otherwise assume the record is a JSON object literal
     // and extend it with a jQuerified DOM object
-    else{
+    else
       $.extend(record,
                ($("li.event#"+record.id).length ?
                 $("li.event#"+record.id) : $("<li></li>"))
@@ -99,9 +92,6 @@ Event = {
                   .addClass("event")
                   .addClass(record.type)
                   [0])
-      // if(parseInt(record.id) == 2959)
-        debug("extending jQuery object")
-    }
     
     // .starts_at and .ends_at are the string attributes
     // but .start and .end are javascript Date objects
