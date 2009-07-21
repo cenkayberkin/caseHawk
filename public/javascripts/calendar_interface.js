@@ -19,7 +19,7 @@ $(function(){
 
   // When the user mouses over an event that spans a period of time
   // the timeslot on the left side of the calendar should highlight
-  $(".appointment").hover(
+  $(".collidable .event").hover(
     function() {
       e = Event.instantiate(this)
       // Treat time parts as string for concatenation with +
