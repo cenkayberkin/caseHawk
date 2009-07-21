@@ -5,10 +5,10 @@
     <ul class="alldays">
       <% events.select{ |e| e.starts_at.to_date == day }.each do |a| %>
         <li id="<%= a.id %>" data-event-id="<%= a.id %>" data-name="<%= a.name %>" class="event allday">
-          <span class="event-title">
+          <a rel="facebox" href="#event-details_<%= a.id %>" class="event-title">
             <%= a.name %>
-          </span>
-          <div class="event-details details_<%= a.id %>">
+          </a>
+          <div id="event-details_<%= a.id %>" class="event-details details_<%= a.id %>">
             <%= render :partial => "events/details", :locals => { :event => a } %>
           </div>
         </li>

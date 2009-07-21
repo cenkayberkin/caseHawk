@@ -1,14 +1,14 @@
 <div class="sidebar-tasks sidebar-block">
   <h2>Tasks</h2>
   <div class="content">
-  <ul>
+  <ul class="task-list">
     <% get_tasks(events).each do |t| %>
       <li id="<%= t.id %>" data-event-id="<%= t.id %>" data-name="<%= t.name %>" class="event event_completable task <%= t.completed_at ? "complete" : "incomplete" %>">
         <%= check_box_tag t.id, '1', t.completed_at, :id => "event-complete-#{t.id}", :class => 'task', :name => t.id %>
-        <span id="event-label-<%= t.id %>" class='event-title'>
+        <a rel="facebox" href="#event-details_<%= t.id %>" id="event-label-<%= t.id %>" class='event-title'>
           <%= t.starts_at.to_date.to_s(:md) %>: <%= t.name %>
-        </span>
-        <div class="event-details detail_<%= t.id %>">
+        </a>
+        <div id="event-details_<%= t.id %>" class="event-details detail_<%= t.id %>">
           <%= render :partial => "events/details", :locals => { :event => t } %>
         </div>
       </li>

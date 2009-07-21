@@ -5,17 +5,6 @@ $(function(){
   // Slide in/out of view the event's details
   // when the user clicks an event
   $(".event-details").hide()
-  $(".event-title")
-    .addClass("clickable")
-    .click(function(){
-      var detail = $(this).next(".event-details")
-      // hide any (other) open detail elements
-      $(".event-details").filter(function(){
-        return this != detail[0]
-      }).fadeOut()
-      // show/hide the appropriate detail element
-      detail.toggle('normal')
-    })
 
   // When the user mouses over an event that spans a period of time
   // the timeslot on the left side of the calendar should highlight
@@ -80,5 +69,7 @@ $(function(){
   {
     tooltip   : 'Click to Edit'
   })
+  
+  $('a[rel*=facebox]').facebox()
 })
 

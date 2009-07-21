@@ -73,10 +73,12 @@
       color: #B32914;
     }
     
-    li.appointment { color: #114499; }
-    li.deadline { color: #B32914; }
-    li.task { color: #D95C26; }
-    li.allday { color: #5ead5e; }
+    li.appointment, li.appointment a { color: #114499; }
+    li.deadline, li.deadline a { color: #B32914; }
+    li.task, li.task a { color: #D95C26; }
+    li.allday, li.allday a { color: #5ead5e; }
+    
+    a.event_title { text-decoration: none; }
     
     .day-deadlines li input  {
       vertical-align: middle;

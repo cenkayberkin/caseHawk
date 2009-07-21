@@ -35,8 +35,8 @@ table.week td {
   font-size: 11px; 
 }
 .week-hours, .day-0, .day-6, 
-td:first-child, 
-th:first-child {
+.week td:first-child, 
+.week th:first-child {
   width: 28px;
   padding: 0;  
 }
@@ -162,4 +162,11 @@ li.event.allday .event-title { width: auto; }
   width: 70%;
   margin: 0 10px; 
   padding: 10px 0 0;
+}
+
+/* fixed position means that infinite length task list doesn't get to scrolls YIKES */
+
+ul.task-list {
+  height: 30em; 
+  overflow: auto;
 }

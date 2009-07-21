@@ -24,10 +24,10 @@
         <% get_all_days(@events).
             each do |event| %>
           <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" class="event allday">
-            <span class="event-title">
+            <a rel="facebox" href="#event-details_<%= event.id %>" class="event-title">
               <%= event.name %>
-            </span>
-            <div class="event-details details_<%= event.id %>">
+            </a>
+            <div class="event-details details_<%= event.id %>" id="event-details_<%= event.id %>">
                <%= render :partial => "events/details", :locals => { :event => event } %>
              </div>
           </li>
@@ -46,10 +46,10 @@
             each do |event| %>
             <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event event_completable deadline <%= event.completed_at ? "complete" : "incomplete" %>">
               <%= check_box_tag event.id, '1', event.completed_at, :id => "event-complete-#{event.id}", :class => 'task', :name => event.id %>
-              <label class="event-title">
+              <a rel="facebox" href="#event-details_<%= event.id %>" class="event-title">
                 <%= event.starts_at.to_s(:simple) %> <%= event.name %>
-              </label>
-              <div class="event-details details_<%= event.id %>">
+              </a>
+              <div class="event-details details_<%= event.id %>" id="event-details_<%= event.id %>">
                  <%= render :partial => "events/details", :locals => { :event => event } %>
                </div>
             </li>
@@ -59,10 +59,10 @@
         <% get_appointments(@events).
             each do |event| %>
             <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event appointment"> 
-              <span class="event-title">
+              <a rel="facebox" href="#event-details_<%= event.id %>" class="event-title">
                 <%= event.starts_at.to_s(:simple) %> &ndash; <%= event.ends_at.to_s(:simple) %> <%= event.name %>
-              </span>
-              <div class="event-details details_<%= event.id %>">
+              </a>
+              <div class="event-details details_<%= event.id %>" id="event-details_<%= event.id %>">
                  <%= render :partial => "events/details", :locals => { :event => event } %>
                </div>
             </li>

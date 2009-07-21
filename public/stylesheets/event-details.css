@@ -55,9 +55,10 @@ li.event .event-details {
   border-bottom: 1px solid #EEE;
   margin-bottom: 0.25em;
 }
-  li.event.appointment .event-details h4 { color: #114499; }
-  li.event.deadline .event-details h4 { color: #B32914; }
-  li.event.allday .event-details h4 { color: #72D472; }
+  .event-details h4.event_type-task { color: #D95C26; }
+  .event-details h4.event_type-appointment { color: #114499; }
+  .event-details h4.event_type-deadline { color: #B32914; }
+  .event-details h4.event_type-allday { color: #72D472; }
 
 .event-details h3 {
   font-weight: normal;
