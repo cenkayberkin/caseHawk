@@ -17,4 +17,7 @@
 #
 
 class Deadline < Event
+  def completable?
+    true
+  end
 end

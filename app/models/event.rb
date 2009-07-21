@@ -123,11 +123,7 @@ class Event < ActiveRecord::Base
   end
   
   def completable?
-    case type.to_s
-      when "Deadline": true
-      when "Task": true
-      else false
-    end
+    false
   end
   
   protected

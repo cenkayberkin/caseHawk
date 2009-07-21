@@ -17,4 +17,7 @@
 #
 
 class Task < Event
+  def completable?
+    true
+  end
 end
