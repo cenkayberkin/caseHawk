@@ -19,7 +19,7 @@
 
 $(function(){
   $("#day").each(Calendar.initDay)
-  $(".week").each(Calendar.initWeek)
+  $("#week").each(Calendar.initWeek)
 })
 
 Calendar = {
