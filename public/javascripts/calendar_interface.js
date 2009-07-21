@@ -74,6 +74,9 @@ $(function(){
               $(this).html(
                 savedEvent[editable.attr("data-field-name")]
               )
+              // update the event on the page too
+              // debug(savedEvent)
+              // $(event).find(".event-title").html( savedEvent.name )
             }
           }
         )
