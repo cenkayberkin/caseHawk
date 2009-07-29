@@ -4,6 +4,7 @@
 <% end %>
 
 <% content_for :sidebar do %>
+  <%= render :partial => 'mini_cal' %>
   <%= render :partial => 'events/new_form' %>
   <%= render :partial => 'task_list',
               :locals => { :events => @events }

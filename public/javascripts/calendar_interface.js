@@ -1,10 +1,10 @@
 $(function(){
 
-  // Let the user know the event details can slide out
-  // by giving them a 'pointer' cursor.
-  // Slide in/out of view the event's details
-  // when the user clicks an event
-  $(".event-details").hide()
+  $("#datepicker").datepicker({
+    onSelect: function(dateText, inst) {
+      alert("Date: " + dateText)
+    }
+  }); 
 
   // When the user mouses over an event that spans a period of time
   // the timeslot on the left side of the calendar should highlight
