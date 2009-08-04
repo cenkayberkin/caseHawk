@@ -1,0 +1,13 @@
+<li class="event_date">
+  <span  data-field-name="starts_at_date" id="event-starts_at_date-<%= event.id%>">
+    <%= event.starts_at.to_s(:Mdth) %>
+  </span>
+  <% if event.starts_at.to_date < event.ends_at.to_date %>
+    <span class"event_time_separator">
+      &#8212;
+    </span>
+    <span  data-field-name="ends_at_date" id="event-ends_at_date-<%= event.id%>">
+      <%= event.ends_at.to_s(:Mdth) %>
+    </span>
+  <% end %>
+</li>
