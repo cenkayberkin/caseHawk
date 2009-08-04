@@ -167,7 +167,44 @@ Calendar = {
   // the events better
   fixCongestedBoxes : function(){
     $(".collision_box").each(function(_,box){
-      
+      var canFit = parseInt($(box).height() / 15)
+      var total  = $(box).find(".event").length
+      debug("canFit :"+canFit+", total:"+total+", for", box)
+      if(canFit < total){
+        $(box)
+          // hide everything that doesn't fit
+          .find(".event")
+            .slice(canFit-1, total)
+              .hide()
+              .end()
+            .end()
+          // add a little "there's more!" link
+          .append(
+            $("<li></li>")
+              .addClass("overflow")
+              .append(
+                $("<a></a>")
+                  .html(
+                    canFit == 1 ?
+                      (total)+" events &raquo;" :
+                      (total-canFit+1)+" more &raquo;"
+                  )
+                  // which, when clicked, shows the rest of the stuff
+                  .click(function(){
+                    $(this)
+                      .parents(".collision_box")
+                        .css({height: 'auto'})
+                        .find(".event")
+                          .show()
+                          .end()
+                        .end()
+                      // and hide the link
+                      .hide()
+                    return false
+                  })
+              )
+          )
+      }
     })
   },
   // function Box(a, b)
