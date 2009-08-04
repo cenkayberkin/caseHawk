@@ -1,6 +1,8 @@
 $(function(){
 
   $("#datepicker").datepicker({
+    changeMonth: true, 
+    changeYear: true, 
     onSelect: function(dateText, inst) {
       alert("Date: " + dateText)
     }
