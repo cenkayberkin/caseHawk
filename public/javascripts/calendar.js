@@ -169,7 +169,6 @@ Calendar = {
     $(".collision_box").each(function(_,box){
       var canFit = parseInt($(box).height() / 15)
       var total  = $(box).find(".event").length
-      debug("canFit :"+canFit+", total:"+total+", for", box)
       if(canFit < total){
         $(box)
           // hide everything that doesn't fit
