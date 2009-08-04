@@ -144,6 +144,10 @@
     padding: 0; 
   }
 
+.mini_cal h2 {
+  color: #114499;
+}
+
 h2.day-date {
   text-align: center;
   border-top: 1px solid #E3E3E3; 
