@@ -1,23 +1,9 @@
 <h4 class="event_type event_type-<%= event.type.downcase %>"><%= event.type %></h4>
 <h3 class="editable" data-field-name="name" id="event-name-<%= event.id%>" rel="<%= event.id %>"><%= event.name %></h3>
 <ul>
-  <li class="event_date" data-field-name="starts_at_date" id="event-starts_at_date-<%= event.id%>"><%= event.starts_at.to_s(:Mdth) %></li>
-  <% unless event.type == 'AllDay' %>
-    <li class="event_time">
-      <% if event.starts_at %>
-        <%= event.completable? ? "Due at " : "" %>
-        <span class="event_starts_at" data-field-name="starts_at_time" id="event-starts_at_time-<%= event.id%>"><%= event.starts_at.to_s(:simple) %></span>
-      <% end %>
-      <% if event.ends_at %>
-        <% if event.starts_at %>
-        <span class"event_time_separator">
-          &#8212;
-        </span>
-        <% end %>
-        <span class="event_ends_at" data-field-name="ends_at_time" id="event-ends_at_time-<%= event.id%>"><%= event.ends_at.to_s(:simple) %></span>
-      <% end %>
-    </li>
-  <% end %>
+  <%= render :partial => "events/details_#{event.type.underscore}", 
+        :locals => { :event => event}
+  %>
   <% if event.location %>
     <li class="event_location">
       At <span class="" data-field-name="location" id="event-location-<%= event.id%>"><%= event.location.name %></span>
@@ -35,14 +21,14 @@
   <% end %>
   <% if event.completable? %>
     <% if event.completed_at %>
-      <li class="completable" title="On <%= event.completed_at.to_s(:mdth) + 
-                                    " by " + event.completed_by.try(:name).to_s %>">
+      <li class="completable" title="Completed!">
+        Completed on <%= event.completed_at.to_s(:mdth) %> by <%= event.completed_by.try(:name).to_s %>
+      </li>
     <% else %>
       <li class="completable">
+        Not yet completed
+      </li>
     <% end %>
-    <%= check_box_tag event.id, '1', event.completed_at, :id => "event-complete-#{event.id}", :name => event.id %>
-    Done!
-  </li>
   <% end %>
   <li class="event_creator">
     Created by <%= event.creator.name %>
