@@ -87,6 +87,8 @@
       position: absolute;
       width: 50%;
     }
+    .collision_box_overflow { /*when a box with too many events has the 'more' link clicked*/
+    }
     .day-appointments li, .collision_box { background: #F3F3F3; }
     .day-deadlines li, .day-deadlines .collision-box { background: #F3F3F3; }
 

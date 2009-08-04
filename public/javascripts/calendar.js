@@ -193,6 +193,7 @@ Calendar = {
                     $(this)
                       .parents(".collision_box")
                         .css({height: 'auto'})
+                        .addClass("collision_box_overflow")
                         .find(".event")
                           .show()
                           .end()
