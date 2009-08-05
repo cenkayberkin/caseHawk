@@ -150,6 +150,9 @@ Calendar = {
         $.each(events, function(idx, event){
           // box this event with the one that comes right after it
           // if the next one begins before this one ends
+          // TODO: handle that [8:00-10:30, 8:15-8:30, 9:00-9:15]
+          //       will need to be in the same box ([[x, x, x]])
+          //       (currently: [[x, x], x])
           if((events[idx+1] && events[idx+1].start <= event.end))
             Calendar.Box(event, events[idx+1])
           // or just put it in a box by itself
@@ -200,8 +203,7 @@ Calendar = {
         holder.css({
           top:    $(box[0]).css("top"),
           height: Calendar.timeDifferentInPixels(
-                      Math.max.apply(null, $.map(box, function(e){return e.end   ? +e.end   : 0})) -
-                      Math.min.apply(null, $.map(box, function(e){return e.start ? +e.start : 999999999999}))
+                      Calendar.lastEnd(box) - Calendar.firstStart(box)
                     )+'px'
         })
         $.each(box, function(_,e){
@@ -280,6 +282,22 @@ Calendar = {
     return Calendar.timeDifferentInPixels(
                       e.end && e.start ? e.end - e.start : 0
                     )
+  },
+  // find the earliest that any of the given events starts
+  firstStart: function(events){
+    return Math.min.apply(null,
+                          $.map(events, function(e){
+                                          var event = Event.instantiate(e)
+                                          return e.start ? +e.start : 999999999999
+                                        }))
+  },
+  // find the latest that any of the given events lasts
+  lastEnd: function(events){
+    return Math.max.apply(null,
+                          $.map(events, function(e){
+                                          var event = Event.instantiate(e)
+                                          return e.end ? +e.end : 0
+                                        }))
   },
   // given the difference between two times return the number
   // of pixels that should be used to represent the interval
