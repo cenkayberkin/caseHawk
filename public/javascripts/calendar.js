@@ -188,7 +188,7 @@ Calendar = {
                       (total)+" events &raquo;" :
                       (total-canFit+1)+" more &raquo;"
                   )
-                  // which, when clicked, shows the rest of the stuff
+                  // which, when clicked, shows the rest of the events
                   .click(function(){
                     $(this)
                       .parents(".collision_box")
@@ -198,7 +198,7 @@ Calendar = {
                           .show()
                           .end()
                         .end()
-                      // and hide the link
+                      // and hides itself
                       .hide()
                     return false
                   })
