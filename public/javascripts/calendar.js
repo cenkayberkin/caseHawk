@@ -246,8 +246,8 @@ Calendar = {
         holder.css({
           top:    $(box[0]).css("top"),
           height: Calendar.timeDifferentInPixels(
-                      box[box.length-1].end && box[0].start ?
-                        box[box.length-1].end - box[0].start : 0
+                      Math.max.apply(null, $.map(box, function(e){return e.end   ? +e.end   : 0})) -
+                      Math.min.apply(null, $.map(box, function(e){return e.start ? +e.start : 999999999999}))
                     )+'px'
         })
         $.each(box, function(_,e){
