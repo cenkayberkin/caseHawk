@@ -4,7 +4,9 @@
 <% end %>
 
 <% content_for :sidebar do %>
-  <%= render :partial => 'mini_cal' %>
+  <%= render :partial => 'mini_cal', 
+              :locals => { :date => @date }
+  %>
   <%= render :partial => 'events/new_form' %>
   <%= render :partial => 'task_list',
               :locals => { :events => @events }
@@ -14,9 +16,6 @@
   next_day = @date + 1; 
   prev_day = @date - 1; 
 %>
-<a id="day-prev" class="day-nav prev" href="/calendars/show?date=<%= prev_day.to_s(:us_long_year) %>">&laquo; <%= prev_day.to_s(:short_day_month_first) %></a>
-<a id="day-next" class="day-nav next" href="/calendars/show?date=<%= next_day.to_s(:us_long_year) %>"><%= next_day.to_s(:short_day_month_first) %> &raquo;</a>
-<h2 class="day-date"><%= @date.to_s(:long_day_month_first) %></h2>
 <div id="day" class="day" data-date="<%= @day.to_s %>">
   <div class="day-top">
     <h3 class="gutter">All Day</h3>

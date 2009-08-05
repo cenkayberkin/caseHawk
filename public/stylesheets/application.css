@@ -44,14 +44,14 @@ h1, h2, h3, h4, h5 {
 	font-weight: bold; 
 	line-height: 1.2em;
 }
-	h1 { font-size: 2.4em; }
+	h1 { font-size: 2.2em; }
 	h2 { 
-	  font-size: 2em; 
+	  font-size: 1.8em; 
 	  color: #73A3D3;
 		border-bottom: 1px dashed #999999;
 		padding-bottom: 0.25em;
 	}
-	h3 { font-size: 1.6em; }
+	h3 { font-size: 1.4em; }
 a { color: #114499; }
 a:hover { color: #B32914; text-decoration: underline; }
 
@@ -206,7 +206,7 @@ ul, ol, p { margin: 0 0 1em; }
   }
     .sidebar-block {
       padding: 0 0.5em 0.5em; 
-      margin: 0 0 5px; 
+      margin: 0.5em 0; 
       border-bottom: 1px dashed #CCC;
       
     }

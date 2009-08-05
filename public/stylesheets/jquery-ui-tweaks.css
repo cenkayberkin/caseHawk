@@ -1,0 +1,9 @@
+#sidebar #datepicker {
+  text-align: center; 
+}
+  .ui-datepicker-inline {
+    margin: 0 auto; 
+    text-align: left; 
+  }
+  
+.ui-widget-header select { font-weight: normal; }
