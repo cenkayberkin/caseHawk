@@ -161,52 +161,6 @@ Calendar = {
       }
     )
   },
-  // Some collision boxes may have too many events
-  // in them for their time frame.  In this case replace
-  // the bottom two lines with a link that displays
-  // the events better
-  fixCongestedBoxes : function(){
-    $(".collision_box").each(function(_,box){
-      var canFit = parseInt($(box).height() / 15)
-      var total  = $(box).find(".event").length
-      if(canFit < total){
-        $(box)
-          // hide everything that doesn't fit
-          .find(".event")
-            .slice(canFit-1, total)
-              .hide()
-              .end()
-            .end()
-          // add a little "there's more!" link
-          .append(
-            $("<li></li>")
-              .addClass("overflow")
-              .append(
-                $("<a></a>")
-                  .html(
-                    canFit == 1 ?
-                      (total)+" events &raquo;" :
-                      (total-canFit+1)+" more &raquo;"
-                  )
-                  // which, when clicked, shows the rest of the events
-                  .click(function(){
-                    $(this)
-                      .parents(".collision_box")
-                        .css({height: 'auto'})
-                        .addClass("collision_box_overflow")
-                        .find(".event")
-                          .show()
-                          .end()
-                        .end()
-                      // and hides itself
-                      .hide()
-                    return false
-                  })
-              )
-          )
-      }
-    })
-  },
   // function Box(a, b)
   //  Combine two events at a time into a box.
   //  If event A is already in a box then add
@@ -266,6 +220,52 @@ Calendar = {
     }
     return boxFn
   }(),
+  // Some collision boxes may have too many events
+  // in them for their time frame.  In this case replace
+  // the bottom two lines with a link that displays
+  // the events better
+  fixCongestedBoxes : function(){
+    $(".collision_box").each(function(_,box){
+      var canFit = parseInt($(box).height() / 15)
+      var total  = $(box).find(".event").length
+      if(canFit < total){
+        $(box)
+          // hide everything that doesn't fit
+          .find(".event")
+            .slice(canFit-1, total)
+              .hide()
+              .end()
+            .end()
+          // add a little "there's more!" link
+          .append(
+            $("<li></li>")
+              .addClass("overflow")
+              .append(
+                $("<a></a>")
+                  .html(
+                    canFit == 1 ?
+                      (total)+" events &raquo;" :
+                      (total-canFit+1)+" more &raquo;"
+                  )
+                  // which, when clicked, shows the rest of the events
+                  .click(function(){
+                    $(this)
+                      .parents(".collision_box")
+                        .css({height: 'auto'})
+                        .addClass("collision_box_overflow")
+                        .find(".event")
+                          .show()
+                          .end()
+                        .end()
+                      // and hides itself
+                      .hide()
+                    return false
+                  })
+              )
+          )
+      }
+    })
+  },
 
 
   // determine the number of pixels between the start
