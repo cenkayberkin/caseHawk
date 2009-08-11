@@ -49,9 +49,22 @@ table.week .day-0, table.week .day-6 {
 }
 
 .day-0 ul, .day-6 ul,
-.day-0 .collision_box , .day-6 .collision_box {
+.day-0 li, .day-6 li {
   display: none; 
 }
+.day-0 .alldays, .day-6 .alldays {
+  display: block;
+}
+.day-0 .alldays li, .day-6 .alldays li {
+  display: block; 
+  height: 1em; 
+  background: #cafcca;
+  padding: 0; 
+}
+  .day-0 .alldays li a.event-title,  
+  .day-6 .alldays li a.event-title {
+    display: none; 
+  }
 
 table.week .week-hours {
   padding: 0; 
@@ -75,12 +88,15 @@ table.week .week-dates th {
 }
 .week-dates .day-mon {
   color: #B32914;
-  float: left; 
-  padding: 0 2px;
-  background: #FFF;  
-  border-right: 1px solid #CCC;
   font-size: 11px; 
 }
+  .week-dates span.day-mon {
+    float: left; 
+    padding: 0 2px;
+    background: #FFF;  
+    border-right: 1px solid #CCC;
+  }
+  .week-dates .week-hours.day-mon { text-align: center; }
 .week-dates .day-mday a {
   font-size: 14px; 
   color: #444; 
@@ -158,10 +174,10 @@ li.event.allday .event-title { width: auto; }
 #week-headers {
   background: #FFF; 
   left: 0; 
-  top: 80px; 
+  top: 70px; 
   width: 70%;
-  margin: 0 10px; 
-  padding: 0;
+  margin: 0; 
+  padding: 10px 10px 0;
 }
 
 /* fixed position means that infinite length task list doesn't get to scrolls YIKES */
