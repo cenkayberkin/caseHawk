@@ -1,20 +1,18 @@
 class CalendarsController < ApplicationController
 
-  def show
+  def day
     @date = params[:date] ?
               Date.parse(params[:date]) : Date.today
     @events = events.day(@date).find(:all, :include => :creator) || []
     respond_to do |format|
-      format.html do
-        render :action => :show
-      end
+      format.html 
       format.js do
         render :json => @events.to_json
       end
     end
   end
   
-  def weeks
+  def show
     @date = params[:date] ?
               Date.parse(params[:date]) : Date.today
     @events = events.ordered.week_of(@date - 1.week).find(:all, :include => :creator) +
@@ -31,7 +29,7 @@ class CalendarsController < ApplicationController
   def index
     respond_to do |format|
       format.html do 
-        redirect_to :action => :weeks
+        redirect_to :action => :show
       end
     end
   end
