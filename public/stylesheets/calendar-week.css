@@ -127,7 +127,11 @@ table.week .week-dates th {
 
 .collision_box {
   width: 100%; 
+  background: #F3F3F3 url(/images/collision-bottom.png) repeat-x left bottom;
 }
+  .collision_box li:first-child {
+    background: transparent url(/images/collision-top.png) repeat-x left top;
+  }
 
 .week li.event {
   position: relative;
