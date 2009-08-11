@@ -148,18 +148,20 @@ Calendar = {
                          (a.starts_at > b.starts_at ? 1 : -1)
               })
               .map(function(){return this})
+
+        var latestEventSoFar = events.length && events[0]
         // for each of these events
         $.each(events, function(idx, event){
-          // box this event with the one that comes right after it
-          // if the next one begins before this one ends
-          // TODO: handle that [8:00-10:30, 8:15-8:30, 9:00-9:15]
-          //       will need to be in the same box ([[x, x, x]])
-          //       (currently: [[x, x], x])
-          if((events[idx+1] && events[idx+1].start <= event.end))
-            Calendar.Box(event, events[idx+1])
+          // box this event with the ones adjacent and
+          // overlapping with it
+          if(latestEventSoFar.end >= event.start)
+            Calendar.Box(latestEventSoFar, event)
           // or just put it in a box by itself
           else
             Calendar.Box(event)
+
+          if(latestEventSoFar.end < event.end)
+            latestEventSoFar = event
         })
         // place all these boxes into the .collidable
         Calendar.Box.arrange(eventList)
