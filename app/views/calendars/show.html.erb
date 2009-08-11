@@ -1,74 +1,30 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag 'calendar-day' %>
+  <%= stylesheet_link_tag 'calendar-week' %>
   <%= stylesheet_link_tag 'event-details' %>
 <% end %>
 
 <% content_for :sidebar do %>
-  <%= render :partial => 'mini_cal', 
-              :locals => { :date => @date }
-  %>
+  <%= render :partial => 'mini_cal' %>
   <%= render :partial => 'events/new_form' %>
   <%= render :partial => 'task_list',
               :locals => { :events => @events }
   %>
 <% end %>
-<%
-  next_day = @date + 1; 
-  prev_day = @date - 1; 
-%>
-<div id="day" class="day" data-date="<%= @day.to_s %>">
-  <div class="day-top">
-    <h3 class="gutter">All Day</h3>
-    <div class="day-top-allday">
-      <ul class="day-allday">
-        <% get_all_days(@events).
-            each do |event| %>
-          <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-type="<%= event.type %>" class="event allday">
-            <a rel="facebox" href="#event-details_<%= event.id %>" class="event-title">
-              <%= event.name %>
-            </a>
-            <div class="event-details details_<%= event.id %>" id="event-details_<%= event.id %>">
-               <%= render :partial => "events/details", :locals => { :event => event } %>
-             </div>
-          </li>
-        <% end %>
-      </ul>
-      <div class="clear"></div>
-    </div>
+
+<div id="week">
+  <div id="week-headers">
+    <%= render :partial => 'dayname_header' %>
   </div>
-  <div class="viewport">
-    <ul class="day-hours">
-      <%= render :partial => 'timeline', :locals => { :date => @date } %>
-    </ul>
-    <div class="day-full">
-      <ul class="day-deadlines deadlines collidable">
-        <% get_deadlines(@events).
-            each do |event| %>
-            <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-type="<%= event.type %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event event_completable deadline <%= event.completed_at ? "complete" : "incomplete" %>">
-              <%= check_box_tag event.id, '1', event.completed_at, :id => "event-complete-#{event.id}", :class => 'task', :name => event.id %>
-              <a rel="facebox" href="#event-details_<%= event.id %>" class="event-title">
-                <%= event.starts_at.to_s(:simple) %> <%= event.name %>
-              </a>
-              <div class="event-details details_<%= event.id %>" id="event-details_<%= event.id %>">
-                 <%= render :partial => "events/details", :locals => { :event => event } %>
-               </div>
-            </li>
-        <% end %>
-      </ul>
-      <ul class="day-appointments appointments collidable">
-        <% get_appointments(@events).
-            each do |event| %>
-            <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-type="<%= event.type %>" data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" class="event appointment"> 
-              <a rel="facebox" href="#event-details_<%= event.id %>" class="event-title">
-                <%= event.starts_at.to_s(:simple) %> &ndash; <%= event.ends_at.to_s(:simple) %> <%= event.name %>
-              </a>
-              <div class="event-details details_<%= event.id %>" id="event-details_<%= event.id %>">
-                 <%= render :partial => "events/details", :locals => { :event => event } %>
-               </div>
-            </li>
-        <% end %>
-      </ul>
-    </div>
+  <div id="all_weeks">
+    <%= render :partial => 'week', 
+                :locals => { :date => @date - 1.week, 
+                             :events => @events } %>
+    <%= render :partial => 'week', 
+                :locals => { :date => @date, 
+                             :events => @events } %>
+    <%= render :partial => 'week', 
+                :locals => { :date => @date + 1.week, 
+                             :events => @events } %>
   </div>
-  <br class="clear" />
-</div>  
+</div>
