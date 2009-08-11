@@ -1,0 +1,16 @@
+<ul>
+  <li>
+    <%= 
+      link_to_unless_current('Home', root_path) do |link|
+        content_tag 'span', link, :class => 'current'
+      end 
+    %>
+  </li>
+  <li>
+    <%= 
+      link_to_unless_current('Calendar', :controller => 'calendars', :action => 'weeks') do |link|
+        content_tag 'span', link, :class => 'current'
+      end 
+    %>
+  </li>
+</ul>

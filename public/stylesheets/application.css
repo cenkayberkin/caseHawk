@@ -102,7 +102,7 @@ ul, ol, p { margin: 0 0 1em; }
 #nav {
   position: absolute; 
   bottom: 0; 
-  left: 275px; 
+  left: 360px; 
   height: 30px; 
 }
   #nav ul {
@@ -125,7 +125,7 @@ ul, ol, p { margin: 0 0 1em; }
     padding: 0 15px; 
     background: #FFF url(/images/nav-button-bg.png) repeat-x left bottom; 
   }
-  #nav ul li span.active {
+  #nav ul li span.current {
     background-image: none; 
     color: #999;
   }
