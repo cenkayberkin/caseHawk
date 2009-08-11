@@ -143,7 +143,9 @@ Calendar = {
               })
               // arrange them by start time (ascending)
               .sort(function(a,b){
-                return a.starts_at > b.starts_at ? 1 : -1
+                return a.starts_at == b.starts_at ?
+                         (a.ends_at   < b.ends_at   ? 1 : -1) :
+                         (a.starts_at > b.starts_at ? 1 : -1)
               })
               .map(function(){return this})
         // for each of these events
