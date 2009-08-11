@@ -54,11 +54,13 @@ table.week .day-0, table.week .day-6 {
 }
 .day-0 .alldays, .day-6 .alldays {
   display: block;
+  margin: 0; 
+  padding: 0;
 }
 .day-0 .alldays li, .day-6 .alldays li {
   display: block; 
   height: 1em; 
-  background: #cafcca;
+  background: #d7fcd7;
   padding: 0; 
 }
   .day-0 .alldays li a.event-title,  
@@ -186,3 +188,5 @@ ul.task-list {
   height: 30em; 
   overflow: auto;
 }
+
+/* fixed week header? */
