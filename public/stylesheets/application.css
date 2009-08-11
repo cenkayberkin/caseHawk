@@ -73,15 +73,19 @@ ul, ol, p { margin: 0 0 1em; }
   position: relative;
 }
 	#header h1 { 
-	  margin: 0; padding: 0 20px;
+	  margin: 0; 
+	  padding: 0 180px 0 0;
 	  height: 70px; 
 	  line-height: 70px; 
 	  font-size: 3.6em;
 	  letter-spacing: 1px;
+	  text-align: right;
 	  color: #FFF; 
     font-family: "Helvetica Neue", Helvetica, "Bitstream Vera Sans", Arial, sans-serif;	   
-    font-weight: normal;
-    background: url(/images/header-inner.png) no-repeat 100px top;
+    font-weight: bold;
+    text-transform: lowercase; 
+    font-variant: small-caps;
+    background: url(/images/header-inner-2.png) no-repeat right top;
 	}
 
 #logbox {
@@ -102,7 +106,7 @@ ul, ol, p { margin: 0 0 1em; }
 #nav {
   position: absolute; 
   bottom: 0; 
-  left: 360px; 
+  left: 10px; 
   height: 30px; 
 }
   #nav ul {
