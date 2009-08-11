@@ -5,9 +5,7 @@ class CalendarsController < ApplicationController
               Date.parse(params[:date]) : Date.today
     @events = events.day(@date).find(:all, :include => :creator) || []
     respond_to do |format|
-      format.html do
-        render :action => :show
-      end
+      format.html 
       format.js do
         render :json => @events.to_json
       end

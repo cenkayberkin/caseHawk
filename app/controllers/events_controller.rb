@@ -41,7 +41,7 @@ class EventsController < ApplicationController
         @saved ?
           flash[:success] = "The event has been saved" :
           flash[:error] = "There was an error saving that event"
-        redirect_to_back_or calendar_path(:date => @event.starts_at.to_date.to_s)
+        redirect_to_back_or day_calendar_path(:date => @event.starts_at.to_date.to_s)
       }
       format.js {
         render :json => @event

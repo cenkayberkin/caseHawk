@@ -35,7 +35,7 @@ class EventsControllerTest < ActionController::TestCase
       end
       should_change 'Event.count', :by => 1
       should_set_the_flash_to /saved/i
-      should_redirect_to 'calendar_path(:date => @event.starts_at.to_date.to_s)'
+      should_redirect_to 'day_calendar_path(:date => @event.starts_at.to_date.to_s)'
     end
 
     context 'GET to show for existing event' do
@@ -72,7 +72,7 @@ class EventsControllerTest < ActionController::TestCase
         should_change "@event.reload.attributes"
         should_not_change "Event.count"
         should_set_the_flash_to /saved/i
-        should_redirect_to 'calendar_path(:date => @event.starts_at.to_date.to_s)'
+        should_redirect_to 'day_calendar_path(:date => @event.starts_at.to_date.to_s)'
       end
       context "via ajax to complete event" do
         setup {

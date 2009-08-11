@@ -4,7 +4,7 @@ $(function(){
     changeMonth: true, 
     changeYear: true, 
     onSelect: function(dateText, inst) {
-      window.location.href = "/calendars/show?date=" + dateText      
+      window.location.href = "/calendars/day?date=" + dateText      
     }
   }); 
 
