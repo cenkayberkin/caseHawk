@@ -75,12 +75,15 @@ table.week .week-dates th {
 }
 .week-dates .day-mon {
   color: #B32914;
-  float: left; 
-  padding: 0 2px;
-  background: #FFF;  
-  border-right: 1px solid #CCC;
   font-size: 11px; 
 }
+  .week-dates span.day-mon {
+    float: left; 
+    padding: 0 2px;
+    background: #FFF;  
+    border-right: 1px solid #CCC;
+  }
+  .week-dates .week-hours.day-mon { text-align: center; }
 .week-dates .day-mday a {
   font-size: 14px; 
   color: #444; 
