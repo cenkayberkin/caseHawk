@@ -198,6 +198,7 @@ ul.task-list {
 
 /* fixed week header? */
 
+#content .rolling-active,
 .rolling-active {
   position: fixed; 
   width: 70%; 
