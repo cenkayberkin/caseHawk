@@ -39,6 +39,31 @@ $(function(){
     }
   )
   
+  // *******
+  // change the header showing dates as the weeks scroll by
+  // *******
+  var changeWeekHeader = function(activeWeek){
+    $("table.week-rolling-header").removeClass("rolling-active")
+    activeWeek.addClass("rolling-active")
+  }
+  $("table.week-rolling-header").each(function(){
+    this.weekOffset = $("#all_weeks").offset().top
+    this.enter_rolling  = $(this).position().top - this.weekOffset
+    this.leave_rolling  = this.enter_rolling + $(this).height()
+                          + $(this).next("table.week-events").height()
+  })
+  $(document).scroll(function(){
+    var scroll = $("body").scrollTop()
+    $("table.week-rolling-header").each(function(){
+      if(    scroll >= this.enter_rolling
+          && scroll <  this.leave_rolling )
+             changeWeekHeader($(this))
+    })
+  })
+  // initial header
+  changeWeekHeader($("table.week-rolling-header:first"))
+
+
   var functionsThatNeedToBeReexecutedWhenFaceboxLoads = function(){
 
     // support ajax completion of completable events
