@@ -564,5 +564,23 @@ ul, ol, p { margin: 0 0 1em; }
 }
 .collapsible, .expandable {
 }
+h2.clickable {
+  background-color: transparent; 
+  background-image: url(/images/icons/plus-minus.png);
+  background-repeat: no-repeat; 
+  background-position: 0px 0px; 
+}
+  h2.clickable:hover {
+    background-position: 0px -60px; 
+    color: #5EAD5E; 
+  }
+  
+  h2.clickable.clicked {
+    background-position: 0px -30px;
+  }
+    h2.clickable.clicked:hover {
+      background-position: 0px -90px;
+      color: #B32914;
+    }
 
 

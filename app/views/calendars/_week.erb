@@ -1,8 +1,10 @@
-<table class="week" id="week-<%= date.year %>-<%= date.cweek %>">
+<table class="week week-rolling-header" id="week-header-<%= date.year %>-<%= date.cweek %>">
   <thead>
     <%= render :partial => 'week_dates_header', 
                 :locals => { :date => date } %>
   </thead>
+</table>
+<table class="week week-events" id="week-<%= date.year %>-<%= date.cweek %>">
   <tbody>
     <%= render :partial => 'week_allday', 
                 :locals => { :date => date, :events => get_all_days(events) } %>

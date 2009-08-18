@@ -69,6 +69,7 @@ $(function(){
   $(".expandable").hide()
   $(".expandable, .collapsible").prev().addClass("clickable")
   $(".expandable, .collapsible").prev().click(function() {
+    $(this).toggleClass("clicked")
     $(this).next().slideToggle()
   })
 })
