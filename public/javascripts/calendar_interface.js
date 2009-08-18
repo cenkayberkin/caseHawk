@@ -59,7 +59,7 @@ $(function(){
         })
       })
   
-    $('.editable')
+    $('#facebox .editable')
       .each(function(){
         var editable = $(this)
         var event = Event.instantiate($("#"+editable.attr("rel")))
@@ -84,7 +84,7 @@ $(function(){
         )
       })
       
-    $('.editable_time')
+    $('#facebox .editable_time')
       .each(function() {
         var editable = $(this)
         var event = Event.instantiate($("#"+editable.attr("rel")))

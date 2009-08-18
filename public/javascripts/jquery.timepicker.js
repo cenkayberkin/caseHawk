@@ -92,7 +92,7 @@
 			output += '</select>';				
 	
 			// hide original input and append new replacement inputs
-			$(this).attr('type','hidden').after(output);
+			$(this).hide().after(output);
 		});
 		
 		$('select.timepicker').change(function(){
