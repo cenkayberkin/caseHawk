@@ -60,6 +60,7 @@ class EventsController < ApplicationController
 
   protected
     def new_event(atts = {})
+      puts atts.inspect
       event = case params[:event] && params[:event][:type]
                 when 'AllDay'       then AllDay.new(atts)
                 when 'Appointment'  then Appointment.new(atts)
