@@ -10,6 +10,9 @@ class EventsController < ApplicationController
       format.js do
         render :json => @events.to_json
       end
+      format.xml do
+        render :xml => @events.to_xml
+      end
       format.ical
     end
   end
@@ -18,7 +21,10 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html
       format.js do
-        render :json => @events.to_json
+        render :json => @event.to_json
+      end
+      format.xml do
+        render :xml => @event.to_xml
       end
       format.ical
     end
@@ -45,6 +51,9 @@ class EventsController < ApplicationController
       }
       format.js {
         render :json => @event
+      }
+      format.xml {
+        render :xml => @event.to_xml
       }
     end
   end
