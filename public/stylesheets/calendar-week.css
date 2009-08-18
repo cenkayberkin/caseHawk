@@ -1,5 +1,5 @@
 #all_weeks {
-  margin-top: 101px; 
+  margin-top: 122px; 
 }
 
 .week .viewport {
@@ -197,3 +197,10 @@ ul.task-list {
 }
 
 /* fixed week header? */
+
+.rolling-active {
+  position: fixed; 
+  width: 70%; 
+  top: 101px; 
+  left: 10px; 
+}
