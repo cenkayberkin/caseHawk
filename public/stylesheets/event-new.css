@@ -28,13 +28,3 @@ form.new_event {
   margin-left: 25%; 
   padding-left: 10px;
 }
-
-.add-event h2.clickable {
-  background-color: transparent; 
-  background-image: url(/images/icons/plus-minus.png);
-  background-repeat: no-repeat; 
-  background-position: left top; 
-}
-  .add-event h2.clickable:hover {
-    background-position: left 50px; 
-  }
