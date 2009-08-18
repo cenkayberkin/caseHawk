@@ -17,6 +17,9 @@ form.new_event {
 .new_event input {
   width: 65%;
 }
+.new_event input[type=checkbox] {
+  width: auto; 
+}
 .new_event input[type=hidden] {
   width: 0; 
 }

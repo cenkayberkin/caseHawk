@@ -1,11 +1,11 @@
 <li class="event_date">
-  <span  data-field-name="starts_at_date" id="event-starts_at_date-<%= event.id%>">
+  <span  data-field-name="starts_at_date" id="event-starts_at_date-<%= event.id%>" class="event_starts_date">
     <%= event.starts_at.to_s(:Mdth) %>
   </span>
 </li>
 <li class="event_time">
   Due at:
   <span class="event_starts_at" data-field-name="starts_at_time" id="event-starts_at_time-<%= event.id%>">
-    <%= event.starts_at.to_s(:simple) %>
+    <%= event.starts_at.to_s(:full_time) %>
   </span>
 </li>

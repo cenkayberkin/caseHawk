@@ -245,6 +245,7 @@ Calendar = {
           // add a little "there's more!" link
           .append(
             $("<li></li>")
+              .addClass("event-overflow")
               .addClass("overflow")
               .append(
                 $("<a></a>")

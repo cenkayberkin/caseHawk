@@ -139,6 +139,11 @@ li.event.allday {
   padding: 0 4px;
 }
 
+li.event-overflow {
+  padding: 0 4px; 
+  cursor: pointer;
+}
+
 /* make sure events are limited to column width*/
 li.event.allday .event-title, 
 li.event.appointment .event-title,
