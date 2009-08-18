@@ -41,7 +41,9 @@ class EventsController < ApplicationController
     if params[:event] && !params[:event][:completed].blank?
       @event.completed_by = current_user
     end
+    logger.info(event.inspect)
     @saved = @event.save
+    
     respond_to do |format|
       format.html {
         @saved ?
@@ -60,7 +62,6 @@ class EventsController < ApplicationController
 
   protected
     def new_event(atts = {})
-      puts atts.inspect
       event = case params[:event] && params[:event][:type]
                 when 'AllDay'       then AllDay.new(atts)
                 when 'Appointment'  then Appointment.new(atts)
