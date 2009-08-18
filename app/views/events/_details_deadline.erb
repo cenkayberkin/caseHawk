@@ -5,7 +5,7 @@
 </li>
 <li class="event_time">
   Due at:
-  <span class="event_starts_at" data-field-name="starts_at_time" id="event-starts_at_time-<%= event.id%>">
+  <span rel="<%= event.id %>" class="event_starts_at editable_time" data-field-name="starts_at_time" id="event-starts_at_time-<%= event.id%>" data-field-value="<%= event.starts_at.to_s(:full_time) %>">
     <%= event.starts_at.to_s(:full_time) %>
   </span>
 </li>
