@@ -11,7 +11,6 @@ ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(
   :year => '%Y',
   :yw => '%Y-w%U',
   :md => '%b %e',
-  :full_time => '%l:%M %p', 
   :mdth => proc { |time|
     if time.year == Time.now.year
       time.strftime "%b #{time.day.ordinalize}"
@@ -34,6 +33,7 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
       time.strftime('%b %e, %l%p').downcase.chop :
       time.strftime('%b %e, %l:%M%p').downcase.chop
   },
+  :full_time => '%l:%M %p', 
   :simple => proc { |time| 
     time.strftime("%M") == "00" ? 
       time.strftime('%l%p').downcase.chop :
