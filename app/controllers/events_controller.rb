@@ -70,7 +70,7 @@ class EventsController < ApplicationController
                 else
                   events.new(atts)
                 end
-      event.creator = current_user
+      event.creator = current_user unless current_user.blank?
       event
     end
 
