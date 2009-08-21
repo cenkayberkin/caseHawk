@@ -58,11 +58,18 @@
 			}
 
 			// override with current values if applicable
-			if(v.length == 7){
-				h = parseInt(v.substr(0,2));
-				m = parseInt(v.substr(3,2));
-				p = v.substr(5);
-			}
+//			if(v.length == 7){
+//				h = parseInt(v.substr(0,2));
+//				m = parseInt(v.substr(3,2));
+//				p = v.substr(5);
+//			}
+
+      var reg = /\s(\d+):(\d{2})\s(\w+)/; 
+			var ar = reg.exec(v); 
+			h = parseInt(ar[1]); 
+			m = parseInt(ar[2]); 
+			p = ar[3]; 
+			p = p.toLowerCase(); 
 			
 			// build the new DOM objects
 			var output = '';
