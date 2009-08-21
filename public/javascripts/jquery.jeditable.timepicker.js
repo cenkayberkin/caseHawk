@@ -23,7 +23,7 @@ $.editable.addInputType('timepicker', {
     submit: function (settings, original) {
         /* Collect hour, minute and am/pm from pulldowns. Create a string from */
         /* them. Set value of hidden input field to this string.               */
-        var value = $('#h_').val() + ':' + $('#m_').val() + "" + $('#p_').val();
+        var value = $('#h_').val() + ':' + $('#m_').val() + " " + $('#p_').val();
         $('input', this).val(value);
     },
     /* Attach Timepicker plugin to the default hidden input element. */

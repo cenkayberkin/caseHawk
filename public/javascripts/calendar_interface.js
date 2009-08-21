@@ -126,13 +126,14 @@ $(function(){
           { name        : "event["+editable.attr("data-field-name")+"]",
             type        : 'timepicker', 
             tooltip     : 'Click to Edit TIME',
+            submit      : 'OK', 
             submitdata  : {"_method": "PUT"},
             ajaxoptions : {dataType: 'json'},
             callback    : function(savedEvent){
               // using the actual saved value
               // in the input field
               $(this).html(
-                savedEvent[editable.attr("data-field-name")]
+                savedEvent['ends_at']
               )
               // update the event on the page too
               // debug(savedEvent)
