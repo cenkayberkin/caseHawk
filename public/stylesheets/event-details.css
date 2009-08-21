@@ -54,5 +54,18 @@ li.event .event-details {
   font-size: 1em;
   color: #666;
 }
-.event-details li input {
+.event-details form {
+  font-size: 1em; 
+  width: auto; 
+  margin: 0; 
+  padding: 0; 
+  display: inline;
 }
+.event-details input, .event-details select {
+  font-size: 0.9em; 
+}
+.event-details li select {
+  margin: 0 0.25em;
+  font-size: 0.75em;
+}
+
