@@ -133,7 +133,7 @@ $(function(){
               // using the actual saved value
               // in the input field
               $(this).html(
-                savedEvent['ends_at']
+                savedEvent[editable.attr("data-field-name")]
               )
               // update the event on the page too
               // debug(savedEvent)
