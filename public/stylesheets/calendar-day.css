@@ -6,6 +6,7 @@
   .day-top {
     border-bottom: 1px solid #DDD;
     background: #F9F9F9;
+    position: relative;
   }
     .day-top-allday {
       margin: 0 0 0 51px;
@@ -25,6 +26,35 @@
       border-bottom: 1px solid #DDD; 
       float: left;      
     }
+    .day-top h3.week-link {
+      position: absolute; 
+      right: 10px; 
+      top: -26px; 
+      height: 25px; 
+      margin: 0; 
+      border-style: solid; 
+      border-width: 1px 1px 0; 
+      border-color: #CCC;
+      z-index: 100;
+      font-size: 1.2em; 
+    }
+    .day-top h3.week-link a {
+      text-transform: uppercase; 
+      text-align: center; 
+      padding: 2px 10px; 
+      height: 20px; 
+      line-height: 20px; 
+      background: #FFFFFF url(/images/nav-button-bg.png) repeat-x scroll left bottom; 
+      color: #999; 
+      display: block; 
+      border-bottom: 1px solid #CCC;
+    }
+      .day-top h3.week-link a:hover {
+        text-decoration: none; 
+        color: #B32914;
+        background: #F9F9F9; 
+        border-bottom: 1px solid #F9F9F9;
+      }
     
     .day-top-allday ul { 
       margin: 0 10px;

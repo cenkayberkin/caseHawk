@@ -126,6 +126,7 @@ $(function(){
           { name        : "event["+editable.attr("data-field-name")+"]",
             type        : 'timepicker', 
             tooltip     : 'Click to Edit TIME',
+            submit      : 'OK', 
             submitdata  : {"_method": "PUT"},
             ajaxoptions : {dataType: 'json'},
             callback    : function(savedEvent){
