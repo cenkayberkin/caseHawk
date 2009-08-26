@@ -117,11 +117,31 @@ class Event < ActiveRecord::Base
   def starts_at=(string)
     write_attribute :starts_at, Chronic.parse(string.to_s)
   end
-
   def ends_at=(string)
-    write_attribute :ends_at, Chronic.parse(string.to_s)
+    write_attribute :ends_at,   Chronic.parse(string.to_s)
   end
   
+  def starts_at_time=(string)
+    write_attribute :starts_at,
+                    starts_at.midnight + Chronic.parse(string.to_s).seconds_since_midnight
+  end
+  def ends_at_time=(string)
+    write_attribute :ends_at,
+                    ends_at.midnight   + Chronic.parse(string.to_s).seconds_since_midnight
+  end
+
+  def starts_at_date=(string)
+    write_attribute :starts_at, Chronic.parse(string.to_s).to_date.to_time + starts_at.seconds_since_midnight
+  end
+  def ends_at_date=(string)
+    write_attribute :ends_at,   Chronic.parse(string.to_s).to_date.to_time + ends_at.seconds_since_midnight
+  end
+
+  def starts_at_time; starts_at.strftime("%I:%M %p") end
+  def ends_at_time;   ends_at.strftime("%I:%M %p") end
+  def starts_at_date; starts_at.to_date end
+  def ends_at_date;   ends_at.to_date end
+
   def completable?
     false
   end

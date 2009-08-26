@@ -154,6 +154,33 @@ class EventTest < ActiveSupport::TestCase
     end
   end
 
+  context "updating chronology" do
+    setup { @event = Factory.create :event }
+    [:starts_at, :ends_at].each do |bound|
+      context "setting #{bound}" do
+        setup { @event.send("#{bound}=", 14.days.ago)}
+        should_change "@event.#{bound}.to_s"
+        should_change "@event.#{bound}_time"
+        should_change "@event.#{bound}_date"
+        should "set proper datetime" do
+          assert_equal 14.days.ago.to_s, @event.send(bound).to_s
+        end
+      end
+      context "setting time portion of #{bound}" do
+        setup { @event.send("#{bound}_time=", "05:14:12 am") }
+        should_change     "@event.#{bound}"
+        should_change     "@event.#{bound}_time"
+        should_not_change "@event.#{bound}_date"
+      end
+      context "setting date portion of #{bound}" do
+        setup { @event.send("#{bound}_date=", 52.days.ago.to_date.to_s) }
+        should_change     "@event.#{bound}"
+        should_change     "@event.#{bound}_date"
+        should_not_change "@event.#{bound}_time"
+      end
+    end
+  end
+
   context "completing events" do
     setup { @event = Factory(:task) }
     context "by setting the completed attribute" do
