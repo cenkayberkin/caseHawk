@@ -1,4 +1,6 @@
-<li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-type="<%= event.type %>" data-starts-at="<%= event.starts_at %>" class="event event_completable deadline <%= event.completed_at ? "complete" : "incomplete" %>">
+<li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-type="<%= event.type %>" 
+  data-starts-at="<%= event.starts_at %>" data-starts-at-time="<%= event.starts_at_time %>"
+  class="event event_completable deadline <%= event.completed_at ? "complete" : "incomplete" %>">
   <% if 0 == 1 %>
     <%= check_box_tag event.id, '1', event.completed_at, :id => "event-complete-#{event.id}", :class => 'task', :name => event.id %>
   <% end %>
