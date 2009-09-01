@@ -205,3 +205,10 @@ ul.task-list {
   top: 101px; 
   left: 10px; 
 }
+
+/* Week view hide hack for deadline checkbox and appointment time */
+.week .event.deadline input[type=checkbox], 
+.week .event.appointment span.time
+{
+  display: none; 
+}

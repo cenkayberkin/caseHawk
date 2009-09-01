@@ -3,9 +3,9 @@
   data-starts-at-time="<%= event.starts_at_time %>" data-ends-at-time="<%= event.ends_at_time %>"
   class="event appointment"> 
   <a rel="facebox" href="#event-details_<%= event.id %>" class="event-title">
-    <% if 0 == 1  %>
+    <span class="time">
       <%= event.starts_at.to_s(:simple) %> &ndash; <%= event.ends_at.to_s(:simple) %> 
-    <% end %>
+    </span>
     <%= event.name %>
   </a>
   <div class="event-details details_<%= event.id %>" id="event-details_<%= event.id %>">
