@@ -100,6 +100,8 @@ $(function(){
           event.url,
           { name        : "event["+editable.attr("data-field-name")+"]",
             tooltip     : 'Click to Edit',
+            submit      : 'OK', 
+            onblur      : 'ignore', 
             submitdata  : {"_method": "PUT"},
             ajaxoptions : {dataType: 'json'},
             callback    : function(savedEvent){
