@@ -127,7 +127,7 @@ $(function(){
           event.url,
           { name        : "event["+editable.attr("data-field-name")+"]",
             type        : 'timepicker', 
-            tooltip     : 'Click to Edit TIME',
+            tooltip     : 'Click to Edit',
             submit      : 'OK', 
             submitdata  : {"_method": "PUT"},
             ajaxoptions : {dataType: 'json'},
@@ -144,6 +144,34 @@ $(function(){
           }
         )
       })
+
+      $('#facebox .editable_date')
+        .each(function() {
+          var editable = $(this)
+          var event = Event.instantiate($("#"+editable.attr("rel")))
+
+          editable.editable(
+            event.url,
+            { name        : "event["+editable.attr("data-field-name")+"]",
+              type        : 'datepicker', 
+              tooltip     : 'Click to Edit DATE',
+              submit      : 'OK', 
+              submitdata  : {"_method": "PUT"},
+              ajaxoptions : {dataType: 'json'},
+              callback    : function(savedEvent){
+                // using the actual saved value
+                // in the input field
+                $(this).html(
+                  savedEvent[editable.attr("data-field-name")]
+                )
+                // update the event on the page too
+                // debug(savedEvent)
+                // $(event).find(".event-title").html( savedEvent.name )      
+              }
+            }
+          )
+        })
+
   }
   
   functionsThatNeedToBeReexecutedWhenFaceboxLoads()
