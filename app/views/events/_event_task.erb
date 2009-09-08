@@ -1,7 +1,7 @@
 <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-type="<%= event.type %>" data-starts-at="<%= event.starts_at %>" class="event event_completable task <%= event.completed_at ? "complete" : "incomplete" %>">
   <%= check_box_tag event.id, '1', event.completed_at, :id => "event-complete-#{event.id}", :class => 'task', :name => event.id %>
-  <a rel="facebox" href="#event-details_<%= event.id %>" id="event-label-<%= event.id %>" class='event-title'>
-    <%= event.starts_at.to_date.to_s(:md) %>: <%= event.name %>
+  <a rel="facebox" href="#event-details_<%= event.id %>" id="event-label-<%= event.id %>" class="event-title" title="<%= event.name %>">
+    <%= event.name %>
   </a>
   <div id="event-details_<%= event.id %>" class="event-details detail_<%= event.id %>">
     <%= render :partial => "events/details", :locals => { :event => event } %>
