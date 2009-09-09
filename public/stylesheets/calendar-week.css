@@ -172,7 +172,6 @@ li.event.allday .event-title { width: auto; }
 #sidebar {
   top: 80px; 
   right: 10px; 
-  z-index: 100;
 }
 #footer {
   bottom: 0; 
