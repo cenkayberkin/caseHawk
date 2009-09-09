@@ -31,7 +31,6 @@ $.editable.addInputType('timepicker', {
     },
     /* Attach Timepicker plugin to the default hidden input element. */
     plugin:  function(settings, original) {
-        debug(this); 
         $('input', this).filter(':hidden')
           .attr("id", "jquery_timepicker_"+(++timepickerFormId))
           .filter(':hidden').timepicker();

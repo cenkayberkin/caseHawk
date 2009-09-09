@@ -33,7 +33,7 @@ $.editable.addInputType('datepicker', {
         .datepicker({createButton:false, dateFormat: 'MM d, yy'})
         .bind('click', function() {
             //$(this).blur();
-            $(this).dpDisplay();
+            //$(this)._showDatepicker();
             return false;
         })
         .bind('dateSelected', function(e, selectedDate, $td) {
