@@ -43,6 +43,7 @@ $(function(){
   // change the header showing dates as the weeks scroll by
   // *******
   var changeWeekHeader = function(activeWeek){
+    // Set the selected rolling header to be 'active', which means locked at the top
     $("table.week-rolling-header").removeClass("rolling-active")
     activeWeek.addClass("rolling-active")
   }
@@ -150,6 +151,10 @@ $(function(){
   $(document).bind("reveal.facebox", functionsThatNeedToBeReexecutedWhenFaceboxLoads)
 
   $('a[rel*=facebox]').facebox()
-
+  
+  // jQuery plugin for endless page scrolling...
+  // Needs configuration and AJAX call, as described: 
+  // http://www.beyondcoding.com/2009/01/15/release-jquery-plugin-endless-scroll/
+  $(document).endlessScroll() 
 })
 
