@@ -158,8 +158,9 @@ $(function(){
               tooltip     : 'Click to Edit DATE',
               submit      : 'OK', 
               submitdata  : {"_method": "PUT"},
-              ajaxoptions : {dataType: 'json'},
+              ajaxoptions : {dataType: 'json'}, 
               callback    : function(savedEvent){
+                alert('callback called!')
                 // using the actual saved value
                 // in the input field
                 $(this).html(
@@ -185,4 +186,3 @@ $(function(){
   // http://www.beyondcoding.com/2009/01/15/release-jquery-plugin-endless-scroll/
   $(document).endlessScroll() 
 })
-

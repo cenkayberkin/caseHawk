@@ -19,6 +19,7 @@
 <div id="day" class="day" data-date="<%= @day.to_s %>">
   <div class="day-top">
     <h3 class="week-link"><a href="/calendar">Week View</a></h3>
+    <h2><%= @date.to_s(:long_day_month_first) %></h2>
     <h3 class="gutter">All Day</h3>
     <div class="day-top-allday">
       <ul class="day-allday">

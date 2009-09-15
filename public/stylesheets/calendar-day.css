@@ -8,6 +8,13 @@
     background: #F9F9F9;
     position: relative;
   }
+    .day-top h2 {
+      text-align: center;
+      margin: 0; 
+      padding: 0.25em 0; 
+      border-bottom: 1px solid #DDD;
+      background-color: #FFF; 
+    }
     .day-top-allday {
       margin: 0 0 0 51px;
       padding: 0; 
@@ -52,8 +59,8 @@
       .day-top h3.week-link a:hover {
         text-decoration: none; 
         color: #B32914;
-        background: #F9F9F9; 
-        border-bottom: 1px solid #F9F9F9;
+        background: #FFF; 
+        border-bottom: 1px solid #FFF;
       }
     
     .day-top-allday ul { 
