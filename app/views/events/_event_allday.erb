@@ -1,0 +1,8 @@
+<li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-type="<%= event.type %>" class="event allday">
+  <a rel="facebox" href="#event-details_<%= event.id %>" class="event-title" title="<%= event.name %>">
+    <%= event.name %>
+  </a>
+  <div class="event-details details_<%= event.id %>" id="event-details_<%= event.id %>">
+     <%= render :partial => "events/details", :locals => { :event => event } %>
+   </div>
+</li>

@@ -43,6 +43,7 @@ $(function(){
   // change the header showing dates as the weeks scroll by
   // *******
   var changeWeekHeader = function(activeWeek){
+    // Set the selected rolling header to be 'active', which means locked at the top
     $("table.week-rolling-header").removeClass("rolling-active")
     activeWeek.addClass("rolling-active")
   }
@@ -100,6 +101,8 @@ $(function(){
           event.url,
           { name        : "event["+editable.attr("data-field-name")+"]",
             tooltip     : 'Click to Edit',
+            submit      : 'OK', 
+            onblur      : 'ignore', 
             submitdata  : {"_method": "PUT"},
             ajaxoptions : {dataType: 'json'},
             callback    : function(savedEvent){
@@ -125,7 +128,7 @@ $(function(){
           event.url,
           { name        : "event["+editable.attr("data-field-name")+"]",
             type        : 'timepicker', 
-            tooltip     : 'Click to Edit TIME',
+            tooltip     : 'Click to Edit',
             submit      : 'OK', 
             submitdata  : {"_method": "PUT"},
             ajaxoptions : {dataType: 'json'},
@@ -142,12 +145,44 @@ $(function(){
           }
         )
       })
+
+      $('#facebox .editable_date')
+        .each(function() {
+          var editable = $(this)
+          var event = Event.instantiate($("#"+editable.attr("rel")))
+
+          editable.editable(
+            event.url,
+            { name        : "event["+editable.attr("data-field-name")+"]",
+              type        : 'datepicker', 
+              tooltip     : 'Click to Edit DATE',
+              submit      : 'OK', 
+              submitdata  : {"_method": "PUT"},
+              ajaxoptions : {dataType: 'json'},
+              callback    : function(savedEvent){
+                // using the actual saved value
+                // in the input field
+                $(this).html(
+                  savedEvent[editable.attr("data-field-name")]
+                )
+                // update the event on the page too
+                // debug(savedEvent)
+                // $(event).find(".event-title").html( savedEvent.name )      
+              }
+            }
+          )
+        })
+
   }
   
   functionsThatNeedToBeReexecutedWhenFaceboxLoads()
   $(document).bind("reveal.facebox", functionsThatNeedToBeReexecutedWhenFaceboxLoads)
 
   $('a[rel*=facebox]').facebox()
-
+  
+  // jQuery plugin for endless page scrolling...
+  // Needs configuration and AJAX call, as described: 
+  // http://www.beyondcoding.com/2009/01/15/release-jquery-plugin-endless-scroll/
+  $(document).endlessScroll() 
 })
 

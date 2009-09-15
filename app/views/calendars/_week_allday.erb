@@ -3,16 +3,14 @@
   <% (date.beginning_of_week..date.end_of_week).each do |day| %>
   <td class="day-<%= day.wday %>">
     <ul class="alldays">
-      <% events.select{ |e| e.starts_at.to_date == day || e.ends_at.to_date == day || 
+      <% get_all_days(events).select{ |e| e.starts_at.to_date == day || e.ends_at.to_date == day || 
           (e.starts_at.to_date < day && e.ends_at.to_date > day ) }.each do |a| %>
-        <li id="<%= a.id %>" data-event-id="<%= a.id %>" data-name="<%= a.name %>" class="event allday">
-          <a rel="facebox" href="#event-details_<%= a.id %>" class="event-title">
-            <%= a.name %>
-          </a>
-          <div id="event-details_<%= a.id %>" class="event-details details_<%= a.id %>">
-            <%= render :partial => "events/details", :locals => { :event => a } %>
-          </div>
-        </li>
+            <%= render :partial => "events/event_allday", :locals => { :event => a } %>
+      <% end %>
+    </ul>
+    <ul class="tasks">
+      <% get_tasks(events).select{ |e| e.starts_at.to_date == day }.each do |a| %>
+            <%= render :partial => "events/event_task", :locals => { :event => a } %>
       <% end %>
     </ul>
   </td>

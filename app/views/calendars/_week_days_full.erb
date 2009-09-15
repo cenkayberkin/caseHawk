@@ -9,26 +9,12 @@
       <div class="day-full collidable">
         <ul class="day-deadlines">
           <% deadlines.select{ |e| e.starts_at.to_date == day }.each do |d| %>
-            <li id="<%= d.id %>" data-event-id="<%= d.id %>" data-name="<%= d.name %>" data-starts-at="<%= d.starts_at %>" class="event event_completable deadline <%= d.completed_at ? "complete" : "incomplete" %>">
-              <a rel="facebox" href="#event-details_<%= d.id %>" class="event-title">
-                <%= d.starts_at.to_s(:simple) + ": " + d.name %>
-              </a>
-              <div class="event-details details_<%= d.id %>" id="event-details_<%= d.id %>" >
-                <%= render :partial => "events/details", :locals => { :event => d } %>
-              </div>
-            </li>
+            <%= render :partial => "events/event_deadline", :locals => { :event => d } %>
           <% end %>
         </ul>
         <ul class="day-appointments">
           <% appointments.select{ |e| e.starts_at.to_date == day }.each do |a| %>
-            <li id="<%= a.id %>" data-event-id="<%= a.id %>" data-name="<%= a.name %>" data-starts-at="<%= a.starts_at %>" data-ends-at="<%= a.ends_at %>" class="event appointment">
-              <a rel="facebox" href="#event-details_<%= a.id %>" class="event-title">
-                <%= a.name %>
-              </a>
-              <div class="event-details details_<%= a.id %>" id="event-details_<%= a.id %>" >
-                <%= render :partial => "events/details", :locals => { :event => a } %>
-              </div>
-            </li>
+            <%= render :partial => "events/event_appointment", :locals => { :event => a } %>
           <% end %>
         </ul>
       </div>

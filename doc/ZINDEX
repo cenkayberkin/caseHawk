@@ -1,0 +1,8 @@
+-0100 .hourslice
+-0100 .facebox_hide
+00001 table.week
+00100 .facebox_overlayBG
+00100 .day-top h3.week-link
+01100 #header, #week-headers, #sidebar, #footer
+09999 facebox
+10001 facebock ui-datepicker

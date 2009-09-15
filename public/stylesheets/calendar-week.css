@@ -90,7 +90,6 @@ table.week .week-dates th {
 }
 .week-dates .day-mon {
   color: #B32914;
-  font-size: 11px; 
 }
   .week-dates span.day-mon {
     float: left; 
@@ -173,7 +172,6 @@ li.event.allday .event-title { width: auto; }
 #sidebar {
   top: 80px; 
   right: 10px; 
-  z-index: 100;
 }
 #footer {
   bottom: 0; 
@@ -204,4 +202,11 @@ ul.task-list {
   width: 70%; 
   top: 101px; 
   left: 10px; 
+}
+
+/* Week view hide hack for deadline checkbox and appointment time */
+.week .event.deadline input[type=checkbox], 
+.week .event.appointment span.time
+{
+  display: none; 
 }

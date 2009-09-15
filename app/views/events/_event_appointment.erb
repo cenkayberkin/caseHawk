@@ -1,0 +1,14 @@
+<li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-type="<%= event.type %>" 
+  data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" 
+  data-starts-at-time="<%= event.starts_at_time %>" data-ends-at-time="<%= event.ends_at_time %>"
+  class="event appointment"> 
+  <a rel="facebox" href="#event-details_<%= event.id %>" class="event-title" title="<%= event.name %>">
+    <span class="time">
+      <%= event.starts_at.to_s(:simple) %> &ndash; <%= event.ends_at.to_s(:simple) %> 
+    </span>
+    <%= event.name %>
+  </a>
+  <div class="event-details details_<%= event.id %>" id="event-details_<%= event.id %>">
+     <%= render :partial => "events/details", :locals => { :event => event } %>
+   </div>
+</li>
