@@ -103,13 +103,18 @@ class Event < ActiveRecord::Base
     old_tag_ids.each {|tag_id| taggings.find_by_tag_id(tag_id).destroy }
   end
 
-  def to_json(options = {})
-    options[:only] = attribute_names + [
+  # include our custom getters in json and other attribute collections
+  def attribute_names
+    super + [
       "type",
       "starts_at", "starts_at_time", "starts_at_date",
       "ends_at",   "ends_at_time",   "ends_at_date"
     ]
-    super(options)
+  end
+
+  # include STI key in json attributes
+  def to_json(options = {})
+    super(options.merge({:only => attribute_names + ["type"]}))
   end
 
   # the 'completed' param can set intelligently set completed_at
@@ -127,11 +132,11 @@ class Event < ActiveRecord::Base
   
   def starts_at_time=(string)
     write_attribute :starts_at,
-                    starts_at.midnight + Chronic.parse(string.to_s).seconds_since_midnight
+                    starts_at.midnight + (Chronic.parse(string.to_s) || starts_at).seconds_since_midnight
   end
   def ends_at_time=(string)
     write_attribute :ends_at,
-                    ends_at.midnight   + Chronic.parse(string.to_s).seconds_since_midnight
+                    ends_at.midnight   + (Chronic.parse(string.to_s) || ends_at).seconds_since_midnight
   end
 
   def starts_at_date=(string)
