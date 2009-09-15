@@ -104,7 +104,11 @@ class Event < ActiveRecord::Base
   end
 
   def to_json(options = {})
-    options[:only] = attribute_names + ["type", "start", "end"]
+    options[:only] = attribute_names + [
+      "type",
+      "starts_at", "starts_at_time", "starts_at_date",
+      "ends_at",   "ends_at_time",   "ends_at_date"
+    ]
     super(options)
   end
 
