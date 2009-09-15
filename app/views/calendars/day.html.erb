@@ -8,9 +8,6 @@
               :locals => { :date => @date }
   %>
   <%= render :partial => 'events/new_form' %>
-  <%= render :partial => 'task_list',
-              :locals => { :events => @events }
-  %>
 <% end %>
 <%
   next_day = @date + 1; 
@@ -23,8 +20,10 @@
     <h3 class="gutter">All Day</h3>
     <div class="day-top-allday">
       <ul class="day-allday">
-        <% get_all_days(@events).
-            each do |event| %>
+        <% get_tasks(@events).each do |event| %>
+              <%= render :partial => "events/event_task", :locals => { :event => event } %>
+        <% end %>
+        <% get_all_days(@events).each do |event| %>
               <%= render :partial => "events/event_allday", :locals => { :event => event } %>
         <% end %>
       </ul>
