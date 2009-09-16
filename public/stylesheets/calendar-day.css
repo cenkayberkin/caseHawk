@@ -14,8 +14,10 @@
       padding: 0.25em 0; 
       border-bottom: 1px solid #DDD;
       background-color: #FFF; 
+      text-transform: uppercase; 
+      font-size: 1.4em;
     }
-    .day-top-allday {
+    .day-top-inner {
       margin: 0 0 0 51px;
       padding: 0; 
       width: auto;
@@ -36,21 +38,21 @@
     .day-top h3.week-link {
       position: absolute; 
       right: 10px; 
-      top: -26px; 
-      height: 25px; 
+      top: -23px; 
+      height: 22px; 
       margin: 0; 
       border-style: solid; 
       border-width: 1px 1px 0; 
       border-color: #CCC;
       z-index: 100;
-      font-size: 1.2em; 
+      font-size: 1em; 
     }
     .day-top h3.week-link a {
       text-transform: uppercase; 
       text-align: center; 
-      padding: 2px 10px; 
-      height: 20px; 
-      line-height: 20px; 
+      padding: 3px 10px; 
+      height: 15px; 
+      line-height: 15px; 
       background: #FFFFFF url(/images/nav-button-bg.png) repeat-x scroll left bottom; 
       color: #999; 
       display: block; 
@@ -63,20 +65,17 @@
         border-bottom: 1px solid #FFF;
       }
     
-    .day-top-allday ul { 
-      margin: 0 10px;
+    .day-top-inner ul { 
+      margin: 0;
       padding: 5px 0; 
-      width: auto;
-      position: relative; 
+      width: 50%;
+      float: left; 
     }
     
     .day-top li {
-      display: block;
-      float: left;
-      width: 32%;
       position: relative; 
       border-bottom: 1px solid #DDD; 
-      padding: 0.1em 0 0.1em 0.25em; 
+      padding: 0.1em 0 0.1em 0.5em; 
       margin: 0 0.25em 0.1em 0;
     }
 
@@ -100,7 +99,6 @@
     .day-deadlines li {
       position: absolute;
       width: 50%; 
-      font-size: 11px; 
       line-height: 15px; 
       left: 50%;
     }
@@ -117,8 +115,15 @@
     
     a.event_title { text-decoration: none; }
     
-    .day-deadlines li input  {
-      vertical-align: middle;
+    /*
+      IMPORTANT
+      Applying this to all checkboxes in li.events
+    */
+    
+    li.event input.checkbox  {
+      float: left; 
+      margin: 1px 4px 0 0; 
+      padding: 0; 
     }
     .collision_box {
       position: absolute;
@@ -134,7 +139,7 @@
 		}
 
     .collision_box .event {
-      padding: 0 4px; 
+      padding: 0 0.5em; 
       width: auto;
       left: 0%;
       height: 15px; 
