@@ -19,7 +19,7 @@
 
 $(function(){
   $("#day").each(Calendar.initDay)
-  $("#week").each(Calendar.initWeek)
+  $("table.week-events").each(Calendar.initWeek)
 })
 
 Calendar = {
@@ -28,9 +28,9 @@ Calendar = {
     Calendar.adjustViewport()
     Calendar.boxDayEvents()
   },
-  initWeek: function(){
+  initWeek: function(_, week){
     Calendar.positionEvents()
-    Calendar.adjustViewport()
+    Calendar.adjustViewport(week)
     Calendar.boxDayEvents()
     Calendar.fixCongestedBoxes()
   },
@@ -87,18 +87,22 @@ Calendar = {
   },
   // Trim the top and bottom off of the calendar
   // to hide the blank space.
-  adjustViewport: function(){
+  adjustViewport: function(week){  
     var events =
-          $(".viewport .event, .viewport .collision_box")
+          $(week).find(".viewport .event")
             .map(function(){return Event.instantiate(this)})
     var earliest = 
           events.sort(function(a, b){
-            return a.starts_at > b.starts_at ? 1 : -1
+            return a.start.getHours() * 60 + a.start.getMinutes() > 
+                    b.start.getHours() * 60 + b.start.getMinutes()
+                    ? 1 : -1
           })[0]
     var latest = 
           events.sort(function(a, b){
-            return (a.ends_at || a.starts_at + (60*1000)) <
-                   (b.ends_at || b.starts_at + (60*1000))
+            return (a.end.getHours()  *60 + a.end.getMinutes() || 
+                    a.start.getHours() * 60 + a.start.getMinutes()) <
+                   (b.end.getHours()  *60 + b.end.getMinutes() || 
+                    b.start.getHours() * 60 + b.start.getMinutes())
                       ? 1 : -1
           })[0]
 
@@ -117,7 +121,8 @@ Calendar = {
                        : 0,
                      17*60 // 5:00 pm
                    ) +30
-    $(".day-hours, .day-full").css({
+
+    $(week).find(".day-hours, .day-full").css({
       "margin-top":
         "-"
         + start_px
