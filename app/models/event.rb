@@ -77,7 +77,7 @@ class Event < ActiveRecord::Base
   def self.find_by(params)
     return [find_by_id(params[:id])] if params[:id]
     scope_builder do |builder| # from Ryan Bates' scope_builder
-      builder.weeks_of(params[:week]) if params[:week]
+      builder.week_of(params[:week]) if params[:week]
       builder.between(params[:starts_at], params[:ends_at]) if params[:starts_at] and params[:ends_at]
       builder.with_tags(params[:tags]) if params[:tags]
     end.find(:all).uniq
