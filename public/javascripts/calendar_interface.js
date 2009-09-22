@@ -1,11 +1,31 @@
 $(function(){
 
+  // Build the enabled datepicker calendar for the sidebar
+
   $("#datepicker").datepicker({
     changeMonth: true, 
     changeYear: true, 
     onSelect: function(dateText, inst) {
       window.location.href = "/calendars/day?date=" + dateText      
     }
+  }); 
+
+  //
+  // Add New Event Form
+  //
+  $('#event_type').change(function() {
+    switch($(this).val()) {
+      case 'AllDay': 
+      case 'Appointment': 
+        $('.event_field_ends_at:hidden').toggle("slow");          
+        $('.event_field:visible #event_ends_at').removeAttr('disabled'); 
+        break; 
+      case 'Deadline':
+      case 'Task': 
+        $('.event_field:hidden #event_ends_at').attr('disabled', 'disabled');
+        $('.event_field_ends_at:visible').toggle("slow");
+        break; 
+    }; 
   }); 
 
   // When the user mouses over an event that spans a period of time
