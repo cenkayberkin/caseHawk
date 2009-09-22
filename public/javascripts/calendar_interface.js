@@ -58,40 +58,6 @@ $(function(){
       $('.hourslice').css("background-color", "white")
     }
   )
-  
-  // *******
-  // change the header showing dates as the weeks scroll by
-  // *******
-  if ($('#week')) {
-    var changeWeekHeader = function(activeWeek){
-      // Set the selected rolling header to be 'active', which means locked at the top
-      $("table.week-rolling-header").removeClass("rolling-active")
-      activeWeek.addClass("rolling-active")
-    }
-    setTimeout(function(){
-      $("table.week-rolling-header").each(function(){
-        this.weekOffset = $("#all_weeks").offset().top
-        this.enter_rolling  = $(this).position().top - this.weekOffset
-        this.leave_rolling  = this.enter_rolling + $(this).height()
-                              + $(this).next("table.week-events").height()
-      })
-      var rollingHeaders = $("table.week-rolling-header")
-
-      $(document).scroll(function(){
-        var scroll = $(document).scrollTop()
-        if(scroll <= rollingHeaders[0].enter_rolling)
-          changeWeekHeader($(rollingHeaders[0]))
-        else
-          rollingHeaders.each(function(idx){
-            if(    scroll >= this.enter_rolling
-                && scroll <  this.leave_rolling )
-                   changeWeekHeader($(this))
-          })
-      })
-    }, 300)
-    // initial header
-    changeWeekHeader($("table.week-rolling-header:first"))
-  }
 
   var functionsThatNeedToBeReexecutedWhenFaceboxLoads = function(){
 
@@ -201,10 +167,45 @@ $(function(){
 
   $('a[rel*=facebox]').facebox()
   
-  // jQuery plugin for endless page scrolling...
-  // Needs configuration and AJAX call, as described: 
-  // http://www.beyondcoding.com/2009/01/15/release-jquery-plugin-endless-scroll/
   if ($('#week')) {
+    
+    // *******
+    // change the header showing dates as the weeks scroll by
+    // *******
+    
+    var changeWeekHeader = function(activeWeek){
+      // Set the selected rolling header to be 'active', which means locked at the top
+      $("table.week-rolling-header").removeClass("rolling-active")
+      activeWeek.addClass("rolling-active")
+    }
+    var activateRollingHeader = function(){
+      $("table.week-rolling-header").each(function(){
+        this.weekOffset = $("#all_weeks").offset().top
+        this.enter_rolling  = $(this).position().top - this.weekOffset
+        this.leave_rolling  = this.enter_rolling + $(this).height()
+                              + $(this).next("table.week-events").height()
+      })
+      var rollingHeaders = $("table.week-rolling-header")
+
+      $(document).scroll(function(){
+        var scroll = $(document).scrollTop()
+        if(scroll <= rollingHeaders[0].enter_rolling)
+          changeWeekHeader($(rollingHeaders[0]))
+        else
+          rollingHeaders.each(function(idx){
+            if(    scroll >= this.enter_rolling
+                && scroll <  this.leave_rolling )
+                   changeWeekHeader($(this))
+          })
+      })
+    }
+    // initial header
+    changeWeekHeader($("table.week-rolling-header:first"))
+    activateRollingHeader()
+        
+    // jQuery plugin for endless page scrolling...
+    // Needs configuration and AJAX call, as described: 
+    // http://www.beyondcoding.com/2009/01/15/release-jquery-plugin-endless-scroll/
     $(document).endlessScroll({
       bottomPixels: 150,
       fireOnce: true,
@@ -220,7 +221,12 @@ $(function(){
             date: day
           },
           success: function(result) {
+            debug(result)
             $("#week .week-events:last").after(result)
+            // need to adjust week for event collision, viewport, etc. 
+            Calendar.initWeek($("#week .week-events:last"))
+            // need to bind activateRollingHeader to new week in endlessScroll
+            activateRollingHeader()
           }
         })
         //alert("Found the bottom!")
