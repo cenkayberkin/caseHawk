@@ -13,7 +13,7 @@
   next_day = @date + 1; 
   prev_day = @date - 1; 
 %>
-<div id="day" class="day" data-date="<%= @day.to_s %>">
+<div id="day" class="day" data-date="<%= @date.to_s %>">
   <div class="day-top">
     <h3 class="week-link"><a href="/calendar">Week View</a></h3>
     <h2><%= @date.to_s(:long_day_month_first) %></h2>
