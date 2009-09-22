@@ -16,12 +16,15 @@
 <div id="day" class="day" data-date="<%= @day.to_s %>">
   <div class="day-top">
     <h3 class="week-link"><a href="/calendar">Week View</a></h3>
+    <h2><%= @date.to_s(:long_day_month_first) %></h2>
     <h3 class="gutter">All Day</h3>
-    <div class="day-top-allday">
-      <ul class="day-allday">
+    <div class="day-top-inner">
+      <ul class="day-tasks tasks">
         <% get_tasks(@events).each do |event| %>
               <%= render :partial => "events/event_task", :locals => { :event => event } %>
         <% end %>
+      </ul>
+      <ul class="day-alldays alldays">
         <% get_all_days(@events).each do |event| %>
               <%= render :partial => "events/event_allday", :locals => { :event => event } %>
         <% end %>

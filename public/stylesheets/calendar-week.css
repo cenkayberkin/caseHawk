@@ -144,6 +144,7 @@ li.event-overflow {
 }
 
 /* make sure events are limited to column width*/
+li.event.task .event-title, 
 li.event.allday .event-title, 
 li.event.appointment .event-title,
 li.event.deadline .event-title {
@@ -152,6 +153,7 @@ li.event.deadline .event-title {
   height: 15px; 
   overflow: hidden; 
 }
+li.event.task .event-title, 
 li.event.allday .event-title { width: auto; }
 
 /* And now I try to put in place fixed header, sidebar, and calendar header with infinite scroll weeks */
