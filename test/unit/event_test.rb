@@ -107,7 +107,7 @@ class EventTest < ActiveSupport::TestCase
       4.times { Factory.create :event, :starts_at => 2.week.ago.beginning_of_week - 2.days }
     }
     context "by week param" do
-      setup { @events = Event.find_by(:week => 1) }
+      setup { @events = Event.find_by(:week => 1.week.ago.to_date.to_s) }
       should "find only the events in the right week" do
         assert_equal Event.find(:all, :conditions => ["starts_at >= ? AND ends_at <= ?",
                                                       1.week.ago.beginning_of_week.to_date,
