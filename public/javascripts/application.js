@@ -20,6 +20,13 @@ Date.prototype.getWeek = function() {
   return Math.ceil(((this - oneJan) / 86400000)/7)
 }
 
+// Given a date string, add a week to it.
+function addWeek(day) {
+  weekLater = new Date(day.replace(/-/g,'/'))
+  weekLater.setDate(weekLater.getDate() + 7)
+  return "" + weekLater.getFullYear() + '-' + (weekLater.getMonth() + 1) + '-' + weekLater.getDate()
+}
+
 // add a given number of minutes to a date
 // returns a new Date() object
 // does not change the original object
