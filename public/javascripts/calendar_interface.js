@@ -159,7 +159,7 @@ $(function(){
               tooltip     : 'Click to Edit DATE',
               submit      : 'OK', 
               submitdata  : {"_method": "PUT"},
-              ajaxoptions : {dataType: 'json'},
+              ajaxoptions : {dataType: 'json'}, 
               callback    : function(savedEvent){
                 // using the actual saved value
                 // in the input field
@@ -210,4 +210,3 @@ $(function(){
     });
   }
 })
-

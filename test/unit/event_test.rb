@@ -204,6 +204,32 @@ class EventTest < ActiveSupport::TestCase
     end
   end
 
+  context "serializing to JSON" do
+    setup {
+      @event = Factory(:task, :completed_at => 2.days.ago)
+      @json = ActiveSupport::JSON.decode(@event.to_json)
+    }
+    should "have type attribute" do
+      assert @json.has_key?("type")
+    end
+    should "have custom time attributes" do
+      assert @json.has_key?("starts_at_time")
+      assert @json.has_key?("ends_at_time")
+    end
+    should "have custom date attributes" do
+      assert @json.has_key?("starts_at_date")
+      assert @json.has_key?("ends_at_date")
+    end
+    should "have standard attributes" do
+      Event.columns.each do |column|
+        unless ["owner_id", "creator_id"].include?(column.name)
+          assert @json.has_key?(column.name)
+        end
+      end
+    end
+  end
+  
+
   context "Tagging an Event" do
     context "tagging an event explicitly" do
       setup do
