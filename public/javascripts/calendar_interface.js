@@ -160,7 +160,6 @@ $(function(){
               submitdata  : {"_method": "PUT"},
               ajaxoptions : {dataType: 'json'}, 
               callback    : function(savedEvent){
-                alert('callback called!')
                 // using the actual saved value
                 // in the input field
                 $(this).html(

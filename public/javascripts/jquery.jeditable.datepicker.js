@@ -21,29 +21,18 @@ $.editable.addInputType('datepicker', {
     element : function(settings, original) {
         var input = $('<input>');
         $(this).append(input);
-        //$(input).css('opacity', 0.01);
         return(input);
     },
     /* attach 3rd party plugin to input element */
     plugin : function(settings, original) {
-        /* Workaround for missing parentNode in IE */
-        var form = this;
-        settings.onblur = 'cancel';
         $("input", this)
+        .attr("id", "jquery_datepicker_"+(++timepickerFormId))
         .datepicker({createButton:false, dateFormat: 'MM d, yy'})
-        .bind('click', function() {
-            //$(this).blur();
-            //$(this)._showDatepicker();
-            return false;
-        })
-        .bind('dateSelected', function(e, selectedDate, $td) {
-            $(form).submit();
-        })
-        .bind('dpClosed', function(e, selected) {
-            /* TODO: unneseccary calls reset() */
-            //$(this).blur();
-        })
-        .trigger('change')
-        .click();
-    }
+        .bind('change', function() {
+          $(this).submit(); 
+        });
+    }, 
+    submit : function(settings, original) {
+      return true; 
+    } 
 });
