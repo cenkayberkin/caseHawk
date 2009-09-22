@@ -1,6 +1,6 @@
 <tr class="week-dates">
-  <th class="week-hours day-mon"><%= date.beginning_of_week.strftime("%b") %></th>
-  <% (date.beginning_of_week..date.end_of_week).each do |day| %>
+  <th class="week-hours day-mon"><%= @date.beginning_of_week.strftime("%b") %></th>
+  <% (@date.beginning_of_week..@date.end_of_week).each do |day| %>
     <th class="day-<%= day.wday %>">
       <% if day.mday == 1  and day.wday != 6 and day.wday != 0 %>
         <span class="day-mon">
@@ -11,5 +11,5 @@
         <%= link_to day.mday, day_calendar_path(:date => day.to_s) %>
       </span>
     </th>
-  <% end %>  
+  <% end %>
 </tr>

@@ -3,7 +3,7 @@
     <% h = meridian == 'am' ? n : n + 12 %>
     <li>
       <% for m in ['00','15','30','45'] %>
-        <div id="<%= date.to_s(:yw) %>-timerow-<%= "#{h}#{m}" %>" class="hourslice">
+        <div id="<%= @date.to_s(:yw) %>-timerow-<%= "#{h}#{m}" %>" class="hourslice">
           <%= "#{n == 0 ? 12 : n}#{meridian}" if m == '00' %>
         </div>
       <% end %>
