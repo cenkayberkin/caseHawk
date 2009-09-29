@@ -71,6 +71,7 @@ class EventsController < ApplicationController
                   events.new(atts)
                 end
       event.creator = current_user unless current_user.blank?
+      logger.info("Saving new event with #{event.inspect}")
       event
     end
 
