@@ -54,12 +54,9 @@ class Event < ActiveRecord::Base
   end
     
   def self.week_of(date)
-    day = case date 
-            when String then Date.parse(date)
-            when Date   then date
-          end
+    date = Date.parse(date) if date.is_a?(String)
     # Correct to get Sun - Sat week
-    Event.between(day.beginning_of_week, day.end_of_week)
+    Event.between(date.beginning_of_week, date.end_of_week)
   end
 
   def self.this_week
