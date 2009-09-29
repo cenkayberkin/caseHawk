@@ -98,7 +98,7 @@ Event = {
     record.start = (new Date(record.starts_at))
     record.end   = Date.parse(record.ends_at) ?
                         (new Date(record.ends_at)) :
-                        record.start.addMinutes(15)
+                        DateMath.add(record.start, 'minutes', 15)
 
     $.extend(record, {
       // add methods for event objects here

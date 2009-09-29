@@ -11,27 +11,6 @@ debug = function(){
 /* allow jQuery to work with Rails' respond_to */
 $.ajaxSetup({'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")} })
 
-// add a given number of minutes to a date
-// returns a new Date() object
-// does not change the original object
-Date.prototype.addMinutes = function(minutes) {
-  var copy = new Date()
-  copy.setTime(this.valueOf())
-  var newMinutes = this.getMinutes() + minutes
-  var newHours   = this.getHours()
-
-  if(newMinutes > 59){
-    newMinutes = newMinutes % 60
-    newHours   = newHours + 1
-    // TODO: build more comprehensive function
-    //       for fixing date modulus rollovers like this
-  }
-
-  copy.setMinutes(newMinutes)
-  copy.setHours(newHours)
-  return copy
-}
-
 // "SomeString".underscore() => "some_string"
 String.prototype.underscore = function(){
   var under = [];
