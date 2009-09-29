@@ -231,7 +231,7 @@ $(function(){
       fireDelay: 2000,
       callback: function(p) {
         Week.loadAfter(
-          new Date($("#week .day:last").attr("data-date").replace(/-/g,'/')),
+          new Date($("#weeks .day:last").attr("data-date").replace(/-/g,'/')),
           activateRollingHeader
         )
 
