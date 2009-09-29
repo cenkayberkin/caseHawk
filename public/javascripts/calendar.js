@@ -18,7 +18,11 @@
 //      # finds intersecting events and groups them into a single event list
 
 $(function(){
+  // if there's a #day then this is a single-day page
   $("#day").each(Calendar.initDay)
+  // load the first week
+  Week.loadFirst()
+  // initialize each week on the page
   $("table.week-events").each(Calendar.initWeek)
 })
 
