@@ -2,3 +2,5 @@ tmp/restart.txt
 code_update*
 config/morph*
 script/morph*
+public/javascripts/jquery-autocomplete/
+public/javascripts/ui.datepicker.js

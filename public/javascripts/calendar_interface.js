@@ -13,6 +13,8 @@ $(function(){
   //
   // Add New Event Form
   //
+  
+  // Change the time and date selects based on event type
   $('#event_type').change(function() {
     switch($(this).val()) {
       case 'AllDay': 
@@ -26,6 +28,14 @@ $(function(){
         $('.event_field_ends_at:visible').toggle("slow");
         break; 
     }; 
+  });
+   
+  var test_data = "Alpha Beta Gamma Delta Epsilon Zeta Eta Theta Omicron Pi Omega".split(" "); 
+  //autocomplete on tag inputs 
+  $('#event_tags').autocomplete(test_data, {
+    matchContains: true,
+    autoFill: true,
+    minChars: 0
   }); 
 
   // When the user mouses over an event that spans a period of time
