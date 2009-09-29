@@ -11,15 +11,6 @@ debug = function(){
 /* allow jQuery to work with Rails' respond_to */
 $.ajaxSetup({'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")} })
 
-// Extend the Date object to tell us the week of the year
-// This counts week 1 as the first week containing a Sunday (which 
-// matches the ruby strftime('%U') method)
-Date.prototype.getWeek = function() {
-  var oneJan = new Date(this.getFullYear(),0,1)
-  oneJan.setDate(oneJan.getDate() + ((7-oneJan.getDay())%7))
-  return Math.ceil(((this - oneJan) / 86400000)/7)
-}
-
 // Given a date string, add a week to it.
 function addWeek(day) {
   weekLater = new Date(day.replace(/-/g,'/'))

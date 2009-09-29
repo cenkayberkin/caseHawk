@@ -54,7 +54,7 @@ $(function(){
       e = Event.instantiate(this)
       // Treat time parts as string for concatenation with +
       year = "" + e.start.getFullYear()
-      week = "" + e.start.getWeek()
+      week = "" + DateMath.getWeekNumber(e.start)
       hour = "" + e.start.getHours()
       min = e.start.getMinutes() == 0 ? "00" : "" + e.start.getMinutes()
       //alert("Coloring: " + "#" + year + "-w" + week + "-timerow-" + hour + min)
