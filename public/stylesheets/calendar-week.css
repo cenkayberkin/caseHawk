@@ -1,8 +1,10 @@
 #all_weeks {
   margin-top: 122px; 
 }
+#content {
+  margin-bottom: 0;
+}
 #week-loading {
-  border-top: 1px solid #FFF;
   border-right: 1px solid #CCC;
   border-left: 1px solid #CCC;
   width: auto; 
@@ -27,6 +29,7 @@ table.week {
   border-collapse: collapse; 
   border-spacing: 0; 
   z-index: 1;
+  margin: 1px 0; 
 }
 table.week td, 
 table.week th {
