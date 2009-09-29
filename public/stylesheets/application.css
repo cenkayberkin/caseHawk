@@ -217,6 +217,13 @@ ul, ol, p { margin: 0 0 1em; }
         text-align: center; 
         color: #777;      
     }
+      p.copyright {
+        padding: 1em 1em 0; 
+        font-size: 1em; 
+        line-height: 1.2em;
+        color: #666;
+        text-align: center; 
+      }
   
 #footer {
   clear: both; 
