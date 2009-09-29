@@ -2,9 +2,9 @@ Week = {
 
   loadFirst : function(){
     if(0 == $("table.week-events").length)
-      debug("Already loaded at least one week")
-    else
       Week.load(new Date())
+    else
+      debug("Already loaded at least one week")
   },
 
   loadAfter: function(lastWeek, callback){
@@ -12,20 +12,20 @@ Week = {
   },
 
   load: function(date, callback){
-    $.ajax({
-      url: "/calendars/show/",
-      global: true,
-      type: "GET",
-      dataType: "html",
-      data: { date: date },
-      success: function(result) {
+    $.get(
+      "/weeks/"+date.strftime('%Y-%m-%d'),
+      {},
+      function(result) {
         // debug(result)
-        $("#week .week-events:last").after(result)
+        $("#weeks").append(result)
+        debug(result)
+        debug($("#weeks"))
         // need to adjust week for event collision, viewport, etc.
-        Calendar.initWeek($("#week .week-events:last"))
+        Calendar.initWeek($("#weeks table.week:last"))
         // need to bind activateRollingHeader to new week in endlessScroll
         callback && callback()
-      }
-    })
+      },
+      'html'
+    )
   }
 }
