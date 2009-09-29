@@ -230,32 +230,11 @@ $(function(){
       fireOnce: true,
       fireDelay: 2000,
       callback: function(p) {
-        day = DateMath.add(
+        Week.loadAfter(
           new Date($("#week .day:last").attr("data-date").replace(/-/g,'/')),
-          'week',
-          1
+          activateRollingHeader
         )
-        $.ajax({
-          url: "/calendars/show/",
-          global: true,
-          type: "GET",
-          dataType: "html",
-          data: {
-            date: day
-          },
-          success: function(result) {
-            debug(result)
-            $("#week .week-events:last").after(result)
-            // need to adjust week for event collision, viewport, etc. 
-            Calendar.initWeek($("#week .week-events:last"))
-            // need to bind activateRollingHeader to new week in endlessScroll
-            activateRollingHeader()
-            dayClicks()
-          }
-        })
-        //alert("Found the bottom!")
-        //var last_img = $("ul#list li:last");
-        //last_img.after(last_img.prev().prev().prev().prev().prev().prev().clone());
+
       }
     });
   }
