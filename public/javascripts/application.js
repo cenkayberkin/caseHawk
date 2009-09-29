@@ -11,13 +11,6 @@ debug = function(){
 /* allow jQuery to work with Rails' respond_to */
 $.ajaxSetup({'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")} })
 
-// Given a date string, add a week to it.
-function addWeek(day) {
-  weekLater = new Date(day.replace(/-/g,'/'))
-  weekLater.setDate(weekLater.getDate() + 7)
-  return "" + weekLater.getFullYear() + '-' + (weekLater.getMonth() + 1) + '-' + weekLater.getDate()
-}
-
 // add a given number of minutes to a date
 // returns a new Date() object
 // does not change the original object

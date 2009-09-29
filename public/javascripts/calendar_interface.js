@@ -230,7 +230,11 @@ $(function(){
       fireOnce: true,
       fireDelay: 2000,
       callback: function(p) {
-        day = addWeek($("#week .day:last").attr("data-date"))
+        day = DateMath.add(
+          new Date($("#week .day:last").attr("data-date").replace(/-/g,'/')),
+          'week',
+          1
+        )
         $.ajax({
           url: "/calendars/show/",
           global: true,
