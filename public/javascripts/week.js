@@ -97,7 +97,11 @@ Week = {
   // fire all initializing events on the week DOM
   // *******
   init: function(week){
+    // prepare header
     Week.initHeader(week)
+    // update facebox links
+    week.find('a[rel*=facebox]').facebox()
+    // integrate this new week into the rolling headers
     Week.updateRollingHeaders()
   },
 
