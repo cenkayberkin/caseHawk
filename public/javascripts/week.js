@@ -8,7 +8,7 @@ Week = {
   },
 
   loadAfter: function(lastWeek, callback){
-    load(DateMath.add(lastWeek, 'week', 1), callback)
+    Week.load(DateMath.add(lastWeek, 'W', 1), callback)
   },
 
   load: function(date, callback){
@@ -18,8 +18,6 @@ Week = {
       function(result) {
         // debug(result)
         $("#weeks").append(result)
-        debug(result)
-        debug($("#weeks"))
         // need to adjust week for event collision, viewport, etc.
         Calendar.initWeek($("#weeks table.week:last"))
         // need to bind activateRollingHeader to new week in endlessScroll
