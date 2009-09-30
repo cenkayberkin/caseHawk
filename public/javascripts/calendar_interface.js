@@ -197,21 +197,27 @@ $(function(){
       $("table.week-rolling-header").removeClass("rolling-active")
       activeWeek.addClass("rolling-active")
     }
-    var activateRollingHeader = function(){
+    var setupRollingHeaders = function(){
       $("table.week-rolling-header").each(function(){
         this.weekOffset = $("#all_weeks").offset().top
         this.enter_rolling  = $(this).position().top - this.weekOffset
         this.leave_rolling  = this.enter_rolling + $(this).height()
                               + $(this).next("table.week-events").height()
       })
-      var rollingHeaders = $("table.week-rolling-header")
 
+      window.rollingHeaders = $("table.week-rolling-header")
+    }
+    var activateRollingHeader = function(){
+
+      setupRollingHeaders()
       $(document).scroll(function(){
+
         var scroll = $(document).scrollTop()
-        if(scroll <= rollingHeaders[0].enter_rolling)
+
+        if(scroll <= window.rollingHeaders[0].enter_rolling)
           changeWeekHeader($(rollingHeaders[0]))
         else
-          rollingHeaders.each(function(idx){
+          window.rollingHeaders.each(function(idx){
             if(    scroll >= this.enter_rolling
                 && scroll <  this.leave_rolling )
                    changeWeekHeader($(this))
@@ -232,7 +238,7 @@ $(function(){
       callback: function(p) {
         Week.loadAfter(
           new Date($("#weeks .day:last").attr("data-date").replace(/-/g,'/')),
-          activateRollingHeader
+          setupRollingHeaders
         )
 
       }
