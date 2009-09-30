@@ -31,7 +31,12 @@ class TagsControllerTest < ActionController::TestCase
                      assigns(:tags)
       end
     end
-    
+    context "with limit param" do
+      setup { get :index, :limit => '2' }
+      should "return only the number of records specified" do
+        assert_equal Tag.find(:all, :limit => 2), assigns(:tags)
+      end
+    end
   end
 end
 
