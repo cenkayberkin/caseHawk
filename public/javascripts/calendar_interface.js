@@ -184,4 +184,6 @@ $(function(){
   functionsThatNeedToBeReexecutedWhenFaceboxLoads()
   $(document).bind("reveal.facebox", functionsThatNeedToBeReexecutedWhenFaceboxLoads)
 
-  $('a[rel*=facebox]').facebox()})
+  $('a[rel*=facebox]').facebox()
+
+})
