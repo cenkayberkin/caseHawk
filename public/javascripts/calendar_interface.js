@@ -34,9 +34,18 @@ $(function(){
   //autocomplete on tag inputs 
   $('#event_tags').autocomplete(test_data, {
     matchContains: true,
-    autoFill: true,
+    autoFill: false,
     minChars: 0
   }); 
+
+  var dayClicks = function() {
+    $('.day').click(function(){
+      var day_date = $(this).attr("data-date"); 
+      $('#event_starts_at').val(day_date); 
+      $('#event_ends_at').val(day_date); 
+    })    
+  }
+  dayClicks(); 
 
   // When the user mouses over an event that spans a period of time
   // the timeslot on the left side of the calendar should highlight
@@ -237,6 +246,7 @@ $(function(){
             Calendar.initWeek($("#week .week-events:last"))
             // need to bind activateRollingHeader to new week in endlessScroll
             activateRollingHeader()
+            dayClicks()
           }
         })
         //alert("Found the bottom!")
