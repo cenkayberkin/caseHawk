@@ -13,4 +13,13 @@ class Tag < ActiveRecord::Base
 
   validates_presence_of   :name
   validates_uniqueness_of :name, :message => 'Tag name must be unique'
+
+  named_scope :search, proc {|match|
+    match.blank? ?
+      {} :
+      {:conditions => ["tags.name like ?", "%#{match}%"]}
+  }
+  named_scope :limit, proc {|n|
+    {:limit => n}
+  }
 end
