@@ -1,13 +1,16 @@
 Week = {
 
+  // *******
+  // The collection of date headers
+  // *******
   rollingHeaders: function(){
     return $("table.week-rolling-header")
   },
 
   // Set the selected rolling header to be 'active', which means locked at the top
-  changeWeekHeader: function(week){
+  changeWeekHeader: function(header){
     $("table.week-rolling-header").removeClass("rolling-active")
-    week.addClass("rolling-active")
+    header.addClass("rolling-active")
   },
 
   // *******
@@ -18,20 +21,24 @@ Week = {
     // capture header object for fast access
     var headers = Week.rollingHeaders()
 
+    if(1 == headers.length)
+      Week.changeWeekHeader($("table.week-rolling-header:first"))
+
     // remove existing event
-    $(document).unbind('scroll')
+    // $(document).unbind('scroll')
     // add new one
     $(document).scroll(function(){
 
       var scroll = $(document).scrollTop()
 
-      if(scroll <= headers[0].enter_rolling)
+      if(scroll <= headers[0].enter_rolling){
         Week.changeWeekHeader($(headers[0]))
-      else
-        headers.each(function(idx){
+      }else
+        headers.each(function(){
           if(    scroll >= this.enter_rolling
-              && scroll <  this.leave_rolling )
+              && scroll <  this.leave_rolling ){
                  Week.changeWeekHeader($(this))
+          }
         })
     })
   },
@@ -52,42 +59,53 @@ Week = {
     })
   },
 
+  // *******
+  // Load the very first week.  Defaults to current
+  // *******
   loadFirst : function(){
     if(0 == $("table.week-events").length){
       Week.load(new Date())
-      Week.changeWeekHeader($("table.week-rolling-header:first"))
       Week.setupEndlessScroll()
     }else
       debug("Already loaded at least one week")
   },
 
-  loadAfter: function(lastWeek, callback){
-    Week.load(DateMath.add(lastWeek, 'W', 1), callback)
+  loadAfter: function(lastWeek){
+    Week.load(DateMath.add(lastWeek, 'W', 1))
   },
 
-  load: function(date, callback){
+  // *******
+  // Retrieve one week's markup remotely
+  // *******
+  load: function(date){
     $.get(
-      "/weeks/"+date.strftime('%Y-%m-%d'),
-      {},
+      "/weeks/"+date.strftime('%Y-%m-%d'), {},
       function(result) {
-        // debug(result)
-        $("#weeks").append(result)
+
+        newWeek = $(result)
+        $("#weeks").append(newWeek)
+
         // need to adjust week for event collision, viewport, etc.
-        Calendar.initWeek($("#weeks div.week:last"))
-        // need to bind activateRollingHeader to new week in endlessScroll
-        callback && callback()
+        Calendar.initWeek(newWeek)
+        Week.init(newWeek)
       },
       'html'
     )
   },
 
+  // *******
+  // fire all initializing events on the week DOM
+  // *******
   init: function(week){
     Week.initHeader(week)
-    Week.updateRollingHeaders
+    Week.updateRollingHeaders()
   },
 
+  // *******
+  // Define when the header should show up as the rolling header
+  // *******
   initHeader: function(week){
-    h = week.find("table.week-rolling-header")
+    h = week.find("table.week-rolling-header")[0]
     h.weekOffset = $("#weeks").offset().top
     h.enter_rolling  = $(h).position().top - h.weekOffset
     h.leave_rolling  = h.enter_rolling
