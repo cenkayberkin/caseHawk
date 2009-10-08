@@ -2,9 +2,10 @@
 
 Day = {
   init: function(day){
-    Day.positionEvents($(day).find(".viewport .event"))
-    Day.boxDayEvents($(day))
-    Day.fixCongestedBoxes($(day))
+    Day.positionEvents(day.find(".viewport .event"))
+    Day.boxDayEvents(day)
+    Day.fixCongestedBoxes(day)
+    Day.clicks(day)
   },
   drawDay: function(date, options){
     Event.find(
@@ -45,7 +46,20 @@ Day = {
         .appendTo("ul.day-appointments")
     Day.positionEvents(element)
   },
-   // Sort all the events and find ones that are touching
+  // *******
+  // Populate the add new event form and highlight it
+  // *******
+  clicks : function(day) {
+    // set this up on both td's for the day
+    var date = day.attr("data-date")
+    debug(day, date)
+    $("[data-date="+date+"]").click(function(){
+      $('#event_starts_at').val(date).effect("highlight", { color : "#d7fcd7"}, 500);
+      $('#event_ends_at').val(date).effect("highlight", { color : "#d7fcd7"}, 500);
+      $('#event_name').focus();
+    })
+  },
+  // Sort all the events and find ones that are touching
   // For each pair of adjacent events call Calendar.Box()
   // with the two events as arguments.
   boxDayEvents: function(day){
