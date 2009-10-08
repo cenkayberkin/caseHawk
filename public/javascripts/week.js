@@ -103,7 +103,7 @@ Week = {
     // integrate this new week into the rolling headers
     Week.updateRollingHeaders()
     // initialize each day
-    week.find(".day").each(function(){
+    week.find("tr.viewport .day").each(function(){
       Day.init($(this))
     })
     // adjust the top and bottom of this week
