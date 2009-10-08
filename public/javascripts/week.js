@@ -60,6 +60,18 @@ Week = {
   },
 
   // *******
+  // Populate the add new event form and highlight it
+  // *******
+  dayClicks : function() {
+    $('.day').click(function(){
+      var day_date = $(this).attr("data-date"); 
+      $('#event_starts_at').val(day_date).effect("highlight", { color : "#d7fcd7"}, 500); 
+      $('#event_ends_at').val(day_date).effect("highlight", { color : "#d7fcd7"}, 500);  
+      $('#event_name').focus(); 
+    })    
+  },
+
+  // *******
   // Load the very first week.  Defaults to current
   // *******
   loadFirst : function(){
@@ -103,6 +115,8 @@ Week = {
     week.find('a[rel*=facebox]').facebox()
     // integrate this new week into the rolling headers
     Week.updateRollingHeaders()
+    // autofill time inputs and flash for new event form
+    Week.dayClicks()
   },
 
   // *******
