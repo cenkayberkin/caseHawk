@@ -28,3 +28,29 @@ form.new_event {
   margin-left: 25%; 
   padding-left: 10px;
 }
+
+ul.tags {
+  margin-left: 25%;
+  padding-left: 10px; 
+  list-style: none; 
+  color: #666; 
+  width: 65%; 
+}
+  .tags li {
+  }
+  .tags li:hover {
+    color: #333; 
+  }
+    .tags li a {
+      display: block; 
+      float: right; 
+      color: #333; 
+      text-decoration: none; 
+      cursor: default;
+      padding: 0 0.5em;
+    }
+    .tags li a:hover {
+      font-weight: bold; 
+      color: #FFF; 
+      background: #B32914;
+    }
