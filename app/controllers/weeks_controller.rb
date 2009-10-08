@@ -3,7 +3,7 @@ class WeeksController < ApplicationController
   before_filter :find_date
 
   def index
-    redirect_to :action => :show, :id => Date.today.to_s
+    redirect_to calendar_path
   end
 
   def show
