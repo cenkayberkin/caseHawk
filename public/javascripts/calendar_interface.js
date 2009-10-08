@@ -32,11 +32,24 @@ $(function(){
    
   //autocomplete on tag inputs 
   var tag_url = "/tags"; 
-  $('#event_tags').autocomplete(tag_url, {
-    matchContains: true,
-    autoFill: false,
-    minChars: 0
-  }); 
+  $('#event_tags')
+    .autocomplete(tag_url, {
+      matchContains: true,
+      autoFill: false,
+      minChars: 0
+    })
+    .result(function(_,_,selectedValue){
+      var tags   =  $(this).parents("form").find("ul.tags")
+      var newTag =  $("<li></li>").html(selectedValue)
+      newTag.prepend(
+        $("<img></img>")
+          .attr("src", "/images/delete.png")
+          .click(function(){ newTag.remove() })
+      )
+      tags.append(newTag)
+      $(this).val('').focus()
+    })
+
 
   var dayClicks = function() {
     $('.day').click(function(){
