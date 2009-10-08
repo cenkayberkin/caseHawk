@@ -2,7 +2,7 @@
 
 Day = {
   init: function(day){
-    Day.positionEvents(day.find(".viewport .event"))
+    Day.positionEvents(day.find(".event"))
     Day.boxDayEvents(day)
     Day.fixCongestedBoxes(day)
     Day.clicks(day)
