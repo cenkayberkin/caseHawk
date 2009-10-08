@@ -52,7 +52,6 @@ Day = {
   clicks : function(day) {
     // set this up on both td's for the day
     var date = day.attr("data-date")
-    debug(day, date)
     $("[data-date="+date+"]").click(function(){
       $('#event_starts_at').val(date).effect("highlight", { color : "#d7fcd7"}, 500);
       $('#event_ends_at').val(date).effect("highlight", { color : "#d7fcd7"}, 500);
