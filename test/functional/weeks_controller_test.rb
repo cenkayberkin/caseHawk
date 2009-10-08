@@ -20,7 +20,7 @@ class WeeksControllerTest < ActionController::TestCase
       context "with no id param" do
         setup { get :index }
         should_respond_with :redirect
-        should_redirect_to("show action") { week_path(Date.today.to_s) }
+        should_redirect_to("calendar index") { calendar_path }
       end
     end
 
