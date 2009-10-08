@@ -62,13 +62,13 @@ Week = {
   // *******
   // Populate the add new event form and highlight it
   // *******
-  dayClicks : function() {
-    $('.day').click(function(){
-      var day_date = $(this).attr("data-date"); 
-      $('#event_starts_at').val(day_date).effect("highlight", { color : "#d7fcd7"}, 500); 
-      $('#event_ends_at').val(day_date).effect("highlight", { color : "#d7fcd7"}, 500);  
-      $('#event_name').focus(); 
-    })    
+  dayClicks : function(week) {
+    week.find('.day').click(function(){
+      var day_date = $(this).attr("data-date");
+      $('#event_starts_at').val(day_date).effect("highlight", { color : "#d7fcd7"}, 500);
+      $('#event_ends_at').val(day_date).effect("highlight", { color : "#d7fcd7"}, 500);
+      $('#event_name').focus();
+    })
   },
 
   // *******
@@ -98,7 +98,6 @@ Week = {
         $("#weeks").append(newWeek)
 
         // need to adjust week for event collision, viewport, etc.
-        Calendar.initWeek(newWeek)
         Week.init(newWeek)
       },
       'html'
@@ -115,8 +114,12 @@ Week = {
     week.find('a[rel*=facebox]').facebox()
     // integrate this new week into the rolling headers
     Week.updateRollingHeaders()
+    // initialize each day
+    week.find(".day").each(Day.init)
+    // adjust the top and bottom of this week
+    Week.adjustViewport(week)
     // autofill time inputs and flash for new event form
-    Week.dayClicks()
+    Week.dayClicks(week)
   },
 
   // *******
@@ -129,5 +132,38 @@ Week = {
     h.leave_rolling  = h.enter_rolling
                        + $(h).height()
                        + $(h).next("table.week-events").height()
+  },
+  // Trim the top and bottom off of the calendar
+  // to hide the blank space.
+  // assumes that Day.boxDayEvents has already executed
+  adjustViewport: function(week){
+    var boxes = $(week).find(".viewport .collision_box")
+    var earliest = boxes.sort(function(a, b){
+            return parseInt($(a).css("top"))
+                 > parseInt($(b).css("top")) ?
+                   1 : -1
+          })[0]
+    var latest = boxes.sort(function(a, b){
+            return parseInt($(a).css("top")) + parseInt($(a).css("height"))
+                 < parseInt($(b).css("top")) + parseInt($(b).css("height")) ?
+                   1 : -1
+          })[0]
+
+    var start_px = Math.min(
+                     earliest ?
+                       parseInt($(earliest).css("top")) : 100000000 ,
+                     8*60 // 8:00 am
+                   ) -30
+    var end_px   = Math.max(
+                     latest ?
+                       parseInt($(latest).css("top")) + parseInt($(latest).css("height"))
+                       : 0,
+                     17*60 // 5:00 pm
+                   ) +30
+
+    $(week).find(".day-hours, .day-full").css({
+      "margin-top": "-"+start_px+"px",
+      "height": end_px+'px'
+    })
   }
 }
