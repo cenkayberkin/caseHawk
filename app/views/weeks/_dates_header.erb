@@ -1,7 +1,7 @@
 <tr class="week-dates">
   <th class="week-hours day-mon"><%= @date.beginning_of_week.strftime("%b") %></th>
   <% (@date.beginning_of_week..@date.end_of_week).each do |day| %>
-    <th class="day-<%= day.wday %>">
+    <th class="day-<%= day.wday %> day" data-date="<%= day.to_s %>">
       <% if day.mday == 1  and day.wday != 6 and day.wday != 0 %>
         <span class="day-mon">
           <%= day.strftime("%b") %>
