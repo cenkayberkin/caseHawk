@@ -30,9 +30,9 @@ $(function(){
     }; 
   });
    
-  var test_data = "Alpha Beta Gamma Delta Epsilon Zeta Eta Theta Omicron Pi Omega".split(" "); 
   //autocomplete on tag inputs 
-  $('#event_tags').autocomplete(test_data, {
+  var tag_url = "/tags"; 
+  $('#event_tags').autocomplete(tag_url, {
     matchContains: true,
     autoFill: false,
     minChars: 0
