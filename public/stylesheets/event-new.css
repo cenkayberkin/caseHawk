@@ -37,10 +37,12 @@ ul.tags {
   width: 65%; 
 }
   .tags li {
-    margin: 0.25em 0 0.5em;
+    margin: 0;
+  }
+  .tags li:last-child {
+    margin-bottom: 0.5em;
   }
   .tags li:hover {
-    color: #333; 
   }
     .tags li a {
       display: block; 

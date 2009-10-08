@@ -50,7 +50,7 @@ $(function(){
       if(existing.length)
         return;
 
-      var newTag = $("<li></li>")
+      var newTag = $("<li></li>").hide()
       newTag
         .html(selectedValue)
         .attr('rel', selectedValue)
@@ -68,17 +68,8 @@ $(function(){
         )
         // stick this <li> into the bottom of the <ul>
         .appendTo(tags)
+        .fadeIn("normal")
     })
-
-
-  var dayClicks = function() {
-    $('.day').click(function(){
-      var day_date = $(this).attr("data-date"); 
-      $('#event_starts_at').val(day_date); 
-      $('#event_ends_at').val(day_date); 
-    })    
-  }
-  dayClicks(); 
 
   // When the user mouses over an event that spans a period of time
   // the timeslot on the left side of the calendar should highlight
