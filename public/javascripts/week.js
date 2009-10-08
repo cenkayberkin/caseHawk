@@ -86,7 +86,6 @@ Week = {
         $("#weeks").append(newWeek)
 
         // need to adjust week for event collision, viewport, etc.
-        Calendar.initWeek(newWeek)
         Week.init(newWeek)
       },
       'html'
@@ -103,6 +102,10 @@ Week = {
     week.find('a[rel*=facebox]').facebox()
     // integrate this new week into the rolling headers
     Week.updateRollingHeaders()
+    // initialize each day
+    week.find(".day").each(Day.init)
+    // adjust the top and bottom of this week
+    Week.adjustViewport(week)
   },
 
   // *******
@@ -118,28 +121,19 @@ Week = {
   },
   // Trim the top and bottom off of the calendar
   // to hide the blank space.
-  adjustViewport: function(week){  
-    var events =
-          $(week).find(".viewport .event")
-            .map(function(){return Event.instantiate(this)})
-    var earliest = 
-          events.sort(function(a, b){
-            return a.start.getHours() * 60 + a.start.getMinutes() > 
-                    b.start.getHours() * 60 + b.start.getMinutes()
-                    ? 1 : -1
+  // assumes that Day.boxDayEvents has already executed
+  adjustViewport: function(week){
+    var boxes = $(week).find(".viewport .collision_box")
+    var earliest = boxes.sort(function(a, b){
+            return parseInt($(a).css("top"))
+                 > parseInt($(b).css("top")) ?
+                   1 : -1
           })[0]
-    var latest = 
-          events.sort(function(a, b){
-            return (a.end.getHours()  *60 + a.end.getMinutes() || 
-                    a.start.getHours() * 60 + a.start.getMinutes()) <
-                   (b.end.getHours()  *60 + b.end.getMinutes() || 
-                    b.start.getHours() * 60 + b.start.getMinutes())
-                      ? 1 : -1
+    var latest = boxes.sort(function(a, b){
+            return parseInt($(a).css("top")) + parseInt($(a).css("height"))
+                 < parseInt($(b).css("top")) + parseInt($(b).css("height")) ?
+                   1 : -1
           })[0]
-
-    // set an approximate end time if the last event has none
-    if(latest)
-      latest.end || (latest.end = new Date((latest.start-0) + (60*1000)))
 
     var start_px = Math.min(
                      earliest ?
@@ -148,18 +142,14 @@ Week = {
                    ) -30
     var end_px   = Math.max(
                      latest ?
-                       latest.end.getHours()*60 + latest.end.getMinutes()
+                       parseInt($(latest).css("top")) + parseInt($(latest).css("height"))
                        : 0,
                      17*60 // 5:00 pm
                    ) +30
 
     $(week).find(".day-hours, .day-full").css({
-      "margin-top":
-        "-"
-        + start_px
-        +"px",
-      "height":
-        end_px +'px'
+      "margin-top": "-"+start_px+"px",
+      "height": end_px+'px'
     })
   }
 }

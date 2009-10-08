@@ -2,9 +2,9 @@
 
 Day = {
   init: function(day){
-    Day.positionEvents()
-    Week.adjustViewport()
-    Day.boxDayEvents()
+    Day.positionEvents($(day).find(".viewport .event"))
+    Day.boxDayEvents($(day))
+    Day.fixCongestedBoxes($(day))
   },
   drawDay: function(date, options){
     Event.find(
@@ -48,9 +48,9 @@ Day = {
    // Sort all the events and find ones that are touching
   // For each pair of adjacent events call Calendar.Box()
   // with the two events as arguments.
-  boxDayEvents: function(){
+  boxDayEvents: function(day){
     // for each element with the .collidable class
-    $(".collidable").each(function(){
+    day.find(".collidable").each(function(){
         // consider this element to be a list of events
         var eventList = $(this)
         // for each event in this list
@@ -149,8 +149,8 @@ Day = {
   // in them for their time frame.  In this case replace
   // the bottom two lines with a link that displays
   // the events better
-  fixCongestedBoxes : function(){
-    $(".collision_box").each(function(_,box){
+  fixCongestedBoxes : function(day){
+    day.find(".collision_box").each(function(_,box){
       var canFit = parseInt($(box).height() / 15)
       var total  = $(box).find(".event").length
       if(canFit < total){
