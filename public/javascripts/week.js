@@ -109,7 +109,7 @@ Week = {
   // *******
   init: function(week){
     // prepare header
-    Week.initHeader(week)
+    Week.initHeader($(week))
     // update facebox links
     week.find('a[rel*=facebox]').facebox()
     // integrate this new week into the rolling headers
@@ -117,9 +117,9 @@ Week = {
     // initialize each day
     week.find(".day").each(Day.init)
     // adjust the top and bottom of this week
-    Week.adjustViewport(week)
+    Week.adjustViewport($(week))
     // autofill time inputs and flash for new event form
-    Week.dayClicks(week)
+    Week.dayClicks($(week))
   },
 
   // *******
