@@ -50,7 +50,7 @@ $(function(){
       if(existing.length)
         return;
 
-      var newTag = $("<li></li>")
+      var newTag = $("<li></li>").hide()
       newTag
         .html(selectedValue)
         .attr('rel', selectedValue)
@@ -68,6 +68,7 @@ $(function(){
         )
         // stick this <li> into the bottom of the <ul>
         .appendTo(tags)
+        .fadeIn("normal")
     })
 
 
