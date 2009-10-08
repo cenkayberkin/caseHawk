@@ -32,11 +32,44 @@ $(function(){
    
   //autocomplete on tag inputs 
   var tag_url = "/tags"; 
-  $('#event_tags').autocomplete(tag_url, {
-    matchContains: true,
-    autoFill: false,
-    minChars: 0
-  }); 
+  $('#event_tags')
+    .autocomplete(tag_url, {
+      matchContains: true,
+      autoFill: false,
+      minChars: 0
+    })
+    .result(function(_,_,selectedValue){
+
+      var tags     = $(this).parents("form").find("ul.tags")
+      var existing = tags.find("li[rel="+selectedValue+"]")
+
+      // clear the search box and start over
+      $(this).val('').focus()
+
+      // do nothing if this tag already exists
+      if(existing.length)
+        return;
+
+      var newTag = $("<li></li>")
+      newTag
+        .html(selectedValue)
+        .attr('rel', selectedValue)
+        // a delete link
+        .append(
+          $("<a></a>")
+            .html("x")
+            .click(function(){ newTag.remove() })
+        )
+        // the input that will save this value
+        .append(
+          $("<input type=hidden></input>")
+            .attr('name', 'event[tag_names][]')
+            .val(selectedValue)
+        )
+        // stick this <li> into the bottom of the <ul>
+        .appendTo(tags)
+    })
+
 
   var dayClicks = function() {
     $('.day').click(function(){
