@@ -33,7 +33,6 @@ $(function(){
   //autocomplete on tag inputs 
   var tag_url = "/tags"; 
   $('#event_tags').autocomplete(tag_url, {
-    dataType: "json",
     matchContains: true,
     autoFill: false,
     minChars: 0
