@@ -115,5 +115,51 @@ Week = {
     h.leave_rolling  = h.enter_rolling
                        + $(h).height()
                        + $(h).next("table.week-events").height()
+  },
+  // Trim the top and bottom off of the calendar
+  // to hide the blank space.
+  adjustViewport: function(week){  
+    var events =
+          $(week).find(".viewport .event")
+            .map(function(){return Event.instantiate(this)})
+    var earliest = 
+          events.sort(function(a, b){
+            return a.start.getHours() * 60 + a.start.getMinutes() > 
+                    b.start.getHours() * 60 + b.start.getMinutes()
+                    ? 1 : -1
+          })[0]
+    var latest = 
+          events.sort(function(a, b){
+            return (a.end.getHours()  *60 + a.end.getMinutes() || 
+                    a.start.getHours() * 60 + a.start.getMinutes()) <
+                   (b.end.getHours()  *60 + b.end.getMinutes() || 
+                    b.start.getHours() * 60 + b.start.getMinutes())
+                      ? 1 : -1
+          })[0]
+
+    // set an approximate end time if the last event has none
+    if(latest)
+      latest.end || (latest.end = new Date((latest.start-0) + (60*1000)))
+
+    var start_px = Math.min(
+                     earliest ?
+                       parseInt($(earliest).css("top")) : 100000000 ,
+                     8*60 // 8:00 am
+                   ) -30
+    var end_px   = Math.max(
+                     latest ?
+                       latest.end.getHours()*60 + latest.end.getMinutes()
+                       : 0,
+                     17*60 // 5:00 pm
+                   ) +30
+
+    $(week).find(".day-hours, .day-full").css({
+      "margin-top":
+        "-"
+        + start_px
+        +"px",
+      "height":
+        end_px +'px'
+    })
   }
 }
