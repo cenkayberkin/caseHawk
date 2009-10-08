@@ -100,6 +100,15 @@ class Event < ActiveRecord::Base
     old_tag_ids.each {|tag_id| taggings.find_by_tag_id(tag_id).destroy }
   end
 
+  #
+  def tag_names=(names)
+    names.each do |name|
+      taggings.send new_record? ? :build : :create!, 
+                    :tag => Tag.find_or_create_by_name(name), 
+                    :taggable => self
+    end
+  end
+
   # include our custom getters in json and other attribute collections
   def attribute_names
     super + [
