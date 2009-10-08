@@ -58,7 +58,7 @@ $(function(){
         .append(
           $("<a></a>")
             .html("x")
-            .click(function(){ newTag.remove() })
+            .click(function(){ newTag.fadeOut("normal", function() { $(this).remove() }) })
         )
         // the input that will save this value
         .append(

@@ -30,13 +30,14 @@ form.new_event {
 }
 
 ul.tags {
-  margin-left: 25%;
+  margin: 0 0 0 25%;
   padding-left: 10px; 
   list-style: none; 
   color: #666; 
   width: 65%; 
 }
   .tags li {
+    margin: 0.25em 0 0.5em;
   }
   .tags li:hover {
     color: #333; 
