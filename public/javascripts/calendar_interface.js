@@ -15,6 +15,41 @@ $(function(){
   // Add New Event Form
   //
   
+  // Create timepicker clickables for new event form
+  $('form.new_event .editable_time')
+    .each(function() {
+      var editable = $(this)
+      editable.editable(
+        function(value, settings) {
+          $(this).html(value); 
+          $("#" + editable.attr("rel")).val(value);
+        },
+        { 
+          name        : "event["+editable.attr("data-field-name")+"]",
+          type        : 'timepicker', 
+          tooltip     : 'Click to Edit',
+          submit      : 'OK'
+        }
+      )
+    }); 
+  // Create datepicker clickables for new event form
+  $('form.new_event .editable_date')
+    .each(function() {
+      var editable = $(this)
+      editable.editable(
+        function(value, settings) {
+          $(this).html(value); 
+          $("#" + editable.attr("rel")).val(value);
+        },
+        { 
+          name        : "event["+editable.attr("data-field-name")+"]",
+          type        : 'datepicker', 
+          tooltip     : 'Click to Edit',
+          submit      : 'OK'
+        }
+      )
+    });
+  
   // Change the time and date selects based on event type
   $('#event_type').change(function() {
     switch($(this).val()) {
