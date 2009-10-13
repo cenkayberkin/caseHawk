@@ -1,4 +1,4 @@
-<% event = object %>
+<% event ||= object %>
 <li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-type="<%= event.type %>" 
   data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>" 
   data-starts-at-time="<%= event.starts_at_time %>" data-ends-at-time="<%= event.ends_at_time %>"
