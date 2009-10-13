@@ -9,10 +9,6 @@
   %>
   <%= render :partial => 'events/new_form' %>
 <% end %>
-<%
-  next_day = @date + 1; 
-  prev_day = @date - 1; 
-%>
 <div id="day" class="day" data-date="<%= @date.to_s %>">
   <div class="day-top">
     <h3 class="week-link"><a href="/calendar">Week View</a></h3>
@@ -20,34 +16,24 @@
     <h3 class="gutter">All Day</h3>
     <div class="day-top-inner">
       <ul class="day-tasks tasks">
-        <% get_tasks(@events).each do |event| %>
-              <%= render :partial => "events/event_task", :locals => { :event => event } %>
-        <% end %>
+        <%= render :partial => "events/followings/_following", :collection => get_tasks(@events) %>
       </ul>
       <ul class="day-alldays alldays">
-        <% get_all_days(@events).each do |event| %>
-              <%= render :partial => "events/event_allday", :locals => { :event => event } %>
-        <% end %>
+        <%= render :partial => "events/event_allday", :collection => get_all_days(@events) %>
       </ul>
       <div class="clear"></div>
     </div>
   </div>
   <div class="viewport">
     <ul class="day-hours">
-      <%= render :partial => 'timeline', :locals => { :date => @date } %>
+      <%= render :partial => 'timeline' %>
     </ul>
     <div class="day-full">
       <ul class="day-deadlines deadlines collidable">
-        <% get_deadlines(@events).
-            each do |event| %>
-              <%= render :partial => "events/event_deadline", :locals => { :event => event } %>
-        <% end %>
+        <%= render :partial => "events/event_deadline", :collection => get_deadlines(@events) %>
       </ul>
       <ul class="day-appointments appointments collidable">
-        <% get_appointments(@events).
-            each do |event| %>
-              <%= render :partial => "events/event_appointment", :locals => { :event => event } %>
-        <% end %>
+        <%= render :partial => "events/event_appointment", :collection => get_appointments(@events) %>
       </ul>
     </div>
   </div>
