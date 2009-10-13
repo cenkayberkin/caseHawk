@@ -13,7 +13,7 @@
   <div id="week-headers">
     <%= render :partial => 'dayname_header' %>
   </div>
-  <div id="weeks">
+  <div id="weeks" data-first-week="<%= @date.to_s(:us) %>">
   </div>
   <div id="week-loading"></div>
 </div>

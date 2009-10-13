@@ -15,8 +15,7 @@ class WeeksController < ApplicationController
 
   def find_date
     param = params[:id] || params[:date]
-    @date = (param ?
-      Date.parse(param) : Date.today).beginning_of_week.to_date
+    @date = (param ? Date.parse(param) : Date.today).beginning_of_week.to_date
   end
 
 end

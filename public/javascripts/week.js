@@ -64,7 +64,7 @@ Week = {
   // *******
   loadFirst : function(){
     if(0 == $("table.week-events").length){
-      Week.load(new Date())
+      Week.load(new Date($('#weeks').attr('data-first-week')))
       Week.setupEndlessScroll()
     }else
       debug("Already loaded at least one week")

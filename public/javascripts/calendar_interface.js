@@ -5,8 +5,9 @@ $(function(){
   $("#datepicker").datepicker({
     changeMonth: true, 
     changeYear: true, 
+    defaultDate: new Date($('#weeks').attr('data-first-week')),
     onSelect: function(dateText, inst) {
-      window.location.href = "/calendars/day?date=" + dateText      
+      window.location.href = "/calendar/?date=" + dateText      
     }
   }); 
 

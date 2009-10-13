@@ -12,6 +12,7 @@ class CalendarsController < ApplicationController
   end
   
   def show
+    logger.info("Trying to parse: #{params[:date]}")
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
   end
   
@@ -19,7 +20,7 @@ class CalendarsController < ApplicationController
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
     respond_to do |format|
       format.html do 
-        redirect_to :action => :show
+        redirect_to params.merge!(:action => :show)
       end
     end
   end
