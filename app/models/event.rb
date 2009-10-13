@@ -17,6 +17,7 @@
 #
 
 class Event < ActiveRecord::Base
+  acts_as_versioned
   
   belongs_to :account
   belongs_to :creator, :class_name => 'User'
