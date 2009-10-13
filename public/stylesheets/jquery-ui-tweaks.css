@@ -58,7 +58,8 @@
   .mini_cal .ui-widget-header {
     border: 0px none;
     background: transparent none;
-    border-bottom: 1px dashed #999; 
+    border-bottom: 1px solid #DDD; 
     padding-left: 0; 
     padding-right: 0;
+    padding-bottom: 0.5em; 
   }
