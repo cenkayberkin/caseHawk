@@ -41,6 +41,7 @@ class EventsController < ApplicationController
     if params[:event] && !params[:event][:completed].blank?
       @event.completed_by = current_user
     end
+    @event.creator = current_user # Flag this revision as being created by this user
     @saved = @event.save
     
     respond_to do |format|
