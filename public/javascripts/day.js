@@ -52,9 +52,12 @@ Day = {
   clicks : function(day) {
     // set this up on both td's for the day
     var date = day.attr("data-date")
+    var nice_date = new Date(date.replace(/-/g, "/")); 
+
     $("[data-date="+date+"]").click(function(){
-      $('#event_starts_at').val(date).effect("highlight", { color : "#d7fcd7"}, 500);
-      $('#event_ends_at').val(date).effect("highlight", { color : "#d7fcd7"}, 500);
+      $('#new_event .editable_date').html(nice_date.strftime("%B %e, %Y")).effect("highlight", { color : "#d7fcd7"}, 500);
+      $('#event_ends_at_date').val(nice_date.strftime("%B %e, %Y"));
+      $('#event_starts_at_date').val(nice_date.strftime("%B %e, %Y")); 
       $('#event_name').focus();
     })
   },

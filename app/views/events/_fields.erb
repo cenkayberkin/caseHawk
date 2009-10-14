@@ -3,16 +3,16 @@
 <div class="event_field event_field_type"><%= f.select :type, event_types, {}, :class => "new_event_type" %> </div>
 <div class="event_field event_field_starts_at">
   <label for="event_starts_at">Starts at</label>
-  <%= f.hidden_field :starts_at_time %> 
-  <%= f.hidden_field :starts_at_date %>
-  <div id="event_starts_at_datepicker" rel="event_starts_at_date" class="event_starts_at editable_date" data-field-name="starts_at_date">October 15, 2009</div>
+  <%= f.hidden_field :starts_at_time, :value => "12:00 PM" %>
+  <%= f.hidden_field :starts_at_date, :value => @date.to_s(:short_day_month_first) %>
+  <div id="event_starts_at_datepicker" rel="event_starts_at_date" class="event_starts_at editable_date" data-field-name="starts_at_date"><%= @date.to_s(:short_day_month_first) %></div>
   <div id="event_starts_at_timepicker" rel="event_starts_at_time" class="event_starts_at editable_time" data-field-name="starts_at_time">12:00 PM</div> 
 </div>
 <div class="event_field event_field_ends_at">
   <label for="event_ends_at">Ends at</label>
-  <%= f.hidden_field :ends_at_time %> 
-  <%= f.hidden_field :ends_at_date %> 
-  <div id="event_ends_at_datepicker" rel="event_ends_at_date" class="event_ends_at editable_date" data-field-name="ends_at_date">October 15, 2009</div>
+  <%= f.hidden_field :ends_at_time, :value => "1:00 PM" %> 
+  <%= f.hidden_field :ends_at_date, :value => @date.to_s(:short_day_month_first) %> 
+  <div id="event_ends_at_datepicker" rel="event_ends_at_date" class="event_ends_at editable_date" data-field-name="ends_at_date"><%= @date.to_s(:short_day_month_first) %></div>
   <div id="event_ends_at_timepicker" rel="event_ends_at_time" class="event_ends_at editable_time" data-field-name="ends_at_time">1:00 PM</div> 
 </div>
 <div class="event_field event_field_remind"><%= f.check_box :remind %> </div>
