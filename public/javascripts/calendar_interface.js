@@ -44,7 +44,8 @@ $(function(){
           name        : "event["+editable.attr("data-field-name")+"]",
           type        : 'datepicker', 
           tooltip     : 'Click to Edit',
-          submit      : 'OK'
+          submit      : 'OK',
+          onblur      : 'ignore'
         }
       )
     });
@@ -278,6 +279,6 @@ function validateEventFormDates(active) {
     $('#event_starts_at_timepicker').html(startDate.strftime("%I:%M %p")); 
   }
   // set all applicable hiddens
-  $('#event_ends_at').val(startDate.strftime("%B %e, %Y %I:%M %p"));
-  $('#event_starts_at').val(endDate.strftime("%B %e, %Y %I:%M %p")); 
+  $('#event_starts_at').val(startDate.strftime("%B %e, %Y %I:%M %p"));
+  $('#event_ends_at').val(endDate.strftime("%B %e, %Y %I:%M %p")); 
 }
