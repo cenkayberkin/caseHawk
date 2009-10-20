@@ -13,8 +13,7 @@ $(function(){
 
   //
   // Add New Event Form
-  //
-  
+  //  
   // Create timepicker clickables for new event form
   $('form.new_event .editable_time')
     .each(function() {
@@ -22,7 +21,7 @@ $(function(){
       editable.editable(
         function(value, settings) {
           $(this).html(value); 
-          $("#" + editable.attr("rel")).val(value);
+          validateEventFormDates(editable.attr("rel"));           
         },
         { 
           name        : "event["+editable.attr("data-field-name")+"]",
@@ -39,7 +38,7 @@ $(function(){
       editable.editable(
         function(value, settings) {
           $(this).html(value); 
-          $("#" + editable.attr("rel")).val(value);
+          validateEventFormDates(editable.attr("rel"));           
         },
         { 
           name        : "event["+editable.attr("data-field-name")+"]",
@@ -54,16 +53,26 @@ $(function(){
   $('#event_type').change(function() {
     switch($(this).val()) {
       case 'AllDay': 
+        $('.editable_time').hide(); 
+        $('.event_field_ends_at:hidden').toggle("slow");          
+        $('.event_field:visible #event_ends_at').removeAttr('disabled'); 
+        break; 
       case 'Appointment': 
+        $('.editable_time').show(); 
         $('.event_field_ends_at:hidden').toggle("slow");          
         $('.event_field:visible #event_ends_at').removeAttr('disabled'); 
         break; 
       case 'Deadline':
-      case 'Task': 
+        $('.editable_time').show(); 
         $('.event_field:hidden #event_ends_at').attr('disabled', 'disabled');
         $('.event_field_ends_at:visible').toggle("slow");
         break; 
-    }; 
+      case 'Task': 
+        $('.editable_time').hide(); 
+        $('.event_field:hidden #event_ends_at').attr('disabled', 'disabled');
+        $('.event_field_ends_at:visible').toggle("slow");
+        break; 
+    };     
   });
    
   //autocomplete on tag inputs 
@@ -247,3 +256,28 @@ $(function(){
   $('a[rel*=facebox]').facebox()
 
 })
+function validateEventFormDates(active) {
+  debug(active);
+  if (active === undefined) {
+    active = 'start'; 
+  }
+  debug(active); 
+  // new to construct full dates for start and end
+  // editable only sets the inner HTML on submission then calls this validation
+  startDate = new Date($('#event_starts_at_datepicker').html() + " " + $('#event_starts_at_timepicker').html()); 
+  endDate = new Date($('#event_ends_at_datepicker').html() + " " + $('#event_ends_at_timepicker').html());
+  // check for valid endDate
+  if (active == 'start' && endDate < startDate) {
+    endDate = startDate; 
+    $('#event_ends_at_datepicker').html(endDate.strftime("%B %e, %Y")); 
+    $('#event_ends_at_timepicker').html(endDate.strftime("%I:%M %p")); 
+  } 
+  if (active == 'end' && startDate > endDate) {
+    startDate = endDate; 
+    $('#event_starts_at_datepicker').html(startDate.strftime("%B %e, %Y")); 
+    $('#event_starts_at_timepicker').html(startDate.strftime("%I:%M %p")); 
+  }
+  // set all applicable hiddens
+  $('#event_ends_at').val(startDate.strftime("%B %e, %Y %I:%M %p"));
+  $('#event_starts_at').val(endDate.strftime("%B %e, %Y %I:%M %p")); 
+}

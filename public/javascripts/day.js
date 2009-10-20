@@ -56,8 +56,7 @@ Day = {
 
     $("[data-date="+date+"]").click(function(){
       $('#new_event .editable_date').html(nice_date.strftime("%B %e, %Y")).effect("highlight", { color : "#d7fcd7"}, 500);
-      $('#event_ends_at_date').val(nice_date.strftime("%B %e, %Y"));
-      $('#event_starts_at_date').val(nice_date.strftime("%B %e, %Y")); 
+      validateEventFormDates(); 
       $('#event_name').focus();
     })
   },

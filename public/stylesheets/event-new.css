@@ -31,23 +31,29 @@ form.new_event {
   margin-left: 25%; 
   padding-left: 10px;
 }
-.new_event div.editable_time, .new_event div.editable_date {
+.new_event .editable_time, .new_event .editable_date {
   width: 65%; 
   text-align: left; 
+  color: #73A3D3;
+  cursor: default; 
 }
+
 .new_event div.editable_time {
   clear: both; 
   margin-left: 25%; 
   padding-left: 15px; 
 }
-  .new_event div.editable_time select, 
-  .new_event div.editable_date select,  
-  .new_event div.editable_time input,
-  .new_event div.editable_date input {
+  .new_event .editable_time select, 
+  .new_event .editable_date select,  
+  .new_event .editable_time input,
+  .new_event .editable_date input {
     margin: 0; 
   }
-  .new_event div.editable_date input {
+  .new_event .editable_date input {
     width: 75%; 
+  }  
+  .new_event .editable_time select {
+    margin: 0 4px 0 0;
   }
 
 ul.tags {
