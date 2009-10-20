@@ -56,7 +56,7 @@ class Account < ActiveRecord::Base
   # Does the account qualify for a particular subscription plan
   # based on the plan's limits
   def qualifies_for?(plan)
-    Subscription::Limits.keys.collect {|rule| rule.call(self, plan) }.all?
+    Subscription::Limits.keys.collect{ |rule| rule.call(self, plan) }.all?
   end
   
   def active?
@@ -69,14 +69,18 @@ class Account < ActiveRecord::Base
   
   def domain=(domain)
     @domain = domain
-    self.full_domain = "#{domain}.#{AppConfig['base_domain']}"
+    self.full_domain = "#{domain.downcase}.#{AppConfig['base_domain']}"
   end
   
   protected
   
     def valid_domain?
+      invalid = %w( support blog www billing help api admin root system sys file files )
       conditions = new_record? ? ['full_domain = ?', self.full_domain] : ['full_domain = ? and id <> ?', self.full_domain, self.id]
-      self.errors.add(:domain, 'is not available') if self.full_domain.blank? || self.class.count(:conditions => conditions) > 0
+      self.errors.add(:domain, 'is not available') if 
+        self.full_domain.blank? || 
+        invalid.include?(self.full_domain) || 
+        self.class.count(:conditions => conditions) > 0
     end
     
     # An account must have an associated user to be the administrator
