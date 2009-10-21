@@ -82,40 +82,47 @@ $(function(){
     .autocomplete(tag_url, {
       matchContains: true,
       autoFill: false,
-      minChars: 0
+      minChars: 0    
     })
-    .result(function(_,_,selectedValue){
-
-      var tags     = $(this).parents("form").find("ul.tags")
-      var existing = tags.find("li[rel="+selectedValue+"]")
-
-      // clear the search box and start over
-      $(this).val('').focus()
-
-      // do nothing if this tag already exists
-      if(existing.length)
-        return;
-
-      var newTag = $("<li></li>").hide()
-      newTag
-        .html(selectedValue)
-        .attr('rel', selectedValue)
-        // a delete link
-        .append(
-          $("<a></a>")
-            .html("x")
-            .click(function(){ newTag.fadeOut("normal", function() { $(this).remove() }) })
-        )
-        // the input that will save this value
-        .append(
-          $("<input type=hidden></input>")
-            .attr('name', 'event[tag_names][]')
-            .val(selectedValue)
-        )
-        // stick this <li> into the bottom of the <ul>
-        .appendTo(tags)
-        .fadeIn("normal")
+    .result(function(_,_,selectedValue){ 
+      tagResult(selectedValue); 
     })
+    .change(function(){ 
+      tagResult($(this).val()) 
+    })
+
+  function tagResult(selectedValue){
+
+    var tags     = $("form#new_event").find("ul.tags")
+    var existing = tags.find("li[rel="+selectedValue+"]")
+
+    // clear the search box and start over
+    $('#event_tags').val('').focus()
+
+    // do nothing if this tag already exists
+    if(existing.length)
+      return;
+
+    var newTag = $("<li></li>").hide()
+    newTag
+      .html(selectedValue)
+      .attr('rel', selectedValue)
+      // a delete link
+      .append(
+        $("<a></a>")
+          .html("x")
+          .click(function(){ newTag.fadeOut("normal", function() { $(this).remove() }) })
+      )
+      // the input that will save this value
+      .append(
+        $("<input type=hidden></input>")
+          .attr('name', 'event[tag_names][]')
+          .val(selectedValue)
+      )
+      // stick this <li> into the bottom of the <ul>
+      .appendTo(tags)
+      .fadeIn("normal")
+  }
 
   // When the user mouses over an event that spans a period of time
   // the timeslot on the left side of the calendar should highlight
