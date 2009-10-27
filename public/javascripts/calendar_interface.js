@@ -5,29 +5,75 @@ $(function(){
   $("#datepicker").datepicker({
     changeMonth: true, 
     changeYear: true, 
+    defaultDate: new Date($('#weeks').attr('data-first-week')),
     onSelect: function(dateText, inst) {
-      window.location.href = "/calendars/day?date=" + dateText      
+      window.location.href = "/calendar/?date=" + dateText      
     }
   }); 
 
   //
   // Add New Event Form
-  //
+  //  
+  // Create timepicker clickables for new event form
+  $('form.new_event .editable_time')
+    .each(function() {
+      var editable = $(this)
+      editable.editable(
+        function(value, settings) {
+          $(this).html(value); 
+          validateEventFormDates(editable.attr("rel"));           
+        },
+        { 
+          name        : "event["+editable.attr("data-field-name")+"]",
+          type        : 'timepicker', 
+          tooltip     : 'Click to Edit',
+          submit      : 'OK'
+        }
+      )
+    }); 
+  // Create datepicker clickables for new event form
+  $('form.new_event .editable_date')
+    .each(function() {
+      var editable = $(this)
+      editable.editable(
+        function(value, settings) {
+          $(this).html(value); 
+          validateEventFormDates(editable.attr("rel"));           
+        },
+        { 
+          name        : "event["+editable.attr("data-field-name")+"]",
+          type        : 'datepicker', 
+          tooltip     : 'Click to Edit',
+          submit      : 'OK',
+          onblur      : 'ignore'
+        }
+      )
+    });
   
   // Change the time and date selects based on event type
   $('#event_type').change(function() {
     switch($(this).val()) {
       case 'AllDay': 
+        $('.editable_time').hide(); 
+        $('.event_field_ends_at:hidden').toggle("slow");          
+        $('.event_field:visible #event_ends_at').removeAttr('disabled'); 
+        break; 
       case 'Appointment': 
+        $('.editable_time').show(); 
         $('.event_field_ends_at:hidden').toggle("slow");          
         $('.event_field:visible #event_ends_at').removeAttr('disabled'); 
         break; 
       case 'Deadline':
-      case 'Task': 
+        $('.editable_time').show(); 
         $('.event_field:hidden #event_ends_at').attr('disabled', 'disabled');
         $('.event_field_ends_at:visible').toggle("slow");
         break; 
-    }; 
+      case 'Task': 
+        $('.editable_time').hide(); 
+        $('.event_field:hidden #event_ends_at').attr('disabled', 'disabled');
+        $('.event_field_ends_at:visible').toggle("slow");
+        break; 
+    };     
   });
    
   //autocomplete on tag inputs 
@@ -36,40 +82,47 @@ $(function(){
     .autocomplete(tag_url, {
       matchContains: true,
       autoFill: false,
-      minChars: 0
+      minChars: 0    
     })
-    .result(function(_,_,selectedValue){
-
-      var tags     = $(this).parents("form").find("ul.tags")
-      var existing = tags.find("li[rel="+selectedValue+"]")
-
-      // clear the search box and start over
-      $(this).val('').focus()
-
-      // do nothing if this tag already exists
-      if(existing.length)
-        return;
-
-      var newTag = $("<li></li>").hide()
-      newTag
-        .html(selectedValue)
-        .attr('rel', selectedValue)
-        // a delete link
-        .append(
-          $("<a></a>")
-            .html("x")
-            .click(function(){ newTag.fadeOut("normal", function() { $(this).remove() }) })
-        )
-        // the input that will save this value
-        .append(
-          $("<input type=hidden></input>")
-            .attr('name', 'event[tag_names][]')
-            .val(selectedValue)
-        )
-        // stick this <li> into the bottom of the <ul>
-        .appendTo(tags)
-        .fadeIn("normal")
+    .result(function(_,_,selectedValue){ 
+      tagResult(selectedValue); 
     })
+    .change(function(){ 
+      tagResult($(this).val()) 
+    })
+
+  function tagResult(selectedValue){
+
+    var tags     = $("form#new_event").find("ul.tags")
+    var existing = tags.find("li[rel="+selectedValue+"]")
+
+    // clear the search box and start over
+    $('#event_tags').val('').focus()
+
+    // do nothing if this tag already exists
+    if(existing.length)
+      return;
+
+    var newTag = $("<li></li>").hide()
+    newTag
+      .html(selectedValue)
+      .attr('rel', selectedValue)
+      // a delete link
+      .append(
+        $("<a></a>")
+          .html("x")
+          .click(function(){ newTag.fadeOut("normal", function() { $(this).remove() }) })
+      )
+      // the input that will save this value
+      .append(
+        $("<input type=hidden></input>")
+          .attr('name', 'event[tag_names][]')
+          .val(selectedValue)
+      )
+      // stick this <li> into the bottom of the <ul>
+      .appendTo(tags)
+      .fadeIn("normal")
+  }
 
   // When the user mouses over an event that spans a period of time
   // the timeslot on the left side of the calendar should highlight
@@ -211,3 +264,28 @@ $(function(){
   $('a[rel*=facebox]').facebox()
 
 })
+function validateEventFormDates(active) {
+  debug(active);
+  if (active === undefined) {
+    active = 'start'; 
+  }
+  debug(active); 
+  // new to construct full dates for start and end
+  // editable only sets the inner HTML on submission then calls this validation
+  startDate = new Date($('#event_starts_at_datepicker').html() + " " + $('#event_starts_at_timepicker').html()); 
+  endDate = new Date($('#event_ends_at_datepicker').html() + " " + $('#event_ends_at_timepicker').html());
+  // check for valid endDate
+  if (active == 'start' && endDate < startDate) {
+    endDate = startDate; 
+    $('#event_ends_at_datepicker').html(endDate.strftime("%B %e, %Y")); 
+    $('#event_ends_at_timepicker').html(endDate.strftime("%I:%M %p")); 
+  } 
+  if (active == 'end' && startDate > endDate) {
+    startDate = endDate; 
+    $('#event_starts_at_datepicker').html(startDate.strftime("%B %e, %Y")); 
+    $('#event_starts_at_timepicker').html(startDate.strftime("%I:%M %p")); 
+  }
+  // set all applicable hiddens
+  $('#event_starts_at').val(startDate.strftime("%B %e, %Y %I:%M %p"));
+  $('#event_ends_at').val(endDate.strftime("%B %e, %Y %I:%M %p")); 
+}

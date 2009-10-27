@@ -2,7 +2,8 @@ form.new_event {
   
 }
 
-.new_event input, .new_event label, .new_event select {
+.new_event input, .new_event label, .new_event select, 
+.new_event div.editable_time, .new_event div.editable_date {
   display: inline-block; 
   vertical-align: middle;
   margin-bottom: 5px; 
@@ -22,12 +23,38 @@ form.new_event {
 }
 .new_event input[type=hidden] {
   width: 0; 
+  padding: 0; 
+  margin: 0; 
 }
 .new_event input[type=submit] {
   width: auto; 
   margin-left: 25%; 
   padding-left: 10px;
 }
+.new_event .editable_time, .new_event .editable_date {
+  width: 65%; 
+  text-align: left; 
+  color: #73A3D3;
+  cursor: default; 
+}
+
+.new_event div.editable_time {
+  clear: both; 
+  margin-left: 25%; 
+  padding-left: 15px; 
+}
+  .new_event .editable_time select, 
+  .new_event .editable_date select,  
+  .new_event .editable_time input,
+  .new_event .editable_date input {
+    margin: 0; 
+  }
+  .new_event .editable_date input {
+    width: 75%; 
+  }  
+  .new_event .editable_time select {
+    margin: 0 4px 0 0;
+  }
 
 ul.tags {
   margin: 0 0 0 25%;

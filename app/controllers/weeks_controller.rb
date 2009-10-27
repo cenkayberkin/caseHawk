@@ -15,8 +15,12 @@ class WeeksController < ApplicationController
 
   def find_date
     param = params[:id] || params[:date]
-    @date = (param ?
-      Date.parse(param) : Date.today).beginning_of_week.to_date
+    begin
+      @date = (param ? Date.parse(param) : Date.today).beginning_of_week.to_date 
+    rescue 
+      flash[:notice] = "Unrecognized date format."
+      @date = Date.today
+    end
   end
 
 end
