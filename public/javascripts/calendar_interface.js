@@ -51,9 +51,9 @@ $(function(){
     });
 
   // expand a single day within the week view
-  $("a.day_focus").live('click', function(){
-    var focused_cell_selector  =  "td[data-date="+$(this).attr('data-date')+"]"
-        focused_cell_selector += ",th[data-date="+$(this).attr('data-date')+"]"
+  $(".day_focus_link").live('click', function(){
+    var date = $(this).attr('data-date')
+    var focused_cell_selector = "td[data-date="+date+"],th[data-date="+date+"]"
     var focused =   $(this)
                       .parents(".week")
                       .find(focused_cell_selector)
