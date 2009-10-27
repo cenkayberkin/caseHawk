@@ -4,7 +4,7 @@ class SessionsControllerTest < ActionController::TestCase
 
   context "sessions" do
     should 'login and redirect' do
-      post :create, :login => 'quentin', :password => 'test'
+      post :create, :login => 'quentin', :password => 'longpassword'
       assert session[:user_id]
       assert_response :redirect, @response.body
     end
@@ -23,12 +23,12 @@ class SessionsControllerTest < ActionController::TestCase
     end
 
     should 'remember me' do
-      post :create, :login => 'quentin', :password => 'test', :remember_me => "1"
+      post :create, :login => 'quentin', :password => 'longpassword', :remember_me => "1"
       assert @response.cookies["auth_token"]
     end
   
     should 'doe not remember me' do
-      post :create, :login => 'quentin', :password => 'test', :remember_me => "0"
+      post :create, :login => 'quentin', :password => 'longpassword', :remember_me => "0"
       assert !@response.cookies["auth_token"]
     end
 
