@@ -1,24 +1,24 @@
 <tr class="week-dayname-header">
   <th class="week-hours"></th>
-  <% (0..6).each do |day| %>
-    <th class="day-<%= day %>">
-    <%= (day == 0 || day == 6) ? 
-            Date::ABBR_DAYNAMES[day] : 
-            Date::DAYNAMES[day] %>
+  <% (@date.beginning_of_week..@date.end_of_week).each_with_index do |day, index| %>
+    <th class="day-<%= index %> clickable day_focus_link" data-date=<%= day.to_s %>>
+    <%= (index == 0 || index == 6) ? 
+            Date::ABBR_DAYNAMES[index] : 
+            Date::DAYNAMES[index] %>
     </th>
   <% end %>
 </tr>
 <tr class="week-dates">
   <th class="week-hours day-mon"><%= @date.beginning_of_week.strftime("%b") %></th>
   <% (@date.beginning_of_week..@date.end_of_week).each do |day| %>
-    <th class="day-<%= day.wday %> day" data-date="<%= day.to_s %>">
+    <th class="day-<%= day.wday %> day day_focus_link clickable" data-date="<%= day.to_s %>">
       <% if day.mday == 1  and day.wday != 6 and day.wday != 0 %>
         <span class="day-mon">
           <%= day.strftime("%b") %>
         </span>
       <% end %>
       <span class="day-mday">
-        <%= link_to day.mday, '#', :class => :day_focus, 'data-date' => day.to_s %>
+        <%= day.mday %>
       </span>
     </th>
   <% end %>
