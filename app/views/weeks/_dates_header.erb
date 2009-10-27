@@ -18,7 +18,7 @@
         </span>
       <% end %>
       <span class="day-mday">
-        <%= link_to day.mday, day_calendar_path(:date => day.to_s) %>
+        <%= link_to day.mday, '#', :class => :day_focus, 'data-date' => day.to_s %>
       </span>
     </th>
   <% end %>
