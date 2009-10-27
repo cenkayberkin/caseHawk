@@ -1,3 +1,13 @@
+<tr class="week-dayname-header">
+  <th class="week-hours"></th>
+  <% (0..6).each do |day| %>
+    <th class="day-<%= day %>">
+    <%= (day == 0 || day == 6) ? 
+            Date::ABBR_DAYNAMES[day] : 
+            Date::DAYNAMES[day] %>
+    </th>
+  <% end %>
+</tr>
 <tr class="week-dates">
   <th class="week-hours day-mon"><%= @date.beginning_of_week.strftime("%b") %></th>
   <% (@date.beginning_of_week..@date.end_of_week).each do |day| %>
