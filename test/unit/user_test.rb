@@ -45,11 +45,11 @@ class UserTest < ActiveSupport::TestCase
 
   should 'does not rehash password' do
     users(:quentin).update_attributes(:login => 'quentin2')
-    assert_equal users(:quentin), User.authenticate('quentin2', 'test')
+    assert_equal users(:quentin), User.authenticate('quentin2', 'longpassword')
   end
 
   should 'authenticates user' do
-    assert_equal users(:quentin), User.authenticate('quentin', 'test')
+    assert_equal users(:quentin), User.authenticate('quentin', 'longpassword')
   end
 
   should 'sets remember token' do
@@ -93,6 +93,12 @@ class UserTest < ActiveSupport::TestCase
 
   protected
     def create_user(options = {})
-      User.create({ :login => 'quire', :email => 'quire@example.com', :password => 'quire', :password_confirmation => 'quire' }.merge(options))
+      User.create(
+        { :login => 'quire',
+          :email => 'quire@example.com',
+          :password => 'inquiring',
+          :password_confirmation => 'inquiring'
+        }.merge(options)
+      )
     end
 end
