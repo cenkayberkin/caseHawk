@@ -52,19 +52,19 @@ $(function(){
 
   // expand a single day within the week view
   $("a.day_focus").live('click', function(){
-    var focused_cell_selector  = "td[data-date="+$(this).attr('data-date')+"]"
-        focused_cell_selector += "th[data-date="+$(this).attr('data-date')+"]"
+    var focused_cell_selector  =  "td[data-date="+$(this).attr('data-date')+"]"
+        focused_cell_selector += ",th[data-date="+$(this).attr('data-date')+"]"
     var focused =   $(this)
                       .parents(".week")
                       .find(focused_cell_selector)
     var unfocused = $(this)
                       .parents(".week")
-                      .find("td")
+                      .find("td[data-date]")
                       .not(focused_cell_selector)
-    debug('focused:')
-    $.each(focused, debug)
-    debug('unfocused:')
-    $.each(unfocused, debug)
+    console.log('focused:')
+    $.each(focused, console.log)
+    console.log('unfocused:')
+    $.each(unfocused, console.log)
   })
 
   // Change the time and date selects based on event type
