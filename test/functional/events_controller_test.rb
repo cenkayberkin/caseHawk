@@ -21,14 +21,6 @@ class EventsControllerTest < ActionController::TestCase
       should_render_template :index
     end
 
-    context 'GET to new' do
-      setup { get :new }
-
-      should_respond_with :success
-      should_render_template :new
-      should_assign_to :event
-    end
-
     context 'POST to create with valid parameters' do
       setup do
         post :create, :event => Factory.attributes_for(:event).merge(:type => 'AllDay')
