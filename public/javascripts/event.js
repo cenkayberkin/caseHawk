@@ -104,12 +104,31 @@ Event = {
       // add methods for event objects here
       // e.g. Event#delete()
       display: Event.displayFor(record),
-      url: "/events/"+record.id
+      url: "/events/"+record.id,
+      draw:  Event.draw
     })
     // save instance in the cache
     Event.cachedInstances[record.id] = record
     return record
   },
+
+  draw: function(){
+    // check whether this event already exists
+    var originalDay = null
+    var originalEvent = $("event[data-event-id="+this.id+"]")
+    if(originalEvent.length){
+      originalDay = originalEvent.parents(".day")
+      // remove it from it's original day
+      originalEvent.remove()
+      // TODO: redraw originalDay
+    }
+    
+    var newDay = $("td.day[data-date="+this.starts_at.strftime("%G-%m-%d")+"]")
+    // add the event to the new day
+    // redraw the new day
+    return record;
+  },
+
   displayFor: function(record){
     switch(record.type){
       case 'Appointment':
