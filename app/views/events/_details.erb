@@ -30,6 +30,24 @@
       </li>
     <% end %>
   <% end %>
+  <li class="event_tags">
+    <ul class="tags">
+      <h4>Tagged With</h4>
+      <% event.taggings.each do |tagging| %>
+        <li class="tag">
+          <%= tagging.tag.name %>
+          <%= link_to "x", "#", :class => "tag_remove", :rel => tagging.tag.name %>
+        </li>
+      <% end %>
+      <li class="new_tag">
+        <a class="event_new_tag">Add New Tag</a>
+        <div class="new_tag_input">
+          <label for="new_tag">New Tag</label>
+          <input id="new_tag" name="new_tag" type="text" value="" size="30" />
+        </div>
+      </li>
+    </ul>
+  </li>
   <li class="event_creator">
     Created by <%= event.creator.name %>
   </li>
