@@ -229,6 +229,7 @@ $(function(){
               // update the event on the page too
               // debug(savedEvent)
               // $(event).find(".event-title").html( savedEvent.name )
+              updateEvent = Event.instantiate(savedEvent).redraw(); 
             }
           }
         )
@@ -255,7 +256,8 @@ $(function(){
               )
               // update the event on the page too
               // debug(savedEvent)
-              // $(event).find(".event-title").html( savedEvent.name )      
+              // $(event).find(".event-title").html( savedEvent.name )
+              updateEvent = Event.instantiate(savedEvent).draw();       
             }
           }
         )
@@ -283,11 +285,18 @@ $(function(){
                 // update the event on the page too
                 // debug(savedEvent)
                 // $(event).find(".event-title").html( savedEvent.name )      
+                updateEvent = Event.instantiate(savedEvent).draw(); 
               }
             }
           )
         })
-
+        
+        $('#facebox .new_tag_input').hide(); 
+        $('.event_new_tag').click(function() {
+//          $(this).hide(); 
+//          $('#facebox .new_tag_input').fadeIn(); 
+//          $('#facebox .new_tag_input input').focus(); 
+        }); 
   }
   
   functionsThatNeedToBeReexecutedWhenFaceboxLoads()
