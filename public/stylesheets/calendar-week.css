@@ -64,6 +64,10 @@ table.week .day-0, table.week .day-6 {
 .day-0 li, .day-6 li {
   display: none; 
 }
+.focused_day ul,
+.focused_day li {
+  display: block;
+}
 .day-0 .alldays, .day-6 .alldays {
   display: block;
   margin: 0; 
@@ -78,6 +82,16 @@ table.week .day-0, table.week .day-6 {
   .day-0 .alldays li a.event-title,  
   .day-6 .alldays li a.event-title {
     display: none; 
+  }
+.day-0.focused_day .alldays li,
+.day-6.focused_day .alldays li {
+  height: auto;
+  background: transparent;
+}
+  /* show weekends when focused */
+  .day-0.focused_day .alldays li a.event-title,
+  .day-6.focused_day .alldays li a.event-title {
+    display: block;
   }
 
 table.week .week-hours {
@@ -203,6 +217,9 @@ li.event.allday .event-title { width: auto; }
 
 .focused_day {
   width: 400px;
+}
+.unfocused_day {
+  width: auto;
 }
 .unfocused_day .event {
   display: none;
