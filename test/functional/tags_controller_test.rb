@@ -13,7 +13,7 @@ class TagsControllerTest < ActionController::TestCase
     context "with no params" do
       setup { get :index }
       should_respond_with :success
-      should_respond_with_content_type :json
+      should_respond_with_content_type :js
       should "limit response to 10 records" do
         assert_equal 10, assigns(:tags).length
       end
