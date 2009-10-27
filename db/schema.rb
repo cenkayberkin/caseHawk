@@ -84,9 +84,9 @@ ActiveRecord::Schema.define(:version => 20091027201652) do
   create_table "event_versions", :force => true do |t|
     t.integer  "event_id"
     t.integer  "version"
-    t.integer  "account_id"
     t.integer  "creator_id"
     t.integer  "owner_id"
+    t.integer  "location_id"
     t.string   "name"
     t.boolean  "remind",         :default => false
     t.datetime "created_at"
@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(:version => 20091027201652) do
     t.datetime "completed_at"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.integer  "location_id"
     t.integer  "completed_by"
+    t.integer  "account_id"
     t.string   "versioned_type"
     t.datetime "deleted_at"
   end
@@ -103,9 +103,9 @@ ActiveRecord::Schema.define(:version => 20091027201652) do
   add_index "event_versions", ["event_id"], :name => "index_event_versions_on_event_id"
 
   create_table "events", :force => true do |t|
-    t.integer  "account_id",                      :null => false
     t.integer  "creator_id",                      :null => false
     t.integer  "owner_id"
+    t.integer  "location_id"
     t.string   "type",                            :null => false
     t.string   "name",                            :null => false
     t.boolean  "remind",       :default => false
@@ -114,8 +114,8 @@ ActiveRecord::Schema.define(:version => 20091027201652) do
     t.datetime "completed_at"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.integer  "location_id"
     t.integer  "completed_by"
+    t.integer  "account_id"
     t.integer  "version"
     t.datetime "deleted_at"
   end
