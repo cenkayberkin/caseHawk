@@ -49,8 +49,8 @@ class ActiveSupport::TestCase
   def valid_user(attributes = {})
     { :name => 'Bubba',
       :login => 'foobar',
-      :password => 'foobar', 
-      :password_confirmation => 'foobar',
+      :password => 'foobarpass', 
+      :password_confirmation => 'foobarpass',
       :email => "bubba@#{AppConfig['base_domain']}"
     }.merge(attributes)
   end

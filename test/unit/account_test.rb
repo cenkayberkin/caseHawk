@@ -74,6 +74,9 @@ class AccountTest < ActiveSupport::TestCase
         @account = Account.create(:domain => 'foo', :user => @user = User.new(valid_user), :plan => subscription_plans(:free))
       end
       should_change 'User.count'
+      should "create valid record" do
+        assert @account.valid?, @account.errors.inspect
+      end
       should_change 'Subscription.count'
       should "set right account in subscription" do
         assert_equal @account, Subscription.find(:first, :order => 'id desc').account

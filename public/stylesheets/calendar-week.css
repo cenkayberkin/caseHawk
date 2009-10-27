@@ -80,6 +80,25 @@ table.week .day-0, table.week .day-6 {
     display: none; 
   }
 
+/* letting weekend details show when focused */
+/* Carlos: feel free to rework this, it's kinda hacky.
+           Now that we can focus on individual days there
+           should be a cleaner way to do our weekends, maybe
+           by doing them like normal unfocused days? */
+  .day-0.focused_day ul, .day-0.focused_day li,
+  .day-6.focused_day ul, .day-6.focused_day li {
+    display: block;
+  }
+  .day-0.focused_day .alldays li,
+  .day-6.focused_day .alldays li {
+    height: auto;
+    background: transparent;
+  }
+    .day-0.focused_day .alldays li a.event-title,
+    .day-6.focused_day .alldays li a.event-title {
+      display: block;
+    }
+
 table.week .week-hours {
   padding: 0; 
 }
@@ -192,13 +211,23 @@ li.event.allday .event-title { width: auto; }
   left: 0; 
 }
 
-#week-headers {
+.week-rolling-header {
   background: #FFF; 
   left: 0; 
   top: 70px; 
   width: 70%;
   margin: 0; 
   padding: 10px 10px 0;
+}
+
+.focused_day {
+  width: 400px;
+}
+.unfocused_day {
+  width: auto;
+}
+.unfocused_day .event {
+  display: none;
 }
 
 /* fixed position means that infinite length task list doesn't get to scrolls YIKES */
@@ -214,7 +243,7 @@ ul.task-list {
 .rolling-active {
   position: fixed; 
   width: 70%; 
-  top: 101px; 
+  top: 82px; 
   left: 10px; 
 }
 
