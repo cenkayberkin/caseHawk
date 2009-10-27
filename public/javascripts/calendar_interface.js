@@ -54,17 +54,32 @@ $(function(){
   $(".day_focus_link").live('click', function(){
     var date = $(this).attr('data-date')
     var focused_cell_selector = "td[data-date="+date+"],th[data-date="+date+"]"
-    var focused =   $(this)
-                      .parents(".week")
-                      .find(focused_cell_selector)
-    var unfocused = $(this)
-                      .parents(".week")
-                      .find("td[data-date]")
-                      .not(focused_cell_selector)
-    console.log('focused:')
-    $.each(focused, console.log)
-    console.log('unfocused:')
-    $.each(unfocused, console.log)
+    var focus_on_new_day = (!$(this).is(".focused_day"))
+
+    // back out of any currently focused day
+    $(this)
+      .parents(".week")
+        .find(".focused_day, .unfocused_day")
+          // .animate({width: 'auto'}, 500)
+          .removeClass('focused_day unfocused_day')
+          .end()
+
+    // focus on a new day if the user clicked something other
+    // than the currently focused day
+    if(focus_on_new_day)
+      $(this)
+        .parents(".week")
+          .find(".focused_day, .unfocused_day")
+            // .animate({width: 'auto'}, 500)
+            .removeClass('focused_day unfocused_day')
+            .end()
+          .find(focused_cell_selector)
+            // .animate({width: '50%'}, 500)
+            .addClass('focused_day')
+            .end()
+          .find("th:not(.focused_day),td:not(.focused_day)")
+            .addClass("unfocused_day")
+            .end()
   })
 
   // Change the time and date selects based on event type

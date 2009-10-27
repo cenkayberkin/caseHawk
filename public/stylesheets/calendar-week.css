@@ -201,6 +201,13 @@ li.event.allday .event-title { width: auto; }
   padding: 10px 10px 0;
 }
 
+.focused_day {
+  width: 400px;
+}
+.unfocused_day .event {
+  display: none;
+}
+
 /* fixed position means that infinite length task list doesn't get to scrolls YIKES */
 
 ul.task-list {
