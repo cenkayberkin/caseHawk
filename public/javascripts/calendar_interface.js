@@ -49,7 +49,24 @@ $(function(){
         }
       )
     });
-  
+
+  // expand a single day within the week view
+  $("a.day_focus").live('click', function(){
+    var focused_cell_selector  = "td[data-date="+$(this).attr('data-date')+"]"
+        focused_cell_selector += "th[data-date="+$(this).attr('data-date')+"]"
+    var focused =   $(this)
+                      .parents(".week")
+                      .find(focused_cell_selector)
+    var unfocused = $(this)
+                      .parents(".week")
+                      .find("td")
+                      .not(focused_cell_selector)
+    debug('focused:')
+    $.each(focused, debug)
+    debug('unfocused:')
+    $.each(unfocused, debug)
+  })
+
   // Change the time and date selects based on event type
   $('#event_type').change(function() {
     switch($(this).val()) {
@@ -265,11 +282,9 @@ $(function(){
 
 })
 function validateEventFormDates(active) {
-  debug(active);
-  if (active === undefined) {
-    active = 'start'; 
-  }
-  debug(active); 
+
+  if (!active) active = 'start'
+
   // new to construct full dates for start and end
   // editable only sets the inner HTML on submission then calls this validation
   startDate = new Date($('#event_starts_at_datepicker').html() + " " + $('#event_starts_at_timepicker').html()); 
