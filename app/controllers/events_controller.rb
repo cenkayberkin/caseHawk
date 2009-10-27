@@ -10,10 +10,6 @@ class EventsController < ApplicationController
       format.js do
         render :json => @events.to_json
       end
-      format.xml do
-        render :xml => @events.to_xml
-      end
-      format.ical
     end
   end
 
@@ -21,12 +17,9 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html
       format.js do
-        render :json => @event.to_json
+        render :json => {:event => @event.to_json,
+                         :html  => render_to_string('events/event', :object => @event)
       end
-      format.xml do
-        render :xml => @event.to_xml
-      end
-      format.ical
     end
   end
 
@@ -52,10 +45,8 @@ class EventsController < ApplicationController
         redirect_to_back_or day_calendar_path(:date => @event.starts_at.to_date.to_s)
       }
       format.js {
-        render :json => @event
-      }
-      format.xml {
-        render :xml => @event.to_xml
+        render :json => {:event => @event.to_json,
+                         :html  => render_to_string('events/event', :object => @event)
       }
     end
   end
