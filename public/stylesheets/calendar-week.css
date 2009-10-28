@@ -129,15 +129,17 @@ table.week .week-dates th {
     border-right: 1px solid #CCC;
   }
   .week-dates .week-hours.day-mon { text-align: center; }
-.week-dates .day-mday a {
+.week-dates .day-mday{
   font-size: 14px; 
   color: #444; 
   padding: 0 5px; 
+  border-left: 1px solid #EEE; 
 }
-  .week-dates .day-mday a:hover {
+  .week-dates .day-mday:hover {
     color: #B32914;
     text-decoration: none; 
     background: #FFF;
+    border-left: 1px solid #DDD; 
   }
 .week .week-allday th {
   text-transform: uppercase; 
@@ -213,11 +215,8 @@ li.event.allday .event-title { width: auto; }
 
 .week-rolling-header {
   background: #FFF; 
-  left: 0; 
-  top: 70px; 
-  width: 70%;
   margin: 0; 
-  padding: 10px 10px 0;
+  padding: 0; 
 }
 
 .focused_day {
@@ -245,6 +244,16 @@ ul.task-list {
   width: 70%; 
   top: 82px; 
   left: 10px; 
+}
+
+#weeks-buffer {
+  background: #FFFFFF; 
+  height: 13px; 
+  width: 72%; 
+  z-index: 1050;
+  position: fixed; 
+  top: 70px; 
+  left: 0px; 
 }
 
 /* Week view hide hack for deadline checkbox and appointment time */
