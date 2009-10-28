@@ -112,7 +112,7 @@ Event = {
     return record
   },
 
-  draw: function(){
+  draw: function(html){
     // check whether this event already exists
     var originalDay = null
     var originalEvent = $("event[data-event-id="+this.id+"]")
@@ -125,8 +125,11 @@ Event = {
     
     var newDay = $("td.day[data-date="+this.starts_at.strftime("%G-%m-%d")+"]")
     // add the event to the new day
-    // redraw the new day
-    return record;
+    newDay.find(".collidable")
+            .append(html)
+    // TODO: redraw originalDay
+
+    return this;
   },
 
   displayFor: function(record){

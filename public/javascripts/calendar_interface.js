@@ -220,16 +220,15 @@ $(function(){
             onblur      : 'ignore', 
             submitdata  : {"_method": "PUT"},
             ajaxoptions : {dataType: 'json'},
-            callback    : function(savedEvent){
+            callback    : function(result){
+              var savedEvent = result.record
+
               // using the actual saved value
               // in the input field
               $(this).html(
                 savedEvent[editable.attr("data-field-name")]
               )
-              // update the event on the page too
-              // debug(savedEvent)
-              // $(event).find(".event-title").html( savedEvent.name )
-              updateEvent = Event.instantiate(savedEvent).redraw(); 
+              Event.instantiate(savedEvent).draw(result.html)
             }
           }
         )
