@@ -7,12 +7,7 @@ Day = {
     Day.fixCongestedBoxes(day)
     Day.clicks(day)
   },
-  drawDay: function(date, options){
-    Event.find(
-      $.extend({start_date: date, end_date: date}, options),
-      function(event){ Day.placeDayEvent(event) }
-    )
-  },
+
   // attach the appropriate 'height' and 'top'
   // to the event given or (if none given)
   // to all appointments and deadlines on the page
