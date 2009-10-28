@@ -8,6 +8,16 @@ Day = {
     Day.clicks(day)
   },
 
+  refresh: function(day){
+    // move events out of boxes
+    day.find(".event").each(function(){
+      $(this).appendTo(day)
+    })
+    // delete the original collision boxes
+    day.find(".collision_box").remove()
+    // start over
+    Day.init(day)
+  },
   // attach the appropriate 'height' and 'top'
   // to the event given or (if none given)
   // to all appointments and deadlines on the page
