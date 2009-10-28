@@ -18,7 +18,7 @@ class EventsController < ApplicationController
       format.html
       format.js do
         render :json => {:event => @event.to_json,
-                         :html  => render_to_string('events/event', :object => @event)
+                         :html  => render_to_string(:partial => 'events/event', :object => @event)
                         }
       end
     end
@@ -47,7 +47,7 @@ class EventsController < ApplicationController
       end
       format.js do
         render :json => {:event => @event.to_json,
-                         :html  => render_to_string('events/event', :object => @event)
+                         :html  => render_to_string(:partial => 'events/event', :object => @event)
                         }
       end
     end
