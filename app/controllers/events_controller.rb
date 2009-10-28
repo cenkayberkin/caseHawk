@@ -19,6 +19,7 @@ class EventsController < ApplicationController
       format.js do
         render :json => {:event => @event.to_json,
                          :html  => render_to_string('events/event', :object => @event)
+                        }
       end
     end
   end
@@ -38,16 +39,17 @@ class EventsController < ApplicationController
     @saved = @event.save
     
     respond_to do |format|
-      format.html {
+      format.html do
         @saved ?
           flash[:success] = "The event has been saved" :
           flash[:error] = "There was an error saving that event"
         redirect_to_back_or day_calendar_path(:date => @event.starts_at.to_date.to_s)
-      }
-      format.js {
+      end
+      format.js do
         render :json => {:event => @event.to_json,
                          :html  => render_to_string('events/event', :object => @event)
-      }
+                        }
+      end
     end
   end
 
