@@ -16,7 +16,7 @@ form.new_event {
 }
 
 .new_event input {
-  width: 65%;
+  width: 55%;
 }
 .new_event input[type=checkbox] {
   width: auto; 
@@ -56,6 +56,21 @@ form.new_event {
     margin: 0 4px 0 0;
   }
 
+.event_field_tags_add {
+  display: inline-block;
+  margin: 0 0.5em; 
+  padding: 0 0.5em;
+  text-transform: uppercase; 
+  font-size: 0.9em; 
+  font-weight: bold;
+  cursor: default; 
+  color: #5EAD5E;  
+}
+  .event_field_tags_add:hover {
+    background: #5EAD5E; 
+    color: #FFF; 
+  }
+
 ul.tags {
   list-style: none; 
   color: #666; 
@@ -76,7 +91,7 @@ ul.tags {
     .tags li a {
       display: block; 
       float: right; 
-      color: #333; 
+      color: #B32914; 
       text-decoration: none; 
       cursor: default;
       padding: 0 0.5em;

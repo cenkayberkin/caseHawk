@@ -244,6 +244,7 @@ ul.task-list {
   width: 70%; 
   top: 82px; 
   left: 10px; 
+  z-index: 1075;
 }
 
 #weeks-buffer {
