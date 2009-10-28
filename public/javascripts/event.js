@@ -120,14 +120,14 @@ Event = {
       originalDay = originalEvent.parents(".day")
       // remove it from it's original day
       originalEvent.remove()
-      // TODO: redraw originalDay
+      Day.refresh(originalDay)
     }
     
     var newDay = $("td.day[data-date="+this.starts_at.strftime("%G-%m-%d")+"]")
     // add the event to the new day
     newDay.find(".collidable")
             .append(html)
-    // TODO: redraw originalDay
+    Day.refresh(newDay)
 
     return this;
   },
