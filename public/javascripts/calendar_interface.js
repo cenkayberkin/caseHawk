@@ -267,7 +267,6 @@ $(function(){
               submitdata  : {"_method": "PUT"},
               ajaxoptions : {dataType: 'json'}, 
               callback    : updateSavedEvent
-              }
             }
           )
         })
