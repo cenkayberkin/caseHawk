@@ -52,6 +52,15 @@
     Created by <%= event.creator.name %>
   </li>
   <li class="event_delete">
-    <%= link_to "Delete this event", "#", :class => "event_delete" %>
+    <%= link_to "Delete this event", "#", :class => "delete" %>
+    <div class="event_delete_confirm" style="display: none">
+      <p>
+        Are you sure you want to delete this event? <br />
+        <em>Deleted events are archived but will not be displayed on the calendar.</em><br />
+      </p>
+      <%= link_to "Yes, delete this event", "#", :class => "confirm", :rel => event.id %>
+      <%= link_to "Cancel", "#", :class => "cancel" %>
+      <br class="clear" />
+    </div>
   </li>
 </ul>

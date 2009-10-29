@@ -207,6 +207,7 @@ $(function(){
         })
       })
   
+    // Editable event titles
     $('#facebox .editable')
       .each(function(){
         var editable = $(this)
@@ -235,7 +236,8 @@ $(function(){
           }
         )
       })
-      
+    
+    // Editable Event Time
     $('#facebox .editable_time')
       .each(function() {
         var editable = $(this)
@@ -265,6 +267,7 @@ $(function(){
         )
       })
 
+      // Editable Event Date
       $('#facebox .editable_date')
         .each(function() {
           var editable = $(this)
@@ -294,6 +297,23 @@ $(function(){
           )
         })
         
+        // Need to control the event deletion from event details facebox
+        $('#facebox .event_delete .delete').click(function() {
+          $('#facebox .event_delete_confirm').slideToggle(); 
+        }); 
+        $('#facebox .event_delete .confirm').click(function() {
+          var event = Event.instantiate($("#" + $(this).attr("rel"))); 
+          debug(event); 
+          // Call the delete function on this event
+          
+          // Close the facebox
+        }); 
+        // Close the delete control
+        $('#facebox .event_delete .cancel').click(function() {
+          $('#facebox .event_delete_confirm').slideUp(); 
+        })
+        
+        // Need to build the tag interface for existing events
         $('#facebox .new_tag_input').hide(); 
         $('.event_new_tag').click(function() {
 //          $(this).hide(); 
