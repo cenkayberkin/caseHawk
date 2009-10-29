@@ -318,13 +318,13 @@ function validateEventFormDates(active) {
   endDate = new Date($('#event_ends_at_datepicker').html() + " " + $('#event_ends_at_timepicker').html());
   // check for valid endDate
   if (active == 'start' && endDate < startDate) {
-    endDate = startDate; 
+    endDate = new Date(startDate); 
     endDate.setHours(endDate.getHours() + 1); 
     $('#event_ends_at_datepicker').html(endDate.strftime("%B %e, %Y")); 
     $('#event_ends_at_timepicker').html(endDate.strftime("%I:%M %p")); 
   } 
   if (active == 'end' && startDate > endDate) {
-    startDate = endDate; 
+    startDate = new Date(endDate); 
     startDate.setHours(startDate.getHours() - 1); 
     $('#event_starts_at_datepicker').html(startDate.strftime("%B %e, %Y")); 
     $('#event_starts_at_timepicker').html(startDate.strftime("%I:%M %p")); 
