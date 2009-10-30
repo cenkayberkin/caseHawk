@@ -302,10 +302,15 @@ $(function(){
           $('#facebox .event_delete_confirm').slideToggle(); 
         }); 
         $('#facebox .event_delete .confirm').click(function() {
-          var event = Event.instantiate($("#" + $(this).attr("rel"))); 
-          debug(event); 
           // Call the delete function on this event
-          
+          $.post(
+            "/events/destroy", 
+            { id: $(this).attr("rel") }, 
+            function(result) {
+              jQuery(document).trigger('close.facebox'); 
+            }, 
+            "json"
+          ); 
           // Close the facebox
         }); 
         // Close the delete control
