@@ -35,9 +35,9 @@
     <ul class="tags">
       <h4>Tagged With</h4>
       <% event.taggings.each do |tagging| %>
-        <li class="tag">
+        <li class="tag" id="tagging_<%= tagging.id %>">
           <%= tagging.tag.name %>
-          <%= link_to "x", "#", :class => "tag_remove", :rel => tagging.tag.name %>
+          <a class="tag_remove" rel="<%= tagging.id %>">x</a>
         </li>
       <% end %>
       <li class="new_tag">
