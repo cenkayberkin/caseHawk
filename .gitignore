@@ -4,3 +4,4 @@ config/morph*
 script/morph*
 public/javascripts/jquery-autocomplete/
 public/javascripts/ui.datepicker.js
+db/schema.rb

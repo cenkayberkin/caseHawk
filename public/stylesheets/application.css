@@ -38,6 +38,8 @@ body {
 }
 body, div, td, table, p, textarea { }
 
+em { font-style: italic; }
+
 h1, h2, h3, h4, h5 {
 	margin: 0 0 0.5em;
 	color: #999; 
