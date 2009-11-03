@@ -10,8 +10,16 @@ Day = {
 
   refresh: function(day){
     // move events out of boxes
+    var collidable = day
+                      .find(".collidable")
+                      .css({top: 'auto',
+                            position: 'relative'})
+
     day.find(".event").each(function(){
-      $(this).appendTo(day)
+      $(this)
+        .appendTo(collidable)
+        .css({top: 'auto',
+              position: 'relative'})
     })
     // delete the original collision boxes
     day.find(".collision_box").remove()
