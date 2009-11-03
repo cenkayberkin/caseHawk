@@ -99,13 +99,24 @@ class EventsControllerTest < ActionController::TestCase
 
     context 'given a event' do
       setup { @event = Factory(:event) }
-      
       context 'DELETE to destroy' do
-        setup { delete :destroy, :id => @event.to_param }
+        context 'an event via http' do
+          setup { delete :destroy, :id => @event.to_param }
 
-        should_change 'Event.count', :from => 1, :to => 0
-        should_set_the_flash_to /deleted/i
-        should_redirect_to("index") { events_path }
+          should_change 'Event.count', :from => 1, :to => 0
+          should_set_the_flash_to /deleted/i
+          should_redirect_to("index") { events_path }
+        end
+        context 'an event via ajax' do
+          setup{
+            xhr :delete,
+                :destroy,
+                :id => @event.to_param
+          }
+          should_respond_with :ok
+          should_change 'Event.count', :from => 1, :to => 0
+          should_respond_with_content_type :js
+        end
       end
     end
   end

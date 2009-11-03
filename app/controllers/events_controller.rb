@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html
       format.js do
-        render :json => @events.to_json
+        render :json => @events
       end
     end
   end
@@ -17,9 +17,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html
       format.js do
-        render :json => {:event => @event.to_json,
-                         :html  => render_to_string(:partial => 'events/event', :object => @event)
-                        }
+        render :action => :show, :layout => false
       end
     end
   end
@@ -46,13 +44,13 @@ class EventsController < ApplicationController
         redirect_to_back_or day_calendar_path(:date => @event.starts_at.to_date.to_s)
       end
       format.js do
-        render :json => {:event => @event.to_json,
+        render :json => {:event => @event,
                          :html  => render_to_string(:partial => 'events/event', :object => @event)
                         }
       end
     end
   end
-
+  
   protected
     def new_event(atts = {})
       logger.info("Creating new #{params[:event][:type]} event with #{atts.inspect}")
