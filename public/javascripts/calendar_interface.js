@@ -302,12 +302,13 @@ $(function(){
           $('#facebox .event_delete_confirm').slideToggle(); 
         }); 
         $('#facebox .event_delete .confirm').click(function() {
+          var eventID = $(this).attr("rel"); 
           // Call the delete function on this event
           $.post(
             "/events/destroy", 
-            { id: $(this).attr("rel") }, 
+            { id: eventID }, 
             function(result) {
-              $("#" + $(this).attr("rel")).remove(); 
+              $("#" + eventID).remove(); 
               jQuery(document).trigger('close.facebox'); 
             }
           ); 
