@@ -182,6 +182,12 @@ class EventTest < ActiveSupport::TestCase
         should_change     "@event.#{bound}_date"
         should_not_change "@event.#{bound}_time"
       end
+      context "making sure we aren't bitten by a Chronic afternoon time parsing bug when setting #{bound}" do
+        setup { @event.send("#{bound}_time=", "05:14:12 pm") }
+        should_change     "@event.#{bound}"
+        should_change     "@event.#{bound}_time"
+        should_not_change "@event.#{bound}_date"
+      end
     end
   end
 
