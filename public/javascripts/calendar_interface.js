@@ -307,6 +307,7 @@ $(function(){
             "/events/destroy", 
             { id: $(this).attr("rel") }, 
             function(result) {
+              $("#" + $(this).attr("rel")).remove(); 
               jQuery(document).trigger('close.facebox'); 
             }
           ); 
