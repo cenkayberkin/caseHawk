@@ -118,15 +118,18 @@ Event = {
     var originalEvent = $(".event[data-event-id="+this.id+"]:first")
 
     if(originalEvent.length){
-      originalDay = originalEvent.parents(".day")
+      originalDay = originalEvent.parents("td.day")
       // remove it from it's original day
+      debug('removing: ', originalEvent[0])
       originalEvent.remove()
-      Day.refresh(originalDay)
+      // TODO: just refresh each day once
+      // Day.refresh(originalDay)
     }
 
     // TODO: get working for alldays
     var newDay = $(".week-day-full td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")
     // add the event to the new day
+    debug('adding: ',html)
     newDay.find(".collidable").append(html)
     Day.refresh(newDay)
 
