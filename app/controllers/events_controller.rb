@@ -66,6 +66,7 @@ class EventsController < ApplicationController
       event = case params[:event] && params[:event][:type]
                 when 'AllDay'       then AllDay.new(atts)
                 when 'Appointment'  then Appointment.new(atts)
+                when 'CourtDate'    then CourtDate.new(atts)
                 when 'Deadline'     then Deadline.new(atts)
                 when 'Task'         then Task.new(atts)
                 else

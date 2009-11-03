@@ -1,3 +1,4 @@
+<% event = object if event.blank? %>
 <h4 class="event_type event_type-<%= event.type.to_s.downcase %>"><%= event.type %></h4>
 <h3 class="editable" data-field-name="name" id="event-name-<%= event.id%>" rel="<%= event.id %>"><%= event.name %></h3>
 <ul>
