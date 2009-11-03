@@ -93,9 +93,13 @@ Event = {
                   .addClass(record.type)
                   [0])
     
+    console.log(record)
     // .starts_at and .ends_at are the string attributes
     // but .start and .end are javascript Date objects
     record.start = (new Date(record.starts_at))
+    console.log(record.starts_at)
+    console.log(new Date(record.starts_at))
+    console.log(record.start)
     record.end   = Date.parse(record.ends_at) ?
                         (new Date(record.ends_at)) :
                         DateMath.add(record.start, 'minutes', 15)

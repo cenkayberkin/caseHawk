@@ -209,13 +209,14 @@ $(function(){
 
     // function to call on editable callbacks
     var updateSavedEvent = function(result){
-        var savedEvent = result.record
-        // using the actual saved value in the input field
-        $(this).html(
-          savedEvent[editable.attr("data-field-name")]
-        )
-        Event.instantiate(savedEvent).draw(result.html)
-      }
+      console.log(result.record)
+      var savedEvent = result.record
+      // using the actual saved value in the input field
+      $(this).html(
+        savedEvent[$(this).attr("data-field-name")]
+      )
+      Event.instantiate(savedEvent).draw(result.html)
+    }
 
     $('#facebox .editable')
       .each(function(){
