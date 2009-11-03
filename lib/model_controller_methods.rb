@@ -41,13 +41,8 @@ module ModelControllerMethods
       end
       
       wants.js do
-        render :update do |page|
-          if @result
-            page.remove "#{@cname}_#{@obj.id}"
-          else
-            page.alert "Errors deleting #{@obj.class.to_s.downcase}: #{@obj.errors.full_messages.to_sentence}"
-          end
-        end
+        # If we have made it this far, the object is DABLETED! Send it back for removal from the page
+        render :json => @obj
       end
     end
   end

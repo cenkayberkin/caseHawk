@@ -17,9 +17,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html
       format.js do
-        render :json => {:record => @event,
-                         :html   => render_to_string(:partial => 'events/event', :object => @event)
-                        }
+        render :action => :show, :layout => false
       end
     end
   end
@@ -52,7 +50,7 @@ class EventsController < ApplicationController
       end
     end
   end
-
+  
   protected
     def new_event(atts = {})
       logger.info("Creating new #{params[:event][:type]} event with #{atts.inspect}")

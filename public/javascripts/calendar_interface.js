@@ -283,12 +283,14 @@ $(function(){
         $('#facebox .event_delete .delete').live('click', function() {
           $('#facebox .event_delete_confirm').slideToggle(); 
         }); 
-        $('#facebox .event_delete .confirm').live('click', function() {
+        $('#facebox .event_delete .confirm').click(function() {
+          var eventID = $(this).attr("rel"); 
           // Call the delete function on this event
           $.post(
             "/events/destroy", 
-            { id: $(this).attr("rel") }, 
+            { id: eventID }, 
             function(result) {
+              $("#" + eventID).remove(); 
               jQuery(document).trigger('close.facebox'); 
             }
           ); 
@@ -302,9 +304,24 @@ $(function(){
         // Need to build the tag interface for existing events
         $('#facebox .new_tag_input').hide(); 
         $('.event_new_tag').live('click', function() {
-//          $(this).hide(); 
-//          $('#facebox .new_tag_input').fadeIn(); 
-//          $('#facebox .new_tag_input input').focus(); 
+          $(this).hide(); 
+          $('#facebox .new_tag_input').fadeIn(); 
+          $('#facebox .new_tag_input input').focus(); 
+        }); 
+        $('#facebox .tag_remove').click(function() {
+          var self = $(this)
+          var postUrl = "/taggings/" + self.attr("rel"); 
+          $.ajax({
+            type: "POST", 
+            timeout: 2000, 
+            dataType: 'json', 
+            url: postUrl, 
+            data: "_method=delete", 
+            success: function() {
+              debug("#tagging_" + self.attr("rel"));
+              $("#tagging_" + self.attr("rel")).fadeOut().remove(); 
+            }
+          });  
         }); 
   }
   
