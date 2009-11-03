@@ -58,9 +58,9 @@ Event = {
   cachedInstances: [],
   instantiate: function(record, skipCache){
 
-    // if this is a jQuery object just return the
-    // actual element
-    if(record.jquery) return Event.instantiate(record[0], skipCache)
+    // if this is a jQuery object just return the actual element
+    if(record.jquery)
+      return Event.instantiate(record[0], skipCache)
 
     // return from cache if found
     var id = parseInt(record.id)
@@ -93,13 +93,9 @@ Event = {
                   .addClass(record.type)
                   [0])
     
-    console.log(record)
     // .starts_at and .ends_at are the string attributes
     // but .start and .end are javascript Date objects
     record.start = (new Date(record.starts_at))
-    console.log(record.starts_at)
-    console.log(new Date(record.starts_at))
-    console.log(record.start)
     record.end   = Date.parse(record.ends_at) ?
                         (new Date(record.ends_at)) :
                         DateMath.add(record.start, 'minutes', 15)
@@ -119,18 +115,19 @@ Event = {
   draw: function(html){
     // check whether this event already exists
     var originalDay = null
-    var originalEvent = $("event[data-event-id="+this.id+"]")
+    var originalEvent = $(".event[data-event-id="+this.id+"]:first")
+
     if(originalEvent.length){
       originalDay = originalEvent.parents(".day")
       // remove it from it's original day
       originalEvent.remove()
       Day.refresh(originalDay)
     }
-    
-    var newDay = $("td.day[data-date="+this.starts_at.strftime("%G-%m-%d")+"]")
+
+    // TODO: get working for alldays
+    var newDay = $(".week-day-full td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")
     // add the event to the new day
-    newDay.find(".collidable")
-            .append(html)
+    newDay.find(".collidable").append(html)
     Day.refresh(newDay)
 
     return this;
