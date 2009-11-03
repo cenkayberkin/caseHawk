@@ -228,6 +228,7 @@ Date.ext.formats = {
 			return y;
 		},
 	H: ['getHours', '0'],
+	i: function(d) { var i=d.getHours()%12; return i===0?12:i; },
 	I: function(d) { var I=d.getHours()%12; return Date.ext.util.xPad(I===0?12:I, 0); },
 	j: function(d) {
 			var ms = d - new Date('' + d.getFullYear() + '/1/1 GMT');
@@ -361,7 +362,7 @@ Date.prototype.strftime=function(fmt)
 
 
 	// Now replace formats - we need a closure so that the date object gets passed through
-	var str = fmt.replace(/%([aAbBCdegGHIjmMpPSuUVwWyY%])/g, function(m0, m1)
+	var str = fmt.replace(/%([aAbBCdegGHiIjmMpPSuUVwWyY%])/g, function(m0, m1)
 			{
 				var f = Date.ext.formats[m1];
 				if(typeof(f) == 'string') {
