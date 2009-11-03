@@ -211,10 +211,11 @@ $(function(){
     var updateSavedEvent = function(result){
       var savedEvent = result.record
       // using the actual saved value in the input field
-      $(this).html(
-        savedEvent[editable.attr("data-field-name")]
-      )
-      .effect("highlight", { color : "#d7fcd7"}, 2000)              
+      $(this)
+        .html(
+          savedEvent[editable.attr("data-field-name")]
+        )
+        .effect("highlight", { color : "#d7fcd7"}, 2000)              
       Event.instantiate(savedEvent).draw(result.html)
     }
 
