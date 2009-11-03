@@ -209,15 +209,16 @@ $(function(){
 
     // function to call on editable callbacks
     var updateSavedEvent = function(result){
-      console.log(result.record)
       var savedEvent = result.record
       // using the actual saved value in the input field
       $(this).html(
-        savedEvent[$(this).attr("data-field-name")]
+        savedEvent[editable.attr("data-field-name")]
       )
+      .effect("highlight", { color : "#d7fcd7"}, 2000)              
       Event.instantiate(savedEvent).draw(result.html)
     }
 
+    // Editable event titles
     $('#facebox .editable')
       .each(function(){
         var editable = $(this)
@@ -235,7 +236,8 @@ $(function(){
           }
         )
       })
-      
+    
+    // Editable Event Time
     $('#facebox .editable_time')
       .each(function() {
         var editable = $(this)
@@ -254,6 +256,7 @@ $(function(){
         )
       })
 
+      // Editable Event Date
       $('#facebox .editable_date')
         .each(function() {
           var editable = $(this)
@@ -272,6 +275,27 @@ $(function(){
           )
         })
         
+        // Need to control the event deletion from event details facebox
+        $('#facebox .event_delete .delete').click(function() {
+          $('#facebox .event_delete_confirm').slideToggle(); 
+        }); 
+        $('#facebox .event_delete .confirm').click(function() {
+          // Call the delete function on this event
+          $.post(
+            "/events/destroy", 
+            { id: $(this).attr("rel") }, 
+            function(result) {
+              jQuery(document).trigger('close.facebox'); 
+            }
+          ); 
+          // Close the facebox
+        }); 
+        // Close the delete control
+        $('#facebox .event_delete .cancel').click(function() {
+          $('#facebox .event_delete_confirm').slideUp(); 
+        })
+        
+        // Need to build the tag interface for existing events
         $('#facebox .new_tag_input').hide(); 
         $('.event_new_tag').click(function() {
 //          $(this).hide(); 
@@ -296,16 +320,18 @@ function validateEventFormDates(active) {
   endDate = new Date($('#event_ends_at_datepicker').html() + " " + $('#event_ends_at_timepicker').html());
   // check for valid endDate
   if (active == 'start' && endDate < startDate) {
-    endDate = startDate; 
+    endDate = new Date(startDate); 
+    endDate.setHours(endDate.getHours() + 1); 
     $('#event_ends_at_datepicker').html(endDate.strftime("%B %e, %Y")); 
-    $('#event_ends_at_timepicker').html(endDate.strftime("%I:%M %p")); 
+    $('#event_ends_at_timepicker').html(endDate.strftime("%i:%M %p")); 
   } 
   if (active == 'end' && startDate > endDate) {
-    startDate = endDate; 
+    startDate = new Date(endDate); 
+    startDate.setHours(startDate.getHours() - 1); 
     $('#event_starts_at_datepicker').html(startDate.strftime("%B %e, %Y")); 
-    $('#event_starts_at_timepicker').html(startDate.strftime("%I:%M %p")); 
+    $('#event_starts_at_timepicker').html(startDate.strftime("%i:%M %p")); 
   }
   // set all applicable hiddens
-  $('#event_starts_at').val(startDate.strftime("%B %e, %Y %I:%M %p"));
-  $('#event_ends_at').val(endDate.strftime("%B %e, %Y %I:%M %p")); 
+  $('#event_starts_at').val(startDate.strftime("%B %e, %Y %i:%M %p"));
+  $('#event_ends_at').val(endDate.strftime("%B %e, %Y %i:%M %p")); 
 }
