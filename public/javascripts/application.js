@@ -1,12 +1,6 @@
 
 // use log(whatever) in any script
-debug = function(){
-  var args = arguments
-  // adding delay to let Firebug time to load
-  setTimeout(function(){
-    console.debug.apply(console, args)
-  }, 50)
-}
+debug = console.debug
 
 /* allow jQuery to work with Rails' respond_to */
 $.ajaxSetup({'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")} })
