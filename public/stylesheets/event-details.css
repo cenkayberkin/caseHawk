@@ -102,7 +102,7 @@ li.event .event-details {
   font-size: 1em; 
   border-bottom: 1px solid #CCC; 
 }  
-.event-details li.event_delete a.delete {
+.event-details li.event_delete .delete {
   display: block; 
   padding: 0.5em 0; 
   text-transform: uppercase; 
@@ -110,8 +110,9 @@ li.event .event-details {
   font-weight: bold; 
   color: #B32914;
   text-decoration: none; 
+  cursor: default;
 }
-  .event-details li.event_delete a.delete:hover {
+  .event-details li.event_delete .delete:hover {
     background: #B32914; 
     color: #FFF;
   }
@@ -121,8 +122,8 @@ li.event .event-details {
   font-size: 1.1em; 
   color: #333; 
 }
-.event-details li.event_delete a.confirm, 
-.event-details li.event_delete a.cancel {
+.event-details li.event_delete .confirm, 
+.event-details li.event_delete .cancel {
   float: left; 
   display: block; 
   width: 50%; 
@@ -131,8 +132,9 @@ li.event .event-details {
   text-transform: uppercase; 
   font-weight: bold; 
   text-decoration: none; 
+  cursor: pointer; 
 }
-  .event_delete a.confirm { color: #B32914; }
-    .event_delete a.confirm:hover { color: #FFF; background: #B32914; }
-  .event_delete a.cancel { color: #72D472; }
-    .event_delete a.cancel:hover { color: #FFF; background: #72D472; }
+  .event_delete .confirm { color: #B32914; }
+    .event_delete .confirm:hover { color: #FFF; background: #B32914; }
+  .event_delete .cancel { color: #72D472; }
+    .event_delete .cancel:hover { color: #FFF; background: #72D472; }
