@@ -60,25 +60,6 @@ class EventsController < ApplicationController
     end
   end
   
-  def destroy
-    @result = @event.destroy
-    respond_to do |wants|
-      wants.html do
-        if @result
-          flash[:notice] = "The #{cname.humanize.downcase} has been deleted."
-          redirect_back_or_default redirect_url
-        else
-          render :action => 'show'
-        end
-      end
-      
-      wants.js do
-        # If we have made it this far, the event is DABLETED!
-        render :json => true
-      end
-    end
-  end
-
   protected
     def new_event(atts = {})
       logger.info("Creating new #{params[:event][:type]} event with #{atts.inspect}")
