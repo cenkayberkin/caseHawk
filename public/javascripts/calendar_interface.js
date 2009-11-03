@@ -308,8 +308,7 @@ $(function(){
             { id: $(this).attr("rel") }, 
             function(result) {
               jQuery(document).trigger('close.facebox'); 
-            }, 
-            "json"
+            }
           ); 
           // Close the facebox
         }); 
