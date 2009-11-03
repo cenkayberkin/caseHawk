@@ -21,12 +21,8 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html
       format.js do
-        render :json => @event.to_json
+        render :action => :show, :layout => false
       end
-      format.xml do
-        render :xml => @event.to_xml
-      end
-      format.ical
     end
   end
 

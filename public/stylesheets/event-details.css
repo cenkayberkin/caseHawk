@@ -36,6 +36,7 @@ li.event .event-details {
   padding: 4px 0.25em 4px 1em;
   margin: 0;
   font-size: 1.2em;
+  line-height: 1.5em; 
   position: relative;
   display: list-item;
   top: auto;
@@ -50,7 +51,7 @@ li.event .event-details {
   color: #73A3D3;
   padding-left: 0;
 }
-  .event-details li.event_date { color: #666; }
+.event-details li.event_date { color: #666; }
 .event-details li.event_creator {
   font-size: 1em;
   color: #666;
@@ -74,6 +75,7 @@ li.event .event-details {
   padding: 0; 
   margin: 0;
   font-size: 1em;
+  line-height: 1.2em; 
   border-bottom: 1px solid #CCC;   
 }
   .event-detais li.event_tags h4 {
