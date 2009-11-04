@@ -12,19 +12,22 @@ Day = {
     // move events out of boxes
     var collidable = day
                       .find(".collidable")
-                      .css({top: 'auto',
-                            position: 'relative'})
+                      // .css({top: 'auto',
+                            // height: 'auto',
+                            // marginTop: 'auto',
+                            // position: 'relative' })
 
     day.find(".event").each(function(){
       $(this)
-        .appendTo(collidable)
         .css({top: 'auto',
-              position: 'relative'})
+              height: 'auto' })
+        .appendTo(collidable)
     })
     // delete the original collision boxes
     day.find(".collision_box").remove()
     // start over
     Day.init(day)
+    Week.adjustViewport(day.parents(".week"))
   },
   // attach the appropriate 'height' and 'top'
   // to the event given or (if none given)
@@ -36,6 +39,7 @@ Day = {
       )
       .each(function(){
         var e = Event.instantiate(this)
+        debug("positioning ", this)
         $(this)
           .css({
             top: Day.top(e)+'px',

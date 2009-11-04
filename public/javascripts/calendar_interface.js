@@ -219,7 +219,7 @@ $(function(){
         .effect("highlight", { color : "#d7fcd7"}, 2000)
       console.debug('after highlight')
 
-      Event.instantiate(savedEvent).draw(result.html)
+      Event.instantiate(savedEvent, 'skip_cache').draw(result.html)
     }
 
     // Editable event titles
