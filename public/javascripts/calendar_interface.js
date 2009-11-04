@@ -326,6 +326,28 @@ $(function(){
           $('#facebox .new_tag_input').fadeIn(); 
           $('#facebox .new_tag_input input').focus(); 
         }); 
+        
+        var tag_url = "/tags"; 
+        $('#new_tag')
+          .autocomplete(tag_url, {
+            matchContains: true,
+            autoFill: false,
+            minChars: 0    
+          })
+          .result(function(_,_,selectedValue){ 
+            var event_id = $('#facebox li.event')
+            tagResult(selectedValue); 
+          })
+          .change(function(){ 
+            tagResult($(this).val()) 
+          })
+        
+        function tagResult(selectedValue){
+          return true; 
+        }
+        
+        
+        // Remove an existing tag
         $('#facebox .tag_remove').click(function() {
           var self = $(this)
           var postUrl = "/taggings/" + self.attr("rel"); 

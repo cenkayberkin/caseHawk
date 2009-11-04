@@ -34,7 +34,7 @@
     <ul class="tags">
       <h4>Tagged With</h4>
       <% event.taggings.each do |tagging| %>
-        <li class="tag" id="tagging_<%= tagging.id %>">
+        <li class="tag" id="tagging_<%= tagging.id %>" data-tag-name="<%= tagging.tag.name %>">
           <%= tagging.tag.name %>
           <a class="tag_remove" rel="<%= tagging.id %>">x</a>
         </li>
