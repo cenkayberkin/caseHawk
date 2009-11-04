@@ -58,9 +58,9 @@ Event = {
   cachedInstances: [],
   instantiate: function(record, skipCache){
 
-    // if this is a jQuery object just return the
-    // actual element
-    if(record.jquery) return Event.instantiate(record[0], skipCache)
+    // if this is a jQuery object just return the actual element
+    if(record.jquery)
+      return Event.instantiate(record[0], skipCache)
 
     // return from cache if found
     var id = parseInt(record.id)
@@ -104,12 +104,38 @@ Event = {
       // add methods for event objects here
       // e.g. Event#delete()
       display: Event.displayFor(record),
-      url: "/events/"+record.id
+      url: "/events/"+record.id,
+      draw:  Event.draw
     })
     // save instance in the cache
     Event.cachedInstances[record.id] = record
     return record
   },
+
+  draw: function(html){
+    // check whether this event already exists
+    var originalDay = null
+    var originalEvent = $(".event[data-event-id="+this.id+"]:first")
+
+    if(originalEvent.length){
+      originalDay = originalEvent.parents("td.day")
+      // remove it from it's original day
+      // console.debug('removing: ', originalEvent)
+      originalEvent.remove()
+      // TODO: just refresh each day once
+      // Day.refresh(originalDay)
+    }
+
+    // TODO: get working for alldays
+    var newDay = $(".week-day-full td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")
+    // add the event to the new day
+    debug('adding: ',html, $(html))
+    newDay.find(".collidable").append(html)
+    Day.refresh(newDay)
+
+    return this;
+  },
+
   displayFor: function(record){
     switch(record.type){
       case 'Appointment':

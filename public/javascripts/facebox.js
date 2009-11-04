@@ -168,7 +168,7 @@
       return false
     }
 
-    return this.click(clickHandler)
+    return this.live('click', clickHandler)
   }
 
   /*

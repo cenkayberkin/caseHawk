@@ -143,7 +143,7 @@ $(function(){
       .append(
         $("<a></a>")
           .html("x")
-          .click(function(){ newTag.fadeOut("normal", function() { $(this).remove() }) })
+          .live('click', function(){ newTag.fadeOut("normal", function() { $(this).remove() }) })
       )
       // the input that will save this value
       .append(
@@ -206,7 +206,20 @@ $(function(){
           $(this).attr('checked', checkbox.attr('checked'))
         })
       })
-  
+
+    // function to call on editable callbacks
+    var updateSavedEvent = function(result){
+      var savedEvent = result.record
+      // using the actual saved value in the input field
+      $(this)
+        .html(
+          savedEvent[$(this).attr("data-field-name")]
+        )
+        .effect("highlight", { color : "#d7fcd7"}, 2000)
+
+      Event.instantiate(savedEvent, 'skip_cache').draw(result.html)
+    }
+
     // Editable event titles
     $('#facebox .editable')
       .each(function(){
@@ -221,18 +234,7 @@ $(function(){
             onblur      : 'ignore', 
             submitdata  : {"_method": "PUT"},
             ajaxoptions : {dataType: 'json'},
-            callback    : function(savedEvent){
-              // using the actual saved value
-              // in the input field
-              $(this).html(
-                savedEvent[editable.attr("data-field-name")]
-              )
-              .effect("highlight", { color : "#d7fcd7"}, 2000)              
-              // update the event on the page too
-              // debug(savedEvent)
-              // $(event).find(".event-title").html( savedEvent.name )
-              updateEvent = Event.instantiate(savedEvent).redraw(); 
-            }
+            callback    : updateSavedEvent
           }
         )
       })
@@ -251,18 +253,7 @@ $(function(){
             submit      : 'OK', 
             submitdata  : {"_method": "PUT"},
             ajaxoptions : {dataType: 'json'},
-            callback    : function(savedEvent){
-              // using the actual saved value
-              // in the input field
-              $(this).html(
-                savedEvent[editable.attr("data-field-name")]
-              )
-              .effect("highlight", { color : "#d7fcd7"}, 2000)
-              // update the event on the page too
-              // debug(savedEvent)
-              // $(event).find(".event-title").html( savedEvent.name )
-              updateEvent = Event.instantiate(savedEvent).draw();       
-            }
+            callback    : updateSavedEvent
           }
         )
       })
@@ -281,24 +272,13 @@ $(function(){
               submit      : 'OK', 
               submitdata  : {"_method": "PUT"},
               ajaxoptions : {dataType: 'json'}, 
-              callback    : function(savedEvent){
-                // using the actual saved value
-                // in the input field
-                $(this).html(
-                  savedEvent[editable.attr("data-field-name")]
-                )
-                .effect("highlight", { color : "#d7fcd7"}, 2000)
-                // update the event on the page too
-                // debug(savedEvent)
-                // $(event).find(".event-title").html( savedEvent.name )      
-                updateEvent = Event.instantiate(savedEvent).draw(); 
-              }
+              callback    : updateSavedEvent
             }
           )
         })
         
         // Need to control the event deletion from event details facebox
-        $('#facebox .event_delete .delete').click(function() {
+        $('#facebox .event_delete .delete').live('click', function() {
           $('#facebox .event_delete_confirm').slideToggle(); 
         }); 
         $('#facebox .event_delete .confirm').click(function() {
@@ -315,17 +295,39 @@ $(function(){
           // Close the facebox
         }); 
         // Close the delete control
-        $('#facebox .event_delete .cancel').click(function() {
+        $('#facebox .event_delete .cancel').live('click', function() {
           $('#facebox .event_delete_confirm').slideUp(); 
         })
         
         // Need to build the tag interface for existing events
         $('#facebox .new_tag_input').hide(); 
-        $('.event_new_tag').click(function() {
+        $('.event_new_tag').live('click', function() {
           $(this).hide(); 
           $('#facebox .new_tag_input').fadeIn(); 
           $('#facebox .new_tag_input input').focus(); 
         }); 
+        
+        var tag_url = "/tags"; 
+        $('#new_tag')
+          .autocomplete(tag_url, {
+            matchContains: true,
+            autoFill: false,
+            minChars: 0    
+          })
+          .result(function(_,_,selectedValue){ 
+            var event_id = $('#facebox li.event')
+            tagResult(selectedValue); 
+          })
+          .change(function(){ 
+            tagResult($(this).val()) 
+          })
+        
+        function tagResult(selectedValue){
+          return true; 
+        }
+        
+        
+        // Remove an existing tag
         $('#facebox .tag_remove').click(function() {
           var self = $(this)
           var postUrl = "/taggings/" + self.attr("rel"); 

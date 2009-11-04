@@ -92,12 +92,21 @@ li.event .event-details {
   .event-details li.event_tags .new_tag {
     border-bottom: 0px none; 
     margin: 0; 
+    padding: 0.5em 0; 
   }
   .event-details li.event_tags .new_tag a {
-    display: inline; 
-    float: none; 
-    padding: 0; 
+    float: none;
+    text-transform: uppercase; 
+    text-align: center; 
+    display: block; 
+    font-weight: bold; 
+    color: #73A3D3;
+    font-size: 0.9em; 
   }
+    .event-details li.event_tags .new_tag a.event_new_tag:hover {
+      color: #FFFFFF; 
+      background: #73A3D3; 
+    }
 
 .event-details li.event_delete {
   padding: 0; 
