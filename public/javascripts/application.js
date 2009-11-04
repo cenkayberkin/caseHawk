@@ -1,6 +1,8 @@
 
 // use log(whatever) in any script
-debug = console.debug
+debug = function(){
+  console.debug.apply(console, arguments)
+}
 
 /* allow jQuery to work with Rails' respond_to */
 $.ajaxSetup({'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")} })
