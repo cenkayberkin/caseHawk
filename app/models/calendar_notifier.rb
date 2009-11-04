@@ -6,6 +6,8 @@ class CalendarNotifier < ActionMailer::Base
     @subject = subject
     @recipients = to.respond_to?(:email) ? to.email : to
     @from = from.respond_to?(:email) ? from.email : from
+    content_type  'text/html'
+    
   end
   
   def welcome(account)
@@ -13,8 +15,9 @@ class CalendarNotifier < ActionMailer::Base
     @body = { :account => account }
   end
   
-  def remind
-    
+  def reminder(user, event)
+    setup_email(user, "[CH] Reminder: #{event.name}")
+    @body = { :user => user, :event => event }
   end
   
   def event_changed

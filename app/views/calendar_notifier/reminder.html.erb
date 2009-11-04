@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>
+    </title>
+    <style type="text/css">
+      <%= render :partial => 'application_styles' %>
+    </style>
+  </head>
+  
+  <body>
+    <div class="email-wrapper">
+      <div class="email-inner">
+        <h1>Reminder</h1>
+        <p>You have a scheduled event coming up.</p>
+        <%= render :partial => 'events/details', :object => @event %>
+      </div>
+    </div>
+  </body>
+</html>
