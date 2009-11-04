@@ -3,7 +3,7 @@
   <% (@date.beginning_of_week..@date.end_of_week).each do |day| %>
   <td class="day-<%= day.wday %> day" data-date="<%= day.to_s %>" >
     <ul class="alldays">
-      <%= render :partial => "events/event_allday", :collection => get_all_days(@events).select{ |e| (e.starts_at.to_date..e.ends_at.to_date).include?(day) } %>
+      <%= render :partial => "events/event_all_day", :collection => get_all_days(@events).select{ |e| (e.starts_at.to_date..e.ends_at.to_date).include?(day) } %>
     </ul>
     <ul class="tasks">
       <%= render :partial => "events/event_task", :collection => get_tasks(@events).select{ |e| e.starts_at.to_date == day } %>
