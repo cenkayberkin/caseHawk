@@ -14,6 +14,10 @@ module EventsHelper
     get_type(records, Appointment)
   end
   
+  def get_court_dates(records)
+    get_type(records, CourtDate)
+  end
+  
   def get_deadlines(records)
     get_type(records, Deadline)
   end
@@ -24,6 +28,6 @@ module EventsHelper
   
   # Return array of all the event types we are using
   def event_types
-    %w[AllDay Appointment Deadline Task]
+    %w[AllDay Appointment CourtDate Deadline Task]
   end
 end

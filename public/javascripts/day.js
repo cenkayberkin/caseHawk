@@ -7,11 +7,16 @@ Day = {
     Day.fixCongestedBoxes(day)
     Day.clicks(day)
   },
-  drawDay: function(date, options){
-    Event.find(
-      $.extend({start_date: date, end_date: date}, options),
-      function(event){ Day.placeDayEvent(event) }
-    )
+
+  refresh: function(day){
+    // move events out of boxes
+    day.find(".event").each(function(){
+      $(this).appendTo(day)
+    })
+    // delete the original collision boxes
+    day.find(".collision_box").remove()
+    // start over
+    Day.init(day)
   },
   // attach the appropriate 'height' and 'top'
   // to the event given or (if none given)
@@ -30,23 +35,7 @@ Day = {
           })
       })
   },
-  placeDayEvent: function(event){
-    // TODO: remove redundancy between this
-    //       and Event.instantiate
-    var element =
-      $("<li></li>")
-        .attr({
-          "data-event-id":  event.id,
-          "data-start":     event.start,
-          "data-end":       event.end
-        })
-        .addClass("event")
-        .addClass(event.type.underscore())
-        .html(event.display())
-        .appendTo("ul.day-appointments")
-    Day.positionEvents(element)
-  },
-  // *******
+
   // Populate the add new event form and highlight it
   // *******
   clicks : function(day) {

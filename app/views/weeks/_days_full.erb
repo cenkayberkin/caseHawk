@@ -13,8 +13,8 @@
           <% end %>
         </ul>
         <ul class="day-appointments">
-          <% get_appointments(@events).select{ |e| e.starts_at.to_date == day }.each do |event| %>
-            <%= render :partial => "events/event_appointment", :object => event %>
+          <% (get_court_dates(@events) + get_appointments(@events)).select{ |e| e.starts_at.to_date == day }.each do |event| %>
+            <%= render :partial => "events/event_#{event.type.underscore}", :object => event %>
           <% end %>
         </ul>
       </div>

@@ -206,7 +206,18 @@ $(function(){
           $(this).attr('checked', checkbox.attr('checked'))
         })
       })
-  
+
+    // function to call on editable callbacks
+    var updateSavedEvent = function(result){
+        var savedEvent = result.record
+        // using the actual saved value in the input field
+        $(this).html(
+          savedEvent[editable.attr("data-field-name")]
+        )
+        .effect("highlight", { color : "#d7fcd7"}, 2000)              
+        Event.instantiate(savedEvent).draw(result.html)
+      }
+
     // Editable event titles
     $('#facebox .editable')
       .each(function(){
@@ -221,18 +232,7 @@ $(function(){
             onblur      : 'ignore', 
             submitdata  : {"_method": "PUT"},
             ajaxoptions : {dataType: 'json'},
-            callback    : function(savedEvent){
-              // using the actual saved value
-              // in the input field
-              $(this).html(
-                savedEvent[editable.attr("data-field-name")]
-              )
-              .effect("highlight", { color : "#d7fcd7"}, 2000)              
-              // update the event on the page too
-              // debug(savedEvent)
-              // $(event).find(".event-title").html( savedEvent.name )
-              updateEvent = Event.instantiate(savedEvent).redraw(); 
-            }
+            callback    : updateSavedEvent
           }
         )
       })
@@ -251,18 +251,7 @@ $(function(){
             submit      : 'OK', 
             submitdata  : {"_method": "PUT"},
             ajaxoptions : {dataType: 'json'},
-            callback    : function(savedEvent){
-              // using the actual saved value
-              // in the input field
-              $(this).html(
-                savedEvent[editable.attr("data-field-name")]
-              )
-              .effect("highlight", { color : "#d7fcd7"}, 2000)
-              // update the event on the page too
-              // debug(savedEvent)
-              // $(event).find(".event-title").html( savedEvent.name )
-              updateEvent = Event.instantiate(savedEvent).draw();       
-            }
+            callback    : updateSavedEvent
           }
         )
       })
@@ -281,18 +270,7 @@ $(function(){
               submit      : 'OK', 
               submitdata  : {"_method": "PUT"},
               ajaxoptions : {dataType: 'json'}, 
-              callback    : function(savedEvent){
-                // using the actual saved value
-                // in the input field
-                $(this).html(
-                  savedEvent[editable.attr("data-field-name")]
-                )
-                .effect("highlight", { color : "#d7fcd7"}, 2000)
-                // update the event on the page too
-                // debug(savedEvent)
-                // $(event).find(".event-title").html( savedEvent.name )      
-                updateEvent = Event.instantiate(savedEvent).draw(); 
-              }
+              callback    : updateSavedEvent
             }
           )
         })

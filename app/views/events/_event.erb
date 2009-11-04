@@ -1,0 +1,12 @@
+<%=
+  case event
+  when AllDay
+    render "events/event_allday",       :object => event
+  when Appointment
+    render "events/event_appointment",  :object => event
+  when Deadline
+    render "events/event_deadline",     :object => event
+  when Task
+    render "events/event_task",         :object => event
+end  
+%>

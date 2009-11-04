@@ -8,12 +8,8 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html
       format.js do
-        render :json => @events.to_json
+        render :json => @events
       end
-      format.xml do
-        render :xml => @events.to_xml
-      end
-      format.ical
     end
   end
 
@@ -41,18 +37,17 @@ class EventsController < ApplicationController
     @saved = @event.save
     
     respond_to do |format|
-      format.html {
+      format.html do
         @saved ?
           flash[:success] = "The event has been saved" :
           flash[:error] = "There was an error saving that event"
         redirect_to_back_or day_calendar_path(:date => @event.starts_at.to_date.to_s)
-      }
-      format.js {
-        render :json => @event
-      }
-      format.xml {
-        render :xml => @event.to_xml
-      }
+      end
+      format.js do
+        render :json => {:event => @event,
+                         :html  => render_to_string(:partial => 'events/event', :object => @event)
+                        }
+      end
     end
   end
   
@@ -62,6 +57,7 @@ class EventsController < ApplicationController
       event = case params[:event] && params[:event][:type]
                 when 'AllDay'       then AllDay.new(atts)
                 when 'Appointment'  then Appointment.new(atts)
+                when 'CourtDate'    then CourtDate.new(atts)
                 when 'Deadline'     then Deadline.new(atts)
                 when 'Task'         then Task.new(atts)
                 else
