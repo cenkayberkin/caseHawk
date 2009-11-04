@@ -18,7 +18,6 @@ class WeeksController < ApplicationController
     begin
       @date = (param ? Date.parse(param) : Date.today).beginning_of_week.to_date 
     rescue 
-      flash[:notice] = "Unrecognized date format."
       @date = Date.today
     end
   end
