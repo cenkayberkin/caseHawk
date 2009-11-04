@@ -143,7 +143,7 @@ $(function(){
       .append(
         $("<a></a>")
           .html("x")
-          .click(function(){ newTag.fadeOut("normal", function() { $(this).remove() }) })
+          .live('click', function(){ newTag.fadeOut("normal", function() { $(this).remove() }) })
       )
       // the input that will save this value
       .append(
@@ -209,14 +209,18 @@ $(function(){
 
     // function to call on editable callbacks
     var updateSavedEvent = function(result){
-        var savedEvent = result.record
-        // using the actual saved value in the input field
-        $(this).html(
-          savedEvent[editable.attr("data-field-name")]
+      var savedEvent = result.record
+      // using the actual saved value in the input field
+      $(this)
+        .html(
+          savedEvent[$(this).attr("data-field-name")]
         )
-        .effect("highlight", { color : "#d7fcd7"}, 2000)              
-        Event.instantiate(savedEvent).draw(result.html)
-      }
+      $(this)
+        .effect("highlight", { color : "#d7fcd7"}, 2000)
+      console.debug('after highlight')
+
+      Event.instantiate(savedEvent, 'skip_cache').draw(result.html)
+    }
 
     // Editable event titles
     $('#facebox .editable')
@@ -276,7 +280,7 @@ $(function(){
         })
         
         // Need to control the event deletion from event details facebox
-        $('#facebox .event_delete .delete').click(function() {
+        $('#facebox .event_delete .delete').live('click', function() {
           $('#facebox .event_delete_confirm').slideToggle(); 
         }); 
         $('#facebox .event_delete .confirm').click(function() {
@@ -293,13 +297,13 @@ $(function(){
           // Close the facebox
         }); 
         // Close the delete control
-        $('#facebox .event_delete .cancel').click(function() {
+        $('#facebox .event_delete .cancel').live('click', function() {
           $('#facebox .event_delete_confirm').slideUp(); 
         })
         
         // Need to build the tag interface for existing events
         $('#facebox .new_tag_input').hide(); 
-        $('.event_new_tag').click(function() {
+        $('.event_new_tag').live('click', function() {
           $(this).hide(); 
           $('#facebox .new_tag_input').fadeIn(); 
           $('#facebox .new_tag_input input').focus(); 

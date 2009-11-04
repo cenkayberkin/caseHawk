@@ -58,9 +58,9 @@ Event = {
   cachedInstances: [],
   instantiate: function(record, skipCache){
 
-    // if this is a jQuery object just return the
-    // actual element
-    if(record.jquery) return Event.instantiate(record[0], skipCache)
+    // if this is a jQuery object just return the actual element
+    if(record.jquery)
+      return Event.instantiate(record[0], skipCache)
 
     // return from cache if found
     var id = parseInt(record.id)
@@ -115,18 +115,22 @@ Event = {
   draw: function(html){
     // check whether this event already exists
     var originalDay = null
-    var originalEvent = $("event[data-event-id="+this.id+"]")
+    var originalEvent = $(".event[data-event-id="+this.id+"]:first")
+
     if(originalEvent.length){
-      originalDay = originalEvent.parents(".day")
+      originalDay = originalEvent.parents("td.day")
       // remove it from it's original day
+      // console.debug('removing: ', originalEvent)
       originalEvent.remove()
-      Day.refresh(originalDay)
+      // TODO: just refresh each day once
+      // Day.refresh(originalDay)
     }
-    
-    var newDay = $("td.day[data-date="+this.starts_at.strftime("%G-%m-%d")+"]")
+
+    // TODO: get working for alldays
+    var newDay = $(".week-day-full td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")
     // add the event to the new day
-    newDay.find(".collidable")
-            .append(html)
+    debug('adding: ',html, $(html))
+    newDay.find(".collidable").append(html)
     Day.refresh(newDay)
 
     return this;

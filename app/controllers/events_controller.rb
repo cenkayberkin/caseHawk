@@ -44,8 +44,8 @@ class EventsController < ApplicationController
         redirect_to_back_or day_calendar_path(:date => @event.starts_at.to_date.to_s)
       end
       format.js do
-        render :json => {:event => @event,
-                         :html  => render_to_string(:partial => 'events/event', :object => @event)
+        render :json => {:record => @event,
+                         :html   => render_to_string(:partial => 'events/event', :object => @event)
                         }
       end
     end
