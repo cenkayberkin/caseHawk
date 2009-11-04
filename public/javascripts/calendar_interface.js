@@ -215,9 +215,7 @@ $(function(){
         .html(
           savedEvent[$(this).attr("data-field-name")]
         )
-      $(this)
         .effect("highlight", { color : "#d7fcd7"}, 2000)
-      console.debug('after highlight')
 
       Event.instantiate(savedEvent, 'skip_cache').draw(result.html)
     }
