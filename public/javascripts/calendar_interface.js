@@ -188,7 +188,6 @@ $(function(){
   )
 
   var functionsThatNeedToBeReexecutedWhenFaceboxLoads = function(){
-
     // support ajax completion of completable events
     $("li.event_completable input[type=checkbox]")
       .live('click', function(){
@@ -298,29 +297,33 @@ $(function(){
         $('#facebox .event_delete .cancel').live('click', function() {
           $('#facebox .event_delete_confirm').slideUp(); 
         })
-        
+
         // Need to build the tag interface for existing events
-        $('#facebox .new_tag_input').hide(); 
         $('.event_new_tag').live('click', function() {
+          var container = $(this).parent(); 
           $(this).hide(); 
-          $('#facebox .new_tag_input').fadeIn(); 
-          $('#facebox .new_tag_input input').focus(); 
+          
+          var tagForm = $('<div class="new_tag_input"><label for="new_tag">New Tag</label><input id="new_tag" name="new_tag" type="text" value="" size="30" /><span class="new_tag_add">Add</span></div>')
+            .hide();
+          
+          tagForm
+            .appendTo(container)
+            .fadeIn(); 
+          $('#facebox #new_tag')
+            .autocomplete("/tags", {
+              matchContains: true,
+              autoFill: false,
+              minChars: 0    
+            })
+            .result(function(_,_,selectedValue){ 
+              var event_id = $('#facebox li.event')
+              tagResult(selectedValue); 
+            })
+            .change(function(){ 
+              tagResult($(this).val()) 
+            })
+            .focus(); 
         }); 
-        
-        var tag_url = "/tags"; 
-        $('#new_tag')
-          .autocomplete(tag_url, {
-            matchContains: true,
-            autoFill: false,
-            minChars: 0    
-          })
-          .result(function(_,_,selectedValue){ 
-            var event_id = $('#facebox li.event')
-            tagResult(selectedValue); 
-          })
-          .change(function(){ 
-            tagResult($(this).val()) 
-          })
         
         function tagResult(selectedValue){
           return true; 

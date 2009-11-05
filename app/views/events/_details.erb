@@ -35,17 +35,13 @@
     <ul class="tags">
       <h4>Tagged With</h4>
       <% event.taggings.each do |tagging| %>
-        <li class="tag" id="tagging_<%= tagging.id %>" data-tag-name="<%= tagging.tag.name %>">
+        <li class="tag" id="tagging_<%= tagging.id %>" data-tag-name="<%= tagging.tag.name %>" data-tag-id="<%= tagging.tag.id %>">
           <%= tagging.tag.name %>
           <a class="tag_remove" rel="<%= tagging.id %>">x</a>
         </li>
       <% end %>
       <li class="new_tag">
         <a class="event_new_tag">Add New Tag</a>
-        <div class="new_tag_input">
-          <label for="new_tag">New Tag</label>
-          <input id="new_tag" name="new_tag" type="text" value="" size="30" />
-        </div>
       </li>
     </ul>
   </li>
