@@ -108,7 +108,7 @@
       color: #B32914;
     }
     
-    li.courtdate, li.courtdate a { color: #888888; }
+    li.courtdate, li.courtdate a { color: #000000; }
     li.appointment, li.appointment a { color: #114499; }
     li.deadline, li.deadline a { color: #B32914; }
     li.task, li.task a { color: #D95C26; }
