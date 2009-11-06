@@ -5,10 +5,10 @@ class TaggingsController < ApplicationController
   include ModelControllerMethods
 
   def create
-    @parent.taggings.create(:tag => Tag.find_or_create_by_name(params[:tag_name]))
+    @saved = @parent.taggings.create(:tag => Tag.find_or_create_by_name(params[:tag_name]))
     respond_to do |format|
       format.js do
-        render :json => true
+        render :json => {:record => @saved}
       end
     end
   end
