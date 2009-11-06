@@ -158,15 +158,15 @@ $(function(){
 
   // When the user mouses over an event that spans a period of time
   // the timeslot on the left side of the calendar should highlight
-  $(".event").live('hover',
+  $(".collidable li.event").live('mouseover',
     function() {
       e = Event.instantiate(this)
       // Treat time parts as string for concatenation with +
       year = "" + e.start.getFullYear()
       week = "" + DateMath.getWeekNumber(e.start)
+      week -= 1
       hour = "" + e.start.getHours()
       min = e.start.getMinutes() == 0 ? "00" : "" + e.start.getMinutes()
-      //alert("Coloring: " + "#" + year + "-w" + week + "-timerow-" + hour + min)
       endStamp = "" + e.end.getHours() + (e.end.getMinutes() == 0 ? "00" : e.end.getMinutes())
       // Start highlighting the timeline at the appt start time
       $("#" + year + "-w" + week + "-timerow-" + hour + min).css("background-color","#e3e6f9")
@@ -181,11 +181,11 @@ $(function(){
           min = "" + (parseInt(min) + 15)
         }
       } 
-    },
+    })
+  $(".collidable li.event").live('mouseout', 
     function(){
       $('.hourslice').css("background-color", "white")
-    }
-  )
+    }); 
 
   // support ajax completion of completable events
   $("li.event_completable input[type=checkbox]")

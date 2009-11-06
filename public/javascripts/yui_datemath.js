@@ -249,12 +249,13 @@ DateMath = {
     * @return {Number} The number of the week containing the given date.
     */
     getWeekNumber : function(date, firstDayOfWeek, janDate) {
+        dateCopy = new Date(date)
 
         // Setup Defaults
         firstDayOfWeek = firstDayOfWeek || 0;
         janDate = janDate || this.WEEK_ONE_JAN_DATE;
 
-        var targetDate = this.clearTime(date),
+        var targetDate = this.clearTime(dateCopy),
             startOfWeek,
             endOfWeek;
 
@@ -386,7 +387,7 @@ DateMath = {
      */
     getDate : function(y, m, d) {
         var dt = null;
-        if (YAHOO.lang.isUndefined(d)) {
+        if (d == null) {
             d = 1;
         }
         if (y >= 100) {

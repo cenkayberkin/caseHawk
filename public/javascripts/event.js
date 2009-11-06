@@ -64,8 +64,9 @@ Event = {
 
     // return from cache if found
     var id = parseInt(record.id)
-    if(!skipCache && id && Event.cachedInstances[id])
+    if(!skipCache && id && Event.cachedInstances[id]) {
       return Event.cachedInstances[id]
+    } 
 
     // if this is an existing DOM object then copy some
     // attributes into the same format as the JSON object has
