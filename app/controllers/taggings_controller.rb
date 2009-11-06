@@ -6,6 +6,11 @@ class TaggingsController < ApplicationController
 
   def create
     @parent.taggings.create(:tag => Tag.find_or_create_by_name(params[:tag_name]))
+    respond_to do |format|
+      format.js do
+        render :json => true
+      end
+    end
   end
 
 

@@ -190,7 +190,7 @@ $(function(){
   var functionsThatNeedToBeReexecutedWhenFaceboxLoads = function(){
     // support ajax completion of completable events
     $("li.event_completable input[type=checkbox]")
-      .live('click', function(){
+      .click(function(){
         var checkbox = $(this)
         var li = checkbox.parents("li.event_completable")
         Event.update(li,
@@ -277,7 +277,7 @@ $(function(){
         })
         
         // Need to control the event deletion from event details facebox
-        $('#facebox .event_delete .delete').live('click', function() {
+        $('#facebox .event_delete .delete').click(function() {
           $('#facebox .event_delete_confirm').slideToggle(); 
         }); 
         $('#facebox .event_delete .confirm').click(function() {
@@ -294,16 +294,16 @@ $(function(){
           // Close the facebox
         }); 
         // Close the delete control
-        $('#facebox .event_delete .cancel').live('click', function() {
+        $('#facebox .event_delete .cancel').click(function() {
           $('#facebox .event_delete_confirm').slideUp(); 
         })
 
         // Need to build the tag interface for existing events
-        $('.event_new_tag').live('click', function() {
+        $('.event_new_tag').click(function() {
           var container = $(this).parent(); 
           $(this).hide(); 
           
-          var tagForm = $('<div class="new_tag_input"><label for="new_tag">New Tag</label><input id="new_tag" name="new_tag" type="text" value="" size="30" /><span class="new_tag_add">Add</span></div>')
+          var tagForm = $('<div class="new_tag_input"><label for="new_tag">Tags</label><input tabindex="100" id="new_tag" name="new_tag" type="text" value="" size="30" /><a tabindex="101" class="new_tag_add">Add</a></div>')
             .hide();
           
           tagForm
@@ -317,16 +317,51 @@ $(function(){
             })
             .result(function(_,_,selectedValue){ 
               var event_id = $('#facebox li.event')
-              tagResult(selectedValue); 
+              eventTagResult(selectedValue); 
             })
             .change(function(){ 
-              tagResult($(this).val()) 
+              eventTagResult($(this).val()) 
             })
             .focus(); 
         }); 
         
-        function tagResult(selectedValue){
-          return true; 
+        function eventTagResult(selectedValue){
+          var tags     = $("#facebox").find("ul.tags")
+          var existing = tags.find("li[data-tag-name="+selectedValue+"]")
+          var eventID  = $("#facebox .event-details").attr("data-event-id"); 
+
+          // clear the search box and start over
+          $('#new_tag').val('').focus()
+
+          // do nothing if this tag already exists
+          if(existing.length) {
+            return; 
+          }
+
+          var postUrl = "/taggings"; 
+          $.ajax({
+            type: "POST", 
+            timeout: 2000, 
+            dataType: 'json', 
+            url: postUrl, 
+            data: { method: "create", event_id: eventID, tag_name: selectedValue }, 
+            success: function() {
+              var newTag = $("<li></li>").hide();           
+              newTag
+                .html(selectedValue)
+                .attr('data-tag-name', selectedValue)
+                .append(
+                  $("<a></a>")
+                    .html("x")
+                    .addClass("tag_remove")
+                )
+                // stick this <li> into the bottom of the <ul>
+                .insertBefore("li.new_tag")
+                .fadeIn("normal")
+            }
+          });  
+
+          
         }
         
         
@@ -342,7 +377,7 @@ $(function(){
             data: "_method=delete", 
             success: function() {
               debug("#tagging_" + self.attr("rel"));
-              $("#tagging_" + self.attr("rel")).fadeOut().remove(); 
+              $("#tagging_" + self.attr("rel")).fadeOut("normal", function() { $(this).remove() }); 
             }
           });  
         }); 

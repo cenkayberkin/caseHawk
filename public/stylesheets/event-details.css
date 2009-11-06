@@ -115,6 +115,31 @@ li.event .event-details {
       background: #73A3D3; 
     }
 
+  .new_tag label {
+    margin: 0; 
+    padding: 0 10px 0 0.5em; 
+    display: inline-block; 
+  }
+  .new_tag input {
+    width: 55%; 
+    display: inline-block; 
+  }
+  .event-details li.event_tags .new_tag a.new_tag_add {
+    color: #5EAD5E; 
+    text-transform: uppercase; 
+    font-weight: bold; 
+    font-size: 0.9em; 
+    padding: 0 0.5em; 
+    margin: 0 0.5em; 
+    width: auto; 
+    display: inline-block;
+  }
+    .event-details li.event_tags .new_tag a.new_tag_add:hover, 
+    .event-details li.event_tags .new_tag a.new_tag_add:active {
+      background: #5EAD5E; 
+      color: #FFFFFF;
+    }
+
 .event-details li.event_delete {
   padding: 0; 
   font-size: 1em; 

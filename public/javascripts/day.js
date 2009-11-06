@@ -39,7 +39,6 @@ Day = {
       )
       .each(function(){
         var e = Event.instantiate(this)
-        debug("positioning ", this)
         $(this)
           .css({
             top: Day.top(e)+'px',
