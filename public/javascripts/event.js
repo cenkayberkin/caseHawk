@@ -130,7 +130,7 @@ Event = {
     // TODO: get working for alldays
     var newDay = $(".week-day-full td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")
     // add the event to the new day
-    debug('adding: ',html, $(html))
+    debugk('adding: ',html, $(html))
     newDay.find(".collidable").append(html)
     Day.refresh(newDay)
 
@@ -153,5 +153,37 @@ Event = {
            return this.name
         }
     }
+  }
+  
+  // Make sure the start_date is earlier or equal to the end_date
+  // Reset values as necessary with optoinal priority
+  validateDate: function(record, active) {
+    if (active == null) 
+      active = 'start'
+    if (active == 'start' && record.end < record.start) {
+      record.end.setTime(record.start.getTime())
+    }
+    if (active == 'end' && record.start > record.end) {
+      record.start.setTime(record.end.getTime())
+    }
+    // Make sure to set the starts_at and ends_at values as well
+    record.starts_at = record.start.strftime()
+    record.ends_at = record.end.strftime()
+  }
+  // Make sure the start is earlier than the end or the end is later than the start
+  // Reset values as necessary with optional priority
+  validateTime: function(record, active) {
+    if (active == null) 
+      active = 'start'
+    timeOffset = 1000 * 60 * 15; // Default length of event is 15 minutes, the increment we use for most event behavior
+    if (active == 'start' && record.end < record.start) {
+      record.end.setTime(record.start.getTime() + timeOffset)
+    }
+    if (active == 'end' && record.start > record.end) {
+      record.start.setTime(record.end.getTime() - timeOffset)
+    }
+    // Make sure to set the starts_at and ends_at values as well
+    record.starts_at = record.start.strftime()
+    record.ends_at = record.end.strftime()    
   }
 }
