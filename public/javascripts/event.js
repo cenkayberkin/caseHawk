@@ -153,7 +153,7 @@ Event = {
            return this.name
         }
     }
-  }
+  },
   
   // Make sure the start_date is earlier or equal to the end_date
   // Reset values as necessary with optoinal priority
@@ -169,7 +169,8 @@ Event = {
     // Make sure to set the starts_at and ends_at values as well
     record.starts_at = record.start.strftime()
     record.ends_at = record.end.strftime()
-  }
+  },
+  
   // Make sure the start is earlier than the end or the end is later than the start
   // Reset values as necessary with optional priority
   validateTime: function(record, active) {
