@@ -27,7 +27,6 @@
       </li>
     <% else %>
       <li class="completable">
-        <%= check_box_tag event.id, '1', event.completed_at, :id => "event-complete-#{event.id}", :class => 'task checkbox', :name => event.id %>
         Not yet completed
       </li>
     <% end %>
