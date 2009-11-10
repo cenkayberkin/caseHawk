@@ -143,7 +143,7 @@ $(function(){
       .append(
         $("<a></a>")
           .html("x")
-          .live('click', function(){ newTag.fadeOut("normal", function() { $(this).remove() }) })
+          .click(function(){ newTag.fadeOut("normal", function() { $(this).remove() }) })
       )
       // the input that will save this value
       .append(
@@ -213,7 +213,7 @@ $(function(){
       .html(
         savedEvent[$(this).attr("data-field-name")]
       )
-      .effect("highlight", { color : "#d7fcd7"}, 2000)
+      .effect("highlight", { color : "#d7fcd7"}, 3000)
 
     Event.instantiate(savedEvent, 'skip_cache').draw(result.html)
   }

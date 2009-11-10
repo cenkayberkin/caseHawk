@@ -130,7 +130,7 @@ Event = {
     // TODO: get working for alldays
     var newDay = $(".week-day-full td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")
     // add the event to the new day
-    debugk('adding: ',html, $(html))
+    debug('adding: ',html, $(html))
     newDay.find(".collidable").append(html)
     Day.refresh(newDay)
 
