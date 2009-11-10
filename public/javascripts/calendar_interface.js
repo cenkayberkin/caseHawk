@@ -89,6 +89,8 @@ $(function(){
         $('.editable_time').hide(); 
         $('.event_field_ends_at:hidden').toggle("slow");          
         $('.event_field:visible #event_ends_at').removeAttr('disabled'); 
+        $('.event_field #event_remind').val(0); 
+        $('.event_field_remind').toggle("slow"); 
         break; 
       case 'Appointment': 
         $('.editable_time').show(); 
