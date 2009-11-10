@@ -324,7 +324,7 @@ $(function(){
     // Moved a bunch of functions out of here, replacing them in non-reloaded wrapper
     // Changing click -> live(click,) etc. 
     // Editable event titles
-    $('#facebox .editable')
+    $('#facebox .editable_text')
       .each(function(){
         var editable = $(this)
         var event = Event.instantiate($("#"+editable.attr("rel")))
@@ -379,6 +379,7 @@ $(function(){
           }
         )
       })        
+      
   }
   
   functionsThatNeedToBeReexecutedWhenFaceboxLoads()

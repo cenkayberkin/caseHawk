@@ -28,14 +28,3 @@ String.prototype.camelcase = function(){
 
   return camelized;
 }
-
-
-// Set up hidable sidebar elements
-$(function(){
-  $(".expandable").hide()
-  $(".expandable, .collapsible").prev().addClass("clickable")
-  $(".expandable, .collapsible").prev().click(function() {
-    $(this).toggleClass("clicked")
-    $(this).next().slideToggle()
-  })
-})
