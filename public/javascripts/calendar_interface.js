@@ -210,12 +210,23 @@ $(function(){
   // function to call on editable callbacks
   var updateSavedEvent = function(result){
     var savedEvent = result.record
-    // using the actual saved value in the input field
-    $(this)
-      .html(
-        savedEvent[$(this).attr("data-field-name")]
-      )
-      .effect("highlight", { color : "#d7fcd7"}, 3000)
+
+    // I'm sorry that I'm special casing this but I need different behavior for dates
+    dataFieldName = $(this).attr("data-field-name"); 
+    if (dataFieldName == 'starts_at_date' 
+        || dataFieldName == 'ends_at_date') {
+      atDate = new Date(savedEvent[dataFieldName]); 
+      $(this).html(atDate.strftime("%B %e, %Y"))
+    } else {
+      // using the actual saved value in the input field
+      $(this)
+        .html(
+          savedEvent[$(this).attr("data-field-name")]
+        )      
+    }
+
+    
+    $(this).effect("highlight", { color : "#d7fcd7"}, 3000)
 
     Event.instantiate(savedEvent, 'skip_cache').draw(result.html)
   }
@@ -377,7 +388,8 @@ $(function(){
             submit      : 'OK', 
             submitdata  : {"_method": "PUT"},
             ajaxoptions : {dataType: 'json'}, 
-            callback    : updateSavedEvent
+            callback    : updateSavedEvent, 
+            onblur      : 'ignore'
           }
         )
       })        
@@ -385,7 +397,7 @@ $(function(){
   }
   
   functionsThatNeedToBeReexecutedWhenFaceboxLoads()
-  $(document).bind("reveal.facebox", functionsThatNeedToBeReexecutedWhenFaceboxLoads)
+  $(document).bind("reveal.facebox", function() { functionsThatNeedToBeReexecutedWhenFaceboxLoads(); $('input').blur(); })
 
   $('a[rel*=facebox]').facebox()
 
