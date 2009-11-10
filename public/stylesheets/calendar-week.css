@@ -182,7 +182,6 @@ li.event.appointment .event-title,
 li.event.deadline .event-title, 
 li.event.courtdate .event-title {
   display: block; 
-  width: 100%; 
   height: 15px; 
   overflow: hidden; 
 }
