@@ -6,18 +6,14 @@
     </td>
     <% (@date.beginning_of_week..@date.end_of_week).each do |day| %>
     <td class="day day-<%= day.wday %>" data-date="<%= day.to_s %>">
-      <div class="day-full collidable">
-        <ul class="day-deadlines">
-          <% get_deadlines(@events).select{ |e| e.starts_at.to_date == day }.each do |event| %>
-            <%= render :partial => "events/event_deadline", :object => event %>
-          <% end %>
-        </ul>
-        <ul class="day-appointments">
-          <% (get_court_dates(@events) + get_appointments(@events)).select{ |e| e.starts_at.to_date == day }.each do |event| %>
-            <%= render :partial => "events/event_#{event.type.underscore}", :object => event %>
-          <% end %>
-        </ul>
-      </div>
+      <ul class="day-full collidable">
+        <% get_deadlines(@events).select{ |e| e.starts_at.to_date == day }.each do |event| %>
+          <%= render :partial => "events/event_deadline", :object => event %>
+        <% end %>
+        <% (get_court_dates(@events) + get_appointments(@events)).select{ |e| e.starts_at.to_date == day }.each do |event| %>
+          <%= render :partial => "events/event_#{event.type.underscore}", :object => event %>
+        <% end %>
+      </ul>
     </td>
     <% end %>
 </tr>

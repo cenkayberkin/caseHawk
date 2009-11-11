@@ -86,23 +86,18 @@
   .viewport {
     overflow: hidden;
   }
-    .day-appointments,
-    .day-deadlines {
+    ul.day-full {
       position: relative;
       margin: 0; 
       padding: 0;
     }
-    .day-deadlines {
-      height: 0px;
-    }
-    .day-appointments li,
-    .day-deadlines li {
+    ul.day-full li {
       position: absolute;
       width: 50%; 
       line-height: 15px; 
       left: 50%;
     }
-    .day-deadlines li {
+    ul.day-full li.deadline {
       background: #EEE;
       left: 0;
       color: #B32914;
@@ -132,12 +127,6 @@
     }
     .collision_box_overflow { /*when a box with too many events has the 'more' link clicked*/
     }
-    .day-appointments li, .collision_box { background: #F3F3F3; }
-    .day-deadlines li, .day-deadlines .collision-box { background: #F3F3F3; }
-
-    .day-appointments .collision_box {
-      left: 50%;
-		}
 
     .collision_box .event {
       padding: 0 0.5em; 
