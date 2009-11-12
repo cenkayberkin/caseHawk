@@ -82,11 +82,15 @@ $(function(){
             .end()
   })
 
+  // Hide the event_ends_at_datepicker by default
+  $('#event_ends_at_datepicker').hide(); 
+
   // Change the time and date selects based on event type
   $('#event_type').change(function() {
     switch($(this).val()) {
       case 'AllDay': 
         $('.editable_time').hide(); 
+        $('#event_ends_at_datepicker').show(); 
         $('.event_field_ends_at:hidden').toggle("slow");          
         $('.event_field:visible #event_ends_at').removeAttr('disabled'); 
         $('.event_field #event_remind').val(0); 
