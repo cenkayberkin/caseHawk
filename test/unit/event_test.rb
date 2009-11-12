@@ -64,8 +64,8 @@ class EventTest < ActiveSupport::TestCase
           :ends_at_date => @event.ends_at_date-1.day
         )
       }
-      should_change "@event.starts_at", :by => -1.day
-      should_change "@event.ends_at", :by => -1.day
+      should_not_change "@event.starts_at"
+      should_not_change "@event.ends_at"
     end    
   end
   

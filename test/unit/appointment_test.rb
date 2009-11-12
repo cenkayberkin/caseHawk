@@ -34,5 +34,26 @@ class AppointmentTest < ActiveSupport::TestCase
     should "not be completable" do
       assert !@event.completable?
     end
+    context "moving an event" do
+      setup { @event = Factory.create(:event) }
+      context "forward one day by starts_at" do
+        setup {
+          @event.update_attributes(
+            :starts_at_date => @event.starts_at_date+1.day
+          )
+        }
+        should_change "@event.starts_at", :by => 1.day
+        should_change "@event.ends_at", :by => 1.day
+      end
+      context "backward one day by ends_at" do
+        setup {
+          @event.update_attributes(
+            :ends_at_date => @event.ends_at_date-1.day
+          )
+        }
+        should_not_change "@event.starts_at"
+        should_not_change "@event.ends_at"
+      end    
+    end
   end
 end
