@@ -47,6 +47,29 @@ class EventTest < ActiveSupport::TestCase
     should_change "Event.count", :by => 1
   end
 
+  context "moving an event" do
+    setup { @event = Factory.create(:event) }
+    context "forward one day by starts_at" do
+      setup {
+        @event.update_attributes(
+          :starts_at_date => @event.starts_at_date+1.day
+        )
+      }
+      should_change "@event.starts_at", :by => 1.day
+      should_change "@event.ends_at", :by => 1.day
+    end
+    context "backward one day by ends_at" do
+      setup {
+        @event.update_attributes(
+          :ends_at_date => @event.ends_at_date-1.day
+        )
+      }
+      should_change "@event.starts_at", :by => -1.day
+      should_change "@event.ends_at", :by => -1.day
+    end    
+  end
+  
+
   context "finding events by day" do
     setup do
       @number_yesterday = 7
