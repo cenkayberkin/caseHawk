@@ -4,7 +4,7 @@ namespace :calendar do
     for event in Event.find(:all, 
       :conditions => "type != 'AllDay'",
       :conditions => "starts_at < NOW()",
-      :conditions => ["starts_at > ? ", 18.hours.ago.to_s(:db)],
+      :conditions => ["starts_at > ? ", 45.minutes.ago.to_s(:db)],
       :conditions => "remind = 1")
       
       for user in event.tag_records.map{ |t| User.find_by_login(t.name) }.compact
