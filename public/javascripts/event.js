@@ -68,32 +68,15 @@ Event = {
       return Event.cachedInstances[id]
     } 
 
-    // if this is an existing DOM object then copy some
+    // assume this is an existing DOM object then copy some
     // attributes into the same format as the JSON object has
-    if(record.nodeType)
-      $.extend(record,
-               { starts_at:  $(record).attr('data-starts-at'),
-                 ends_at:    $(record).attr('data-ends-at'),
-                 type:       $(record).attr('data-type'),
-                 id:         $(record).attr('data-event-id')
-                })
+    $.extend(record,
+             { starts_at:  $(record).attr('data-starts-at'),
+               ends_at:    $(record).attr('data-ends-at'),
+               type:       $(record).attr('data-type'),
+               id:         $(record).attr('data-event-id')
+              })
 
-    // otherwise assume the record is a JSON object literal
-    // and extend it with a jQuerified DOM object
-    else
-      $.extend(record,
-               ($("li.event#"+record.id).length ?
-                $("li.event#"+record.id) : $("<li></li>"))
-                  .attr(
-                    { "data-starts-at": record.starts_at,
-                      "data-ends-at":   record.ends_at,
-                      "type":           record.type,
-                      "id":             record.id
-                    })
-                  .addClass("event")
-                  .addClass(record.type)
-                  [0])
-    
     // .starts_at and .ends_at are the string attributes
     // but .start and .end are javascript Date objects
     record.start = (new Date(record.starts_at))
@@ -116,21 +99,19 @@ Event = {
   draw: function(html){
     // check whether this event already exists
     var originalDay = null
-    var originalEvent = $(".event[data-event-id="+this.id+"]:first")
-
+    var originalEvent = $(".viewport .event[data-event-id="+this.id+"]:first")
     if(originalEvent.length){
       originalDay = originalEvent.parents("td.day")
       // remove it from it's original day
-      // console.debug('removing: ', originalEvent)
       originalEvent.remove()
-      // TODO: just refresh each day once
-      // Day.refresh(originalDay)
     }
 
     // TODO: get working for alldays
     var newDay = $(".week-day-full td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")
+    if(originalDay[0] && originalDay[0] != newDay[0])
+      Day.refresh(originalDay)
+
     // add the event to the new day
-    debug('adding: ',html, $(html))
     newDay.find(".collidable").append(html)
     Day.refresh(newDay)
 
