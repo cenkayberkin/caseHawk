@@ -96,7 +96,9 @@ $(function(){
         $('.event_field #event_remind').val(0); 
         $('.event_field_remind').toggle("slow"); 
         break; 
+      case 'CourtDate': 
       case 'Appointment': 
+        $('#event_ends_at_datepicker').hide(); 
         $('.editable_time').show(); 
         $('.event_field_ends_at:hidden').toggle("slow");          
         $('.event_field:visible #event_ends_at').removeAttr('disabled'); 

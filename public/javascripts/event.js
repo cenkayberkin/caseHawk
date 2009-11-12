@@ -121,6 +121,7 @@ Event = {
   displayFor: function(record){
     switch(record.type){
       case 'Appointment':
+      case 'CourtDate': 
         return function(){
            return this.start.getHours()
                 + ":"
