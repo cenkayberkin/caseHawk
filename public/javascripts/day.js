@@ -2,6 +2,7 @@
 
 Day = {
   init: function(day){
+    Day.clearBoxes(day)
     Day.positionEvents(day.find(".event"))
     Day.boxDayEvents(day)
     Day.fixCongestedBoxes(day)
@@ -9,25 +10,20 @@ Day = {
   },
 
   refresh: function(day){
-    // move events out of boxes
-    var collidable = day
-                      .find(".collidable")
-                      // .css({top: 'auto',
-                            // height: 'auto',
-                            // marginTop: 'auto',
-                            // position: 'relative' })
-
-    day.find(".event").each(function(){
-      $(this)
-        .css({top: 'auto',
-              height: 'auto' })
-        .appendTo(collidable)
-    })
-    // delete the original collision boxes
-    day.find(".collision_box").remove()
-    // start over
     Day.init(day)
+    // remove stray, duplicate, non-boxed events
+    day.find(".collidable > .event").remove()
     Week.adjustViewport(day.parents(".week"))
+  },
+
+  // remove any collision boxes previously added by boxDayEvents
+  clearBoxes: function(day){
+    var collidable = day.find(".collidable")
+    collidable.html(
+      day.find(".event")
+    )
+    // day.find(".event").appendTo(collidable)
+    // day.find(".collision_box").remove()
   },
   // attach the appropriate 'height' and 'top'
   // to the event given or (if none given)
@@ -39,7 +35,7 @@ Day = {
       )
       .each(function(){
         var e = Event.instantiate(this)
-        $(this)
+        $(e)
           .css({
             top: Day.top(e)+'px',
             height: Day.height(e)+'px'
@@ -64,43 +60,46 @@ Day = {
   // For each pair of adjacent events call Calendar.Box()
   // with the two events as arguments.
   boxDayEvents: function(day){
+    Day.clearBoxes(day)
+    
     // for each element with the .collidable class
     day.find(".collidable").each(function(){
-        // consider this element to be a list of events
-        var eventList = $(this)
-        // for each event in this list
-        var events = eventList
-              .find(".event")
-              // make this into an array of Event instances
-              .map(function(){
-                return Event.instantiate(this)
-              })
-              // arrange them by start time (ascending)
-              .sort(function(a,b){
-                return a.starts_at == b.starts_at ?
-                         (a.ends_at   < b.ends_at   ? 1 : -1) :
-                         (a.starts_at > b.starts_at ? 1 : -1)
-              })
-              .map(function(){return this})
 
-        var latestEventSoFar = events.length && events[0]
-        // for each of these events
-        $.each(events, function(idx, event){
-          // box this event with the ones adjacent and
-          // overlapping with it
-          if(latestEventSoFar.end >= event.start)
-            Day.Box(latestEventSoFar, event)
-          // or just put it in a box by itself
-          else
-            Day.Box(event)
+      // consider this element to be a list of events
+      var eventList = $(this)
+      // for each event in this list
+      var events = eventList
+            .find(".event")
+            // make this into an array of Event instances
+            .map(function(){
+              return Event.instantiate(this)
+            })
+            // arrange them by start time (ascending)
+            .sort(function(a,b){
+              return a.starts_at == b.starts_at ?
+                       (a.ends_at   < b.ends_at   ? 1 : -1) :
+                       (a.starts_at > b.starts_at ? 1 : -1)
+            })
+            .map(function(){return this})
 
-          if(latestEventSoFar.end < event.end)
-            latestEventSoFar = event
-        })
-        // place all these boxes into the .collidable
-        Day.Box.arrange(eventList)
-      }
-    )
+      var latestEventSoFar = events.length && events[0]
+      // for each of these events
+      $.each(events, function(idx, event){
+        // box this event with the ones adjacent and
+        // overlapping with it
+        if(   latestEventSoFar.end >= event.start
+           && latestEventSoFar != event )
+          Day.Box(latestEventSoFar, event)
+        // or just put it in a box by itself
+        else
+          Day.Box(event)
+
+        if(latestEventSoFar.end < event.end)
+          latestEventSoFar = event
+      })
+      // place all these boxes into the .collidable
+      Day.Box.arrange(eventList)
+    })
   },
   // function Box(a, b)
   //  Combine two events at a time into a box.
