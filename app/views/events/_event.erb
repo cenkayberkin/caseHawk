@@ -1,9 +1,11 @@
 <%=
   case event
   when AllDay
-    render "events/event_allday",       :object => event
+    render "events/event_all_day",      :object => event
   when Appointment
     render "events/event_appointment",  :object => event
+  when CourtDate
+    render "events/event_court_date",   :object => event
   when Deadline
     render "events/event_deadline",     :object => event
   when Task

@@ -99,21 +99,30 @@ Event = {
   draw: function(html){
     // check whether this event already exists
     var originalDay = null
-    var originalEvent = $(".viewport .event[data-event-id="+this.id+"]:first")
+    var originalEvent = $("tr .event[data-event-id="+this.id+"]:first")
     if(originalEvent.length){
       originalDay = originalEvent.parents("td.day")
-      // remove it from it's original day
+      // remove it from its original day
       originalEvent.remove()
-    }
+    } 
+    dayContext = (originalEvent.attr("data-type") == 'AllDay' || originalEvent.attr("data-type") == 'Task') ? 'allday' : 'day-full'
+    debug(dayContext)
 
-    // TODO: get working for alldays
-    var newDay = $(".week-day-full td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")
-    if(originalDay[0] && originalDay[0] != newDay[0])
-      Day.refresh(originalDay)
+    // generalized newday selection, but only gets first day for alldays
+    var newDay = $('.week-' + dayContext + " td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")
 
     // add the event to the new day
-    newDay.find(".collidable").append(html)
-    Day.refresh(newDay)
+    // TODO append the event html into all the days it hits
+    // refresh all affected days
+    if (dayContext == 'day-full') {
+      newDay.find("ul").append(html)
+      Day.refresh(newDay)
+
+      if(originalDay[0] && originalDay[0] != newDay[0])
+        Day.refresh(originalDay)
+    } else {
+      newDay.find("ul." + originalEvent.attr("data-type").toLowerCase() + "s").append(html)
+    }
 
     return this;
   },
