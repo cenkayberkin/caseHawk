@@ -204,7 +204,7 @@ $(function(){
                    {completed: li.hasClass('incomplete') ? '1' : ''},
                    function(event){
                      li.removeClass('complete incomplete')
-                     li.addClass(event.completed_at ? 'complete' : 'incomplete')
+                     li.addClass(event.record.completed_at ? 'complete' : 'incomplete')
                    })
       // if there are multiple checkboxes make sure they all
       // have the same state as this one
