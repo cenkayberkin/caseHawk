@@ -225,10 +225,9 @@ $(function(){
         )      
     }
 
-    
-    $(this).effect("highlight", { color : "#d7fcd7"}, 3000)
+    Event.instantiate($(result.html)[0], 'skip_cache').draw(result.html)
 
-    Event.instantiate(savedEvent, 'skip_cache').draw(result.html)
+    $("#"+savedEvent.id+".event").effect("highlight", { color : "#d7fcd7"}, 3000)
   }
 
   // ************ Event Details Delete Control ************ //
