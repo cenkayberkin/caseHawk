@@ -106,7 +106,6 @@ Event = {
       originalEvent.remove()
     } 
     dayContext = (originalEvent.attr("data-type") == 'AllDay' || originalEvent.attr("data-type") == 'Task') ? 'allday' : 'day-full'
-    debug(dayContext)
 
     // generalized newday selection, but only gets first day for alldays
     var newDay = $('.week-' + dayContext + " td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")
@@ -117,7 +116,6 @@ Event = {
     if (dayContext == 'day-full') {
       newDay.find("ul").append(html)
       Day.refresh(newDay)
-
       if(originalDay[0] && originalDay[0] != newDay[0])
         Day.refresh(originalDay)
     } else {

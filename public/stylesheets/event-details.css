@@ -27,6 +27,9 @@ li.event .event-details {
   margin-top: 8px;
   float: none;
 }
+  .event-details h3.event_saving {
+    background: url(/images/indicator.gif) no-repeat right center;
+  }
 .event-details ul {
   margin: 0 0 1em;
   border-top: 1px solid #CCCCCC;

@@ -215,6 +215,7 @@ $(function(){
 
   // function to call on editable callbacks
   var updateSavedEvent = function(result){
+    $("#facebox h3").addClass("event_saving")
     var savedEvent = result.record
 
     // I'm sorry that I'm special casing this but I need different behavior for dates
@@ -233,6 +234,7 @@ $(function(){
 
     Event.instantiate($(result.html)[0], 'skip_cache').draw(result.html)
 
+    setTimeout('$("#facebox h3").removeClass("event_saving")', 2000)
     $("#"+savedEvent.id+".event").effect("highlight", { color : "#d7fcd7"}, 3000)
   }
 
