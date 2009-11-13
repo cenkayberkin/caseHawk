@@ -50,7 +50,7 @@ class Event < ActiveRecord::Base
     { :conditions => [" tags.name IN (?) ", taglist],
       :joins => {:taggings => :tag} }
   }
-  named_scope :for_account, proc {|acct|
+  named_scope :of_account, proc {|acct|
     { :conditions => [" account_id = ? ", acct] }
   }
   

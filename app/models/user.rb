@@ -35,6 +35,9 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
   
   named_scope :active, :conditions => "active = 1"
+  named_scope :of_account, proc {|acct|
+    { :conditions => [" account_id = ? ", acct] }
+  }
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
