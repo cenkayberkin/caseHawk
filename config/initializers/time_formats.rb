@@ -63,6 +63,6 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
     else
       time.strftime "%B #{time.day.ordinalize}, %Y"
     end
-  }
-  
+  },
+  :ymdhs => '%Y-%m-%d %H:%M'
 )

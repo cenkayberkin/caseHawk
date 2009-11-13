@@ -1,17 +1,14 @@
 namespace :calendar do
-  desc 'Send event reminders'
+  desc 'Send event reminders. Should be ran once per minute, every minute.'
   task :remind, :needs => :environment do
-    for event in Event.find(:all, 
-      :conditions => "type != 'AllDay'",
-      :conditions => "starts_at < NOW()",
-      :conditions => ["starts_at > ? ", 45.minutes.ago.to_s(:db)],
-      :conditions => "remind = 1")
-      
-      for user in event.tag_records.map{ |t| User.find_by_login(t.name) }.compact
+    for user in User.active
+      for event in Event.for_account(user.account.id).with_tags(user.login).find(:all, 
+        :conditions => ["type != 'AllDay' " + 
+          "AND starts_at LIKE ? " + 
+          "AND remind = 1", "#{45.minutes.from_now.to_s(:ymdhs)}%"])
+        
         puts "Found event #{event.id} tagged with #{user.login}. Sending reminder..."
         CalendarNotifier.deliver_reminder(user, event)
-        event.remind = false
-        event.save
       end
     end
   end
