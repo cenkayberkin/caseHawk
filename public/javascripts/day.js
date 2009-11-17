@@ -10,10 +10,13 @@ Day = {
 
   init: function(day){
     if(0 == day.length) return
-    Day.clearBoxes(day)
-    Day.positionEvents(day.find(".event"))
-    Day.boxDayEvents(day)
-    Day.fixCongestedBoxes(day)
+
+    if(Day.timed(day)){
+      Day.clearBoxes(day)
+      Day.positionEvents(day.find(".event"))
+      Day.boxDayEvents(day)
+      Day.fixCongestedBoxes(day)
+    }
     Day.clicks(day)
   },
 
