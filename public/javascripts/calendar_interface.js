@@ -196,10 +196,10 @@ $(function(){
     }); 
 
   // support ajax completion of completable events
-  $("li.event_completable input[type=checkbox]")
+  $("li[data-completable=true] input[type=checkbox]")
     .live('click', function(){
       var checkbox = $(this)
-      var li = checkbox.parents("li.event_completable")
+      var li = checkbox.parents("li.event")
       Event.update(li,
                    {completed: li.hasClass('incomplete') ? '1' : ''},
                    function(event){
