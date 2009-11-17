@@ -82,6 +82,12 @@ $(function(){
             .end()
   })
 
+  // New Event Title clear and change style on focus
+  $('#new_event .inactive').focus(function() {
+    $(this).val('')
+      .removeClass('inactive')
+  })
+
   // Hide the event_ends_at_datepicker by default
   $('#event_ends_at_datepicker').hide(); 
 
@@ -195,7 +201,7 @@ $(function(){
       $('.hourslice').css("background-color", "white")
     }); 
 
-  // support ajax completion of completable events
+  // support ajax completion of k events
   $("li.event_completable input[type=checkbox]")
     .live('click', function(){
       var checkbox = $(this)
