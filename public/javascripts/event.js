@@ -98,8 +98,8 @@ Event = {
 
   draw: function(html){
     // check whether this event already exists
-    var originalDay = null
-    var originalEvent = $("tr .event[data-event-id="+this.id+"]:first")
+    var originalDay
+    var originalEvent = $("li.event[data-event-id="+this.id+"]:first")
     if(originalEvent.length){
       originalDay = originalEvent.parents("td.day")
       // remove it from its original day
