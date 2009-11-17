@@ -20,7 +20,7 @@ $(function(){
       var editable = $(this)
       editable.editable(
         function(value, settings) {
-          $(this).html(value); 
+          $(this).html(value);
           validateEventFormDates(editable.attr("rel"));           
         },
         { 
@@ -37,7 +37,7 @@ $(function(){
       var editable = $(this)
       editable.editable(
         function(value, settings) {
-          $(this).html(value); 
+          $(this).html(value);
           validateEventFormDates(editable.attr("rel"));           
         },
         { 
