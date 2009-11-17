@@ -1,6 +1,13 @@
 
 
 Day = {
+  allday: function(day){
+    day.is(".week-allday .day")
+  },
+  timed: function(day){
+    day.is(".week-day-full .day")
+  },
+
   init: function(day){
     if(0 == day.length) return
     Day.clearBoxes(day)
@@ -12,9 +19,11 @@ Day = {
 
   refresh: function(day){
     Day.init(day)
-    // remove stray, duplicate, non-boxed events
-    day.find(".collidable > .event").remove()
-    Week.adjustViewport(day.parents(".week"))
+    if(Day.timed(day)){
+      // remove stray, duplicate, non-boxed events
+      day.find(".collidable > .event").remove()
+      Week.adjustViewport(day.parents(".week"))
+    }
   },
 
   // remove any collision boxes previously added by boxDayEvents
