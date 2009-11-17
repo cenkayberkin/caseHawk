@@ -1,23 +1,24 @@
 form.new_event {
-  
+  padding: 0 8px 0 16px; 
+  font-size: 1.2em;
 }
 
-.new_event input, .new_event label, .new_event select, 
+.new_event .event_field {
+  padding: 0 0 8px;  
+}
+  .new_event .event_field.event_field_type {
+    padding-top: 4px;
+  }
+
+.new_event input, .new_event label, .new_event select {
+  width: 75%; 
+}
+
 .new_event div.editable_time, .new_event div.editable_date {
-  display: inline-block; 
-  vertical-align: middle;
-  margin-bottom: 5px; 
+  width: 50%; 
+  color: #73A3D3;
 }
 
-.new_event label {
-  text-align: right; 
-  padding-right: 10px; 
-  width: 25%;
-}
-
-.new_event input {
-  width: 55%;
-}
 .new_event input[type=checkbox] {
   width: auto; 
 }
@@ -30,18 +31,6 @@ form.new_event {
   width: auto; 
   margin-left: 25%; 
   padding-left: 10px;
-}
-.new_event .editable_time, .new_event .editable_date {
-  width: 65%; 
-  text-align: left; 
-  color: #73A3D3;
-  cursor: default; 
-}
-
-.new_event div.editable_time {
-  clear: both; 
-  margin-left: 25%; 
-  padding-left: 15px; 
 }
   .new_event .editable_time select, 
   .new_event .editable_date select,  
