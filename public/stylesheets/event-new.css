@@ -1,23 +1,59 @@
 form.new_event {
+  padding: 0 8px 0 16px; 
+  font-size: 1.1em;
+}
+
+.new_event .event_field {
+  padding: 0 0 8px;  
+}
+  .new_event .event_field.event_field_type {
+    padding-top: 4px;
+  }
   
-}
-
-.new_event input, .new_event label, .new_event select, 
-.new_event div.editable_time, .new_event div.editable_date {
-  display: inline-block; 
-  vertical-align: middle;
-  margin-bottom: 5px; 
-}
-
-.new_event label {
+  .new_event .event_field.event_field_remind {
+    display: inline-block;
+    padding: 0 4px 0 0;
+  }
+  
+.new_event .event_field label {
+  padding: 0 4px; 
   text-align: right; 
-  padding-right: 10px; 
-  width: 25%;
+  text-transform: uppercase; 
+  font-size: 0.9em; 
+  color: #999999; 
+}
+  .new_event .event_field.event_field_type label, 
+  .new_event .event_field.event_field_tags label {
+    color: #5EAD5E;  
+    font-weight: bold; 
+  }
+  .new_event .event_field.event_field_remind label {
+    color: #333333;
+    text-transform: none; 
+    text-align: left; 
+    padding: 0; 
+    font-size: 1em;
+  }
+
+.new_event input, .new_event select {
+  width: 80%; 
+}
+  .new_event input.inactive {
+    color: #999999; 
+  }
+
+.new_event .editable_time, .new_event div.editable_date {
+  width: 60%; 
+  color: #73A3D3;
+  display: inline-block;
+}
+.new_event .editable_time {
+  width: 20%; 
+  text-transform: uppercase; 
+  text-align: right; 
+  font-weight: bold;
 }
 
-.new_event input {
-  width: 55%;
-}
 .new_event input[type=checkbox] {
   width: auto; 
 }
@@ -28,20 +64,6 @@ form.new_event {
 }
 .new_event input[type=submit] {
   width: auto; 
-  margin-left: 25%; 
-  padding-left: 10px;
-}
-.new_event .editable_time, .new_event .editable_date {
-  width: 65%; 
-  text-align: left; 
-  color: #73A3D3;
-  cursor: default; 
-}
-
-.new_event div.editable_time {
-  clear: both; 
-  margin-left: 25%; 
-  padding-left: 15px; 
 }
   .new_event .editable_time select, 
   .new_event .editable_date select,  
@@ -50,54 +72,45 @@ form.new_event {
     margin: 0; 
   }
   .new_event .editable_date input {
-    width: 75%; 
+    width: 60%; 
+    margin: 0 4px 0 0;  
   }  
+  .new_event .editable_date input[type=submit] {
+    width: auto; 
+    margin: 0; 
+  }
   .new_event .editable_time select {
     margin: 0 4px 0 0;
   }
 
-.event_field_tags_add {
-  display: inline-block;
-  margin: 0 0.5em; 
-  padding: 0 0.5em;
-  text-transform: uppercase; 
+.new_event ul.tags {
   font-size: 0.9em; 
-  font-weight: bold;
-  cursor: default; 
-  color: #5EAD5E;  
-}
-  .event_field_tags_add:hover {
-    background: #5EAD5E; 
-    color: #FFF; 
-  }
-
-ul.tags {
   list-style: none; 
   color: #666; 
-}
-.new_event ul.tags {
-  margin: 0 0 0 25%;
-  padding-left: 10px; 
-  width: 65%; 
+  margin: 0;
+  padding: 0;
+  width: 100%; 
 }
   .tags li {
-    margin: 0;
+    width: 45%; 
+    margin: 0 1% 2px 0; 
+    padding: 0 4% 0 0;
+    float: left; 
+    display: block; 
   }
   .tags li:last-child {
     margin-bottom: 0.5em;
   }
-  .tags li:hover {
+  .tags li a {
+    display: block; 
+    float: right; 
+    color: #B32914; 
+    text-decoration: none; 
+    cursor: default;
+    padding: 0 0.5em;
   }
-    .tags li a {
-      display: block; 
-      float: right; 
-      color: #B32914; 
-      text-decoration: none; 
-      cursor: default;
-      padding: 0 0.5em;
-    }
-    .tags li a:hover {
-      font-weight: bold; 
-      color: #FFF; 
-      background: #B32914;
-    }
+  .tags li a:hover {
+    font-weight: bold; 
+    color: #FFF; 
+    background: #B32914;
+  }

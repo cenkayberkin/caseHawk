@@ -82,6 +82,12 @@ $(function(){
             .end()
   })
 
+  // New Event Title clear and change style on focus
+  $('#new_event .inactive').focus(function() {
+    $(this).val('')
+      .removeClass('inactive')
+  })
+
   // Hide the event_ends_at_datepicker by default
   $('#event_ends_at_datepicker').hide(); 
 
@@ -236,6 +242,7 @@ $(function(){
 
     setTimeout('$("#facebox h3").removeClass("event_saving")', 1250)
     $("#"+savedEvent.id+".event").effect("highlight", { color : "#d7fcd7"}, 3000)
+    $(this).effect("highlight", { color : "#d7fcd7"}, 3000)
   }
 
   // ************ Event Details Delete Control ************ //
