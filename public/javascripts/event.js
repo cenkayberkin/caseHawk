@@ -111,16 +111,19 @@ Event = {
     var newDay = $('.week-' + dayContext + " td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")
 
     // add the event to the new day
-    // TODO append the event html into all the days it hits
-    // refresh all affected days
-    if (dayContext == 'day-full') {
-      newDay.find("ul").append(html)
-      Day.refresh(newDay)
-      if(originalDay[0] && originalDay[0] != newDay[0])
-        Day.refresh(originalDay)
-    } else {
-      newDay.find("ul." + originalEvent.attr("data-type").toLowerCase() + "s").append(html)
-    }
+    // TODO:
+    //   - append the event html into all the days it hits
+    //   - refresh all affected days
+    newDay.find(
+      dayContext == 'day-full' ?
+        "ul" :
+        "ul." + originalEvent.attr("data-type").toLowerCase() + "s"
+    ).append(html)
+    // redraw the original
+    Day.refresh(newDay)
+    // and new days
+    if(originalDay[0] && originalDay[0] != newDay[0])
+      Day.refresh(originalDay)
 
     return this;
   },
