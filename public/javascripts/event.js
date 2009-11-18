@@ -98,14 +98,14 @@ Event = {
 
   draw: function(html){
     // check whether this event already exists
-    var originalDay = null
-    var originalEvent = $("tr .event[data-event-id="+this.id+"]:first")
+    var originalDay
+    var originalEvent = $("li.event[data-event-id="+this.id+"]:first")
     if(originalEvent.length){
       originalDay = originalEvent.parents("td.day")
       // remove it from its original day
       originalEvent.remove()
     } 
-    dayContext = (originalEvent.attr("data-type") == 'AllDay' || originalEvent.attr("data-type") == 'Task') ? 'allday' : 'day-full'
+    dayContext = originalEvent.attr("data-timed") == 'true') ? 'allday' : 'day-full'
 
     // generalized newday selection, but only gets first day for alldays
     var newDay = $('.week-' + dayContext + " td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")

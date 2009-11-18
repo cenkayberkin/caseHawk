@@ -20,7 +20,7 @@ $(function(){
       var editable = $(this)
       editable.editable(
         function(value, settings) {
-          $(this).html(value); 
+          $(this).html(value);
           validateEventFormDates(editable.attr("rel"));           
         },
         { 
@@ -37,7 +37,7 @@ $(function(){
       var editable = $(this)
       editable.editable(
         function(value, settings) {
-          $(this).html(value); 
+          $(this).html(value);
           validateEventFormDates(editable.attr("rel"));           
         },
         { 
@@ -211,11 +211,11 @@ $(function(){
       $('.hourslice').css("background-color", "white")
     }); 
 
-  // support ajax completion of k events
-  $("li.event_completable input[type=checkbox]")
+  // support ajax completion of completable events
+  $("li[data-completable=true] input[type=checkbox]")
     .live('click', function(){
       var checkbox = $(this)
-      var li = checkbox.parents("li.event_completable")
+      var li = checkbox.parents("li.event")
       Event.update(li,
                    {completed: li.hasClass('incomplete') ? '1' : ''},
                    function(event){
