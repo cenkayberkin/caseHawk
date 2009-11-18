@@ -82,8 +82,9 @@ Event = {
       originalDay = originalEvent.parents("td.day")
       // remove it from its original day
       originalEvent.remove()
-    } 
-    dayContext = originalEvent.attr("data-timed") == 'true' ? 'allday' : 'day-full'
+    }
+    // dayContext = originalEvent.attr("data-timed") == 'true' ? 'allday' : 'day-full'
+    dayContext = (originalEvent.attr("data-type") == 'AllDay' || originalEvent.attr("data-type") == 'Task') ? 'allday' : 'day-full'
 
     // generalized newday selection, but only gets first day for alldays
     var newDay = $('.week-' + dayContext + " td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")
@@ -92,11 +93,13 @@ Event = {
     // TODO:
     //   - append the event html into all the days it hits
     //   - refresh all affected days
-    newDay.find(
+    var list = newDay.find(
       dayContext == 'day-full' ?
         "ul" :
         "ul." + originalEvent.attr("data-type").toLowerCase() + "s"
-    ).append(html)
+    )
+    debug(list)
+    list.append(html)
     // redraw the original
     Day.refresh(newDay)
     // and new days
