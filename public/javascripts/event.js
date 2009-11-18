@@ -82,7 +82,7 @@ Event = {
       originalDay = originalEvent.parents("td.day")
       // remove it from its original day
       originalEvent.remove()
-    } 
+    }
     dayContext = originalEvent.attr("data-timed") == 'true' ? 'allday' : 'day-full'
 
     // generalized newday selection, but only gets first day for alldays

@@ -95,40 +95,45 @@ $(function(){
   $('#event_type').change(function() {
     switch($(this).val()) {
       case 'AllDay': 
-        $('.editable_time').hide()
-        $('#event_ends_at_datepicker').show()
-        $('.event_field_ends_at:hidden').toggle("slow")
-        $('.event_field:visible #event_ends_at').removeAttr('disabled')
+        $('.event_field_times:visible').toggle("slow")
+        $('#event_ends_at_datepicker:hidden').toggle("slow")
+
+        $('.event_field #event_ends_at').removeAttr('disabled')
 
         $('.event_field #event_remind').val(0).attr("disabled", "disabled")
         $('.event_field_remind').addClass("inactive")
-        break; 
+        break 
       case 'CourtDate': 
       case 'Appointment': 
-        $('#event_ends_at_datepicker').hide(); 
-        $('.editable_time').show(); 
-        $('.event_field_ends_at:hidden').toggle("slow");          
-        $('.event_field:visible #event_ends_at').removeAttr('disabled'); 
+        $('#event_ends_at_datepicker:visible').toggle("slow") 
+        $('.event_field_times .editable_time:hidden').toggle("slow")
+        $('.event_field_times:hidden').toggle("slow")
+        
+
+        $('.event_field #event_ends_at').removeAttr('disabled')
 
         $('.event_field #event_remind').removeAttr("disabled")
         $('.event_field_remind').removeClass("inactive")
-        break; 
+        break 
       case 'Deadline':
-        $('.editable_time').show(); 
-        $('.event_field:hidden #event_ends_at').attr('disabled', 'disabled');
-        $('.event_field_ends_at:visible').toggle("slow");
+        $('#event_ends_at_datepicker:visible').toggle("slow")
+        $('#event_ends_at_timepicker:visible').toggle("slow")
+        $('.event_field_times:hidden').toggle("slow")
+
+        $('.event_field #event_ends_at').attr('disabled', 'disabled')
 
         $('.event_field #event_remind').removeAttr("disabled")
         $('.event_field_remind').removeClass("inactive")
-        break; 
+        break 
       case 'Task': 
-        $('.editable_time').hide(); 
-        $('.event_field:hidden #event_ends_at').attr('disabled', 'disabled');
-        $('.event_field_ends_at:visible').toggle("slow");
+        $('.event_field_times:visible').toggle("slow") 
+        $('.event_field_ends_at:visible').toggle("slow")
+
+        $('.event_field #event_ends_at').attr('disabled', 'disabled')
 
         $('.event_field #event_remind').removeAttr("disabled")
         $('.event_field_remind').removeClass("inactive")
-        break; 
+        break 
     };     
   });
    
