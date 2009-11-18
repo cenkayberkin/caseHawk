@@ -89,18 +89,19 @@ $(function(){
   })
 
   // Hide the event_ends_at_datepicker by default
-  $('#event_ends_at_datepicker').hide(); 
+  $('#event_ends_at_datepicker').hide()
 
   // Change the time and date selects based on event type
   $('#event_type').change(function() {
     switch($(this).val()) {
       case 'AllDay': 
-        $('.editable_time').hide(); 
-        $('#event_ends_at_datepicker').show(); 
-        $('.event_field_ends_at:hidden').toggle("slow");          
-        $('.event_field:visible #event_ends_at').removeAttr('disabled'); 
-        $('.event_field #event_remind').val(0); 
-        $('.event_field_remind').toggle("slow"); 
+        $('.editable_time').hide()
+        $('#event_ends_at_datepicker').show()
+        $('.event_field_ends_at:hidden').toggle("slow")
+        $('.event_field:visible #event_ends_at').removeAttr('disabled')
+
+        $('.event_field #event_remind').val(0).attr("disabled", "disabled")
+        $('.event_field_remind').addClass("inactive")
         break; 
       case 'CourtDate': 
       case 'Appointment': 
@@ -108,16 +109,25 @@ $(function(){
         $('.editable_time').show(); 
         $('.event_field_ends_at:hidden').toggle("slow");          
         $('.event_field:visible #event_ends_at').removeAttr('disabled'); 
+
+        $('.event_field #event_remind').removeAttr("disabled")
+        $('.event_field_remind').removeClass("inactive")
         break; 
       case 'Deadline':
         $('.editable_time').show(); 
         $('.event_field:hidden #event_ends_at').attr('disabled', 'disabled');
         $('.event_field_ends_at:visible').toggle("slow");
+
+        $('.event_field #event_remind').removeAttr("disabled")
+        $('.event_field_remind').removeClass("inactive")
         break; 
       case 'Task': 
         $('.editable_time').hide(); 
         $('.event_field:hidden #event_ends_at').attr('disabled', 'disabled');
         $('.event_field_ends_at:visible').toggle("slow");
+
+        $('.event_field #event_remind').removeAttr("disabled")
+        $('.event_field_remind').removeClass("inactive")
         break; 
     };     
   });

@@ -1,10 +1,15 @@
+.add-event h2 {
+  font-size: 1.0em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
 form.new_event {
   padding: 0 8px 0 16px; 
   font-size: 1.1em;
 }
 
 .new_event .event_field {
-  padding: 0 0 8px;  
+  padding: 0 0 4px;  
 }
   .new_event .event_field.event_field_type {
     padding-top: 4px;
@@ -34,6 +39,9 @@ form.new_event {
     padding: 0; 
     font-size: 1em;
   }
+  .new_event .event_field.event_field_remind.inactive label {
+    color: #999999; 
+  }
 
 .new_event input, .new_event select {
   width: 80%; 
@@ -42,12 +50,13 @@ form.new_event {
     color: #999999; 
   }
 
-.new_event .editable_time, .new_event div.editable_date {
+.new_event .editable_time_wrapper, .new_event .editable_date_wrapper {
   width: 60%; 
   color: #73A3D3;
   display: inline-block;
+  cursor: pointer; 
 }
-.new_event .editable_time {
+.new_event .editable_time_wrapper {
   width: 20%; 
   text-transform: uppercase; 
   text-align: right; 
@@ -81,6 +90,8 @@ form.new_event {
   }
   .new_event .editable_time select {
     margin: 0 4px 0 0;
+    width: auto; 
+    font-weight: normal;
   }
 
 .new_event ul.tags {
