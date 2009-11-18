@@ -1,8 +1,0 @@
-<% event ||= object %>
-<li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-type="<%= event.type %>" 
-  data-starts-at="<%= event.starts_at %>" data-ends-at="<%= event.ends_at %>"
-  class="event allday">
-  <a rel="facebox" href="/events/<%= event.id %>" class="event-title" title="<%= event.name %>">
-    <%= event.name %>
-  </a>
-</li>

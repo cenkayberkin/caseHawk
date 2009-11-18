@@ -30,4 +30,15 @@ class Deadline < Event
   def completable?
     true
   end
+  
+  def timed?
+    true
+  end
+
+  def to_html_attributes
+    super.merge(
+      {
+        "data-starts-at-time" => starts_at_time
+      })
+  end
 end
