@@ -5,7 +5,7 @@
   class="event <%= event.type.downcase %>"> 
   <a rel="facebox" href="/events/<%= event.id %>" class="event-title" title="<%= event.name %>">
     <span class="time">
-      <%= event.starts_at.to_s(:simple) %> &ndash; <%= event.ends_at.to_s(:simple) %> 
+      <%= event.starts_at.to_s(:simple) %>
     </span>
     <%= event.name %>
   </a>
