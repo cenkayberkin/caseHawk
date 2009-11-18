@@ -26,4 +26,17 @@ class CourtDate < Appointment
   def enforce_single_day
     self.ends_at_date = starts_at_date if starts_at_date != ends_at_date
   end
+  
+  def timed?
+    true
+  end
+  
+  def to_html_attributes
+    super.merge(
+      {
+        "data-starts-at-time" => starts_at_time,
+        "data-ends-at"        => ends_at,
+        "data-ends-at_time"   => ends_at_time,
+      })
+  end
 end

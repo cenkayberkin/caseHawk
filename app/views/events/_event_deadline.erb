@@ -1,9 +1,0 @@
-<% event ||= object %>
-<li id="<%= event.id %>" data-event-id="<%= event.id %>" data-name="<%= event.name %>" data-type="<%= event.type %>" 
-  data-starts-at="<%= event.starts_at %>" data-starts-at-time="<%= event.starts_at_time %>"
-  class="event event_completable deadline <%= event.completed_at ? "complete" : "incomplete" %>">
-  <%= check_box_tag event.id, '1', event.completed_at, :id => "event-complete-#{event.id}", :class => 'task checkbox', :name => event.id %>
-  <a rel="facebox" href="/events/<%= event.id %>" class="event-title" title="<%= event.name %>">
-    <%= event.starts_at.to_s(:simple) + ": " + event.name %>
-  </a>
-</li>

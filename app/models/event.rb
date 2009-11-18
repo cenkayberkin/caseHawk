@@ -176,6 +176,22 @@ class Event < ActiveRecord::Base
     false
   end
   
+  def timed?
+    false
+  end
+  
+  def to_html_attributes
+    {
+      "data-event-id"    => id,
+      "data-name"        => name,
+      "data-type"        => type,
+      "data-timed"       => timed?.to_s,
+      "data-completable" => completable?.to_s,
+      "data-starts-at"   => starts_at,
+      "data-tags"        => tags
+    }
+  end
+  
   protected
 
     def requires_subclassing

@@ -1,14 +1,9 @@
 <%=
-  case event
-  when AllDay
-    render "events/event_all_day",      :object => event
-  when Appointment
-    render "events/event_appointment",  :object => event
-  when CourtDate
-    render "events/event_court_date",   :object => event
-  when Deadline
-    render "events/event_deadline",     :object => event
-  when Task
-    render "events/event_task",         :object => event
-end  
+  content_tag :li, event_line_html(event), 
+  {
+    :class => "event" +
+    " #{event.type.downcase}" +
+    " #{event.timed? ? (event.completed_at ? "complete" : "incomplete") : ""}",
+    :id => event.id
+  }.merge(event.to_html_attributes)
 %>

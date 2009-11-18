@@ -3,7 +3,7 @@
   <div class="content">
   <ul class="task-list">
     <% get_tasks(events).each do |t| %>
-      <%= render :partial => "events/event_task", :locals => { :event => t } %>
+      <%= render :partial => "events/event", :locals => { :event => t } %>
     <% end %>
   </ul>
   </div>
