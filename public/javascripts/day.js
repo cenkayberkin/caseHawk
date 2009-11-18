@@ -1,20 +1,32 @@
 
 
 Day = {
+  allday: function(day){
+    return day.is(".week-allday .day")
+  },
+  timed: function(day){
+    return day.is(".week-day-full .day")
+  },
+
   init: function(day){
     if(0 == day.length) return
-    Day.clearBoxes(day)
-    Day.positionEvents(day.find(".event"))
-    Day.boxDayEvents(day)
-    Day.fixCongestedBoxes(day)
+
+    if(Day.timed(day)){
+      Day.clearBoxes(day)
+      Day.positionEvents(day.find(".event"))
+      Day.boxDayEvents(day)
+      Day.fixCongestedBoxes(day)
+    }
     Day.clicks(day)
   },
 
   refresh: function(day){
     Day.init(day)
-    // remove stray, duplicate, non-boxed events
-    day.find(".collidable > .event").remove()
-    Week.adjustViewport(day.parents(".week"))
+    if(Day.timed(day)){
+      // remove stray, duplicate, non-boxed events
+      day.find(".collidable > .event").remove()
+      Week.adjustViewport(day.parents(".week"))
+    }
   },
 
   // remove any collision boxes previously added by boxDayEvents
@@ -58,7 +70,7 @@ Day = {
     })
   },
   // Sort all the events and find ones that are touching
-  // For each pair of adjacent events call Calendar.Box()
+  // For each pair of adjacent events call Day.Box()
   // with the two events as arguments.
   boxDayEvents: function(day){
     Day.clearBoxes(day)
