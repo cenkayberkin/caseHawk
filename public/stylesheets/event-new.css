@@ -57,7 +57,7 @@ form.new_event {
     color: #999999; 
   }
 
-.new_event .editable_wrapper {
+.new_event .field_wrapper {
   width: 48%; 
   color: #73A3D3;
   display: inline-block;
@@ -66,7 +66,7 @@ form.new_event {
 .new_event .event_field_editable_label {
   padding-bottom: 0; 
 }
-  .new_event .event_field_editable_label .editable_wrapper {
+  .new_event .event_field_editable_label .field_wrapper {
     font-size: 0.8em; 
     line-height: 1em;
     color: #999999; 
