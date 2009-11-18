@@ -3,6 +3,7 @@
 <% end %>
 
 <div class="sidebar-block add-event">
+  <h2>Add New Event</h2>
     <div class="content">
       <% form_for @event || Event.new do |f| -%>
         <%= render :partial => 'events/fields', :locals => { :f => f } %>
