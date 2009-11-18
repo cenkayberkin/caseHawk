@@ -93,13 +93,11 @@ Event = {
     // TODO:
     //   - append the event html into all the days it hits
     //   - refresh all affected days
-    var list = newDay.find(
+    newDay.find(
       dayContext == 'day-full' ?
         "ul" :
         "ul." + originalEvent.attr("data-type").toLowerCase() + "s"
-    )
-    debug(list)
-    list.append(html)
+    ).append(html)
     // redraw the original
     Day.refresh(newDay)
     // and new days
