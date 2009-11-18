@@ -2,10 +2,10 @@
 
 Day = {
   allday: function(day){
-    day.is(".week-allday .day")
+    return day.is(".week-allday .day")
   },
   timed: function(day){
-    day.is(".week-day-full .day")
+    return day.is(".week-day-full .day")
   },
 
   init: function(day){
