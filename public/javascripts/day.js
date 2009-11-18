@@ -70,7 +70,7 @@ Day = {
     })
   },
   // Sort all the events and find ones that are touching
-  // For each pair of adjacent events call Calendar.Box()
+  // For each pair of adjacent events call Day.Box()
   // with the two events as arguments.
   boxDayEvents: function(day){
     Day.clearBoxes(day)
