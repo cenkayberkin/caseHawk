@@ -20,6 +20,13 @@ form.new_event {
     padding: 0 4px 0 0;
   }
   
+  .new_event .event_field.event_field_dates {
+    padding-bottom: 2px; 
+  }
+  .new_event .event_field.event_field_tags {
+    padding-top: 4px; 
+  }  
+  
 .new_event .event_field label {
   padding: 0 4px; 
   text-align: right; 
@@ -50,16 +57,24 @@ form.new_event {
     color: #999999; 
   }
 
-.new_event .editable_time_wrapper, .new_event .editable_date_wrapper {
-  width: 60%; 
+.new_event .editable_wrapper {
+  width: 48%; 
   color: #73A3D3;
   display: inline-block;
   cursor: pointer; 
 }
-.new_event .editable_time_wrapper {
-  width: 20%; 
+.new_event .event_field_editable_label {
+  padding-bottom: 0; 
+}
+  .new_event .event_field_editable_label .editable_wrapper {
+    font-size: 0.8em; 
+    line-height: 1em;
+    color: #999999; 
+    text-transform: uppercase; 
+  }
+
+.new_event .editable_time {
   text-transform: uppercase; 
-  text-align: right; 
   font-weight: bold;
 }
 
