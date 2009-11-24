@@ -35,8 +35,7 @@ class CourtDate < Appointment
     super.merge(
       {
         "data-starts-at-time" => starts_at_time,
-        "data-ends-at"        => ends_at,
-        "data-ends-at_time"   => ends_at_time,
+        "data-ends-at_time"   => ends_at_time
       })
   end
 end
