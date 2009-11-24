@@ -174,7 +174,7 @@ Day = {
   }(),
   // Some collision boxes may have too many events
   // in them for their time frame.  In this case replace
-  // the bottom two lines with a link that displays
+  // the bottom line with a link that displays
   // the events better
   fixCongestedBoxes : function(day){
     day.find(".collision_box").each(function(_,box){
