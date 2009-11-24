@@ -24,7 +24,7 @@ form.new_event {
     padding-bottom: 2px; 
   }
   .new_event .event_field.event_field_tags {
-    padding-top: 4px; 
+    padding: 4px 0 8px; 
   }  
   
 .new_event .event_field label {
@@ -50,6 +50,13 @@ form.new_event {
     color: #999999; 
   }
 
+.new_event .event_field.event_field_times {
+  padding: 1em 0 2em; 
+}  
+.new_event .event_field .ui-slider {
+  font-size: 0.8em; 
+}
+
 .new_event input, .new_event select {
   width: 80%; 
 }
@@ -73,10 +80,6 @@ form.new_event {
     text-transform: uppercase; 
   }
 
-.new_event .editable_time {
-  text-transform: uppercase; 
-  font-weight: bold;
-}
 
 .new_event input[type=checkbox] {
   width: auto; 
@@ -89,9 +92,7 @@ form.new_event {
 .new_event input[type=submit] {
   width: auto; 
 }
-  .new_event .editable_time select, 
   .new_event .editable_date select,  
-  .new_event .editable_time input,
   .new_event .editable_date input {
     margin: 0; 
   }
@@ -102,11 +103,6 @@ form.new_event {
   .new_event .editable_date input[type=submit] {
     width: auto; 
     margin: 0; 
-  }
-  .new_event .editable_time select {
-    margin: 0 4px 0 0;
-    width: auto; 
-    font-weight: normal;
   }
 
 .new_event ul.tags {

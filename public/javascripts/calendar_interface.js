@@ -14,23 +14,6 @@ $(function(){
   //
   // Add New Event Form
   //  
-  // Create timepicker clickables for new event form
-  $('form.new_event .editable_time')
-    .each(function() {
-      var editable = $(this)
-      editable.editable(
-        function(value, settings) {
-          $(this).html(value);
-          validateEventFormDates(editable.attr("rel"));           
-        },
-        { 
-          name        : "event["+editable.attr("data-field-name")+"]",
-          type        : 'timepicker', 
-          tooltip     : 'Click to Edit',
-          submit      : 'OK'
-        }
-      )
-    }); 
   // Create datepicker clickables for new event form
   $('form.new_event .editable_date')
     .each(function() {
@@ -49,7 +32,10 @@ $(function(){
         }
       )
     });
-
+  // Create the time sliders for new event form 
+  $('.new_event select.slider_start').val("11:00 AM")
+  $('.new_event select.slider_end').val("1:00 PM")
+  $('.event_field_times select:first, .event_field_times select:last').selectToUISlider({labels: 5}).hide()
   // expand a single day within the week view
   $(".day_focus_link").live('click', function(){
     var date = $(this).attr('data-date')
@@ -96,6 +82,7 @@ $(function(){
     switch($(this).val()) {
       case 'AllDay': 
         $('.event_field_times:visible').toggle("slow")
+        $('.event_field_times .ui-slider').remove(); 
         $('#event_ends_at_datepicker:hidden').toggle("slow")
 
         $('.event_field #event_ends_at').removeAttr('disabled')
@@ -106,9 +93,9 @@ $(function(){
       case 'CourtDate': 
       case 'Appointment': 
         $('#event_ends_at_datepicker:visible').toggle("slow") 
-        $('.event_field_times .editable_time:hidden').toggle("slow")
-        $('.event_field_times:hidden').toggle("slow")
-        
+        $('.event_field_times .ui-slider').remove(); 
+        $('.event_field_times select:first, .event_field_times select:last').selectToUISlider({labels: 5})
+        $('.event_field_times:hidden').toggle("slow")        
 
         $('.event_field #event_ends_at').removeAttr('disabled')
 
@@ -117,7 +104,8 @@ $(function(){
         break 
       case 'Deadline':
         $('#event_ends_at_datepicker:visible').toggle("slow")
-        $('#event_ends_at_timepicker:visible').toggle("slow")
+        $('.event_field_times .ui-slider').remove(); 
+        $('.event_field_times select:first').selectToUISlider({labels: 5})
         $('.event_field_times:hidden').toggle("slow")
 
         $('.event_field #event_ends_at').attr('disabled', 'disabled')
@@ -126,6 +114,7 @@ $(function(){
         $('.event_field_remind').removeClass("inactive")
         break 
       case 'Task': 
+        $('.event_field_times .ui-slider').remove(); 
         $('.event_field_times:visible').toggle("slow") 
         $('.event_field_ends_at:visible').toggle("slow")
 
