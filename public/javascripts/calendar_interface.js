@@ -94,6 +94,7 @@ $(function(){
       case 'Appointment': 
         $('#event_ends_at_datepicker:visible').toggle("slow") 
         $('.event_field_times .ui-slider').remove(); 
+        validateEventFormDates()
         $('.event_field_times select:first, .event_field_times select:last').selectToUISlider({labels: 5})
         $('.event_field_times:hidden').toggle("slow")        
 
@@ -426,18 +427,20 @@ function validateEventFormDates(active) {
 
   // new to construct full dates for start and end
   // editable only sets the inner HTML on submission then calls this validation
-  startDate = new Date($('#event_starts_at_datepicker').html()); 
-  endDate = new Date($('#event_ends_at_datepicker').html()); 
+  startDate = new Date($('#event_starts_at_datepicker').html() + " " + $('#event_starts_at_time').val()); 
+  endDate = new Date($('#event_ends_at_datepicker').html() + " " + $('#event_ends_at_time').val()); 
   // check for valid endDate
   if (active == 'start' && endDate < startDate) {
     endDate = new Date(startDate); 
+    endDate.setHours(endDate.getHours() + 2);
     $('#event_ends_at_datepicker').html(endDate.strftime("%B %e, %Y")); 
-    $('#event_ends_at_timepicker').html(endDate.strftime("%i:%M %p")); 
+    $('#event_ends_at_time').val(endDate.strftime("%i:%M %p")); 
   } 
   if (active == 'end' && startDate > endDate) {
     startDate = new Date(endDate); 
+    startDate.setHours(startDate.getHours() - 2);
     $('#event_starts_at_datepicker').html(startDate.strftime("%B %e, %Y")); 
-    $('#event_starts_at_timepicker').html(startDate.strftime("%i:%M %p")); 
+    $('#event_starts_at_time').val(startDate.strftime("%i:%M %p")); 
   }
   // set all applicable hiddens
   $('#event_starts_at').val(startDate.strftime("%B %e, %Y"));
