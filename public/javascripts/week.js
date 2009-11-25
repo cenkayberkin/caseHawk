@@ -52,9 +52,7 @@ Week = {
       fireOnce: true,
       fireDelay: 2000,
       callback: function(p) {
-        Week.loadAfter(
-          new Date($("#weeks .day:last").attr("data-date").replace(/-/g,'/'))
-        )
+        Week.loadNext()
       }
     })
   },
@@ -64,20 +62,29 @@ Week = {
   // *******
   loadFirst : function(){
     if(0 == $("table.week-events").length){
-      Week.load(new Date($('#weeks').attr('data-first-week')))
+      Week.load(
+        new Date($('#weeks').attr('data-first-week')),
+        function(){ Week.loadNext() } // load the second week right away
+      )
       Week.setupEndlessScroll()
     }else
       debug("Already loaded at least one week")
   },
 
-  loadAfter: function(lastWeek){
-    Week.load(DateMath.add(lastWeek, 'W', 1))
+  loadNext: function(){
+    Week.load(
+      DateMath.add(
+        (new Date($("#weeks .day:last").attr("data-date").replace(/-/g,'/'))),
+        'W',
+        1
+      )
+    )
   },
 
   // *******
   // Retrieve one week's markup remotely
   // *******
-  load: function(date){
+  load: function(date, after){
     $.get(
       "/weeks/"+date.strftime('%Y-%m-%d'), {},
       function(result) {
@@ -87,6 +94,8 @@ Week = {
 
         // need to adjust week for event collision, viewport, etc.
         Week.init(newWeek)
+        // need to adjust week for event collision, viewport, etc.
+        Function == after.constructor && after()
       },
       'html'
     )
