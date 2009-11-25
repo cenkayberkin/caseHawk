@@ -85,7 +85,7 @@ $(function(){
         $('.event_field_times .ui-slider').remove(); 
         $('#event_ends_at_datepicker:hidden').toggle("slow")
 
-        $('.event_field #event_ends_at').removeAttr('disabled')
+        $('.event_field #event_ends_at_date').removeAttr('disabled')
 
         $('.event_field #event_remind').val(0).attr("disabled", "disabled")
         $('.event_field_remind').addClass("inactive")
@@ -98,7 +98,7 @@ $(function(){
         $('.event_field_times select:first, .event_field_times select:last').selectToUISlider({labels: 5})
         $('.event_field_times:hidden').toggle("slow")        
 
-        $('.event_field #event_ends_at').removeAttr('disabled')
+        $('.event_field #event_ends_at_date').removeAttr('disabled')
 
         $('.event_field #event_remind').removeAttr("disabled")
         $('.event_field_remind').removeClass("inactive")
@@ -109,7 +109,7 @@ $(function(){
         $('.event_field_times select:first').selectToUISlider({labels: 5})
         $('.event_field_times:hidden').toggle("slow")
 
-        $('.event_field #event_ends_at').attr('disabled', 'disabled')
+        $('.event_field #event_ends_at_date').attr('disabled', 'disabled')
 
         $('.event_field #event_remind').removeAttr("disabled")
         $('.event_field_remind').removeClass("inactive")
@@ -119,7 +119,7 @@ $(function(){
         $('.event_field_times:visible').toggle("slow") 
         $('.event_field_ends_at:visible').toggle("slow")
 
-        $('.event_field #event_ends_at').attr('disabled', 'disabled')
+        $('.event_field #event_ends_at_date').attr('disabled', 'disabled')
 
         $('.event_field #event_remind').removeAttr("disabled")
         $('.event_field_remind').removeClass("inactive")
@@ -443,6 +443,6 @@ function validateEventFormDates(active) {
     $('#event_starts_at_time').val(startDate.strftime("%i:%M %p")); 
   }
   // set all applicable hiddens
-  $('#event_starts_at').val(startDate.strftime("%B %e, %Y"));
-  $('#event_ends_at').val(endDate.strftime("%B %e, %Y")); 
+  $('#event_starts_at_date').val(startDate.strftime("%B %e, %Y"));
+  $('#event_ends_at_date').val(endDate.strftime("%B %e, %Y")); 
 }
