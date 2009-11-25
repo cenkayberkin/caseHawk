@@ -44,7 +44,9 @@ class Event < ActiveRecord::Base
   }
   named_scope :between, proc {|range_start, range_end|
     { :conditions => "   DATE(starts_at) BETWEEN DATE('#{range_start}') AND DATE('#{range_end}')
-                      OR DATE(ends_at) BETWEEN DATE('#{range_start}') AND DATE('#{range_end}')"}
+                      OR DATE(ends_at) BETWEEN DATE('#{range_start}') AND DATE('#{range_end}')
+                      OR (  DATE('#{range_start}') BETWEEN DATE(starts_at) AND DATE(ends_at)
+                        AND DATE('#{range_end}') BETWEEN DATE(starts_at) AND DATE(ends_at) ) "}
   }
   named_scope :with_tags, proc {|taglist|
     { :conditions => [" tags.name IN (?) ", taglist],
