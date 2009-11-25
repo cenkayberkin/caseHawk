@@ -426,22 +426,20 @@ function validateEventFormDates(active) {
 
   // new to construct full dates for start and end
   // editable only sets the inner HTML on submission then calls this validation
-  startDate = new Date($('#event_starts_at_datepicker').html() + " " + $('#event_starts_at_timepicker').html()); 
-  endDate = new Date($('#event_ends_at_datepicker').html() + " " + $('#event_ends_at_timepicker').html());
+  startDate = new Date($('#event_starts_at_datepicker').html()); 
+  endDate = new Date($('#event_ends_at_datepicker').html()); 
   // check for valid endDate
   if (active == 'start' && endDate < startDate) {
     endDate = new Date(startDate); 
-    endDate.setHours(endDate.getHours() + 1); 
     $('#event_ends_at_datepicker').html(endDate.strftime("%B %e, %Y")); 
     $('#event_ends_at_timepicker').html(endDate.strftime("%i:%M %p")); 
   } 
   if (active == 'end' && startDate > endDate) {
     startDate = new Date(endDate); 
-    startDate.setHours(startDate.getHours() - 1); 
     $('#event_starts_at_datepicker').html(startDate.strftime("%B %e, %Y")); 
     $('#event_starts_at_timepicker').html(startDate.strftime("%i:%M %p")); 
   }
   // set all applicable hiddens
-  $('#event_starts_at').val(startDate.strftime("%B %e, %Y %i:%M %p"));
-  $('#event_ends_at').val(endDate.strftime("%B %e, %Y %i:%M %p")); 
+  $('#event_starts_at').val(startDate.strftime("%B %e, %Y"));
+  $('#event_ends_at').val(endDate.strftime("%B %e, %Y")); 
 }

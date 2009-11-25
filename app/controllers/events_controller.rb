@@ -29,6 +29,8 @@ class EventsController < ApplicationController
   def update
     # Make sure the event stays within this account
     params[:event][:account_id] = current_account.id
+    @event.starts_at = params[:event][:starts_at]
+    @event.ends_at = params[:event][:ends_at]
     @event.attributes = params[:event]
     if params[:event] && !params[:event][:completed].blank?
       @event.completed_by = current_user
