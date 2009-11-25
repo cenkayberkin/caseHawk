@@ -30,12 +30,4 @@ class CourtDate < Appointment
   def timed?
     true
   end
-  
-  def to_html_attributes
-    super.merge(
-      {
-        "data-starts-at-time" => starts_at_time,
-        "data-ends-at_time"   => ends_at_time
-      })
-  end
 end

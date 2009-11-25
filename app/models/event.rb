@@ -184,13 +184,16 @@ class Event < ActiveRecord::Base
   
   def to_html_attributes
     {
-      "data-event-id"    => id,
-      "data-name"        => name,
-      "data-type"        => type,
-      "data-timed"       => timed?.to_s,
-      "data-completable" => completable?.to_s,
-      "data-starts-at"   => starts_at,
-      "data-tags"        => tags
+      "data-event-id"       => id,
+      "data-name"           => name,
+      "data-type"           => type,
+      "data-timed"          => timed?.to_s,
+      "data-completable"    => completable?.to_s,
+      "data-starts-at"      => starts_at,
+      "data-starts-at-time" => starts_at_time,
+      "data-ends-at"        => ends_at,
+      "data-ends-at_time"   => ends_at_time,
+      "data-tags"           => tags
     }
   end
   

@@ -95,7 +95,8 @@ Week = {
         // need to adjust week for event collision, viewport, etc.
         Week.init(newWeek)
         // need to adjust week for event collision, viewport, etc.
-        Function == after.constructor && after()
+        if(after)
+          Function == after.constructor && after()
       },
       'html'
     )

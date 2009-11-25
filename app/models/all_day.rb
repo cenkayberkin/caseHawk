@@ -21,11 +21,4 @@
 #
 
 class AllDay < Event
-  
-  def to_html_attributes
-    super.merge(
-      {
-        "data-ends-at" => ends_at
-      })
-  end
 end
