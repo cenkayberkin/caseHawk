@@ -48,11 +48,16 @@ module EventsHelper
   end
   
   def event_line_html(event)
+    title =  "#{event.timed? ? event.starts_at.to_s(:simple) + 
+      (event.ends_at_time.blank? ? "" : "&#8212;" + 
+      event.ends_at.to_s(:simple)) : ""}: #{event.name}" +
+    " #{event.tags.blank? ? "" : ". Tagged: " + event.tag_records.map(&:name).join(', ')}"
     conditional_checkbox(event) +
     link_to(event_line_text(event), 
       event_path(event), 
-      { :rel => "facebox", :class => "event-title", :title => "event.name" +
-        " #{event.tags.blank? ? "" : " | " + event.tag_records.map(&:name).join(' | ')}" })
+      { :rel => "facebox", 
+        :class => "event-title", 
+        :title => title })
   end
   
   def event_line_text(event)
