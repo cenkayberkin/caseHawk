@@ -59,31 +59,40 @@ table.week .day-0, table.week .day-6 {
   width: 17%; 
 }
 
-.day-0 ul, .day-6 ul,
-.day-0 li, .day-6 li {
-  display: none; 
-}
-.day-0 .alldays, .day-6 .alldays {
+.unfocused_day ul, 
+.day-0 ul.day-full, .day-6 ul.day-full,
+.week-allday .day-0 ul, .week-allday .day-6 ul {
   display: block;
-  margin: 0; 
   padding: 0;
 }
-.day-0 .alldays li, .day-6 .alldays li {
+
+.unfocused_day li.event,
+.week-allday .day-0 ul li, .week-allday .day-6 ul li {
   display: block; 
-  height: 1em; 
+  height: 15px; 
   background: #d7fcd7;
   padding: 0; 
 }
-  .day-0 .alldays li a.event-title,  
-  .day-6 .alldays li a.event-title {
+  .week-allday .unfocused_day ul.tasks li,
+  .week-allday .unfocused_day ul.tasks li,
+  .week-allday .day-0 ul.tasks li, .week-allday .day-6 ul.tasks li {
+    background: #F6D3A6;
+  }
+  
+  .unfocused_day li.event a.event-title, 
+  .unfocused_day li.event input, 
+  .day-0 ul.day-full li a.event-title,
+  .day-6 ul.day-full li a.event-title,
+  .day-0 ul.day-full li input,
+  .day-6 ul.day-full li input,
+  .week-allday .day-0 li a.event-title,  
+  .week-allday .day-0 li input,  
+  .week-allday .day-6 li a.event-title,
+  .week-allday .day-6 li input {
     display: none; 
   }
 
 /* letting weekend details show when focused */
-/* Carlos: feel free to rework this, it's kinda hacky.
-           Now that we can focus on individual days there
-           should be a cleaner way to do our weekends, maybe
-           by doing them like normal unfocused days? */
   .day-0.focused_day ul, .day-0.focused_day li,
   .day-6.focused_day ul, .day-6.focused_day li {
     display: block;
@@ -94,7 +103,11 @@ table.week .day-0, table.week .day-6 {
     background: transparent;
   }
     .day-0.focused_day .alldays li a.event-title,
-    .day-6.focused_day .alldays li a.event-title {
+    .day-6.focused_day .alldays li a.event-title,
+    .day-0.focused_day ul.day-full li a.event-title,  
+    .day-0.focused_day ul.day-full li input,  
+    .day-6.focused_day ul.day-full li a.event-title,  
+    .day-6.focused_day ul.day-full li input {
       display: block;
     }
 
@@ -229,9 +242,6 @@ li.event.allday .event-title { width: auto; }
   .unfocused_day.day-6 {
     width: 28px; 
   }
-.unfocused_day .event {
-  display: none;
-}
 
 /* fixed position means that infinite length task list doesn't get to scrolls YIKES */
 
