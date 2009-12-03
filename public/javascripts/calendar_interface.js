@@ -248,7 +248,6 @@ $(function(){
     Event.instantiate($(result.html)[0], 'skip_cache').draw(result.html)
 
     setTimeout('$("#facebox h3").removeClass("event_saving")', 1250)
-    $("#"+savedEvent.id+".event").effect("highlight", { color : "#d7fcd7"}, 3000)
     $(this).effect("highlight", { color : "#d7fcd7"}, 3000)
   }
 

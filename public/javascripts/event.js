@@ -116,6 +116,7 @@ Event = {
               "ul." + originalEvent.attr("data-type").toLowerCase() + "s"
           )
         )
+        .effect("highlight", { color : "#d7fcd7"}, 3000)
     })
 
     // timed events need to have their day redrawn
