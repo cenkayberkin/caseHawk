@@ -3,11 +3,11 @@ $(function(){
   // Build the enabled datepicker calendar for the sidebar
 
   $("#datepicker").datepicker({
-    changeMonth: true, 
-    changeYear: true, 
+    changeMonth: true,
+    changeYear: true,
     defaultDate: new Date($('#weeks').attr('data-first-week')),
     onSelect: function(dateText, inst) {
-      window.location.href = "/calendar/?date=" + dateText      
+      window.location.href = "/calendar/?date=" + dateText
     }
   }); 
 

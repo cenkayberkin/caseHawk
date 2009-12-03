@@ -1,5 +1,4 @@
 # == Schema Information
-# Schema version: 20090505212954
 #
 # Table name: tags
 #
@@ -7,6 +6,7 @@
 #  name       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  account_id :integer(4)
 #
 
 require File.dirname(__FILE__) + '/../test_helper'

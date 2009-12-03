@@ -14,6 +14,7 @@
 #  created_at                :datetime
 #  account_id                :integer(8)
 #  admin                     :boolean(1)
+#  active                    :boolean(1)      default(TRUE)
 #
 
 require File.dirname(__FILE__) + '/../spec_helper'
