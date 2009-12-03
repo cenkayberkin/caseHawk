@@ -21,4 +21,15 @@ class Tagging < ActiveRecord::Base
   validates_presence_of :tag
   validates_presence_of :taggable
   validates_uniqueness_of :tag_id, :scope => [:taggable_type, :taggable_id]
+
+  after_create :claim_account_from_taggable
+
+  protected
+
+    def claim_account_from_taggable
+      return unless taggable.respond_to?(:account)
+      return unless account = taggable.account
+      return unless tag.account.blank?
+      tag.update_attribute(:account, account)
+    end
 end

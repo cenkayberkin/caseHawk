@@ -285,6 +285,11 @@ class EventTest < ActiveSupport::TestCase
       should "have tag records" do
         assert !@event.tag_records.blank?
       end
+      should "set account on tags" do
+        @event.tag_records.each do |tag|
+          assert_equal @event.account, tag.account
+        end
+      end
       should_change 'Tagging.count'
       should_change 'Tag.count'
       should "have right tag count" do

@@ -35,7 +35,7 @@ class Event < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :creator_id
   validate :requires_subclassing
-  
+
   named_scope :ordered, :order => :starts_at
   named_scope :day, proc {|day|
     { :conditions => "   starts_at LIKE '#{day}%'
