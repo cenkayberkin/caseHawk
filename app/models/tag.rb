@@ -14,7 +14,7 @@ class Tag < ActiveRecord::Base
   belongs_to :account
 
   validates_presence_of   :name
-  validates_uniqueness_of :name, :message => 'Tag name must be unique'
+  validates_uniqueness_of :name, :scope => :account_id, :message => 'Tag name must be unique'
 
   named_scope :search, proc {|match|
     match.blank? ?
