@@ -12,7 +12,6 @@ class CalendarsController < ApplicationController
   end
   
   def show
-    logger.info("Trying to parse: #{params[:date]}")
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
   end
   
