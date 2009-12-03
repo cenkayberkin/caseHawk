@@ -58,7 +58,7 @@ $(function(){
           .find(".focused_day, .unfocused_day")
             // .animate({width: 'auto'}, 500)
             .removeClass('focused_day unfocused_day')
-            .end()
+            .end()            
           .find(focused_cell_selector)
             // .animate({width: '50%'}, 500)
             .addClass('focused_day')
@@ -369,6 +369,8 @@ $(function(){
             tooltip     : 'Click to Edit',
             submit      : 'OK', 
             onblur      : 'ignore', 
+            width       : 'none',
+            height      : 'none', 
             submitdata  : {"_method": "PUT"},
             ajaxoptions : {dataType: 'json'},
             callback    : updateSavedEvent

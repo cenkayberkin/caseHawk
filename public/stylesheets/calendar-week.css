@@ -219,11 +219,16 @@ li.event.allday .event-title { width: auto; }
 }
 
 .focused_day {
-  width: 400px;
-}
-.unfocused_day {
   width: auto;
 }
+.unfocused_day {
+  width: 8%;
+}
+  .unfocused_day.week_hours,
+  .unfocused_day.day-0, 
+  .unfocused_day.day-6 {
+    width: 28px; 
+  }
 .unfocused_day .event {
   display: none;
 }
