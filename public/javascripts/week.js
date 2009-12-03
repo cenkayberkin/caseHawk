@@ -61,6 +61,8 @@ Week = {
   // Load the very first week.  Defaults to current
   // *******
   loadFirst : function(){
+    if(!$("#weeks").length) return
+
     if(0 == $("table.week-events").length){
       Week.load(
         new Date($('#weeks').attr('data-first-week')),
