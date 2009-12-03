@@ -75,9 +75,11 @@ Event = {
   },
 
   draw: function(html){
+
+    var originalDay, newDay
+
     // check whether this event already exists
-    var originalDay
-    var originalEvent = $("li.event[data-event-id="+this.id+"]:first")
+    var originalEvent = $("li.event[data-event-id="+this.id+"]")
     if(originalEvent.length){
       originalDay = originalEvent.parents("td.day")
       // remove it from its original day
@@ -85,25 +87,51 @@ Event = {
     }
     dayContext = originalEvent.attr("data-timed") == 'true' ? 'day-full' : 'allday'
 
-    // generalized newday selection, but only gets first day for alldays
+    // generalized newday selection, only gets first day
     var newDay = $('.week-' + dayContext + " td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")
+    if('AllDay' == this.type){
+      var rangeStartDay = this.start
+      var rangeEndDay   = this.end
+      DateMath.clearTime(rangeStartDay) // noon each day
+      DateMath.clearTime(rangeEndDay)
+      while(rangeStartDay <= rangeEndDay){
+        newDay = newDay.add(
+          $(".week-allday td.day[data-date="+rangeStartDay.strftime("%G-%m-%d")+"]")
+        )
+        rangeStartDay.setDate(rangeStartDay.getDate() + 1)
+      }
+    }
+
 
     // add the event to the new day
     // TODO:
     //   - append the event html into all the days it hits
     //   - refresh all affected days
-    newDay.find(
-      dayContext == 'day-full' ?
-        "ul" :
-        "ul." + originalEvent.attr("data-type").toLowerCase() + "s"
-    ).append(html)
-    // redraw the original
-    Day.refresh(newDay)
-    // and new days
-    if(originalDay[0] && originalDay[0] != newDay[0])
-      Day.refresh(originalDay)
+    newDay.each(function(){
+      $(html)
+        .prependTo(
+          $(this).find(
+            dayContext == 'day-full' ?
+              "ul" :
+              "ul." + originalEvent.attr("data-type").toLowerCase() + "s"
+          )
+        )
+    })
+
+    // timed events need to have their day redrawn
+    if('allday' != dayContext){
+      // redraw the original
+      Day.refresh(newDay)
+      // and new days
+      if(originalDay[0] && originalDay[0] != newDay[0])
+        Day.refresh(originalDay)
+    }
 
     return this;
+  },
+
+  drawAllDay: function(html){
+    
   },
 
   displayFor: function(record){
