@@ -26,9 +26,13 @@ class TagTest < ActiveSupport::TestCase
   end
 
   context "with some tags already created" do
-    setup { Factory(:tag); Factory(:tag) }
+    setup {
+      Factory.create(:tag)
+      Factory.create(:tag)
+    }
     should_validate_presence_of   :name
     should_validate_uniqueness_of :name,
+                                  :scoped_to => :account_id,
                                   :message => /must be unique/
   end
 end
