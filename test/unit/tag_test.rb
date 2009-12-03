@@ -13,6 +13,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class TagTest < ActiveSupport::TestCase
 
+  should_belong_to :account
   should_have_named_scope 'limit(1)', :limit => 1
   should_have_named_scope 'limit(4)', :limit => 4
   should_have_named_scope 'search("green")', :conditions => [
