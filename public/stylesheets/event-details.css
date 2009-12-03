@@ -69,7 +69,11 @@ li.event .event-details {
 }
 .event-details input, .event-details select {
   font-size: 0.9em; 
+  margin-right: 0.25em; 
 }
+.event-details h3 input {
+  width: 80%; 
+} 
 .event-details li select {
   margin: 0 0.25em;
   font-size: 0.75em;
