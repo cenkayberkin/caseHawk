@@ -70,8 +70,10 @@ $(function(){
 
   // New Event Title clear and change style on focus
   $('#new_event .inactive').focus(function() {
-    $(this).val('')
-      .removeClass('inactive')
+    if ($(this).hasClass('inactive')) {
+      $(this).val('')
+        .removeClass('inactive') 
+    }
   })
 
   // Hide the event_ends_at_datepicker by default
