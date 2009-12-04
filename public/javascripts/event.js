@@ -131,10 +131,6 @@ Event = {
     return this;
   },
 
-  drawAllDay: function(html){
-    
-  },
-
   displayFor: function(record){
     switch(record.type){
       case 'Appointment':
