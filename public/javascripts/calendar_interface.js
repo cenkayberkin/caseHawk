@@ -15,13 +15,27 @@ $(function(){
   // Add New Event Form
 
   $("form.new_event").submit(function(){
-    form = $(this)
-    if('' == $.trim(form.find("input#event_name").val())){
-      form.find("input#event_name")
-            .focus()
-            .effect("highlight")
+
+    var form = $(this)
+    var name = form.find("input#event_name")
+
+    if('' == $.trim(name.val())){
+      name.focus().effect("highlight")
       return false
     }
+
+    $.post(
+       '/events/',
+       form.serialize(),
+       function(result){
+         Event.instantiate(
+                $(result.html)[0], 'skip_cache'
+              )
+              .draw(result.html)
+         form.reset()
+       },
+       "json"
+    )
     return false
   })
   //  

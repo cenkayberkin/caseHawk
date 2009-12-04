@@ -7,6 +7,12 @@ debug = function(){
 /* allow jQuery to work with Rails' respond_to */
 $.ajaxSetup({'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")} })
 
+/* add the ability to call $('form').reset() */
+$.fn.reset = function(){
+  this[0].reset()
+  return this
+}
+
 // "SomeString".underscore() => "some_string"
 String.prototype.underscore = function(){
   var under = [];

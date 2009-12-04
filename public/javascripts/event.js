@@ -55,7 +55,7 @@ Event = {
 
   draw: function(html){
 
-    var originalDay, newDay
+    var originalDay, newDay, dayContext
 
     // check whether this event already exists
     var originalEvent = $("li.event[data-event-id="+this.id+"]")
@@ -64,7 +64,10 @@ Event = {
       // remove it from its original day
       originalEvent.remove()
     }
-    dayContext = originalEvent.attr("data-timed") == 'true' ? 'day-full' : 'allday'
+
+    // set a day context
+    dayContext = $(html).attr("data-timed") == 'true' ? 'day-full' : 'allday'
+
 
     // generalized newday selection, only gets first day
     var newDay = $('.week-' + dayContext + " td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")
@@ -103,7 +106,7 @@ Event = {
       // redraw the original
       Day.refresh(newDay)
       // and new days
-      if(originalDay[0] && originalDay[0] != newDay[0])
+      if(originalDay && originalDay[0] && originalDay[0] != newDay[0])
         Day.refresh(originalDay)
     }
 
