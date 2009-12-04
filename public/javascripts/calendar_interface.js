@@ -147,7 +147,9 @@ $(function(){
   function tagResult(selectedValue){
 
     var tags     = $("form#new_event").find("ul.tags")
-    var existing = tags.find("li[rel="+selectedValue+"]")
+    var existing = tags.find("li").filter(function(){
+                                      return selectedValue == $(this).attr('rel')
+                                    })
 
     // clear the search box and start over
     $('#event_tags').val('').focus()
