@@ -31,7 +31,7 @@ li.event .event-details {
     padding-right: 20px; 
     background: url(/images/indicator.gif) no-repeat right center;
   }
-.event-details ul {
+.event-details .event_data {
   margin: 0 0 1em;
   border-top: 1px solid #CCCCCC;
 }
@@ -55,6 +55,24 @@ li.event .event-details {
   color: #73A3D3;
   padding-left: 0;
 }
+  .event-details li.event_time .ui-slider {
+    font-size: 0.8em; 
+    line-height: 1em; 
+    margin: 1em 0 3em; 
+  }
+  .event-details li.event_time .ui-slider ol {
+    margin: 0; 
+    padding: 0; 
+    border: 0px none;
+  }
+  .event-details li.event_time .ui-slider li {
+    margin: 0; 
+    padding: 0; 
+    border: 0px none;
+    width: auto; 
+    font-size: 1em; 
+    line-height: 1em; 
+  }
 .event-details li.event_date { color: #666666; }
 .event-details li.event_creator {
   font-size: 1em;

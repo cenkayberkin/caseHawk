@@ -377,25 +377,17 @@ $(function(){
         )
       })
     
-    // Editable Event Time
-    $('#facebox .editable_time')
-      .each(function() {
-        var editable = $(this)
-        var event = Event.instantiate($("#"+editable.attr("rel")))
-      
-        editable.editable(
-          event.url,
-          { name        : "event["+editable.attr("data-field-name")+"]",
-            type        : 'timepicker', 
-            tooltip     : 'Click to Edit',
-            submit      : 'OK', 
-            submitdata  : {"_method": "PUT"},
-            ajaxoptions : {dataType: 'json'},
-            callback    : updateSavedEvent
-          }
-        )
-      })
-
+    // Editable Event Time to Slider 
+    $('#facebox .event_time.editable').bind('click', function() {
+      $(this).unbind('click')
+      $('#new_event .slider_start, #new_event .slider_end')
+        .clone()
+        .appendTo('#facebox .event_time')
+      $('#facebox select.slider_start').val($.trim($('.event_time .event_starts_at').attr('data-field-value')))
+      $('#facebox select.slider_end').val($.trim($('.event_time .event_ends_at').attr('data-field-value')))
+      $('#facebox select.slider_start, #facebox select.slider_end').selectToUISlider({labels: 5}).hide()      
+    })
+    
     // Editable Event Date
     $('#facebox .editable_date')
       .each(function() {
