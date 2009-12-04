@@ -95,7 +95,7 @@ Event = {
           $(this).find(
             dayContext == 'day-full' ?
               "ul" :
-              "ul." + originalEvent.attr("data-type").toLowerCase() + "s"
+              "ul." + $(html).attr("data-type").toLowerCase() + "s"
           )
         )
         .effect("highlight", { color : "#d7fcd7"}, 3000)
