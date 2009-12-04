@@ -32,7 +32,11 @@ $(function(){
                 $(result.html)[0], 'skip_cache'
               )
               .draw(result.html)
-         form.reset()
+         form
+          .reset()
+          .find("tags li")
+            .remove()
+         // TODO: do whatever's needed to finish resetting the form
        },
        "json"
     )
