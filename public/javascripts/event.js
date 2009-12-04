@@ -12,27 +12,6 @@ Event = {
       })
     })
   },
-  updateParams: function(options){
-    var params = {}
-    $.each(options, function(key,value){
-      params["event["+key+"]"] = value
-    })
-    params['_method'] = "PUT"
-    return params
-  },
-  update: function(event, options, callback){
-    event = Event.instantiate($(event))
-    if(typeof(callback) == undefined) callback = function(){}
-    $.post(
-       event.url,
-       Event.updateParams(options),
-       function(result){
-         event = Event.instantiate(result, 'skipCache')
-         callback.apply(event, [event, result])
-       },
-       "json"
-    )
-  },
   cachedInstances: [],
   instantiate: function(record, skipCache){
 
