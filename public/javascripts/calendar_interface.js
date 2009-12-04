@@ -13,6 +13,11 @@ $(function(){
 
   //
   // Add New Event Form
+
+  $("form.new_event").submit(function(){
+    
+    return false
+  })
   //  
   // Create datepicker clickables for new event form
   $('form.new_event .editable_date')
@@ -66,14 +71,6 @@ $(function(){
           .find("th:not(.focused_day),td:not(.focused_day)")
             .addClass("unfocused_day")
             .end()
-  })
-
-  // New Event Title clear and change style on focus
-  $('#new_event .inactive').focus(function() {
-    if ($(this).hasClass('inactive')) {
-      $(this).val('')
-        .removeClass('inactive') 
-    }
   })
 
   // Hide the event_ends_at_datepicker by default

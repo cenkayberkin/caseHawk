@@ -28,3 +28,12 @@ String.prototype.camelcase = function(){
 
   return camelized;
 }
+
+/* make any element with a 'placeholder' attribute use the form_prompt plugin for a prompt overlay */
+$.fn.form_prompt && $('input[placeholder], textarea[placeholder]').each(function(){
+  // check if this has already been called
+  if($(this).parents(".form-prompt-wrapper").length)
+    return;
+
+  $(this).form_prompt($(this).attr('placeholder'))
+})
