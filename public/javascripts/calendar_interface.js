@@ -15,7 +15,13 @@ $(function(){
   // Add New Event Form
 
   $("form.new_event").submit(function(){
-    
+    form = $(this)
+    if('' == $.trim(form.find("input#event_name").val())){
+      form.find("input#event_name")
+            .focus()
+            .effect("highlight")
+      return false
+    }
     return false
   })
   //  
