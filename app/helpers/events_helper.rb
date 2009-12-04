@@ -51,7 +51,7 @@ module EventsHelper
     title =  "#{event.timed? ? event.starts_at.to_s(:simple) + 
       (event.ends_at_time.blank? ? "" : "&#8212;" + 
       event.ends_at.to_s(:simple)) : ""}: #{event.name}" +
-    " #{event.tags.blank? ? "" : ". Tagged: " + event.tag_records.map(&:name).join(', ')}"
+      event_tags(event)
     conditional_checkbox(event) +
     link_to(event_line_text(event), 
       event_path(event), 
@@ -64,6 +64,11 @@ module EventsHelper
     if event.timed?
       content_tag :span, event.starts_at.to_s(:simple) + " ", { :class => "time" }
     end.to_s +
-    event.name
+    event.name +
+    event_tags(event)
+  end
+  
+  def event_tags(event)
+    "#{event.tags.blank? ? "" : " || " + event.tag_records.map(&:name).join(', ')}"
   end
 end
