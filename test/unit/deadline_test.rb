@@ -37,5 +37,8 @@ class DeadlineTest < ActiveSupport::TestCase
     should "be completable" do
       assert @event.completable?
     end
+    should "not have end date" do
+      assert @event.ends_at.blank?
+    end
   end
 end
