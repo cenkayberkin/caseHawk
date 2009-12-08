@@ -254,10 +254,8 @@ $(function(){
           labels: 5, 
           sliderOptions: {
             change:function(e, ui) {
-              debug("!!!", e, ui)
               startsAtTime = $('#facebox select.slider_start').val()
               endsAtTime = $('#facebox select.slider_end').val()
-              debug("!!!", $("#facebox .event-details").attr("data-event-id"))
               var event = Event.instantiate($("#" + $("#facebox .event-details").attr("data-event-id")))
               Event.update(
                 event,
