@@ -58,7 +58,7 @@ li.event .event-details {
   .event-details li.event_time .ui-slider {
     font-size: 0.8em; 
     line-height: 1em; 
-    margin: 1em 0 3em; 
+    margin: 1em 2em 3em; 
   }
   .event-details li.event_time .ui-slider ol {
     margin: 0; 
