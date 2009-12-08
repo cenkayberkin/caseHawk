@@ -17,7 +17,10 @@
 
 jQuery.fn.selectToUISlider = function(settings){
 	var selects = jQuery(this);
-	
+
+  if(!selects.length)
+    return this
+
 	//accessible slider options
 	var options = jQuery.extend({
 		labels: 3, //number of visible labels
