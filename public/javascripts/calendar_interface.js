@@ -238,8 +238,7 @@ $(function(){
       })
     
     // Editable Event Time to Slider 
-    $('#facebox .event_time.editable').bind('click', function() {
-      $(this).unbind('click')
+    $('#facebox .event_time.editable').one('click', function() {
       $('#new_event .slider_start, #new_event .slider_end')
         .clone()
         .appendTo('#facebox .event_time')
