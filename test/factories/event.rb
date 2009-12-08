@@ -19,6 +19,7 @@ end
 Factory.define :deadline, :parent => :event, :class => 'Deadline' do |e|
   e.name "Turn it in!"
   e.starts_at "2009-04-15 13:30"
+  e.ends_at nil
 end
 
 Factory.define :task, :parent => :event, :class => 'Task' do |e|

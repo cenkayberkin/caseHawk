@@ -68,6 +68,15 @@ class EventTest < ActiveSupport::TestCase
       should_not_change "@event.ends_at"
     end    
   end
+
+  context "parsing times" do
+    should "return nil for nil" do
+      assert_equal nil, Event.parse(nil)
+    end
+    should "return nil for blank string" do
+      assert_equal nil, Event.parse('')
+    end
+  end
   
 
   context "finding events by day" do

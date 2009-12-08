@@ -93,6 +93,7 @@ class Event < ActiveRecord::Base
   
   # Find a good way to convert strings to date
   def self.parse(str)
+    return nil if str.blank?
     # Since Chronic can't handle "November  6, 2009 01:00 PM", let's try Time.parse first, which can:
     Time.parse(str) rescue Chronic.parse(str)
   end
