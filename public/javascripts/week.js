@@ -88,12 +88,14 @@ Week = {
   // Retrieve one week's markup remotely
   // *******
   load: function(date, after){
-    if(Week.loadedWeeks.indexOf(date) > -1)
+    var formattedDate = date.strftime('%Y-%m-%d')
+
+    if(Week.loadedWeeks.indexOf(formattedDate) > -1)
       return
-    Week.loadedWeeks.push(date)
+    Week.loadedWeeks.push(formattedDate)
 
     $.get(
-      "/weeks/"+date.strftime('%Y-%m-%d'), {},
+      "/weeks/"+formattedDate, {},
       function(result) {
 
         newWeek = $(result)
