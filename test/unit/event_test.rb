@@ -3,9 +3,9 @@
 # Table name: events
 #
 #  id           :integer(4)      not null, primary key
-#  account_id   :integer(4)      not null
 #  creator_id   :integer(4)      not null
 #  owner_id     :integer(4)
+#  location_id  :integer(4)
 #  type         :string(255)     not null
 #  name         :string(255)     not null
 #  remind       :boolean(1)
@@ -14,8 +14,8 @@
 #  completed_at :datetime
 #  starts_at    :datetime
 #  ends_at      :datetime
-#  location_id  :integer(4)
 #  completed_by :integer(4)
+#  account_id   :integer(4)
 #  version      :integer(4)
 #  deleted_at   :datetime
 #
@@ -67,6 +67,15 @@ class EventTest < ActiveSupport::TestCase
       should_not_change "@event.starts_at"
       should_not_change "@event.ends_at"
     end    
+  end
+
+  context "parsing times" do
+    should "return nil for nil" do
+      assert_equal nil, Event.parse(nil)
+    end
+    should "return nil for blank string" do
+      assert_equal nil, Event.parse('')
+    end
   end
   
 
@@ -284,6 +293,11 @@ class EventTest < ActiveSupport::TestCase
       end
       should "have tag records" do
         assert !@event.tag_records.blank?
+      end
+      should "set account on tags" do
+        @event.tag_records.each do |tag|
+          assert_equal @event.account, tag.account
+        end
       end
       should_change 'Tagging.count'
       should_change 'Tag.count'

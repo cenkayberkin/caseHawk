@@ -6,8 +6,11 @@ class TagsControllerTest < ActionController::TestCase
     setup {
       @controller.stubs(:current_account).returns(@account = accounts(:localhost))
       @controller.stubs(:current_user).returns(@user = users(:quentin))
+      3.times do |n|
+        Factory.create :tag, :name => ["brown #{n}", "orange #{n}"][n % 2], :account => Factory.create(:account)
+      end
       12.times do |n|
-        Factory.create :tag, :name => ["green #{n}", "blue #{n}"][n % 2]
+        Factory.create :tag, :name => ["green #{n}", "blue #{n}"][n % 2], :account => @account
       end
     }
     context "with no params" do
@@ -18,23 +21,28 @@ class TagsControllerTest < ActionController::TestCase
         assert_equal 10, assigns(:tags).length
       end
       should "return the first ten records" do
-        assert_equal Tag.find(:all, :limit => 10),
+        assert_equal @account.tags.find(:all, :limit => 10),
                      assigns(:tags)
+      end
+      should "have only tags from the current account" do
+        assigns(:tags).each do |tag|
+          assert_equal @account, tag.account
+        end
       end
     end
     context "with q param" do
       setup { get :index, :q => 'green' }
       should "return only records containing 'green' in their name" do
-        assert_equal Tag.find(:all,
-                              :conditions => ["name like ?",
-                                              "%green%"]),
+        assert_equal @account.tags.find(:all,
+                                        :conditions => ["name like ?",
+                                                        "%green%"]),
                      assigns(:tags)
       end
     end
     context "with limit param" do
       setup { get :index, :limit => '2' }
       should "return only the number of records specified" do
-        assert_equal Tag.find(:all, :limit => 2), assigns(:tags)
+        assert_equal @account.tags.find(:all, :limit => 2), assigns(:tags)
       end
     end
   end

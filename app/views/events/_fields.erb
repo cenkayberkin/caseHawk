@@ -3,7 +3,7 @@
   <%= f.select :type, event_types, {:selected => 'Appointment'}, :class => "new_event_type", :label => false %>
   <label for="event_type">New</label>
 </div>
-<div class="event_field event_field_name"><%= f.text_field :name, :label => false, :value => "Enter Event Title...", :class => 'inactive' %> </div>
+<div class="event_field event_field_name"><%= f.text_field :name, :label => false, :placeholder => "Enter Event Title..." %> </div>
 <div class="event_field event_field_editable_label">
   <div class="field_wrapper starts_at">start</div>
   <div class="field_wrapper ends_at">end</div>
@@ -35,7 +35,7 @@
   <br class="clear" />
 </div>
 <ul class="tags"></ul>
-<div class="event_field event_field_tags"><%= f.text_field :tags, :value => "Start typing to add tags...", :label => false, :class => 'inactive' %>
+<div class="event_field event_field_tags"><%= f.text_field :tags, :placeholder => "Start typing to add tags...", :label => false %>
   <label for="event_tags" class="event_field_tags_add">Tag</label>
 </div>
 <div class="event_field event_field_remind"><%= f.check_box :remind, :label => false %> <label for="event_remind">Notify</label></div>

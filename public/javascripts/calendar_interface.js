@@ -3,16 +3,45 @@ $(function(){
   // Build the enabled datepicker calendar for the sidebar
 
   $("#datepicker").datepicker({
-    changeMonth: true, 
-    changeYear: true, 
+    changeMonth: true,
+    changeYear: true,
     defaultDate: new Date($('#weeks').attr('data-first-week')),
     onSelect: function(dateText, inst) {
-      window.location.href = "/calendar/?date=" + dateText      
+      window.location.href = "/calendar/?date=" + dateText
     }
   }); 
 
   //
   // Add New Event Form
+
+  $("form.new_event").submit(function(){
+
+    var form = $(this)
+    var name = form.find("input#event_name")
+
+    if('' == $.trim(name.val())){
+      name.focus().effect("highlight")
+      return false
+    }
+
+    $.post(
+       '/events/',
+       form.serialize(),
+       function(result){
+         Event.instantiate(
+                $(result.html)[0], 'skip_cache'
+              )
+              .draw(result.html)
+         form
+          .reset()
+          .find("tags li")
+            .remove()
+         // TODO: do whatever's needed to finish resetting the form
+       },
+       "json"
+    )
+    return false
+  })
   //  
   // Create datepicker clickables for new event form
   $('form.new_event .editable_date')
@@ -66,14 +95,6 @@ $(function(){
           .find("th:not(.focused_day),td:not(.focused_day)")
             .addClass("unfocused_day")
             .end()
-  })
-
-  // New Event Title clear and change style on focus
-  $('#new_event .inactive').focus(function() {
-    if ($(this).hasClass('inactive')) {
-      $(this).val('')
-        .removeClass('inactive') 
-    }
   })
 
   // Hide the event_ends_at_datepicker by default
@@ -147,7 +168,9 @@ $(function(){
   function tagResult(selectedValue){
 
     var tags     = $("form#new_event").find("ul.tags")
-    var existing = tags.find("li[rel="+selectedValue+"]")
+    var existing = tags.find("li").filter(function(){
+                                      return selectedValue == $(this).attr('rel')
+                                    })
 
     // clear the search box and start over
     $('#event_tags').val('').focus()

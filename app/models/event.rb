@@ -3,9 +3,9 @@
 # Table name: events
 #
 #  id           :integer(4)      not null, primary key
-#  account_id   :integer(4)      not null
 #  creator_id   :integer(4)      not null
 #  owner_id     :integer(4)
+#  location_id  :integer(4)
 #  type         :string(255)     not null
 #  name         :string(255)     not null
 #  remind       :boolean(1)
@@ -14,8 +14,8 @@
 #  completed_at :datetime
 #  starts_at    :datetime
 #  ends_at      :datetime
-#  location_id  :integer(4)
 #  completed_by :integer(4)
+#  account_id   :integer(4)
 #  version      :integer(4)
 #  deleted_at   :datetime
 #
@@ -35,7 +35,7 @@ class Event < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :creator_id
   validate :requires_subclassing
-  
+
   named_scope :ordered, :order => :starts_at
   named_scope :day, proc {|day|
     { :conditions => "   starts_at LIKE '#{day}%'
@@ -93,6 +93,7 @@ class Event < ActiveRecord::Base
   
   # Find a good way to convert strings to date
   def self.parse(str)
+    return nil if str.blank?
     # Since Chronic can't handle "November  6, 2009 01:00 PM", let's try Time.parse first, which can:
     Time.parse(str) rescue Chronic.parse(str)
   end

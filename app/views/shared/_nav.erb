@@ -1,14 +1,14 @@
 <ul>
   <li>
     <%= 
-      link_to_unless_current('Home', root_path) do |link|
+      link_to_unless_current('Calendar', root_path) do |link|
         content_tag 'span', link, :class => 'current'
       end 
     %>
   </li>
   <li>
     <%= 
-      link_to_unless_current('Calendar', calendar_path) do |link|
+      link_to_unless_current('Dashboard', :controller => "accounts", :action => "dashboard") do |link|
         content_tag 'span', link, :class => 'current'
       end 
     %>

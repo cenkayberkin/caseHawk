@@ -12,27 +12,6 @@ Event = {
       })
     })
   },
-  updateParams: function(options){
-    var params = {}
-    $.each(options, function(key,value){
-      params["event["+key+"]"] = value
-    })
-    params['_method'] = "PUT"
-    return params
-  },
-  update: function(event, options, callback){
-    event = Event.instantiate($(event))
-    if(typeof(callback) == undefined) callback = function(){}
-    $.post(
-       event.url,
-       Event.updateParams(options),
-       function(result){
-         event = Event.instantiate(result, 'skipCache')
-         callback.apply(event, [event, result])
-       },
-       "json"
-    )
-  },
   cachedInstances: [],
   instantiate: function(record, skipCache){
 
@@ -76,7 +55,7 @@ Event = {
 
   draw: function(html){
 
-    var originalDay, newDay
+    var originalDay, newDay, dayContext
 
     // check whether this event already exists
     var originalEvent = $("li.event[data-event-id="+this.id+"]")
@@ -85,7 +64,10 @@ Event = {
       // remove it from its original day
       originalEvent.remove()
     }
-    dayContext = originalEvent.attr("data-timed") == 'true' ? 'day-full' : 'allday'
+
+    // set a day context
+    dayContext = $(html).attr("data-timed") == 'true' ? 'day-full' : 'allday'
+
 
     // generalized newday selection, only gets first day
     var newDay = $('.week-' + dayContext + " td.day[data-date="+this.start.strftime("%G-%m-%d")+"]")
@@ -113,7 +95,7 @@ Event = {
           $(this).find(
             dayContext == 'day-full' ?
               "ul" :
-              "ul." + originalEvent.attr("data-type").toLowerCase() + "s"
+              "ul." + $(html).attr("data-type").toLowerCase() + "s"
           )
         )
         .effect("highlight", { color : "#d7fcd7"}, 3000)
@@ -124,15 +106,11 @@ Event = {
       // redraw the original
       Day.refresh(newDay)
       // and new days
-      if(originalDay[0] && originalDay[0] != newDay[0])
+      if(originalDay && originalDay[0] && originalDay[0] != newDay[0])
         Day.refresh(originalDay)
     }
 
     return this;
-  },
-
-  drawAllDay: function(html){
-    
   },
 
   displayFor: function(record){
