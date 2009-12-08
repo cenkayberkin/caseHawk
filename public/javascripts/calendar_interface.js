@@ -285,9 +285,14 @@ $(function(){
       { id: eventID }, 
       function(result) {
         // Remove the appropriate event
-        $("#" + eventID).remove(); 
+        var event = $("#" + eventID)
+        var day = event.parents("td.day")
+        event.remove(); 
+        // refresh the day
+        Day.refresh(day)
         // Close the facebox
         jQuery(document).trigger('close.facebox'); 
+        // redraw page
       }
     ); 
   }); 

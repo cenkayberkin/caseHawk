@@ -1,5 +1,7 @@
 Week = {
 
+  loadedWeeks: [],
+
   // *******
   // The collection of date headers
   // *******
@@ -69,8 +71,7 @@ Week = {
         function(){ Week.loadNext() } // load the second week right away
       )
       Week.setupEndlessScroll()
-    }else
-      debug("Already loaded at least one week")
+    }
   },
 
   loadNext: function(){
@@ -87,8 +88,14 @@ Week = {
   // Retrieve one week's markup remotely
   // *******
   load: function(date, after){
+    var formattedDate = date.strftime('%Y-%m-%d')
+
+    if(Week.loadedWeeks.indexOf(formattedDate) > -1)
+      return
+    Week.loadedWeeks.push(formattedDate)
+
     $.get(
-      "/weeks/"+date.strftime('%Y-%m-%d'), {},
+      "/weeks/"+formattedDate, {},
       function(result) {
 
         newWeek = $(result)
