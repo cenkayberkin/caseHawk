@@ -254,16 +254,25 @@ $(function(){
           labels: 5, 
           sliderOptions: {
             change:function(e, ui) {
+              debug("!!!", e, ui)
               startsAtTime = $('#facebox select.slider_start').val()
               endsAtTime = $('#facebox select.slider_end').val()
-              var event = Event.instantiate($("#facebox .event-details").attr("data-event-id"))
+              debug("!!!", $("#facebox .event-details").attr("data-event-id"))
+              var event = Event.instantiate($("#" + $("#facebox .event-details").attr("data-event-id")))
               Event.update(
                 event,
                 {
                   starts_at_time: startsAtTime, 
                   ends_at_time: endsAtTime 
                 },
-                updateSavedEvent
+                function(result) {
+                  updateSavedEvent.apply(
+                    ui.value == ui.values[0] ?
+                      $("#facebox .event_starts_at") :
+                      $("#facebox .event_ends_at"), 
+                    [result]
+                  )
+                }
               )
 
               $('#facebox .event_starts_at').html(startsAtTime)
@@ -284,7 +293,7 @@ $(function(){
           event.url,
           { name        : "event[" + editable.attr("data-field-name") + "]",
             type        : 'datepicker', 
-            tooltip     : 'Click to Edit DATE',
+            tooltip     : 'Click to Edit',
             submit      : 'OK', 
             submitdata  : {"_method": "PUT"},
             ajaxoptions : {dataType: 'json'}, 
