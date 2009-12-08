@@ -254,14 +254,24 @@ $(function(){
           labels: 5, 
           sliderOptions: {
             change:function(e, ui) {
-              
-              $('#facebox .event_starts_at').html($('#facebox select.slider_start').val())
-              $('#facebox .event_ends_at').html($('#facebox select.slider_end').val())
+              startsAtTime = $('#facebox select.slider_start').val()
+              endsAtTime = $('#facebox select.slider_end').val()
+              var event = Event.instantiate($("#facebox .event-details").attr("data-event-id"))
+              Event.update(
+                event,
+                {
+                  starts_at_time: startsAtTime, 
+                  ends_at_time: endsAtTime 
+                },
+                updateSavedEvent
+              )
+
+              $('#facebox .event_starts_at').html(startsAtTime)
+              $('#facebox .event_ends_at').html(endsAtTime)
             }
           }
         })
-        .hide()
-        
+        .hide()      
     })
     
     // Editable Event Date
