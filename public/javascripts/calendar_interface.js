@@ -238,7 +238,40 @@ $(function(){
       })
     
     // Editable Event Time to Slider 
-    $('#facebox .event_time.editable').one('click', function() {
+    $('#facebox .Deadline .event_time.editable').one('click', function() {
+      $('#new_event .slider_start')
+        .clone()
+        .appendTo('#facebox .event_time')
+      $('#facebox select.slider_start')
+        .val($.trim($('.event_time .event_starts_at').attr('data-field-value')))
+        .attr("id", "facebox_slider_start")
+      $('#facebox select.slider_start')
+        .selectToUISlider({
+          labels: 5, 
+          sliderOptions: {
+            change:function(e, ui) {
+              startsAtTime = $('#facebox select.slider_start').val()
+              var event = Event.instantiate($("#" + $("#facebox .event-details").attr("data-event-id")))
+              Event.update(
+                event,
+                {
+                  starts_at_time: startsAtTime, 
+                },
+                function(result) {
+                  updateSavedEvent.apply(
+                      $("#facebox .event_starts_at"), 
+                    [result]
+                  )
+                }
+              )
+              $('#facebox .event_starts_at').html(startsAtTime)
+            }
+          }
+        })
+        .hide()      
+    })
+    
+    $('#facebox .Appointment .event_time.editable, #facebox .CourtDate .event_time.editable').one('click', function() {
       $('#new_event .slider_start, #new_event .slider_end')
         .clone()
         .appendTo('#facebox .event_time')
