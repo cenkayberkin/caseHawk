@@ -166,6 +166,39 @@ $(function(){
       .appendTo(tags)
       .fadeIn("normal")
   }
+
+  // The following should happen to reset the form to pristine state
+  $("form#new_event").reset(function(){
+    // remove any tags that have accumulated
+    $(this)
+      .find("ul.tags")
+        .find("li")
+          .remove()
+
+    // reset the dates
+    $(this)
+      .find("input#event_starts_at_date")
+        .val("")
+        .end()
+      .find("input#event_ends_at_date")
+        .val("")
+
+    /* leave the datetime resets as they are */
+
+    // reset the selects behind the slider
+    $(this)
+      .find("select#event_starts_at_time")
+        .val("11:00 AM")
+        .end()
+      .find("select#event_ends_at_time")
+        .val("1:00 PM")
+
+    // fire the slider reset
+    $(this)
+      .find("select#event_type")
+        .change()
+  })
+
 })
 function validateEventFormDates(active) {
 
