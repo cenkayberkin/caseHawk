@@ -336,7 +336,11 @@ $(function(){
   }
   
   functionsThatNeedToBeReexecutedWhenFaceboxLoads()
-  $(document).bind("reveal.facebox", function() { functionsThatNeedToBeReexecutedWhenFaceboxLoads(); $('input').blur(); })
+  $(document).bind("reveal.facebox", functionsThatNeedToBeReexecutedWhenFaceboxLoads)
+  $(document).bind("reveal.facebox", function(){
+    $("form#new_event input").blur()
+  })
+  
 
   $('a[rel*=facebox]').facebox()
 
