@@ -606,4 +606,7 @@ h2.clickable {
       color: #999;
     }
 
+.editable {
+  cursor: pointer;
+}
 
