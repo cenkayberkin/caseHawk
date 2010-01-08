@@ -41,8 +41,11 @@ $(function(){
       year = "" + e.start.getFullYear()
       week = "" + DateMath.getWeekNumber(e.start)
       week -= 1
+      week = week < 10 ? "0" + week : week
       hour = "" + e.start.getHours()
-      min = e.start.getMinutes() == 0 ? "00" : "" + e.start.getMinutes()
+      // Get closest 15-minute point
+      min = Math.floor(e.start.getMinutes()/15) * 15 
+      min = min == 0 ? "00" : "" + min
       endStamp = "" + e.end.getHours() + (e.end.getMinutes() == 0 ? "00" : e.end.getMinutes())
       // Start highlighting the timeline at the appt start time
       $("#" + year + "-w" + week + "-timerow-" + hour + min).css("background-color","#e3e6f9")
