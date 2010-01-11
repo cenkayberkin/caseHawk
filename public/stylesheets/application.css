@@ -191,7 +191,9 @@ ul, ol, p { margin: 0 0 1em; }
 	font-size: 1.2em; 
 	line-height: 1.5em; 
 }
-  #notices { width: 100%; }
+  #notices { 
+    
+  }
   #main, #sidebar {
      
   }
@@ -342,6 +344,29 @@ ul, ol, p { margin: 0 0 1em; }
 .flashdebug {
   color: #559E44;
 }
+
+#notices .notice, 
+#notices .error {
+  border-style: solid; 
+  border-width: 1px; 
+  border-color: #A3D3A3; 
+  background-color: #F3FFF3;
+  color: #5EAD5E; 
+  margin: 0.5em 0; 
+  padding: 0.5em 1em; 
+  
+  border-radius: 4px; 
+  -moz-border-radius: 4px; 
+  -webkit-border-radius: 4px; 
+  box-shadow: 0 1px 2px #DDD;
+  -webkit-box-shadow: 0 1px 2px #DDD;
+  -moz-box-shadow: 0 1px 2px #DDD;
+}
+  #notices .error {
+    border-color: #D3A3A3;
+    background-color: #FFF3F3;
+    color: #B32914;
+  }
 
 /****************************************************************
   SURVEY DISPLAY

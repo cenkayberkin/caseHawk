@@ -47,15 +47,17 @@
     </div>
     <div id="page">
       <div id="content">
-        <div id="notices">
-          <%= flash_notices %>
-        </div>
         <div id="main">
 
           <%= yield %>
 
         </div>
         <div id="sidebar">
+          <% if flash[:notice] || flash[:error] %>
+            <div id="notices" class="sidebar-block">
+              <%= flash_notices %>
+            </div>
+          <% end %>
           <%= yield :sidebar %>
           <p class="copyright">
             Copyright &copy; 2006 &ndash; <%= Date.today.to_s(:year) %> <a href="http://lawfortress.com">CaseHawk by Lawfortress LLC</a>            
