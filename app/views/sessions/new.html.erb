@@ -1,14 +1,29 @@
-<% form_tag session_path do -%>
-<p><label for="login">Login</label><br/>
-<%= text_field_tag 'login' %></p>
-
-<p><label for="password">Password</label><br/>
-<%= password_field_tag 'password' %></p>
-
-<!-- Uncomment this if you want this functionality
-<p><label for="remember_me">Remember me:</label>
-<%= check_box_tag 'remember_me' %></p>
--->
-
-<p><%= submit_tag 'Log in' %></p>
-<% end -%>
+<div id="login_form">
+  <p>
+    <strong>Welcome to CaseHawk!</strong><br />
+    Enter your username and password below to get started.<br />
+    <strong>Don't have an account?</strong> Need link here.  
+  </p>
+  <% form_tag session_path do -%>
+    <div class="form_field">
+      <label for="login">Username</label>
+      <%= text_field_tag 'login' %>
+      <br />
+    </div>
+    <div class="form_field">
+      <label for="password">Password</label>
+      <%= password_field_tag 'password' %>
+      <br />
+    </div>
+    <!-- Uncomment this if you want this functionality
+    <label for="remember_me">Remember me:</label>
+    <%= check_box_tag 'remember_me' %>
+    <br />
+    -->
+    <div class="form_field">
+      <label></label>
+      <%= submit_tag 'Log on' %>
+      <br />
+    </div>
+  <% end -%>
+</div>

@@ -107,6 +107,7 @@ ul, ol, p { margin: 0 0 1em; }
   bottom: 0; 
   left: 10px; 
   height: 30px; 
+  width: 70%;
 }
   #nav ul {
     margin: 0; padding: 0;
@@ -122,6 +123,16 @@ ul, ol, p { margin: 0 0 1em; }
     border-left: 1px solid #F9F9F9; 
     border-right: 1px solid #F9F9F9;
   }
+    #nav ul li.logout {
+      float: right; 
+      margin-top: 6px; 
+      height: 24px;
+      font-size: 0.80em;
+    }
+      #nav ul li.logout a {
+        height: 24px;
+        line-height: 24px;  
+      }
   #nav ul li a, #nav ul li span {
     display: block; 
     height: 30px; line-height: 30px; 
@@ -287,6 +298,83 @@ ul, ol, p { margin: 0 0 1em; }
 			background: #FFF;
 		}
 
+/****************************************************************
+  LOGIN FORM
+/***************************************************************/
+
+#login_form {
+  margin: 0 1em; 
+  padding: 0; 
+  width: 50%; 
+  
+  font-size: 1.2em; 
+  
+  background: #F9F9F9;
+  border: 1px solid #D3D3D3;
+  color: #666666; 
+  
+  box-shadow: 0 2px 4px #DDD;
+  -webkit-box-shadow: 0 2px 4px #DDD;
+  -moz-box-shadow: 0 2px 4px #DDD;
+  border-radius: 8px; 
+  -moz-border-radius: 8px; 
+  -webkit-border-radius: 8px;
+}
+  #login_form p {
+    margin: 1em 1em 0; 
+    line-height: 1.5em;
+    padding-bottom: 1em; 
+    border-bottom: 1px solid #D3D3D3;  
+  }
+    #login_form p strong {
+      font-weight: bold; 
+    }
+
+  #login_form .form_field {
+    padding: 0.25em; 
+  }
+    #login_form .form_field:first-child {
+      border-top: 1px solid #FFFFFF;
+      padding-top: 1em;
+    }
+    #login_form .form_field:last-child {
+      padding-bottom: 1em; 
+    }
+  #login_form input, #login_form label {
+    width: 60%; 
+    vertical-align: middle;
+    display: inline-block; 
+    padding: 1px; 
+  }
+  #login_form label {
+    text-align: right; 
+    padding-right: 0.5em; 
+    width: 25%; 
+    letter-spacing: 1px; 
+    color: #73A3D3;
+  }
+  #login_form input {
+    color: #999999; 
+  }
+  #login_form input[type=submit] {
+    width: 25%;
+    border: 1px solid #A3D3A3; 
+    background-color: #F3FFF3;
+    color: #5EAD5E; 
+
+    border-radius: 4px; 
+    -moz-border-radius: 4px; 
+    -webkit-border-radius: 4px;
+    
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+  }
+    #login_form input[type=submit]:hover, 
+    #login_form input[type=submit]:focus {
+      background-color: #FFF; 
+      color: #7ECD7E; 
+    }
+    
 /****************************************************************
   GENERAL POSITIONING
 /***************************************************************/

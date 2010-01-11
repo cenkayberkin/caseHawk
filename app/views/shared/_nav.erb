@@ -12,5 +12,12 @@
         content_tag 'span', link, :class => 'current'
       end 
     %>
+  <% if logged_in? %>
   </li>
+  <li class="logout">
+    <%=
+      link_to 'Logout', logout_path
+    %>
+  </li>
+  <% end %>
 </ul>
