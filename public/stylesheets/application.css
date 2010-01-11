@@ -321,9 +321,9 @@ ul, ol, p { margin: 0 0 1em; }
   -webkit-border-radius: 8px;
 }
   #login_form p {
-    margin: 1em 1em 0; 
+    margin: 1em 0 0; 
     line-height: 1.5em;
-    padding-bottom: 1em; 
+    padding: 0 1em 1em; 
     border-bottom: 1px solid #D3D3D3;  
   }
     #login_form p strong {
@@ -354,7 +354,7 @@ ul, ol, p { margin: 0 0 1em; }
     color: #73A3D3;
   }
   #login_form input {
-    color: #999999; 
+    color: #333333; 
   }
   #login_form input[type=submit] {
     width: 25%;
