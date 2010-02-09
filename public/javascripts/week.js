@@ -11,8 +11,12 @@ Week = {
 
   // Set the selected rolling header to be 'active', which means locked at the top
   changeWeekHeader: function(header){
-    $("table.week-rolling-header").removeClass("rolling-active")
-    header.addClass("rolling-active")
+    $("table.week-rolling-header")
+      .removeClass("rolling-active")
+      .addClass("rolling-inactive")
+    header
+      .addClass("rolling-active")
+      .removeClass("rolling-inactive")
   },
 
   // *******

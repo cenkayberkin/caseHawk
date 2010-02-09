@@ -260,7 +260,9 @@ ul.task-list {
   left: 10px; 
   z-index: 1075;
 }
-
+.rolling-inactive tr.week-dayname-header {
+  display: none;
+}
 #weeks-buffer {
   background: #FFFFFF; 
   height: 13px; 
