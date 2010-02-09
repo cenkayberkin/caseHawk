@@ -149,23 +149,39 @@ Day = {
     }
     boxFn.arrange = function(eventList){
       $.each(boxes, function(_,box){
-        var holder = $("<div class='collision_box'></div>")
-        holder.css({
-          top:    $(box[0]).css("top"),
+        var holder = $("<div class='holder'></div>")
+        var container = $("<div class='collision_box'></div>")
+        var boxTop = $(box[0]).css("top")
+        container.css({
+          top:    boxTop,
           height: Day.timeDifferentInPixels(
                       Day.lastEnd(box) - Day.firstStart(box)
                     )+'px'
         })
+
+        // track where they last event was placed (starting at -15 pixels)
+        var lastEventTop = boxTop - 15
+
         $.each(box, function(_,e){
+
+          // calculate where this event *should* be placed, relative to it's box
+          var top = Day.top(e) - parseInt(boxTop)
+          // if there is an event in the way, move us down to the next spot
+          if(top < lastEventTop + 15)
+            top = lastEventTop + 15
+          lastEventTop = top
+
           $(e)
             .css(
               { height:   'auto',
-                position: 'relative',
-                top:      '0px'
+                position: 'absolute',
+                top:      top+'px'
               })
             .appendTo(holder)
         })
-        holder.appendTo(eventList)
+
+        holder.appendTo(container)
+        container.appendTo(eventList)
       })
       // and clear the boxes
       boxes = []
