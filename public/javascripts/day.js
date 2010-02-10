@@ -194,27 +194,33 @@ Day = {
   // the events better
   fixCongestedBoxes : function(day){
     day.find(".collision_box").each(function(_,box){
-      var canFit = parseInt($(box).height() / 15)
-      var total  = $(box).find(".event").length
-      if(canFit < total){
+
+      var lastPosition = parseInt($(box).css('height')) - 15
+      $(box).find(".event").each(function(){
+        var top = parseInt($(this).css('top'))
+        if( top >  lastPosition) $(this).addClass('too_late')
+        if( top == lastPosition) $(this).addClass('at_the_very_end')
+      })
+      var tooLate = $(box).find(".event.too_late")
+      // and the last one (if it exists) because we need this space for a message
+      var shouldHide = $(box).find(".event.too_late, .event.at_the_very_end")
+
+      if(tooLate.length){
+        // hide everything that doesn't fit
+        shouldHide.hide()
+        // add a little "there's more!" link
         $(box)
-          // hide everything that doesn't fit
-          .find(".event")
-            .slice(canFit-1, total)
-              .hide()
-              .end()
-            .end()
-          // add a little "there's more!" link
           .append(
             $("<li></li>")
               .addClass("event-overflow")
               .addClass("overflow")
+              .css('top', lastPosition+'px')
               .append(
                 $("<a></a>")
                   .html(
-                    canFit == 1 ?
-                      (total)+" events &raquo;" :
-                      (total-canFit+1)+" more &raquo;"
+                    shouldHide.length == 1 ?
+                      (shouldHide.length)+" events &raquo;" :
+                      (shouldHide.length)+" more &raquo;"
                   )
                   // which, when clicked, shows the rest of the events
                   .click(function(){
