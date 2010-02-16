@@ -32,7 +32,7 @@ class EventsControllerTest < ActionController::TestCase
 
     context 'GET to show for existing event' do
       setup do
-        @event = Factory(:event)
+        @event = Factory(:event, :account => @account)
         get :show, :id => @event.to_param
       end
 
@@ -43,7 +43,7 @@ class EventsControllerTest < ActionController::TestCase
 
     context 'GET to edit for existing event' do
       setup do
-        @event = Factory(:event)
+        @event = Factory(:event, :account => @account)
         get :edit, :id => @event.to_param
       end
 
@@ -55,7 +55,7 @@ class EventsControllerTest < ActionController::TestCase
     # UPDATE
 
     context 'PUT to update' do
-      setup { @event = Factory.create(:task) }
+      setup { @event = Factory.create(:task, :account => @account) }
       context 'for existing event' do
         setup {
           put :update, :id => @event.to_param,
@@ -98,7 +98,7 @@ class EventsControllerTest < ActionController::TestCase
     end
 
     context 'given a event' do
-      setup { @event = Factory(:event) }
+      setup { @event = Factory(:event, :account => @account) }
       context 'DELETE to destroy' do
         context 'an event via http' do
           setup { delete :destroy, :id => @event.to_param }

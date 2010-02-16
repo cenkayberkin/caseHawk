@@ -149,23 +149,39 @@ Day = {
     }
     boxFn.arrange = function(eventList){
       $.each(boxes, function(_,box){
-        var holder = $("<div class='collision_box'></div>")
-        holder.css({
-          top:    $(box[0]).css("top"),
+        var holder = $("<div class='holder'></div>")
+        var container = $("<div class='collision_box'></div>")
+        var boxTop = $(box[0]).css("top")
+        container.css({
+          top:    boxTop,
           height: Day.timeDifferentInPixels(
                       Day.lastEnd(box) - Day.firstStart(box)
                     )+'px'
         })
+
+        // track where they last event was placed (starting at -15 pixels)
+        var lastEventTop = boxTop - 15
+
         $.each(box, function(_,e){
+
+          // calculate where this event *should* be placed, relative to it's box
+          var top = Day.top(e) - parseInt(boxTop)
+          // if there is an event in the way, move us down to the next spot
+          if(top < lastEventTop + 15)
+            top = lastEventTop + 15
+          lastEventTop = top
+
           $(e)
             .css(
               { height:   'auto',
-                position: 'relative',
-                top:      '0px'
+                position: 'absolute',
+                top:      top+'px'
               })
             .appendTo(holder)
         })
-        holder.appendTo(eventList)
+
+        holder.appendTo(container)
+        container.appendTo(eventList)
       })
       // and clear the boxes
       boxes = []
@@ -178,27 +194,33 @@ Day = {
   // the events better
   fixCongestedBoxes : function(day){
     day.find(".collision_box").each(function(_,box){
-      var canFit = parseInt($(box).height() / 15)
-      var total  = $(box).find(".event").length
-      if(canFit < total){
+
+      var lastPosition = parseInt($(box).css('height')) - 15
+      $(box).find(".event").each(function(){
+        var top = parseInt($(this).css('top'))
+        if( top >  lastPosition) $(this).addClass('too_late')
+        if( top == lastPosition) $(this).addClass('at_the_very_end')
+      })
+      var tooLate = $(box).find(".event.too_late")
+      // and the last one (if it exists) because we need this space for a message
+      var shouldHide = $(box).find(".event.too_late, .event.at_the_very_end")
+
+      if(tooLate.length){
+        // hide everything that doesn't fit
+        shouldHide.hide()
+        // add a little "there's more!" link
         $(box)
-          // hide everything that doesn't fit
-          .find(".event")
-            .slice(canFit-1, total)
-              .hide()
-              .end()
-            .end()
-          // add a little "there's more!" link
           .append(
             $("<li></li>")
               .addClass("event-overflow")
               .addClass("overflow")
+              .css('top', lastPosition+'px')
               .append(
                 $("<a></a>")
                   .html(
-                    canFit == 1 ?
-                      (total)+" events &raquo;" :
-                      (total-canFit+1)+" more &raquo;"
+                    shouldHide.length == 1 ?
+                      (shouldHide.length)+" events &raquo;" :
+                      (shouldHide.length)+" more &raquo;"
                   )
                   // which, when clicked, shows the rest of the events
                   .click(function(){
