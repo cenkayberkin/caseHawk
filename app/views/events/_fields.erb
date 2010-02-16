@@ -1,14 +1,16 @@
 <%= error_messages_for :event %>
-<div class="event_field event_field_type">
-  <%= select :event, :type, event_types, {:selected => 'Appointment'}, :class => "new_event_type", :label => false %>
-  <label for="event_type">New</label>
+<div class="event_field form_field event_field_name">
+  <label for="event_name">New</label>
+  <%= f.text_field :name, :label => false, :placeholder => "Enter Event Title..." %>
 </div>
-<div class="event_field event_field_name"><%= f.text_field :name, :label => false, :placeholder => "Enter Event Title..." %> </div>
-<div class="event_field event_field_editable_label">
+<div class="event_field form_field event_field_type">
+  <%= select :event, :type, event_types, {:selected => 'Appointment'}, :class => "new_event_type", :label => false %>
+</div>
+<div class="event_field form_field event_field_editable_label">
   <div class="field_wrapper starts_at">start</div>
   <div class="field_wrapper ends_at">end</div>
 </div>
-<div class="event_field event_field_dates">
+<div class="event_field form_field event_field_dates">
   <%= f.hidden_field :starts_at_date, :value => @date.to_s(:short_day_month_first) %>
   <%= f.hidden_field :ends_at_date, :value => @date.to_s(:short_day_month_first) %> 
   <div class="field_wrapper starts_at">
@@ -18,7 +20,7 @@
     <div id="event_ends_at_datepicker" rel="end" class="event_ends_at editable editable_date" data-field-name="ends_at_date"><%= @date.to_s(:short_day_month_first) %></div>
   </div>
 </div>  
-<div class="event_field event_field_times">
+<div class="event_field form_field event_field_times">
   <%
     times = []
     (6..11).each do |h| 
@@ -35,8 +37,9 @@
   <br class="clear" />
 </div>
 <ul class="tags"></ul>
-<div class="event_field event_field_tags"><%= f.text_field :tags, :placeholder => "Start typing to add tags...", :label => false %>
+<div class="event_field form_field event_field_tags">
   <label for="event_tags" class="event_field_tags_add">Tag</label>
+  <%= f.text_field :tags, :placeholder => "Start typing to add tags...", :label => false %>
 </div>
-<div class="event_field event_field_remind"><%= f.check_box :remind, :label => false %> <label for="event_remind">Notify</label></div>
+<div class="event_field form_field event_field_remind"><%= f.check_box :remind, :label => false %> <label for="event_remind">Notify</label></div>
 <%= submit_tag "Add Event" %>
