@@ -228,19 +228,19 @@ ul, ol, p { margin: 0 0 1em; }
     -webkit-border-radius: 8px; 
     overflow: hidden; 
   }
-    .sidebar-block {
+    .sidebar_block {
       padding: 0.5em; 
       margin: 0; 
       border-bottom: 1px solid #DDD;
       border-top: 1px solid #FFF; 
     }
-      #sidebar .sidebar-block:first-child {
+      #sidebar .sidebar_block:first-child {
         -moz-border-radius-topleft: 8px; 
         -webkit-border-top-left-radius: 8px; 
         -moz-border-radius-topright: 8px; 
         -webkit-border-top-right-radius: 8px; 
       }
-    .sidebar-block h2 {
+    .sidebar_block h2 {
         text-align: center; 
         border-bottom: 1px solid #DDD;
     }
