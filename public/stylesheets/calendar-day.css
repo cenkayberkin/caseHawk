@@ -93,12 +93,9 @@
     }
     ul.day-full li {
       position: absolute;
-      width: 50%; 
       line-height: 15px; 
-      left: 50%;
     }
     ul.day-full li.deadline {
-      background: #EEE;
       left: 0;
       color: #B32914;
     }
@@ -124,11 +121,15 @@
     .collision_box {
       position: absolute;
       width: 50%;
+      border-bottom: 1px solid #DDDDDD;
     }
     .collision_box .holder {
       position: relative;
+      border-top: 1px solid #E6E6E6;
     }
-    .day-full .collision_box { background: #F3F3F3; }
+    .day-full .collision_box { 
+      background: #F3F3F3; 
+    }
 
     .collision_box_overflow { /*when a box with too many events has the 'more' link clicked*/
     }
