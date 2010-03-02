@@ -8,21 +8,27 @@ $(function(){
 
 Calendar = {
   loadAgenda: function(tag){
+
+    var spinner = $("#cal_search img.spinner")
+    var list    = $("#cal_search_results")
+    
+    spinner.show()
+
+    list.html("<ul class='results'></ul>")
+
     $.getJSON(
       "/events/",
       {tags: tag},
       function(results){
 
-        var list = $("#cal_search_results")
+        spinner.hide()
 
         if(!results.length){
           list.html("<h3>No results found for <em>"+tag+"</em></h3>")
           return
         }
 
-        list
-          .html("<ul class='results'></ul>")
-          .show()
+        list.show()
 
         $.each(results, function(_,result){
 
