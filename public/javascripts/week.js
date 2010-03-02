@@ -131,7 +131,7 @@ Week = {
     })
     // adjust the top and bottom of this week
     Week.adjustViewport($(week))
-    // autofill time inputs and flash for new event form
+    // TODO: autofill time inputs and flash for new event form
   },
 
   // *******
