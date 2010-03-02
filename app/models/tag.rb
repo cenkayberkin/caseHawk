@@ -32,4 +32,8 @@ class Tag < ActiveRecord::Base
      :conditions => ["taggings.taggable_type = ?", type]
     }
   }
+
+  named_scope :for_account, proc {|account|
+    {:conditions => ["tags.account_id = ?", account.id]} if account
+  }
 end
