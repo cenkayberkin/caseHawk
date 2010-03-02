@@ -19,7 +19,7 @@ class TagTest < ActiveSupport::TestCase
   should_have_named_scope 'limit(4)', :limit => 4
   should_have_named_scope 'search("green")', :conditions => [
                                             "tags.name like ?",
-                                            '%green%'
+                                            'green%'
                                            ]
   should_have_named_scope 'by_taggable_type("User")',
                           :conditions => [ "taggings.taggable_type = ?",
