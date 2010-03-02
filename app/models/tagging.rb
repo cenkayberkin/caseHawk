@@ -67,19 +67,32 @@ class Tagging < ActiveRecord::Base
       TagParser.un_parse taggable.tag_records.map(&:name)
     end
 
-    def tags=(string)
-      old_tag_ids = taggable.tag_record_ids.dup
-      TagParser.parse(string).tags.map do |part|
-        Tag.find_or_create_by_name(part)
-      end.each do |tag|
-        # save an appropriate tagging
-        send taggable.new_record? ? :build : :create!,
-                                    :tag => tag,
-                                    :taggable => taggable
-        old_tag_ids.delete tag.id
+    # Ask the taggable object for a list of records that are related
+    # to it. Iterate through those records for viable tag names and
+    # create a tagging for each one
+    def automatic_update
+      # if the taggable hasn't set up related_records() yet then
+      # just use the taggable itself
+      related_records = taggable.respond_to?(:related_records) ?
+                          taggable.related_records :
+                          [taggable]
+
+      names = related_records.inject([]) do |injector, record|
+        injector << record.name        if record.respond_to?(:name)
+        injector << record.description if record.respond_to?(:description)
+        injector << record.title       if record.respond_to?(:title)
+        injector
       end
-      # remove implicitly deleted tags (ones that weren't passed)
-      old_tag_ids.each {|tag_id| find_by_tag_id(tag_id).destroy }
+
+      automated.delete_all
+
+      names.flatten.uniq.compact.each do |name|
+        tag = Tag.find_or_create_by_name(name)
+        create :tag => tag, :automated => true
+      end
+
+      # return this association, reloaded
+      taggable.taggings(:reload)
     end
   end
 end
