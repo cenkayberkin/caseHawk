@@ -1,7 +1,7 @@
 $(function(){
   
   $('#cal_search #search_tag')
-    .autocomplete("/tags?taggable_type=Event", {
+    .autocomplete("/tags?by_taggable_type=Event", {
       matchContains: true,
       autoFill: false,
       minChars: 0

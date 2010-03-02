@@ -1,7 +1,12 @@
 class TagsController < ApplicationController
 
+  # see the has_scope gem for more info
+  has_scope :limit, :default => 10
+  has_scope :search
+  has_scope :by_taggable_type
+
   def index
-    @tags = tags.search(params[:q]).limit(params[:limit] || 10)
+    @tags = apply_scopes(Tag).all
     respond_to do |format|
       format.js do
         render :text => (@tags.map do |tag|

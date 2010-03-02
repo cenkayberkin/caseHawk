@@ -24,4 +24,10 @@ class Tag < ActiveRecord::Base
   named_scope :limit, proc {|n|
     {:limit => n}
   }
+
+  named_scope :by_taggable_type, proc {|type|
+    {:joins => :taggings,
+     :conditions => ["taggings.taggable_type = ?", type]
+    }
+  }
 end
