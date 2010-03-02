@@ -8,7 +8,9 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html
       format.js do
-        render :json => @events
+        render :json => (@events.map do |event|
+          render_to_string(:partial => 'events/event', :object => event)
+        end)
       end
     end
   end

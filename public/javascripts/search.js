@@ -17,11 +17,11 @@ $(function(){
     $.getJSON(
       "/events/",
       {tags: tag},
-      function(events){
+      function(results){
 
         var list = $("#cal_search_results")
 
-        if(!events.length){
+        if(!results.length){
           list.html("<h3>No results found for <em>"+tag+"</em></h3>")
           return
         }
@@ -30,14 +30,13 @@ $(function(){
           .html("<ul class='results'></ul>")
           .show()
 
-        $.each(events, function(_,e){
+        $.each(results, function(_,result){
 
-          var event = Event.instantiate(e)
-          list.append(
-            $("<li></li>")
-              .addClass('event')
-              .html(event.display())
-          )
+          debug(result)
+          var event = Event.instantiate($(result)[0], 'skip_cache')
+
+          list.append(event)
+
           $("table.week li.event#"+event.id)
             .addClass('result')
         }
