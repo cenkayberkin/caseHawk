@@ -84,6 +84,10 @@ $(function(){
       })
     })
 
+  $("#facebox .tag span.name").live('click', function(){
+    Calendar.loadAgenda($(this).text())
+  })
+
   // function to call on editable callbacks
   var updateSavedEvent = function(result){
     $("#facebox h3").addClass("event_saving")
