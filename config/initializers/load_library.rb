@@ -1,1 +1,1 @@
-require 'lib/core_extentions'
+require 'core_extentions'
