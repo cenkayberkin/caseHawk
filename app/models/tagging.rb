@@ -24,6 +24,9 @@ class Tagging < ActiveRecord::Base
 
   after_create :claim_account_from_taggable
 
+  named_scope :automated,     :conditions => ["taggings.automated = ?", true]
+  named_scope :not_automated, :conditions => ["taggings.automated = ?", false]
+
   protected
 
     def claim_account_from_taggable
