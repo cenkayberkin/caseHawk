@@ -118,7 +118,7 @@ class Event < ActiveRecord::Base
     old_tag_ids.each {|tag_id| taggings.find_by_tag_id(tag_id).destroy }
   end
 
-  #
+  # used by new event form in javascript building of tags
   def tag_names=(names)
     names.each do |name|
       taggings.send new_record? ? :build : :create!, 
