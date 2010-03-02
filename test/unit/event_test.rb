@@ -172,9 +172,9 @@ class EventTest < ActiveSupport::TestCase
     end
     context "by tags" do
       setup {
-        Factory.create :event,   :tags => "one, two",    :starts_at => Date.yesterday
-        Factory.create :all_day, :tags => "two, three",  :starts_at => Date.yesterday
-        Factory.create :task,    :tags => "three, four", :starts_at => Date.yesterday
+        Factory.create :event,   :tag_names => ["one","two"],    :starts_at => Date.yesterday
+        Factory.create :all_day, :tag_names => ["two","three"],  :starts_at => Date.yesterday
+        Factory.create :task,    :tag_names => ["three","four"], :starts_at => Date.yesterday
       }
       should "find events by a single tag name" do
         assert_equal Event.all.select {|e| e.tag_records.include? Tag.find_or_create_by_name("one") },
@@ -284,77 +284,6 @@ class EventTest < ActiveSupport::TestCase
       end
       should_change 'Tagging.count'
       should_change 'Tag.count'
-    end
-  
-    context "tagging an event with a string" do
-      setup do
-        @event = Factory(:event)
-        @event.tags = "BIG, little, super awesome"
-      end
-      should "have tag records" do
-        assert !@event.tag_records.blank?
-      end
-      should "set account on tags" do
-        @event.tag_records.each do |tag|
-          assert_equal @event.account, tag.account
-        end
-      end
-      should_change 'Tagging.count'
-      should_change 'Tag.count'
-      should "have right tag count" do
-        assert_equal 3, @event.tag_records.size
-      end
-      should "have each tag" do
-        ["BIG", "little", "super awesome"].each {|name|
-          assert @event.tag_records.include?(Tag.find_by_name(name))
-        }
-      end
-      should "remove previous tags" do
-        @event.tags = "new, better"
-        ["BIG", "little", "super awesome"].each {|name|
-          assert !@event.tag_records.include?(Tag.find_by_name(name))
-        }
-      end
-    end
-  
-    context "tagging an unsaved event with a string" do
-      setup do
-        @event = Factory.build(:event)
-        @event.tags = "Another, Tag Test"
-      end
-      should "be an unsaved event" do
-        assert @event.new_record?
-      end
-      should "have right tagging count" do
-        assert_equal 2, @event.taggings.size
-      end
-      should "have built each tag record" do
-        assert Tag.find_by_name('Another')
-        assert Tag.find_by_name('Tag Test')
-      end
-      should "have built an unsaved tagging for each tag" do
-        ["Another", "Tag Test"].each do |name|
-          assert @event.taggings.detect {|tagging|
-            tagging.tag_id == Tag.find_by_name(name).id
-          }.new_record?
-        end
-      end
-    end
-  
-    context "tagging an unsaved event with a string and then saving it" do
-      setup do
-        @event = Factory.build(:event)
-        @event.tags = "Another, Tag Test"
-        @event.save
-      end
-      should "create valid tagging records" do
-        @event.taggings.each {|tagging| assert_valid tagging }
-      end
-      should_change 'Tag.count'
-      should_change 'Tagging.count'
-      should "save all tagging records" do
-        assert_equal 2, @event.taggings.count
-      end
     end
   end
 end

@@ -52,7 +52,8 @@ Event = {
              { starts_at:  $(record).attr('data-starts-at'),
                ends_at:    $(record).attr('data-ends-at'),
                type:       $(record).attr('data-type'),
-               id:         $(record).attr('data-event-id')
+               id:         $(record).attr('data-event-id'),
+               name:       $(record).attr('data-name')
               })
 
     // .starts_at and .ends_at are the string attributes
@@ -142,9 +143,9 @@ Event = {
            return this.start.getHours()
                 + ":"
                 + this.start.getMinutes()
-                + (this.end ? "&ndash;"+this.end.toString() : '')
+                + (this.end ? "&ndash;" + this.end.getHours() + ':' + this.end.getMinutes() : '')
                 + " "
-                + this.name
+                + (this.name ? this.name : 'no name for event #' + this.id)
         }
       default:
         return function(){
