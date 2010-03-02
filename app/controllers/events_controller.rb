@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_filter :find_or_initialize, :except => :index
 
   def index
-    @events = events.find_by(params.slice(:starts_at, :ends_at, :tags, :id, :week))
+    @events = events.ordered.find_by(params.slice(:starts_at, :ends_at, :tags, :id, :week))
     respond_to do |format|
       format.html
       format.js do
