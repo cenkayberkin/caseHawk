@@ -28,6 +28,7 @@ class Tag < ActiveRecord::Base
 
   named_scope :by_taggable_type, proc {|type|
     {:joins => :taggings,
+     :select => "DISTINCT tags.*",
      :conditions => ["taggings.taggable_type = ?", type]
     }
   }

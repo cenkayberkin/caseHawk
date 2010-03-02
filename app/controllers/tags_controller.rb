@@ -2,7 +2,7 @@ class TagsController < ApplicationController
 
   # see the has_scope gem for more info
   has_scope :limit, :default => 10
-  has_scope :search
+  has_scope :search, :as => :q
   has_scope :by_taggable_type
 
   def index

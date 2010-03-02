@@ -24,6 +24,7 @@ class TagTest < ActiveSupport::TestCase
   should_have_named_scope 'by_taggable_type("User")',
                           :conditions => [ "taggings.taggable_type = ?",
                                            'User' ],
+                          :select => "DISTINCT tags.*",
                           :joins => :taggings
 
   should "be valid with factory" do
