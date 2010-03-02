@@ -8,7 +8,7 @@ Event = {
   retrieve: function(options, callback){
     $.getJSON("/events/", options, function(events){
       $.each(events, function(_,event){
-        callback(Event.instantiate(event))
+        callback(event)
       })
     })
   },
