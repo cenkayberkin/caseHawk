@@ -29,8 +29,12 @@ class Event < ActiveRecord::Base
   belongs_to :owner, :class_name => 'User'
   belongs_to :location
   belongs_to :completed_by, :class_name => 'User', :foreign_key => "completed_by"
-  has_many   :taggings, :as => :taggable
+  has_many   :taggings, :as => :taggable, :extend => Tagging::Extension
   has_many   :tag_records, :through => :taggings, :source => :tag
+
+  # see Taggings::Extension for details on why we use delegate
+  delegate :tags,  :to => :taggings
+  delegate :tags=, :to => :taggings
   
   validates_presence_of :name
   validates_presence_of :creator_id
@@ -96,26 +100,6 @@ class Event < ActiveRecord::Base
     return nil if str.blank?
     # Since Chronic can't handle "November  6, 2009 01:00 PM", let's try Time.parse first, which can:
     Time.parse(str) rescue Chronic.parse(str)
-  end
-
-  # reads the tag records and returns a string of the tag names
-  def tags
-    TagParser.un_parse tag_records.map(&:name)
-  end
-
-  def tags=(string)
-    old_tag_ids = tag_record_ids.dup
-    TagParser.parse(string).tags.map do |part|
-      Tag.find_or_create_by_name(part)
-    end.each do |tag|
-      # save an appropriate tagging
-      taggings.send new_record? ? :build : :create!,
-                    :tag => tag,
-                    :taggable => self
-      old_tag_ids.delete tag.id
-    end
-    # remove implicitly deleted tags (ones that weren't passed)
-    old_tag_ids.each {|tag_id| taggings.find_by_tag_id(tag_id).destroy }
   end
 
   # used by new event form in javascript building of tags
