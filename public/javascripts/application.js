@@ -16,6 +16,16 @@ $("form").reset(function(){
   $.each(this, function(){ this.reset() })
 })
 
+
+// Adding [].indexOf to IE which STILL doesn't support it
+if(!Array.indexOf)
+  Array.prototype.indexOf = function(obj){
+    for(var i=0; i < this.length; i++)
+      if(this[i] == obj)
+        return i
+    return -1
+  }
+
 // "SomeString".underscore() => "some_string"
 String.prototype.underscore = function(){
   var under = [];
