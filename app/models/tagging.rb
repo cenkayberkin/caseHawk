@@ -1,5 +1,4 @@
 # == Schema Information
-# Schema version: 20090505212954
 #
 # Table name: taggings
 #
@@ -10,6 +9,7 @@
 #  taggable_id   :integer(4)
 #  created_at    :datetime
 #  updated_at    :datetime
+#  automated     :boolean(1)      not null
 #
 
 class Tagging < ActiveRecord::Base
