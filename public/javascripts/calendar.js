@@ -20,7 +20,6 @@ Calendar = {
       "/events/",
       {tags: tag},
       function(results){
-
         spinner.hide()
 
         if(!results.length){
@@ -38,12 +37,16 @@ Calendar = {
 
           list.append(event)
 
-          $("table.week li.event#"+event.id)
-            .addClass('result')
+          $("table.week li.event#"+event.id).addClass('result')
         }
+        Calendar.formatAgenda()
       )
     })
   },
+
+  formatAgenda: function(){
+    // TODO: format the agenda view here
+  }
 
   saveRecentTag: function(tag){
     $.post(
