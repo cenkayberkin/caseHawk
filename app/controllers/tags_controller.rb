@@ -5,7 +5,7 @@ class TagsController < ApplicationController
   has_scope :search, :as => :q
   has_scope :by_taggable_type
   has_scope :account, :default => 'always' do |controller, scope|
-    scope.for_account(controller.current_account)
+    scope.for_account(controller.send(:current_account))
   end
 
   def index
