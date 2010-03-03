@@ -6,7 +6,13 @@ module ModelControllerMethods
   
   def index
     self.instance_variable_set('@' + self.controller_name,
-      scoper.find(:all, :order => 'name'))
+      scoper.find(:all, :order => order_by))
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @obj }
+      format.js { render :json => @obj }
+    end
   end
   
   def create

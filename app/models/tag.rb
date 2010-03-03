@@ -13,7 +13,7 @@ class Tag < ActiveRecord::Base
 
   belongs_to :account
   has_many   :taggings
-
+  
   validates_presence_of   :name
   validates_uniqueness_of :name, :scope => :account_id, :message => 'Tag name must be unique'
 

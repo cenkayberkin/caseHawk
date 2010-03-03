@@ -35,4 +35,10 @@ class ApplicationController < ActionController::Base
     def redirect_to_back_or(other)
       redirect_to request.env["HTTP_REFERER"] || other
     end
+    
+    def order_by
+      # If the model doesn't have a name attribute, this method should be overridden
+      # This will determine the order of items that show up in the index.
+      "name"
+    end
 end

@@ -20,7 +20,8 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   belongs_to :account
-
+  has_many   :recent_tags
+  
   # Virtual attribute for the unencrypted password
   attr_accessor :password
 
