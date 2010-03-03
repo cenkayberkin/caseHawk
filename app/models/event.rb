@@ -178,8 +178,10 @@ class Event < ActiveRecord::Base
       "data-completable"    => completable?.to_s,
       "data-starts-at"      => starts_at,
       "data-starts-at-time" => starts_at_time,
+      "data-starts-at-date" => starts_at_date.to_s,
       "data-ends-at"        => ends_at,
       "data-ends-at_time"   => ends_at_time,
+      "data-ends-at_date"   => ends_at_date.to_s,
       "data-tags"           => tags
     }
   end
