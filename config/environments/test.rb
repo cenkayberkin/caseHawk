@@ -24,7 +24,7 @@ config.action_mailer.delivery_method = :test
 config.gem 'test-unit', :lib => 'test/unit'
 config.gem "thoughtbot-shoulda", 
               :lib => 'shoulda', 
-              :version => "~> 2.0.6", 
+              :version => "~> 2.10.2", 
               :source => 'http://gems.github.com'
 config.gem "mocha", :version => "~> 0.9.7"
 config.gem "thoughtbot-factory_girl",
