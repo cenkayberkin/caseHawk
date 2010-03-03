@@ -14,6 +14,7 @@ Calendar = {
     
     spinner.show()
 
+    $('#cal_search #event_tag_search').attr('value', tag )
     list.html("<ul class='results'></ul>")
 
     $.getJSON(
@@ -32,13 +33,15 @@ Calendar = {
 
         list.show()
 
+        $("table.week li.event").removeClass('result')
+
         $.each(results, function(_,result){
 
           var event = Event.instantiate($(result)[0], 'skip_cache')
 
           list.append(event)
 
-          $("table.week li.event#"+event.id)
+          $("table.week li.event#" + event.id)
             .addClass('result')
         }
       )
