@@ -11,5 +11,5 @@ class RecentTag < ActiveRecord::Base
   named_scope :limit, proc {|n|
     {:limit => n}
   }
-  
+
 end

@@ -3,9 +3,9 @@ require File.dirname(__FILE__) + '/../test_helper'
 class RecentTagsControllerTest < ActionController::TestCase
   context "on GET to :index" do
     setup {
-      @controller.stubs(:current_account).returns(@account = accounts(:localhost))
-      @controller.stubs(:current_user).returns(@user = users(:quentin))
-      25.times do |n|
+      @controller.stubs(:current_account).returns(@account = Factory(:account))
+      @controller.stubs(:current_user).returns(@user = Factory(:user, :account => @account))
+      12.times do |n|
         Factory.create :recent_tag, :updated_at => n.days.ago, :user => @user
       end
     }
@@ -24,6 +24,27 @@ class RecentTagsControllerTest < ActionController::TestCase
           assert_equal @user, rt.user
         end
       end
+    end
+  end
+
+  context "on PUT to :update" do
+    setup {
+      @account = Factory(:account)
+      @tag = Factory(:tag, :account => @account)
+    }
+    context "as guest" do
+      setup {
+        xhr :put, :update, :id => @tag.name
+      }
+      should_not_change "RecentTag.count"
+    end
+    context "as user" do
+      setup {
+        @controller.stubs(:current_account).returns(@account)
+        @controller.stubs(:current_user).returns(@user = Factory(:user, :account => @account))
+        xhr :put, :update, :id => @tag.name
+      }
+      should_change "RecentTag.count", :by => 1
     end
   end
 end
