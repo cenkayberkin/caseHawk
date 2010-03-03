@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
       current_account.events
     end
     
+    def tags
+      current_account.tags
+    end
+    
     def admin?
       logged_in? && current_user.admin?
     end
