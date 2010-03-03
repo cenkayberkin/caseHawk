@@ -28,6 +28,8 @@ Calendar = {
           return
         }
 
+        Calendar.saveRecentTag(tag)
+
         list.show()
 
         $.each(results, function(_,result){
@@ -41,5 +43,15 @@ Calendar = {
         }
       )
     })
+  },
+
+  saveRecentTag: function(tag){
+    $.post(
+      '/recent_tags/'+tag,
+      {
+       '_method' : 'PUT'
+      },
+      function(response){}
+    )
   }
 }

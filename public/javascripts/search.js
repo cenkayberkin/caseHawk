@@ -12,4 +12,5 @@ $(function(){
     .change(function(){ 
       Calendar.loadAgenda($(this).val()) 
     })
+
 })
