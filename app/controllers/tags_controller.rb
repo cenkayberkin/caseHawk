@@ -4,6 +4,9 @@ class TagsController < ApplicationController
   has_scope :limit, :default => 10
   has_scope :search, :as => :q
   has_scope :by_taggable_type
+  has_scope :account, :default => 'always' do |controller, scope|
+    scope.for_account(controller.current_account)
+  end
 
   def index
     @tags = apply_scopes(Tag).all
@@ -15,9 +18,4 @@ class TagsController < ApplicationController
       end
     end
   end
-
-  def tags
-    current_account.tags
-  end
-
 end

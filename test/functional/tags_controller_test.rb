@@ -4,13 +4,14 @@ class TagsControllerTest < ActionController::TestCase
 
   context "on GET to :index" do
     setup {
-      @controller.stubs(:current_account).returns(@account = accounts(:localhost))
-      @controller.stubs(:current_user).returns(@user = users(:quentin))
+      @controller.stubs(:current_account).returns(@account = Factory(:account))
+      @controller.stubs(:current_user).returns(@user = Factory(:user, :account => @account))
+
       3.times do |n|
-        Factory.create :tag, :name => ["brown #{n}", "orange #{n}"][n % 2], :account => Factory.create(:account)
+        Factory :tag, :name => ["brown #{n}", "orange #{n}"][n % 2], :account => Factory.create(:account)
       end
       12.times do |n|
-        Factory.create :tag, :name => ["green #{n}", "blue #{n}"][n % 2], :account => @account
+        Factory :tag, :name => ["green #{n}", "blue #{n}"][n % 2], :account => @account
       end
     }
     context "with no params" do
