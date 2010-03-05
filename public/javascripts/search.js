@@ -8,9 +8,15 @@ $(function(){
     })
     .result(function(_,_,selectedValue){
       Calendar.loadAgenda(selectedValue)
+      $('#mini_cal table').slideUp(); 
+      $('#new_event').children(":gt(0)").slideUp(); 
     })
-    .change(function(){ 
-      Calendar.loadAgenda($(this).val()) 
+
+    $('#mini_cal').click(function(){
+      $('#mini_cal table').show()
+    })
+    $('#new_event input').focus(function() {
+      $('#new_event').children().slideDown()
     })
 
 })

@@ -39,10 +39,10 @@ Calendar = {
 
           var event = Event.instantiate($(result)[0], 'skip_cache')
 
-          list.append(event)
+          $("#cal_search_results ul").append(event)
 
           $("table.week li.event#" + event.id)
-            .addClass('result')
+            .addClass('search_result')
         }
       )
     })
