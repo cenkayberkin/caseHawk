@@ -4,7 +4,7 @@
   text-transform: uppercase;
 }
 form.new_event, .sidebar_block form {
-  padding: 0 8px 0 16px; 
+  padding: 0 8px;  
   font-size: 1.1em;
 }
   .sidebar_block form form {
