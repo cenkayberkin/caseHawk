@@ -3,7 +3,12 @@ module GoogleCalendarImporter
 
     # should take the form of:
     #
-    #  http://www.google.com/calendar/feeds/studiodanger@gmail.com/private-1234567890ABCDEFG/full
+    #  calendar = GoogleCalendarImporter::Calendar.new("http://www.google.com/calendar/feeds/studiodanger@gmail.com/private-1234567890ABCDEFG/full")
+    #  calendar.events.each do |event|
+    #    Event.new(:id => event.id, :name => event.name)
+    #    User.new :email => event.who
+    #    # etc.
+    #  end
     #
     attr_accessor :uri
 
