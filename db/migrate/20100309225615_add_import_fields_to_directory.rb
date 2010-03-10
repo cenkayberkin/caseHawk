@@ -3,7 +3,6 @@ class AddImportFieldsToDirectory < ActiveRecord::Migration
     add_column :events, :uri, :string
     add_column :events, :recurrance, :text
     add_column :events, :uid, :string
-    marcc
   end
 
   def self.down
