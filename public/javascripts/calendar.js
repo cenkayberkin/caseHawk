@@ -14,7 +14,8 @@ Calendar = {
     
     spinner.show()
 
-    list.html("<ul class='results'></ul>")
+    $('#cal_search #event_tag_search').attr('value', tag )
+    list.html("<h3>Search Results for <span class=\"search_term\">"+tag+"</span></h3>" + "<ul class='results'></ul>")
 
     $.getJSON(
       "/events/",
@@ -23,21 +24,24 @@ Calendar = {
         spinner.hide()
 
         if(!results.length){
-          list.html("<h3>No results found for <em>"+tag+"</em></h3>")
+          list.html("<h3 class=\"no_results\">No results found for <span class=\"search_term\">"+tag+"</span></h3>")
           return
-        }
+        } 
 
         Calendar.saveRecentTag(tag)
 
         list.show()
 
+        $("table.week li.event").removeClass('result')
+
         $.each(results, function(_,result){
 
           var event = Event.instantiate($(result)[0], 'skip_cache')
 
-          list.append(event)
+          $("#cal_search_results ul").append(event)
 
-          $("table.week li.event#"+event.id).addClass('result')
+          $("table.week li.event#" + event.id)
+            .addClass('search_result')
         }
         Calendar.formatAgenda()
       )
