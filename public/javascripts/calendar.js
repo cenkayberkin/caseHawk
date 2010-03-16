@@ -42,15 +42,14 @@ Calendar = {
 
           $("table.week li.event#" + event.id)
             .addClass('search_result')
-        }
+        })
         Calendar.formatAgenda()
-      )
     })
   },
 
   formatAgenda: function(){
     // TODO: format the agenda view here
-  }
+  },
 
   saveRecentTag: function(tag){
     $.post(
