@@ -63,3 +63,10 @@
     padding-right: 0;
     padding-bottom: 0.5em; 
   }
+
+#datepicker .sparkler {
+  display: none;
+}
+#datepicker:hover .sparkler {
+  display: block;
+}

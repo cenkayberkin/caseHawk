@@ -204,7 +204,7 @@ Week = {
 
       // add a baseline
       holder.append(
-        $("<div class='sparkler_holder'></div>")
+        $("<div class='sparkler'></div>")
           .css({
             backgroundColor:  '#DDF',
             width:    '100%',
