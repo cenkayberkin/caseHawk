@@ -188,12 +188,21 @@ Week = {
 
   drawInDatepicker: function(week){
     var datePicker = $("#datepicker")
+    var selectedMonth = parseFloat($("#datepicker .ui-datepicker-month").val())
 
     $(week).find(".viewport .day").each(function(dayIndex){
       var day = $(this)
-      var dayString = parseFloat(day.attr('data-date').split('-')[2])
+      var dayParts = day.attr('data-date').split('-')
+      var dayString = parseFloat(dayParts[2])
       var topMargin = parseFloat(day.find('.collidable').css('margin-top'))
  
+
+      // if the datepicker month <select> does not represent the
+      // month of the given week then bail
+      if( selectedMonth != parseFloat(dayParts[1]) - 1 )
+        return
+
+
       // measure this box and place a correlating box inside the datepicker
       var cell = datePicker
                     .find("td a")
