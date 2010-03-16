@@ -72,7 +72,7 @@ Week = {
     if(0 == $("table.week-events").length){
       Week.load(
         new Date($('#weeks').attr('data-first-week')),
-        function(){ Week.loadNext(3) } // load the second week right away
+        function(){ Week.loadNext(5) } // load the second week right away
       )
       Week.setupEndlessScroll()
     }
