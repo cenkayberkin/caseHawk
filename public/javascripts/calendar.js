@@ -44,14 +44,24 @@ Calendar = {
             .addClass('search_result')
         })
         Calendar.formatAgenda()
-    })
+
+        $('#cal_search_results h3').click(function() {
+          $(this).next('ul').toggle('slow')
+        })
+      }
+    )
   },
 
   formatAgenda: function(){
-    $('#cal_search_results h3').click(function() {
-      $(this).next('ul').toggle('slow')
-    })
     // TODO: further format the agenda view here
+    var lastDay = ''
+    $('.results .event').each(function() {
+      thisDay = $(this).attr('data-starts-at-date')
+      if (lastDay != thisDay) {
+        $(this).prepend('<span class="date">' + thisDay + '</span>')
+      }
+      lastDay = thisDay
+    })
   },
 
   saveRecentTag: function(tag){
