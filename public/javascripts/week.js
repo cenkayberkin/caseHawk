@@ -132,6 +132,9 @@ Week = {
     // adjust the top and bottom of this week
     Week.adjustViewport($(week))
     // TODO: autofill time inputs and flash for new event form
+
+    // Draw sparklines in the datepicker
+    Week.drawInDatepicker($(week))
   },
 
   // *******
@@ -151,24 +154,24 @@ Week = {
   adjustViewport: function(week){
     var boxes = $(week).find(".viewport .collision_box")
     var earliest = boxes.sort(function(a, b){
-            return parseInt($(a).css("top"))
-                 > parseInt($(b).css("top")) ?
+            return parseFloat($(a).css("top"))
+                 > parseFloat($(b).css("top")) ?
                    1 : -1
           })[0]
     var latest = boxes.sort(function(a, b){
-            return parseInt($(a).css("top")) + parseInt($(a).css("height"))
-                 < parseInt($(b).css("top")) + parseInt($(b).css("height")) ?
+            return parseFloat($(a).css("top")) + parseFloat($(a).css("height"))
+                 < parseFloat($(b).css("top")) + parseFloat($(b).css("height")) ?
                    1 : -1
           })[0]
 
     var start_px = Math.min(
                      earliest ?
-                       parseInt($(earliest).css("top")) : 100000000 ,
+                       parseFloat($(earliest).css("top")) : 100000000 ,
                      8*60 // 8:00 am
                    ) -30
     var end_px   = Math.max(
                      latest ?
-                       parseInt($(latest).css("top")) + parseInt($(latest).css("height"))
+                       parseFloat($(latest).css("top")) + parseFloat($(latest).css("height"))
                        : 0,
                      17*60 // 5:00 pm
                    ) +30
@@ -176,6 +179,83 @@ Week = {
     $(week).find(".day-hours, .day-full").css({
       "margin-top": "-"+start_px+"px",
       "height": end_px+'px'
+    })
+  },
+
+  drawInDatepicker: function(week){
+    var datePicker = $("#datepicker")
+
+    $(week).find(".viewport .day").each(function(dayIndex){
+      var day = $(this)
+      var dayString = parseFloat(day.attr('data-date').split('-')[2])
+      var topMargin = parseFloat(day.find('.collidable').css('margin-top'))
+ 
+      // measure this box and place a correlating box inside the datepicker
+      var cell = datePicker
+                    .find("td a")
+                    .filter(function(){
+                              return dayString.toString() == $(this).text()
+                            })
+                    .closest('td')
+
+      // add one relatively-positioned div
+      holder = $("<div></div>").css({position: 'relative'})
+      cell.append(holder)
+
+      // add a baseline
+      holder.append(
+        $("<div class='sparkler_holder'></div>")
+          .css({
+            backgroundColor:  '#DDF',
+            width:    '100%',
+            height:   '2px',
+            position: 'absolute',
+            bottom:   '0'
+          })
+      )
+
+      // adding a line across the top for alldays
+      holder.append(
+        $("<span class='sparkler'></span>")
+          .css({
+            backgroundColor: '#AFA',
+            position: 'absolute',
+            padding: '0',
+            // 1px correction for top border on datepicker cells
+            top: -(cell.closest('td').height() + 1)+'px',
+            left: '0',
+            // 2px correction for left and right 1px borders on datepicker cells
+            width: (cell.width()+2)+'px',
+            // calculate the height based on the count of all-day events
+            // on this date
+            height: Math.min(
+                      (week.find(".week-allday .day-"+dayIndex+" .event").length * 2),
+                      4
+                    )+'px'
+          })
+      )
+
+      // adding a vertical bar for each collision box
+      day.find(".collision_box").each(function(index){
+        holder
+          .append(
+            $("<span class='sparkler'></span>")
+              .css({
+                backgroundColor:  '#DDF',
+                position:         'absolute',
+                bottom:           '0',
+                height:           '7px',
+                padding:          '0',
+                width:    (
+                            Math.max(
+                              (parseFloat($(this).css('height'))/15).toString(),
+                              2
+                            )
+                          )+'px',
+                left:     ((parseFloat($(this).css('top')) + topMargin)/15).toString()+"px"
+              })
+          )
+      })
     })
   }
 }
