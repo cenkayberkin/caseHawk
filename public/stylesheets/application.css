@@ -244,6 +244,10 @@ ul, ol, p { margin: 0 0 1em; }
         text-align: center; 
         border-bottom: 1px solid #DDD;
     }
+    .sidebar_block .results {
+      max-height: 300px;
+      overflow: auto;
+    }
       p.copyright {
         border-top: 1px solid #FFF; 
         padding: 1em 1em 0; 

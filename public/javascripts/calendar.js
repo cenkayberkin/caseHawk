@@ -48,7 +48,10 @@ Calendar = {
   },
 
   formatAgenda: function(){
-    // TODO: format the agenda view here
+    $('#cal_search_results h3').click(function() {
+      $(this).next('ul').toggle('slow')
+    })
+    // TODO: further format the agenda view here
   },
 
   saveRecentTag: function(tag){
