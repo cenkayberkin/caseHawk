@@ -72,19 +72,23 @@ Week = {
     if(0 == $("table.week-events").length){
       Week.load(
         new Date($('#weeks').attr('data-first-week')),
-        function(){ Week.loadNext() } // load the second week right away
+        function(){ Week.loadNext(3) } // load the second week right away
       )
       Week.setupEndlessScroll()
     }
   },
 
-  loadNext: function(){
+  loadNext: function(howMany){
+    if(!howMany)
+      return
+
     Week.load(
       DateMath.add(
         (new Date($("#weeks .day:last").attr("data-date").replace(/-/g,'/'))),
         'W',
         1
-      )
+      ),
+      function(){ Week.loadNext(howMany - 1) }
     )
   },
 
