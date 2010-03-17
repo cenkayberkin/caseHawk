@@ -38,8 +38,8 @@
 </div>
 <ul class="tags"></ul>
 <div class="event_field form_field event_field_tags">
-  <label for="event_tags" class="event_field_tags_add">Tag</label>
-  <%= f.text_field :tags, :placeholder => "Start typing to add tags...", :label => false %>
+  <label for="tag_entry" class="event_field_tags_add">Tag</label>
+  <%= text_field_tag :tag_entry, :placeholder => "Start typing to add tags...", :label => false %>
 </div>
 <div class="event_field form_field event_field_remind"><%= f.check_box :remind, :label => false %> <label for="event_remind">Notify</label></div>
 <%= submit_tag "Add Event" %>

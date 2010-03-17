@@ -59,7 +59,7 @@ Calendar = {
     var lastDay = ''
     $('.results .event').each(function() {
       thisDay = $(this).attr('data-starts-at-date')
-      if (lastDay != thisDay) {
+      if (lastDay != thisDay) { 
         $(this).prepend('<div class="date">' + thisDay + '</div>')
       }
       lastDay = thisDay

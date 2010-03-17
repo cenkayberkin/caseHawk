@@ -48,7 +48,7 @@ class EventTest < ActiveSupport::TestCase
   end
 
   context "saving a record with tags" do
-    setup { Factory.create(:appointment, :tags => "test tag") }
+    setup { Factory.create(:appointment, :tag_names => "test tag") }
     should_change "Event.count", :by => 1
   end
 

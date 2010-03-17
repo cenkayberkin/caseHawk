@@ -119,7 +119,7 @@ $(function(){
    
   //autocomplete on tag inputs 
   var tag_url = "/tags"; 
-  $('#event_tags')
+  $('#tag_entry')
     .autocomplete(tag_url, {
       matchContains: true,
       autoFill: false,
@@ -140,7 +140,7 @@ $(function(){
                                     })
 
     // clear the search box and start over
-    $('#event_tags').val('').focus()
+    $('#tag_entry').val('').focus()
 
     // do nothing if this tag already exists
     if(existing.length)
@@ -206,7 +206,7 @@ function validateEventFormDates(active) {
 
   // new to construct full dates for start and end
   // editable only sets the inner HTML on submission then calls this validation
-  startDate = new Date($('#event_starts_at_datepicker').html() + " " + $('#event_starts_at_time').val()); 
+  startDate = new Date($('#event_starts_at_timestarts_at_datepicker').html() + " " + $('#event_starts_at_time').val()); 
   endDate = new Date($('#event_ends_at_datepicker').html() + " " + $('#event_ends_at_time').val()); 
   // check for valid endDate
   if (active == 'start' && endDate < startDate) {
