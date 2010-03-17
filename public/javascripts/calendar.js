@@ -54,11 +54,13 @@ Calendar = {
 
   formatAgenda: function(){
     // TODO: further format the agenda view here
+    $('.results ul li a').css('background-color', '#FFF')
+    
     var lastDay = ''
     $('.results .event').each(function() {
       thisDay = $(this).attr('data-starts-at-date')
       if (lastDay != thisDay) {
-        $(this).prepend('<span class="date">' + thisDay + '</span>')
+        $(this).prepend('<div class="date">' + thisDay + '</div>')
       }
       lastDay = thisDay
     })
