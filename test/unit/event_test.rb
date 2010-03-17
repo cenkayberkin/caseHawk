@@ -47,6 +47,11 @@ class EventTest < ActiveSupport::TestCase
     should_change "Event.count", :by => 1
   end
 
+  context "saving a record with tags" do
+    setup { Factory.create(:appointment, :tags => "test tag") }
+    should_change "Event.count", :by => 1
+  end
+
   context "moving an event" do
     setup { @event = Factory.create(:event) }
     context "forward one day by starts_at" do
