@@ -19,7 +19,7 @@ Calendar = {
 
     $.getJSON(
       "/events/",
-      {tags: tag},
+      {tags: tag, context: 'agenda_'},
       function(results){
         spinner.hide()
 

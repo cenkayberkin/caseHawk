@@ -60,7 +60,29 @@ module EventsHelper
         :title => title })
   end
   
+  def agenda_event_line_html(event)
+    title =  "#{event.timed? ? event.starts_at.to_s(:simple) + 
+      (event.ends_at_time.blank? ? "" : "&#8212;" + 
+      event.ends_at.to_s(:simple)) : ""}: #{event.name}" +
+      event_tags(event)
+    conditional_checkbox(event) +
+    link_to(agenda_event_line_text(event), 
+      event_path(event), 
+      { :rel => "facebox", 
+        :class => "event-title", 
+        :title => title })
+  end
+  
   def event_line_text(event)
+    if event.timed?
+      content_tag :span, event.starts_at.to_s(:simple) + " ", { :class => "time" }
+    end.to_s +
+    event.name +
+    event_tags(event)
+  end
+  
+  def agenda_event_line_text(event)
+    "WOOPWOOP!" +
     if event.timed?
       content_tag :span, event.starts_at.to_s(:simple) + " ", { :class => "time" }
     end.to_s +
