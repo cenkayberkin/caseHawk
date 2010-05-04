@@ -238,7 +238,7 @@ Week = {
             top: -(cell.closest('td').height() + 1)+'px',
             left: '0',
             // 2px correction for left and right 1px borders on datepicker cells
-            width: (cell.width()+2)+'px',
+            width: '100%',
             // calculate the height based on the count of all-day events
             // on this date
             height: Math.min(
