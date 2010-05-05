@@ -43,7 +43,7 @@ Calendar = {
           $("table.week li.event#" + event.id)
             .addClass('search_result')
         })
-        Calendar.formatAgenda()
+        //Calendar.formatAgenda()
 
         $('#cal_search_results h3').click(function() {
           $(this).next('ul').toggle('slow')
@@ -53,17 +53,16 @@ Calendar = {
   },
 
   formatAgenda: function(){
-    // TODO: further format the agenda view here
-    $('.results ul li a').css('background-color', '#FFF')
-    
     var lastDay = ''
+/*
     $('.results .event').each(function() {
       thisDay = $(this).attr('data-starts-at-date')
       if (lastDay != thisDay) { 
-        $(this).prepend('<div class="date">' + thisDay + '</div>')
+        //$(this).prepend('<div class="date">' + thisDay + '</div>')
       }
       lastDay = thisDay
     })
+*/
   },
 
   saveRecentTag: function(tag){

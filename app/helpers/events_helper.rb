@@ -70,7 +70,7 @@ module EventsHelper
       event_path(event), 
       { :rel => "facebox", 
         :class => "event-title", 
-        :title => title })
+        :title => title })   
   end
   
   def event_line_text(event)
@@ -82,12 +82,11 @@ module EventsHelper
   end
   
   def agenda_event_line_text(event)
-    "WOOPWOOP!" +
+    (content_tag :span, event.starts_at.to_date.to_s(:us_short) + " ", { :class => "date" }).to_s + 
     if event.timed?
       content_tag :span, event.starts_at.to_s(:simple) + " ", { :class => "time" }
     end.to_s +
-    event.name +
-    event_tags(event)
+    event.name  
   end
   
   def event_tags(event)
