@@ -28,6 +28,7 @@ form.new_event, .sidebar_block form {
     padding-bottom: 2px; 
   }
   .new_event .form_field.event_field_tags {
+    clear: both;  
     padding: 4px 0 8px; 
   }  
   
@@ -42,7 +43,7 @@ form.new_event, .sidebar_block form {
   .new_event .form_field.event_field_name label, 
   .new_event .form_field.event_field_tags label {
     color: #5EAD5E;  
-    font-weight: bold; 
+    font-weight: bold;
   }
   .new_event .form_field.event_field_remind label {
     color: #333333;
@@ -56,10 +57,13 @@ form.new_event, .sidebar_block form {
   }
 
 .new_event .form_field.event_field_times {
-  padding: 1em 0 2em; 
+  padding: 1em 0 0; 
 }  
+  .new_event .form_field.event_field_times select {
+  }
 .form_field .ui-slider {
   font-size: 0.8em; 
+  margin-bottom: 2em;
 }
 
 .form_field input, .form_field select {

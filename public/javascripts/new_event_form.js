@@ -206,8 +206,10 @@ function validateEventFormDates(active) {
 
   // new to construct full dates for start and end
   // editable only sets the inner HTML on submission then calls this validation
-  startDate = new Date($('#event_starts_at_timestarts_at_datepicker').html() + " " + $('#event_starts_at_time').val()); 
+  startDate = new Date($('#event_starts_at_datepicker').html() + " " + $('#event_starts_at_time').val()); 
   endDate = new Date($('#event_ends_at_datepicker').html() + " " + $('#event_ends_at_time').val()); 
+  debug("S", startDate)
+  debug("E", endDate)
   // check for valid endDate
   if (active == 'start' && endDate < startDate) {
     endDate = new Date(startDate); 
