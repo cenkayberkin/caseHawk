@@ -63,7 +63,7 @@ module EventsHelper
   def agenda_event_line_html(event)
     title =  "#{event.timed? ? event.starts_at.to_s(:simple) + 
       (event.ends_at_time.blank? ? "" : "&#8212;" + 
-      event.ends_at.to_s(:simple)) : ""}: #{event.name}" +
+      event.ends_at.to_s(:simple)) : ""} #{event.name}" +
       event_tags(event)
     conditional_checkbox(event) +
     link_to(agenda_event_line_text(event), 
