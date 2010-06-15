@@ -106,6 +106,9 @@ class EventsControllerTest < ActionController::TestCase
           should_change 'Event.count', :from => 1, :to => 0
           should_set_the_flash_to /deleted/i
           should_redirect_to("index") { events_path }
+          should "mark current user as Event#modified_by" do
+            assert_equal @user, assigns(:event).modified_by
+          end
         end
         context 'an event via ajax' do
           setup{

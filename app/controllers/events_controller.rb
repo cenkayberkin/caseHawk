@@ -55,7 +55,7 @@ class EventsController < ApplicationController
   
   protected
     def new_event(atts = {})
-      logger.info("Creating new #{params[:event][:type]} event with #{atts.inspect}")
+
       event = case params[:event] && params[:event][:type]
                 when 'AllDay'       then AllDay.new(atts)
                 when 'Appointment'  then Appointment.new(atts)
@@ -65,8 +65,10 @@ class EventsController < ApplicationController
                 else
                   events.new(atts)
                 end
-      event.creator = current_user unless current_user.blank?
-      logger.info("Saving new event with #{event.inspect}")
+
+      event.creator     = current_user unless current_user.blank?
+      event.modified_by = current_user unless current_user.blank?
+
       event
     end
 
