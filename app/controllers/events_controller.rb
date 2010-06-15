@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   include ModelControllerMethods
 
   before_filter :find_or_initialize, :except => :index
+  before_filter :mark_modified_by_current_user, :only => [:create, :update, :destroy]
 
   def index
     @events = events.ordered.find_by(params.slice(:starts_at, :ends_at, :tags, :id, :week))
@@ -66,10 +67,13 @@ class EventsController < ApplicationController
                   events.new(atts)
                 end
 
-      event.creator     = current_user unless current_user.blank?
-      event.modified_by = current_user unless current_user.blank?
+      event.creator = current_user
 
       event
+    end
+
+    def mark_modified_by_current_user
+      @event.modified_by = current_user
     end
 
     def find_or_initialize

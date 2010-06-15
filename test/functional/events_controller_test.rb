@@ -28,6 +28,9 @@ class EventsControllerTest < ActionController::TestCase
       should_change 'Event.count', :by => 1
       should_set_the_flash_to /saved/i
       should_redirect_to("single day") { day_calendar_path(:date => assigns(:event).starts_at.to_date.to_s) }
+      should "mark current user as Event#modified_by" do
+        assert_equal @user, assigns(:event).modified_by
+      end
     end
 
     context 'GET to show for existing event' do
@@ -65,6 +68,9 @@ class EventsControllerTest < ActionController::TestCase
         should_not_change "Event.count"
         should_set_the_flash_to /saved/i
         should_redirect_to("single day") {day_calendar_path(:date => @event.starts_at.to_date.to_s) }
+        should "mark current user as Event#modified_by" do
+          assert_equal @user, assigns(:event).modified_by
+        end
       end
       context "via ajax to complete event" do
         setup {
