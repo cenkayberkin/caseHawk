@@ -27,6 +27,7 @@ class Event < ActiveRecord::Base
   
   belongs_to :account
   belongs_to :creator, :class_name => 'User'
+  belongs_to :modified_by, :class_name => 'User'
   belongs_to :owner, :class_name => 'User'
   belongs_to :location
   belongs_to :completed_by, :class_name => 'User', :foreign_key => "completed_by"
