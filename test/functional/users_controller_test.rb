@@ -12,31 +12,42 @@ class UsersControllerTest < ActionController::TestCase
       setup do
         @controller.stubs(:current_user).returns(users(:aaron))
       end
-    
-      should "allow viewing the index" do
-        get :index
-        assert_template :index
-        assert_equal Set.new(@account.users), Set.new(assigns(:users))
+      context "on GET to :index" do
+        setup { get :index }
+        should_render_template :index
+        should "show users" do
+          assert_equal Set.new(@account.users), Set.new(assigns(:users))
+        end
       end
     
-      should "prevent adding new users" do
-        get :new
-        assert_redirected_to new_session_url
+      context "on GET to :new" do
+        setup { get :new }
+        should_redirect_to "sign in" do
+          new_session_url
+        end
+      end
+
+      context "on POST to :create" do
+        setup { post :create, :user => { :name => 'bob' } }
+        should_redirect_to "sign in" do
+          new_session_url
+        end
       end
     
-      should "prevent creating users" do
-        post :create, :user => { :name => 'bob' }
-        assert_redirected_to new_session_url
+      context "on GET to :edit" do
+        setup { get :edit, :id => @user.id }
+        should_redirect_to "sign in" do
+          new_session_url
+        end
       end
     
-      should "prevent editing users" do
-        get :edit, :id => @user.id
-        assert_redirected_to new_session_url
-      end
-    
-      should "prevent updating users" do
-        put :update, :id => @user.id, :user => { :name => 'bob' }
-        assert_redirected_to new_session_url
+      context "on PUT to :update" do
+        setup {
+          put :update, :id => @user.id, :user => { :name => 'bob' }
+        }
+        should_redirect_to "sign in" do
+          new_session_url
+        end
       end
     end
   
