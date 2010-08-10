@@ -1,3 +1,5 @@
+# coding: utf-8
+
 module ActiveMerchant
   module Billing 
     # Implements the Address Verification System
