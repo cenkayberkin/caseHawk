@@ -29,7 +29,7 @@ class EventsControllerTest < ActionController::TestCase
       should_set_the_flash_to /saved/i
       should_redirect_to("single day") { day_calendar_path(:date => assigns(:event).starts_at.to_date.to_s) }
       should "mark current user as Event#modified_by" do
-        assert_equal @user, assigns(:event).modified_by
+        assert_equal @user, Event.find(assigns(:event).id).modified_by
       end
     end
 
@@ -69,7 +69,7 @@ class EventsControllerTest < ActionController::TestCase
         should_set_the_flash_to /saved/i
         should_redirect_to("single day") {day_calendar_path(:date => @event.starts_at.to_date.to_s) }
         should "mark current user as Event#modified_by" do
-          assert_equal @user, assigns(:event).modified_by
+          assert_equal @user, Event.find(assigns(:event).id).modified_by
         end
       end
       context "via ajax to complete event" do
@@ -113,7 +113,7 @@ class EventsControllerTest < ActionController::TestCase
           should_set_the_flash_to /deleted/i
           should_redirect_to("index") { events_path }
           should "mark current user as Event#modified_by" do
-            assert_equal @user, assigns(:event).modified_by
+            assert_equal @user, Event.find_with_deleted(assigns(:event).id).modified_by
           end
         end
         context 'an event via ajax' do
