@@ -1,7 +1,7 @@
 <%= error_messages_for :event %>
 <div class="event_field form_field event_field_name">
   <label for="event_name">New</label>
-  <%= f.text_field :name, :label => false, :placeholder => "Enter Event Title..." %>
+  <%= f.text_field :name, :label => false %>
 </div>
 <div class="event_field form_field event_field_type">
   <%= select :event, :type, event_types, {:selected => 'Appointment'}, :class => "new_event_type", :label => false %>
