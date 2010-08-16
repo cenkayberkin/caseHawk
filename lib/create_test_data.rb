@@ -3,7 +3,7 @@
 gem 'faker'
 require 'faker'
 
-account_id = 4
+account = Account.first
 
 randomize = 'PostgreSQL' == ActiveRecord::Base.connection.adapter_name ? 'RANDOM()' : 'RAND()'
  
@@ -15,7 +15,7 @@ randomize = 'PostgreSQL' == ActiveRecord::Base.connection.adapter_name ? 'RANDOM
     Appointment.create :creator => User.find(:first, :order => randomize),
                        :starts_at => start,
                        :ends_at => start + (rand(16) * 15).minutes,
-                       :account_id => account_id,
+                       :account => account,
                        :name => "#{event} #{Faker::Name.name}",
                        :tag_names => ['dewey', 'food', 'Seattle', 'Tacoma', 'RJC', 'OP', 'appt-tag'].rand
   end
@@ -24,7 +24,7 @@ randomize = 'PostgreSQL' == ActiveRecord::Base.connection.adapter_name ? 'RANDOM
     AllDay.create :creator => User.find(:first, :order => randomize),
                   :starts_at => date,
                   :ends_at => date + rand(4).days,
-                  :account_id => account_id,
+                  :account => account,
                   :name => "#{Faker::Name.name}'s #{event}",
                   :tag_names => ['dewey', 'food', 'Seattle', 'Tacoma', 'RJC', 'OP', 'allday-tag'].rand
   end
@@ -34,7 +34,7 @@ randomize = 'PostgreSQL' == ActiveRecord::Base.connection.adapter_name ? 'RANDOM
     CourtDate.create :creator => User.find(:first, :order => randomize),
                 :starts_at => start,
                 :ends_at => start + ((3..5).to_a.rand * 15).minutes,
-                :account_id => account_id,
+                :account => account,
                 :name => "#{event} #{Faker::Name.name}",
                 :tag_names => ['dewey', 'food', 'Seattle', 'Tacoma', 'RJC', 'OP', 'courtdate-tag'].rand
   end
@@ -42,7 +42,7 @@ randomize = 'PostgreSQL' == ActiveRecord::Base.connection.adapter_name ? 'RANDOM
    event = ["FinDec from", "payment from", "dates for", "docs to", "signature of"].rand
    Task.create :creator => User.find(:first, :order => randomize),
                 :starts_at => date,
-                :account_id => account_id,
+                :account => account,
                 :name => "Get #{event} #{Faker::Name.name}",
                 :tag_names => ['dewey', 'food', 'Seattle', 'Tacoma', 'RJC', 'OP', 'task-tag'].rand
   end
@@ -52,7 +52,7 @@ randomize = 'PostgreSQL' == ActiveRecord::Base.connection.adapter_name ? 'RANDOM
     event = ["File docs", "Statute of Limitations", "Response due", "OA's Response due", "discovery cutoff"].rand
    Deadline.create :creator => User.find(:first, :order => randomize),
                     :starts_at => start,
-                    :account_id => account_id,
+                    :account => account,
                     :name => "#{event} for #{Faker::Name.name}", 
                     :tag_names => ['dewey', 'food', 'Seattle', 'Tacoma', 'RJC', 'OP', 'deadline-tag'].rand
  end
