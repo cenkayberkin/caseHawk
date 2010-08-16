@@ -1,5 +1,6 @@
 # Originally at: http://gist.github.com/raw/118278/a56f1302d3e7aedb0cd5a2131207ed1de369610f/CaseHawk%20Test%20Data
 
+require File.join(File.dirname(__FILE__), '..', 'config', 'environment')
 gem 'faker'
 require 'faker'
 
