@@ -49,15 +49,11 @@ class SessionsController < ApplicationController
     authenticate_with_open_id() do |result, identity_url|
       if result.successful?
         ax = OpenID::AX::FetchResponse.from_success_response(request.env[Rack::OpenID::RESPONSE])
-        session[:user_attributes] = {
-          :email => ax.get_single("http://axschema.org/contact/email"),
-          :first_name => ax.get_single("http://axschema.org/namePerson/first"),
-          :last_name => ax.get_single("http://axschema.org/namePerson/last")
-        }
-        raise ax.inspect + session.inspect
+        self.current_user = User.find_by_email(ax.get_single("http://axschema.org/contact/email"))
+        redirect_to('/')
+        flash[:notice] = "Logged in successfully"
       else
-        flash[:error] = result.message || "Sorry, no user by that identity URL exists (#{identity_url})"
-        @remember_me = params[:remember_me]
+        flash.now[:error] = 'You must allow CaseHawk access to your Google Apps account.'
         render :action => 'new'
       end
     end
