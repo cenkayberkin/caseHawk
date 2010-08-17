@@ -4,8 +4,8 @@ debug = function(){
   console.debug.apply(console, arguments)
 }
 
-rfc3339 = function(dateUS) {
-  dateUS.substr(6,4) + '-' + dateUS.substr(0,2) + '-' + dateUS.substr(3,2)
+function rfc3339(dateUS) {
+  return dateUS.substr(6,4) + '-' + dateUS.substr(0,2) + '-' + dateUS.substr(3,2)
 }
 
 /* allow jQuery to work with Rails' respond_to */
