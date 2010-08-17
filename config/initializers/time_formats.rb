@@ -12,6 +12,7 @@ ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(
   :year => '%Y',
   :yw => '%Y-w%U',
   :md => '%b %e',
+  :full => '%B %e, %Y %H:%M',
   :mdth => proc { |time|
     if time.year == Time.now.year
       time.strftime "%b #{time.day.ordinalize}"
