@@ -2,7 +2,9 @@
 class SessionsController < ApplicationController
   skip_before_filter :login_required, :except => :destroy
   def new
-    if start_openid_from_google? || using_open_id?
+    if start_openid_from_google?
+      start_open_id_authentication
+    elsif using_open_id?
       open_id_authentication
     end
   end
@@ -36,7 +38,11 @@ class SessionsController < ApplicationController
   end
   
   def start_openid_from_google?
-    params[:from] == 'google' && !params[:identity_url].blank?
+    params[:from] == 'google' && !params[:domain].blank?
+  end
+  
+  def start_open_id_authentication
+    authenticate_with_open_id(params[:domain])
   end
   
   def open_id_authentication
