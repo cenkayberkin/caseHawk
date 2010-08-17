@@ -51,6 +51,7 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
       time.strftime('%l:%M%p').downcase.chop + " " + day
   },
   :md => '%b %e',
+  :full => '%B %e, %Y %H:%M',
   :mdth => proc { |time|
     if time.year == Time.now.year
       time.strftime "%b #{time.day.ordinalize}"

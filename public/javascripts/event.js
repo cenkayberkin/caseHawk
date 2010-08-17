@@ -72,6 +72,7 @@ Event = {
     })
     // save instance in the cache
     Event.cachedInstances[record.id] = record
+    debug(record.start)
     return record
   },
 
