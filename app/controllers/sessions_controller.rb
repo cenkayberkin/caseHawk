@@ -1,7 +1,12 @@
 # This controller handles the login/logout function of the site.  
 class SessionsController < ApplicationController
   skip_before_filter :login_required, :except => :destroy
-
+  def new
+    if start_openid_from_google? || using_open_id?
+      open_id_authentication
+    end
+  end
+  
   def create
     self.current_user = current_account.users.authenticate(params[:login], params[:password])
     if logged_in?
@@ -23,5 +28,28 @@ class SessionsController < ApplicationController
     reset_session
     flash[:notice] = "You have been logged out."
     redirect_to('/')
+  end
+  
+  def login_from_openid
+      open_id_authentication and return
+    false
+  end
+  
+  def start_openid_from_google?
+    params[:from] == 'google' && !params[:identity_url].blank?
+  end
+  
+  def open_id_authentication
+    authenticate_with_open_id() do |result, identity_url|
+      if result.successful?
+        raise response.inspect
+        raise result.inspect +
+        identity_url.inspect
+      else
+        flash[:error] = result.message || "Sorry, no user by that identity URL exists (#{identity_url})"
+        @remember_me = params[:remember_me]
+        render :action => 'new'
+      end
+    end
   end
 end
