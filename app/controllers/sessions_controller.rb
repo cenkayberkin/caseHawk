@@ -42,15 +42,19 @@ class SessionsController < ApplicationController
   end
   
   def start_open_id_authentication
-    authenticate_with_open_id(params[:domain])
+    authenticate_with_open_id(params[:domain], {:required => "http://axschema.org/contact/email"})
   end
   
   def open_id_authentication
     authenticate_with_open_id() do |result, identity_url|
       if result.successful?
-        raise response.inspect
-        raise result.inspect +
-        identity_url.inspect
+        ax = OpenID::AX::FetchResponse.from_success_response(request.env[Rack::OpenID::RESPONSE])
+        session[:user_attributes] = {
+          :email => ax.get_single("http://axschema.org/contact/email"),
+          :first_name => ax.get_single("http://axschema.org/namePerson/first"),
+          :last_name => ax.get_single("http://axschema.org/namePerson/last")
+        }
+        raise ax.inspect + session.inspect
       else
         flash[:error] = result.message || "Sorry, no user by that identity URL exists (#{identity_url})"
         @remember_me = params[:remember_me]
