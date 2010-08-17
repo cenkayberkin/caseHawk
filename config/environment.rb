@@ -48,6 +48,8 @@ Rails::Initializer.run do |config|
   config.gem "has_scope"
   config.gem 'ryanb-scope-builder', :lib => 'scope_builder', :source => 'http://gems.github.com'
   config.gem 'mojombo-chronic', :lib => 'chronic', :source => 'http://gems.github.com'
+  config.gem 'ruby-openid'
+  config.gem 'ruby-openid-apps-discovery'
   
    config.action_mailer.smtp_settings = {
     :enable_starttls_auto => :true,
@@ -57,7 +59,7 @@ Rails::Initializer.run do |config|
     :domain         => "administrator@beaconattorneys.com",
     :authentication => :plain,
     :user_name      => "administrator@beaconattorneys.com",
-    :password       => "st4rcr4ft!" 
+    :password       => "st4rcr4ft!"
   }
   
   # Use the database for sessions instead of the cookie-based default,
