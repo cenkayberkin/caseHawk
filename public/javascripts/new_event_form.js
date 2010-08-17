@@ -6,7 +6,7 @@ $(function(){
     changeYear: true,
     defaultDate: new Date($('#weeks').attr('data-first-week')),
     onSelect: function(dateText, inst) {
-      window.location.href = "/calendar/?date=" + dateText
+      window.location.href = "/calendar/?date=" + rfc3339(dateText)
     }
   }); 
 
