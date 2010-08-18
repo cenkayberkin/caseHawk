@@ -44,8 +44,8 @@ class Event < ActiveRecord::Base
 
   named_scope :ordered, :order => :starts_at
   named_scope :day, proc {|day|
-    { :conditions => "   starts_at LIKE '#{day}%'
-                      OR ends_at LIKE '#{day}%'
+    { :conditions => "   DATE(starts_at) = '#{day}%'
+                      OR DATE(ends_at) = '#{day}%'
                       OR DATE('#{day}') BETWEEN DATE(starts_at) AND DATE(ends_at)" }
   }
   named_scope :between, proc {|range_start, range_end|
