@@ -1,7 +1,9 @@
 
 // use log(whatever) in any script
 debug = function(){
-  console.debug.apply(console, arguments)
+  if (console) {
+    console.debug.apply(console, arguments)
+  }
 }
 
 function rfc3339(dateUS) {
