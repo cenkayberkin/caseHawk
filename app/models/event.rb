@@ -106,6 +106,7 @@ class Event < ActiveRecord::Base
 
   # used by new event form in javascript building of tags
   def tag_names=(names)
+    names = names.split(' ') if String === names
     names.each do |name|
       taggings.send new_record? ? :build : :create!, 
                     :tag => Tag.find_or_create_by_name(name), 
