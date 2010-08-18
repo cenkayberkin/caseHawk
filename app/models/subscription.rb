@@ -66,7 +66,7 @@ class Subscription < ActiveRecord::Base
     
     if @response.success?
       self.card_number = creditcard.display_number
-      self.card_expiration = "%02d-%d" % [creditcard.expiry_date.month, creditcard.expiry_date.year]
+      self.card_expiration = "%02d-%d" % [creditcard.expiry_date.month.to_i, creditcard.expiry_date.year.to_i]
       set_billing
     else
       errors.add_to_base(@response.message)

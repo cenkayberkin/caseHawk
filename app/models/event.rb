@@ -44,8 +44,8 @@ class Event < ActiveRecord::Base
 
   named_scope :ordered, :order => :starts_at
   named_scope :day, proc {|day|
-    { :conditions => "   starts_at LIKE '#{day}%'
-                      OR ends_at LIKE '#{day}%'
+    { :conditions => "   DATE(starts_at) = '#{day}%'
+                      OR DATE(ends_at) = '#{day}%'
                       OR DATE('#{day}') BETWEEN DATE(starts_at) AND DATE(ends_at)" }
   }
   named_scope :between, proc {|range_start, range_end|
@@ -106,6 +106,7 @@ class Event < ActiveRecord::Base
 
   # used by new event form in javascript building of tags
   def tag_names=(names)
+    names = names.split(' ') if String === names
     names.each do |name|
       taggings.send new_record? ? :build : :create!, 
                     :tag => Tag.find_or_create_by_name(name), 
