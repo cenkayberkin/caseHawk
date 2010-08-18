@@ -152,10 +152,10 @@ class Event < ActiveRecord::Base
   end
 
   def starts_at_date=(string)
-    write_attribute :starts_at, Event.parse(string.to_s).to_date.to_time + starts_at.seconds_since_midnight
+    write_attribute :starts_at, Event.parse(string.to_s).to_date.to_time + (starts_at || Time.now).seconds_since_midnight
   end
   def ends_at_date=(string)
-    write_attribute :ends_at,   Event.parse(string.to_s).to_date.to_time + ends_at.seconds_since_midnight
+    write_attribute :ends_at,   Event.parse(string.to_s).to_date.to_time + (ends_at || Time.now).seconds_since_midnight
   end
 
   def starts_at_time; starts_at && starts_at.strftime("%I:%M %p") end
