@@ -11,13 +11,13 @@
       link_to_unless_current('Dashboard', :controller => "accounts", :action => "dashboard") do |link|
         content_tag 'span', link, :class => 'current'
       end 
-    %>
+     %>
+  </li>
   <% if logged_in? %>
-  </li>
-  <li class="logout">
-    <%=
-      link_to 'Logout', logout_path
-    %>
-  </li>
+    <li class="logout">
+      <%=
+        link_to 'Logout', logout_path
+      %>
+    </li>
   <% end %>
 </ul>

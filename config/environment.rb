@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-#RAILS_GEM_VERSION = '2.1' unless defined? RAILS_GEM_VERSION
+#RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -48,6 +48,8 @@ Rails::Initializer.run do |config|
   config.gem "has_scope"
   config.gem 'ryanb-scope-builder', :lib => 'scope_builder', :source => 'http://gems.github.com'
   config.gem 'mojombo-chronic', :lib => 'chronic', :source => 'http://gems.github.com'
+  config.gem 'ruby-openid', :lib => 'openid'
+  config.gem 'ruby-openid-apps-discovery', :lib => 'gapps_openid'
   
    config.action_mailer.smtp_settings = {
     :enable_starttls_auto => :true,
@@ -57,7 +59,7 @@ Rails::Initializer.run do |config|
     :domain         => "administrator@beaconattorneys.com",
     :authentication => :plain,
     :user_name      => "administrator@beaconattorneys.com",
-    :password       => "st4rcr4ft!" 
+    :password       => "st4rcr4ft!"
   }
   
   # Use the database for sessions instead of the cookie-based default,

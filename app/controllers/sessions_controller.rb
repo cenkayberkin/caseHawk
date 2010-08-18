@@ -1,7 +1,14 @@
 # This controller handles the login/logout function of the site.  
 class SessionsController < ApplicationController
   skip_before_filter :login_required, :except => :destroy
-
+  def new
+    if start_openid_from_google?
+      start_open_id_authentication
+    elsif using_open_id?
+      open_id_authentication
+    end
+  end
+  
   def create
     self.current_user = current_account.users.authenticate(params[:login], params[:password])
     if logged_in?
@@ -23,5 +30,32 @@ class SessionsController < ApplicationController
     reset_session
     flash[:notice] = "You have been logged out."
     redirect_to('/')
+  end
+  
+  def login_from_openid
+      open_id_authentication and return
+    false
+  end
+  
+  def start_openid_from_google?
+    params[:from] == 'google' && !params[:domain].blank?
+  end
+  
+  def start_open_id_authentication
+    authenticate_with_open_id(params[:domain], {:required => "http://axschema.org/contact/email"})
+  end
+  
+  def open_id_authentication
+    authenticate_with_open_id() do |result, identity_url|
+      if result.successful?
+        ax = OpenID::AX::FetchResponse.from_success_response(request.env[Rack::OpenID::RESPONSE])
+        self.current_user = User.find_by_email(ax.get_single("http://axschema.org/contact/email"))
+        redirect_to('/')
+        flash[:notice] = "Logged in successfully"
+      else
+        flash.now[:error] = 'You must allow CaseHawk access to your Google Apps account.'
+        render :action => 'new'
+      end
+    end
   end
 end

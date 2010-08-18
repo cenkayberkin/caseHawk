@@ -152,10 +152,10 @@ class Event < ActiveRecord::Base
   end
 
   def starts_at_date=(string)
-    write_attribute :starts_at, Event.parse(string.to_s).to_date.to_time + starts_at.seconds_since_midnight
+    write_attribute :starts_at, Event.parse(string.to_s).to_date.to_time + (starts_at || Time.now).seconds_since_midnight
   end
   def ends_at_date=(string)
-    write_attribute :ends_at,   Event.parse(string.to_s).to_date.to_time + ends_at.seconds_since_midnight
+    write_attribute :ends_at,   Event.parse(string.to_s).to_date.to_time + (ends_at || Time.now).seconds_since_midnight
   end
 
   def starts_at_time; starts_at && starts_at.strftime("%I:%M %p") end
@@ -178,10 +178,10 @@ class Event < ActiveRecord::Base
       "data-type"           => type,
       "data-timed"          => timed?.to_s,
       "data-completable"    => completable?.to_s,
-      "data-starts-at"      => starts_at,
+      "data-starts-at"      => starts_at.blank? ? nil : starts_at.to_s(:full),
       "data-starts-at-time" => starts_at_time,
-      "data-starts-at-date" => starts_at_date.to_s,
-      "data-ends-at"        => ends_at,
+      "data-starts-at-date" => starts_at_date.to_s, 
+      "data-ends-at"        => ends_at.blank? ? nil : ends_at.to_s(:full), 
       "data-ends-at_time"   => ends_at_time,
       "data-ends-at_date"   => ends_at_date.to_s,
       "data-tags"           => tags

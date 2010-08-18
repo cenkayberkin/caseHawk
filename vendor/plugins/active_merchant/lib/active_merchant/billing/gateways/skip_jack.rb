@@ -1,3 +1,5 @@
+# coding: utf-8
+
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class SkipJackGateway < Gateway
