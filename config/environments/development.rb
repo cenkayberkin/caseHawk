@@ -22,4 +22,4 @@ end
 
 require 'descriptive_sql_load_log'
 
-config.gem 'rack-openid'
+config.gem 'rack-openid', :lib => 'openid'

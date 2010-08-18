@@ -48,7 +48,7 @@ Rails::Initializer.run do |config|
   config.gem "has_scope"
   config.gem 'ryanb-scope-builder', :lib => 'scope_builder', :source => 'http://gems.github.com'
   config.gem 'mojombo-chronic', :lib => 'chronic', :source => 'http://gems.github.com'
-  config.gem 'ruby-openid'
+  config.gem 'ruby-openid', :lib => 'openid'
   config.gem 'ruby-openid-apps-discovery', :lib => 'gapps_openid'
   
    config.action_mailer.smtp_settings = {
