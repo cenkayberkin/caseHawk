@@ -1,9 +1,11 @@
 
-// use log(whatever) in any script
+/* use debug(whatever) in any script
+ *
+ * WARNING: Using this in FF without Firebug enabled breaks the app
+ * 
+ */
 debug = function(){
-  if (console) {
-    console.debug.apply(console, arguments)
-  }
+  console.debug.apply(console, arguments)
 }
 
 function rfc3339(dateUS) {
