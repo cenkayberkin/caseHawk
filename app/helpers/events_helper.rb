@@ -1,3 +1,5 @@
+# coding: utf-8
+
 module EventsHelper
   
   # Use these methods to get events of a certain type: get_tasks(@events) 
