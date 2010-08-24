@@ -90,6 +90,6 @@ module EventsHelper
   end
   
   def event_tags(event)
-    "#{event.tags.blank? ? "" : " &middot; " + event.tag_records.map(&:name).join(', ')}"
+    "#{event.tags.blank? ? "" : " · " + event.tag_records.map(&:name).join(', ')}"
   end
 end
