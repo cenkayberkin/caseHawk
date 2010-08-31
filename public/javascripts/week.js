@@ -58,7 +58,7 @@ Week = {
       fireOnce: true,
       fireDelay: 2000,
       callback: function(p) {
-        Week.loadNext()
+        Week.loadNext(2)
       }
     })
   },
