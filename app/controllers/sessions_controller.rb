@@ -10,17 +10,21 @@ class SessionsController < ApplicationController
   end
   
   def create
-    self.current_user = current_account.users.authenticate(params[:login], params[:password])
-    if logged_in?
-      if params[:remember_me] == "1"
-        self.current_user.remember_me
-        cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
+    if params[:apps_email].nil?
+      self.current_user = current_account.users.authenticate(params[:login], params[:password])
+      if logged_in?
+        if params[:remember_me] == "1"
+          self.current_user.remember_me
+          cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
+        end
+        redirect_to('/')
+        flash[:notice] = "Logged in successfully"
+      else
+        flash.now[:error] = 'Invalid login credentials'
+        render :action => 'new'
       end
-      redirect_to('/')
-      flash[:notice] = "Logged in successfully"
     else
-      flash.now[:error] = 'Invalid login credentials'
-      render :action => 'new'
+      redirect_to new_session_path( :domain => params[:apps_email].split('@')[1], :from => 'google')
     end
   end
 

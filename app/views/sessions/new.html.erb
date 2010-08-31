@@ -26,4 +26,17 @@
       <br />
     </div>
   <% end -%>
+  
+  <% form_tag session_path do -%>
+    <div class="form_field">
+      <label for="apps_email">Email</label>
+      <%= text_field_tag 'apps_email' %>
+      <br />
+    </div>
+    <div class="form_field">
+      <label></label>
+      <%= submit_tag 'Log on' %>
+      <br />
+    </div>
+  <% end -%>
 </div>
