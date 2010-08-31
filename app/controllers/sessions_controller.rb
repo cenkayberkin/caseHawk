@@ -6,21 +6,27 @@ class SessionsController < ApplicationController
       start_open_id_authentication
     elsif using_open_id?
       open_id_authentication
+    elsif params[:from] == 'google'
+      flash.now[:error] = 'You must provide your email address.'
     end
   end
   
   def create
-    self.current_user = current_account.users.authenticate(params[:login], params[:password])
-    if logged_in?
-      if params[:remember_me] == "1"
-        self.current_user.remember_me
-        cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
+    if params[:apps_email].nil?
+      self.current_user = current_account.users.authenticate(params[:login], params[:password])
+      if logged_in?
+        if params[:remember_me] == "1"
+          self.current_user.remember_me
+          cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
+        end
+        redirect_to('/')
+        flash[:notice] = "Logged in successfully"
+      else
+        flash.now[:error] = 'Invalid login credentials'
+        render :action => 'new'
       end
-      redirect_to('/')
-      flash[:notice] = "Logged in successfully"
     else
-      flash.now[:error] = 'Invalid login credentials'
-      render :action => 'new'
+      redirect_to new_session_path( :domain => params[:apps_email].split('@')[1], :from => 'google')
     end
   end
 
@@ -42,7 +48,15 @@ class SessionsController < ApplicationController
   end
   
   def start_open_id_authentication
-    authenticate_with_open_id(params[:domain], {:required => "http://axschema.org/contact/email"})
+    authenticate_with_open_id(params[:domain], {
+      :required => [
+        "http://axschema.org/contact/email",
+        "http://axschema.org/namePerson/first",
+        "http://axschema.org/namePerson/last",
+        "http://axschema.org/media/image/aspect11"
+      ], 
+      :scope => "https://www.google.com/calendar/feeds/"
+    })
   end
   
   def open_id_authentication
