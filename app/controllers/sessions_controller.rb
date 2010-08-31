@@ -42,7 +42,15 @@ class SessionsController < ApplicationController
   end
   
   def start_open_id_authentication
-    authenticate_with_open_id(params[:domain], {:required => "http://axschema.org/contact/email"})
+    authenticate_with_open_id(params[:domain], {
+      :required => [
+        "http://axschema.org/contact/email",
+        "http://axschema.org/namePerson/first",
+        "http://axschema.org/namePerson/last",
+        "http://axschema.org/media/image/aspect11"
+      ], 
+      :scope => "https://www.google.com/calendar/feeds/"
+    })
   end
   
   def open_id_authentication
