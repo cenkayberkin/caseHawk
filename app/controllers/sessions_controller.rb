@@ -6,6 +6,8 @@ class SessionsController < ApplicationController
       start_open_id_authentication
     elsif using_open_id?
       open_id_authentication
+    elsif params[:from] == 'google'
+      flash.now[:error] = 'You must provide your email address.'
     end
   end
   
