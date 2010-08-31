@@ -59,7 +59,7 @@ class Event < ActiveRecord::Base
       :joins => {:taggings => :tag} }
   }
   named_scope :of_account, proc {|acct|
-    { :conditions => [" account_id = ? ", acct] }
+    { :conditions => [" events.account_id = ? ", acct] }
   }
   
   #
