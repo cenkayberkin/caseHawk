@@ -20,7 +20,7 @@ class Tag < ActiveRecord::Base
   named_scope :search, proc {|match|
     match.blank? ?
       {} :
-      {:conditions => ["tags.name like ?", "#{match}%"]}
+      {:conditions => ["tags.name like ?", "%#{match}%"]}
   }
   named_scope :limit, proc {|n|
     {:limit => n}
