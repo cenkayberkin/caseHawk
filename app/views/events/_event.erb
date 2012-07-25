@@ -1,8 +1,0 @@
-<%=
-  content_tag :li, send("#{params[:context]}event_line_html", event), 
-    {:class => "event" +
-      " #{event.type.downcase}" +
-      " #{event.timed? ? (event.completed_at ? "complete" : "incomplete") : ""}",
-      :id => event.id
-    }.merge(event.to_html_attributes)
-%>

@@ -1,1 +1,0 @@
-require 'tag_parser'
