@@ -21,5 +21,3 @@ config.after_initialize do
 end
 
 require 'descriptive_sql_load_log'
-
-config.gem 'rack-openid', :lib => 'openid'

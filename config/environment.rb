@@ -44,14 +44,7 @@ Rails::Initializer.run do |config|
     :secret      => '9cb7f8ec7e560956b38e35e5e3005adf68acaf1f64600950e2f7dc9e6485d6d9c65566d193204316936b924d7cc72f54cad84b10a70a0257c3fd16e732152565'
   }
 
-  config.gem "rubyredrick-ri_cal", :lib => 'ri_cal', :source => 'http://gems.github.com'
-  config.gem "has_scope"
-  config.gem 'ryanb-scope-builder', :lib => 'scope_builder', :source => 'http://gems.github.com'
-  config.gem 'mojombo-chronic', :lib => 'chronic', :source => 'http://gems.github.com'
-  config.gem 'ruby-openid', :lib => 'openid'
-  config.gem 'ruby-openid-apps-discovery', :lib => 'gapps_openid'
-  
-   config.action_mailer.smtp_settings = {
+  config.action_mailer.smtp_settings = {
     :enable_starttls_auto => :true,
     :tls            => :true,
     :address        => "smtp.gmail.com",
