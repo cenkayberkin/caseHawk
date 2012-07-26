@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726180555) do
+ActiveRecord::Schema.define(:version => 20120726180658) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -56,18 +56,18 @@ ActiveRecord::Schema.define(:version => 20120726180555) do
     t.string   "uri"
     t.text     "recurrance"
     t.string   "uid"
-    t.integer  "modified_by"
+    t.integer  "modified_by_id"
   end
 
   create_table "events", :force => true do |t|
-    t.integer  "creator_id",                      :null => false
+    t.integer  "creator_id",                        :null => false
     t.integer  "owner_id"
     t.integer  "location_id"
-    t.string   "type",                            :null => false
-    t.string   "name",                            :null => false
-    t.boolean  "remind",       :default => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.string   "type",                              :null => false
+    t.string   "name",                              :null => false
+    t.boolean  "remind",         :default => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.datetime "completed_at"
     t.datetime "starts_at"
     t.datetime "ends_at"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(:version => 20120726180555) do
     t.string   "uri"
     t.text     "recurrance"
     t.string   "uid"
-    t.integer  "modified_by"
+    t.integer  "modified_by_id"
   end
 
   create_table "locations", :force => true do |t|
