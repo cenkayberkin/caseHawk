@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726034136) do
+ActiveRecord::Schema.define(:version => 20120726034321) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20120726034136) do
     t.integer  "creator_id",                      :null => false
     t.integer  "owner_id"
     t.integer  "location_id"
-    t.string   "kind",                            :null => false
+    t.string   "event_type",                      :null => false
     t.string   "name",                            :null => false
     t.date     "start_date"
     t.time     "start_time"
