@@ -24,6 +24,14 @@ class ApplicationController < ActionController::Base
       user_signed_in? && current_user.admin?
     end
 
+    def events
+      current_user.events
+    end
+    
+    def tags
+      current_user.tags
+    end
+
     def set_affiliate_cookie
       if !params[:ref].blank? && affiliate = SubscriptionAffiliate.find_by_token(params[:ref])
         cookies[:affiliate] = { :value => params[:ref], :expires => 1.month.from_now }
@@ -45,5 +53,8 @@ class ApplicationController < ActionController::Base
       redirect_to billing_account_path
     end
 
+    def redirect_to_back_or(other)
+      redirect_to request.env["HTTP_REFERER"] || other
+    end
 
 end
