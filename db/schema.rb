@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726180407) do
+ActiveRecord::Schema.define(:version => 20120726180555) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20120726180407) do
     t.string   "uri"
     t.text     "recurrance"
     t.string   "uid"
+    t.integer  "modified_by"
   end
 
   create_table "events", :force => true do |t|
@@ -77,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20120726180407) do
     t.string   "uri"
     t.text     "recurrance"
     t.string   "uid"
+    t.integer  "modified_by"
   end
 
   create_table "locations", :force => true do |t|
