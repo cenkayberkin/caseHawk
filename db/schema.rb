@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120725233408) do
+ActiveRecord::Schema.define(:version => 20120726032922) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,21 @@ ActiveRecord::Schema.define(:version => 20120725233408) do
   end
 
   add_index "accounts", ["full_domain"], :name => "index_accounts_on_full_domain"
+
+  create_table "events", :force => true do |t|
+    t.integer  "creator_id",                     :null => false
+    t.integer  "owner_id"
+    t.integer  "location_id"
+    t.string   "kind",                           :null => false
+    t.string   "name",                           :null => false
+    t.date     "start_date"
+    t.time     "start_time"
+    t.date     "end_date"
+    t.time     "end_time"
+    t.boolean  "remind",      :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
 
   create_table "saas_admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
