@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726175642) do
+ActiveRecord::Schema.define(:version => 20120726180249) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -71,6 +71,9 @@ ActiveRecord::Schema.define(:version => 20120726175642) do
     t.integer  "account_id"
     t.integer  "version"
     t.datetime "deleted_at"
+    t.string   "uri"
+    t.text     "recurrance"
+    t.string   "uid"
   end
 
   create_table "locations", :force => true do |t|
