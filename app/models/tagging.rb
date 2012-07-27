@@ -50,7 +50,9 @@ class Tagging < ActiveRecord::Base
 
     # reads the tag records and returns a string of the tag names
     def tags
-      TagParser.un_parse taggable.tag_records.map(&:name)
+      if taggable
+        taggable.tag_records.map(&:name)
+      end
     end
 
     # Ask the taggable object for a list of records that are related

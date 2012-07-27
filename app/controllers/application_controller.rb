@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     end
 
     def events
-      current_user.events
+      current_user.account.events
     end
     
     def tags

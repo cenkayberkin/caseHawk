@@ -45,6 +45,7 @@ Subscriptions::Application.routes.draw do
   end
 
   resources :calendars
+  resources :weeks
   resources :events
 
   # The priority is based upon order of creation:

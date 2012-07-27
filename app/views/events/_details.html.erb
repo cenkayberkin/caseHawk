@@ -1,0 +1,63 @@
+<% event ||= object %>
+<h4 class="event_type event_type-<%= event.type.to_s.downcase %>"><%= event.type %></h4>
+<h3 class="editable editable_text" data-field-name="name" id="event-name-<%= event.id%>" rel="<%= event.id %>"><%= event.name %></h3>
+<ul class="event_data">
+  <%= render :partial => "events/details_#{event.type.underscore}", 
+        :locals => { :event => event}
+  %>
+  <% if event.location %>
+    <li class="event_location">
+      At <span class="" data-field-name="location" id="event-location-<%= event.id%>"><%= event.location.name %></span>
+    </li>
+  <% end %>
+  <% if event.owner %>
+    <li>
+      <span class="event_owner">
+        This event is for <span class="" data-field-name="owner" id="event-owner-<%= event.id%>"><%= event.owner.name %></span>,
+      </span>
+      <span class="event_reminder">
+        who will <%= event.remind? ? "" : "not " %>be reminded.
+      </span>
+    </li>
+  <% end %>
+  <% if event.completable? %>
+    <% if event.completed_at %>
+      <li class="completable" title="Completed!">
+        Completed on <%= event.completed_at.to_s(:mdth) %> by <%= event.completed_by.try(:name).to_s %>
+      </li>
+    <% else %>
+      <li class="completable">
+        Not yet completed
+      </li>
+    <% end %>
+  <% end %>
+  <li class="event_tags">
+    <ul class="tags">
+      <h4>Tagged With</h4>
+      <% event.taggings.each do |tagging| %>
+        <li class="tag" id="tagging_<%= tagging.id %>" data-tag-name="<%= tagging.tag.name %>" data-tag-id="<%= tagging.tag.id %>">
+          <span class="name"><%= tagging.tag.name %></span>
+          <a class="tag_remove" rel="<%= tagging.id %>">x</a>
+        </li>
+      <% end %>
+      <li class="new_tag">
+        <a class="event_new_tag" data-event-id="<%= event.id %>">Add New Tag</a>
+      </li>
+    </ul>
+  </li>
+  <li class="event_creator">
+    Created by <%= event.creator.name %>
+  </li>
+  <li class="event_delete">
+    <span class="delete">Delete this event</span>
+    <div class="event_delete_confirm" style="display: none">
+      <p>
+        Are you sure you want to delete this event? <br />
+        <em>Deleted events are archived but will not be displayed on the calendar.</em><br />
+      </p>
+      <span class="confirm" rel="<%= event.id %>">Yes, delete this event</span>
+      <span class="cancel">Cancel</span>
+      <br class="clear" />
+    </div>
+  </li>
+</ul>
