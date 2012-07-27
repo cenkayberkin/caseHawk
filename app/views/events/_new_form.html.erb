@@ -1,0 +1,11 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'event-new' %>
+<% end %>
+
+<div class="sidebar_block add-event">
+    <div class="content">
+      <%= form_for @event || Event.new do |f| -%>
+        <%= render :partial => 'events/fields', :locals => { :f => f } %>
+      <% end -%>
+    </div>
+</div>

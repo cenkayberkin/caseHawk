@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726180658) do
+ActiveRecord::Schema.define(:version => 20120726220501) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,24 @@ ActiveRecord::Schema.define(:version => 20120726180658) do
     t.string   "state",            :limit => 50
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+  end
+
+  create_table "appointments", :force => true do |t|
+    t.integer  "creator_id",   :null => false
+    t.integer  "owner_id"
+    t.integer  "account_id"
+    t.integer  "location_id"
+    t.string   "type",         :null => false
+    t.string   "name",         :null => false
+    t.boolean  "remind"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "completed_at"
+    t.datetime "starts_at"
+    t.datetime "end_at"
+    t.datetime "deleted_at"
+    t.integer  "completed_by"
+    t.integer  "version"
   end
 
   create_table "event_versions", :force => true do |t|

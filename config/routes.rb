@@ -10,7 +10,7 @@ Subscriptions::Application.routes.draw do
   # Routes for the public site
   constraints MainSite do
     # Homepage
-    root :to => "content#index"
+    root :to => "calendars#show"
     
     # Account Signup Routes
     match '/signup' => 'accounts#plans', :as => 'plans'
@@ -44,6 +44,9 @@ Subscriptions::Application.routes.draw do
       match 'cancel' => "accounts#cancel"
     end
   end
+
+  resources :calendars
+  resources :events
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

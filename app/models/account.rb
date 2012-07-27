@@ -34,7 +34,6 @@ class Account < ActiveRecord::Base
   validate :valid_payment_info?, :on => :create
   validate :valid_subscription?, :on => :create
   
-  attr_accessible :name, :domain, :user, :plan, :plan_start, :creditcard, :address, :admin_attributes
   attr_accessor :user, :plan, :plan_start, :creditcard, :address
   
   after_create :create_admin

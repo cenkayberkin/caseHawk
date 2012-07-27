@@ -1,8 +1,5 @@
 class Event < ActiveRecord::Base
 
-  acts_as_versioned :table_name => :event_versions
-  acts_as_paranoid
-  
   belongs_to :account
   belongs_to :creator, :class_name => 'User'
   belongs_to :modified_by, :class_name => 'User'

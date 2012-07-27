@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :encryptable, :authentication_keys => [:email, :account_id]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :login, :email, :password, :password_confirmation, :remember_me
   attr_protected :account_id
 
   # Putting Devise validations here rather than using :validatable in the call to #devise
@@ -14,8 +13,7 @@ class User < ActiveRecord::Base
   validates_presence_of   :email
   validates_format_of     :email, :with  => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
   validates_length_of     :email, :within => 3..100
-  validates_length_of     :login, :within => 2..40
-  validates_uniqueness_of :login, :email, :case_sensitive => false, :scope => :account_id
+  validates_uniqueness_of :email, :case_sensitive => false, :scope => :account_id
 
   with_options :if => :password_required? do |v|
     v.validates_presence_of     :password
