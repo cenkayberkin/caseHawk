@@ -1,0 +1,212 @@
+.day {
+  border: 1px solid #CCC;
+}
+  .day li { position: relative; }
+
+  .day-top {
+    border-bottom: 1px solid #DDD;
+    background: #F9F9F9;
+    position: relative;
+  }
+    .day-top h2 {
+      text-align: center;
+      margin: 0; 
+      padding: 0.25em 0; 
+      border-bottom: 1px solid #DDD;
+      background-color: #FFF; 
+      text-transform: uppercase; 
+      font-size: 1.4em;
+    }
+    .day-top-inner {
+      margin: 0 0 0 51px;
+      padding: 0; 
+      width: auto;
+    }
+    
+    .day-top h3.gutter {
+      text-transform: uppercase; 
+      text-align: center;
+      color: #72D472;
+      margin: 0;
+      padding: 5px 0;
+      width: 50px; 
+      background: #FFF; 
+      border-right: 1px solid #DDD; 
+      border-bottom: 1px solid #DDD; 
+      float: left;      
+    }
+    .day-top h3.week-link {
+      position: absolute; 
+      right: 10px; 
+      top: -23px; 
+      height: 22px; 
+      margin: 0; 
+      border-style: solid; 
+      border-width: 1px 1px 0; 
+      border-color: #CCC;
+      z-index: 100;
+      font-size: 1em; 
+    }
+    .day-top h3.week-link a {
+      text-transform: uppercase; 
+      text-align: center; 
+      padding: 3px 10px; 
+      height: 15px; 
+      line-height: 15px; 
+      background: #FFFFFF url(/images/nav-button-bg.png) repeat-x scroll left bottom; 
+      color: #999; 
+      display: block; 
+      border-bottom: 1px solid #CCC;
+    }
+      .day-top h3.week-link a:hover {
+        text-decoration: none; 
+        color: #B32914;
+        background: #FFF; 
+        border-bottom: 1px solid #FFF;
+      }
+    
+    .day-top-inner ul { 
+      margin: 0;
+      padding: 5px 0; 
+      width: 50%;
+      float: left; 
+    }
+    
+    .day-top li {
+      position: relative; 
+      border-bottom: 1px solid #DDD; 
+      padding: 0.1em 0 0.1em 0.5em; 
+      margin: 0 0.25em 0.1em 0;
+    }
+
+  .day-top .clear {
+    height: 5px;
+  }
+    
+  .viewport {
+    overflow: hidden;
+  }
+    ul.day-full {
+      position: relative;
+      margin: 0; 
+      padding: 0;
+    }
+    ul.day-full li {
+      position: absolute;
+      line-height: 15px; 
+    }
+    ul.day-full li.deadline {
+      left: 0;
+      color: #B32914;
+    }
+    
+    li.courtdate, li.courtdate a { color: #000000; }
+    li.appointment, li.appointment a { color: #114499; }
+    li.deadline, li.deadline a { color: #B32914; }
+    li.task, li.task a { color: #D95C26; }
+    li.allday, li.allday a { color: #5ead5e; }
+    
+    a.event_title { text-decoration: none; }
+    
+    /*
+      IMPORTANT
+      Applying this to all checkboxes in li.events
+    */
+    
+    li.event input.checkbox  {
+      float: left; 
+      margin: 1px 4px 0 0; 
+      padding: 0; 
+    }
+    .collision_box {
+      position: absolute;
+      width: 50%;
+      border-bottom: 1px solid #DDDDDD;
+    }
+    .collision_box .holder {
+      position: relative;
+      border-top: 1px solid #E6E6E6;
+    }
+    .day-full .collision_box { 
+      background: #F3F3F3; 
+    }
+
+    .collision_box_overflow { /*when a box with too many events has the 'more' link clicked*/
+    }
+
+    .collision_box .event {
+      padding: 0 0.5em; 
+      width: auto;
+      left: 0%;
+      height: 15px; 
+    }
+        
+    /* marking completed tasks and deadlines */
+    li.complete .event-title {
+      color: #AAA;
+      font-size: 0.9em;
+    }
+  
+  .day-hours {
+    clear: both; 
+    width: 50px; 
+    border-right: 1px solid #DDD; 
+    float: left;
+    margin: 0; 
+    padding: 0; 
+    list-style: none inside;
+    text-align: center; 
+    overflow: hidden;
+  }  
+    .day-hours li {
+      height: 59px; 
+      border-bottom: 1px solid #CCC; 
+      margin: 0; 
+      font-size: 11px;
+      width: 100%;
+    }
+    
+  .hourslice {
+    height: 15px;
+    z-index: -100;
+    position: relative;
+    width: auto; 
+    padding: 0;  
+  }
+  
+  .hourslice-last {
+    height: 14px;
+  }
+    
+  #day .day-full {
+    width: auto; 
+    margin: 0 0 0 51px; 
+    padding: 0; 
+  }
+
+.mini_cal h2 {
+  color: #114499;
+}
+
+h2.day-date {
+  text-align: center;
+  border-top: 1px solid #E3E3E3; 
+}
+a.day-nav {
+  font-size: 1.2em; 
+  line-height: 2.4em; 
+  text-transform: uppercase;
+  margin: 1px 0 0; 
+  padding: 0 1em;
+  display: block;  
+  color: #999; 
+  text-decoration: none; 
+  font-weight: bold; 
+}
+  a.day-nav.prev { float: left; }
+  a.day-nav.next { float: right; }
+  a.day-nav:hover {
+    background: #EEE;
+    color: #73A3D3;
+    text-decoration: none; 
+  }

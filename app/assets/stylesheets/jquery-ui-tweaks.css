@@ -1,0 +1,72 @@
+#sidebar #datepicker {
+  text-align: center; 
+}
+  .ui-datepicker-inline {
+    margin: 0 auto; 
+    text-align: left; 
+  }
+  
+.ui-datepicker .ui-datepicker-title select { 
+  font-weight: normal; 
+  color: #333; 
+  font-size: 1.1em;
+}
+
+.ui-datepicker { 
+  z-index: 10001; 
+}
+
+.mini_cal .ui-datepicker  {
+  font-size: 1em;
+  width: auto; 
+  padding: 0; 
+  border: 0px none; 
+  background: transparent none;
+}
+  .mini_cal .ui-datepicker table {
+    font-size: 1em;
+    margin-bottom: 1em; 
+  }
+    .mini_cal .ui-datepicker td, 
+    .mini_cal.ui-datepicker th {
+      padding: 0; 
+      border: 1px solid #CCC;
+    }
+    .mini_cal .ui-datepicker th {
+      padding: 4px 0;  
+      text-transform: uppercase; 
+      color: #666666;
+      font-size: 0.9em; 
+    }
+      .mini_cal .ui-datepicker td a {
+        border: 0px none; 
+        text-align: center; 
+        background-image: none; 
+        background-color: #FFF; 
+        padding: 4px 0;
+        font-weight: bold; 
+      }
+      .mini_cal .ui-datepicker td a:hover {
+        color: #B32914;
+        background: #EEEEEE;
+      }
+      .mini_cal .ui-datepicker td a.ui-state-active,  
+      .mini_cal .ui-datepicker td a.ui-state-active:hover {
+        background: #E3E3E3; 
+        color: #114499;
+      }
+  .mini_cal .ui-widget-header {
+    border: 0px none;
+    background: transparent none;
+    border-bottom: 1px solid #DDD; 
+    padding-left: 0; 
+    padding-right: 0;
+    padding-bottom: 0.5em; 
+  }
+
+#datepicker .sparkler {
+  display: none;
+}
+#datepicker:hover .sparkler {
+  display: block;
+}

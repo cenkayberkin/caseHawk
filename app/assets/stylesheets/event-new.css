@@ -1,0 +1,150 @@
+.add-event h2 {
+  font-size: 1.0em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+form.new_event, .sidebar_block form {
+  padding: 0 8px;  
+  font-size: 1.1em;
+}
+  .sidebar_block form form {
+    padding: 0; 
+    font-size: auto;
+  }
+
+.form_field {
+  padding: 0 0 4px;  
+}
+  .new_event .form_field.event_field_type {
+    padding-top: 4px;
+  }
+  
+  .new_event .form_field.event_field_remind {
+    display: inline-block;
+    padding: 0 4px 0 0;
+  }
+  
+  .new_event .form_field.event_field_dates {
+    padding-bottom: 2px; 
+  }
+  .new_event .form_field.event_field_tags {
+    clear: both;  
+    padding: 4px 0 8px; 
+  }  
+  
+.form_field label {
+  padding: 0 4px; 
+  text-align: right; 
+  text-transform: uppercase; 
+  font-size: 0.9em; 
+  color: #999999; 
+}
+  .form_field.search_field_tag label, 
+  .new_event .form_field.event_field_name label, 
+  .new_event .form_field.event_field_tags label {
+    color: #5EAD5E;  
+    font-weight: bold;
+  }
+  .new_event .form_field.event_field_remind label {
+    color: #333333;
+    text-transform: none; 
+    text-align: left; 
+    padding: 0; 
+    font-size: 1em;
+  }
+  .new_event .form_field.event_field_remind.inactive label {
+    color: #999999; 
+  }
+
+.new_event .form_field.event_field_times {
+  padding: 1em 0 0; 
+}  
+  .new_event .form_field.event_field_times select {
+  }
+.form_field .ui-slider {
+  font-size: 0.8em; 
+  margin-bottom: 2em;
+}
+
+.form_field input, .form_field select {
+  width: 75%; 
+}
+  .form_field select.new_event_type {
+    margin-left: 15%; 
+  }
+  .form_field input.inactive {
+    color: #999999; 
+  }
+
+.form_field .field_wrapper {
+  width: 48%; 
+  color: #73A3D3;
+  display: inline-block;
+  cursor: pointer; 
+}
+.new_event .event_field_editable_label {
+  padding-bottom: 0; 
+}
+  .new_event .event_field_editable_label .field_wrapper {
+    font-size: 0.8em; 
+    line-height: 1em;
+    color: #999999; 
+    text-transform: uppercase; 
+  }
+
+
+.form_field input[type=checkbox] {
+  width: auto; 
+}
+.form_field input[type=hidden] {
+  width: 0; 
+  padding: 0; 
+  margin: 0; 
+}
+.form_field input[type=submit] {
+  width: auto; 
+}
+  .new_event .editable_date select,  
+  .new_event .editable_date input {
+    margin: 0; 
+  }
+  .new_event .editable_date input {
+    width: 60%; 
+    margin: 0 4px 0 0;  
+  }  
+  .new_event .editable_date input[type=submit] {
+    width: auto; 
+    margin: 0; 
+  }
+
+.new_event ul.tags {
+  font-size: 0.9em; 
+  list-style: none; 
+  color: #666; 
+  margin: 0;
+  padding: 0;
+  width: 100%; 
+}
+  .tags li {
+    width: 45%; 
+    margin: 0 1% 2px 0; 
+    padding: 0 4% 0 0;
+    float: left; 
+    display: block; 
+  }
+  .tags li:last-child {
+    margin-bottom: 0.5em;
+  }
+  .tags li a {
+    display: block; 
+    float: right; 
+    color: #B32914; 
+    text-decoration: none; 
+    cursor: default;
+    padding: 0 0.5em;
+  }
+  .tags li a:hover {
+    font-weight: bold; 
+    color: #FFF; 
+    background: #B32914;
+  }

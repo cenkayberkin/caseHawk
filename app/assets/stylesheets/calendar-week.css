@@ -1,0 +1,280 @@
+#weeks {
+  margin-top: 122px; 
+}
+#content {
+  margin-bottom: 0;
+}
+#week-loading {
+  border-right: 1px solid #CCC;
+  border-left: 1px solid #CCC;
+  width: auto; 
+  height: 40px; 
+  margin: 0 auto;
+  padding: 0.5em 0; 
+  background: #EEE url('../images/loading.gif') no-repeat center center;
+}
+.week .viewport {
+}
+
+h2.week-date {
+  text-align: center; 
+  border-top: 1px solid #E3E3E3; 
+}
+  h2.week-date span {
+    color: #CCC;
+  }
+
+table.week {
+  border-collapse: collapse; 
+  border-spacing: 0; 
+  z-index: 1;
+  margin: 1px 0; 
+}
+table.week td, 
+table.week th {
+  border: 1px solid #CCC; 
+  vertical-align: top; 
+  padding: 0; 
+}
+table.week th {
+  text-align: center; 
+  text-transform: uppercase; 
+  color: #666;
+  font-weight: bold; 
+}
+table.week td {
+  font-size: 11px; 
+}
+.week-hours, .day-0, .day-6, 
+.week td:first-child, 
+.week th:first-child {
+  width: 28px;
+  padding: 0;  
+}
+table.week .day-0, table.week .day-6 {
+  font-weight: normal;
+  overflow: hidden; 
+}
+.day-1, .day-2, .day-3, .day-4, .day-5 {
+  width: 17%; 
+}
+
+.unfocused_day ul, 
+.day-0 ul.day-full, .day-6 ul.day-full,
+.week-allday .day-0 ul, .week-allday .day-6 ul {
+  display: block;
+  padding: 0;
+}
+
+.unfocused_day li.event,
+.week-allday .day-0 ul li, .week-allday .day-6 ul li {
+  display: block; 
+  height: 15px; 
+  background: #d7fcd7;
+  padding: 0; 
+}
+  .week-allday .unfocused_day ul.tasks li,
+  .week-allday .unfocused_day ul.tasks li,
+  .week-allday .day-0 ul.tasks li, .week-allday .day-6 ul.tasks li {
+    background: #F6D3A6;
+  }
+  
+  .unfocused_day li.event a.event-title, 
+  .unfocused_day li.event input, 
+  .day-0 ul.day-full li a.event-title,
+  .day-6 ul.day-full li a.event-title,
+  .day-0 ul.day-full li input,
+  .day-6 ul.day-full li input,
+  .week-allday .day-0 li a.event-title,  
+  .week-allday .day-0 li input,  
+  .week-allday .day-6 li a.event-title,
+  .week-allday .day-6 li input {
+    display: none; 
+  }
+
+/* letting weekend details show when focused */
+  .day-0.focused_day ul, .day-0.focused_day li,
+  .day-6.focused_day ul, .day-6.focused_day li {
+    display: block;
+  }
+  .day-0.focused_day .alldays li,
+  .day-6.focused_day .alldays li {
+    height: auto;
+    background: transparent;
+  }
+    .day-0.focused_day .alldays li a.event-title,
+    .day-6.focused_day .alldays li a.event-title,
+    .day-0.focused_day ul.day-full li a.event-title,  
+    .day-0.focused_day ul.day-full li input,  
+    .day-6.focused_day ul.day-full li a.event-title,  
+    .day-6.focused_day ul.day-full li input {
+      display: block;
+    }
+
+table.week .week-hours {
+  padding: 0; 
+}
+.week-hours ul.day-hours {
+  width: 100%; 
+  border: 0 none; 
+  float: none;   
+}
+.week-hours li {
+}
+
+table.week .week-dates th {
+  text-align: right; 
+  font-weight: bold; 
+  font-size: 13px; 
+  text-transform: uppercase; 
+  padding: 0; 
+  vertical-align: middle; 
+  background: #EEE; 
+}
+.week-dates .day-mon {
+  color: #B32914;
+}
+  .week-dates span.day-mon {
+    float: left; 
+    padding: 0 2px;
+    background: #FFF;  
+    border-right: 1px solid #CCC;
+  }
+  .week-dates .week-hours.day-mon { text-align: center; }
+.week-dates .day-mday {
+  font-size: 14px; 
+  color: #444; 
+  padding: 0 5px; 
+  border-left: 1px solid #EEE; 
+}
+  .week-dates th:hover .day-mday {
+    color: #B32914;
+    text-decoration: none; 
+    background: #FFF;
+    border-left: 1px solid #DDD; 
+  }
+.week .week-allday th {
+  text-transform: uppercase; 
+  text-align: center;
+  vertical-align: middle; 
+  color: #72D472;
+  margin: 0;
+  font-size: 12px;
+  line-height: 14px;
+  background: #F9F9F9;
+}
+
+/* collision boxes and such */
+
+.week td, 
+.collidable { position: relative; }
+
+.collision_box {
+  width: 100%; 
+}
+  .collision_box li:first-child {
+  }
+
+.week li.event {
+  position: relative;
+}
+
+li.event.allday {
+  padding: 0 4px;
+}
+
+li.event-overflow {
+  padding: 0 4px; 
+  cursor: pointer;
+}
+
+/* make sure events are limited to column width*/
+li.event.task .event-title, 
+li.event.allday .event-title, 
+li.event.appointment .event-title,
+li.event.deadline .event-title, 
+li.event.courtdate .event-title {
+  display: block; 
+  height: 15px; 
+  overflow: hidden; 
+}
+li.event.task .event-title, 
+li.event.allday .event-title { width: auto; }
+
+/* And now I try to put in place fixed header, sidebar, and calendar header with infinite scroll weeks */
+
+
+#header,
+#week-headers, 
+#sidebar, 
+#footer {
+  position: fixed;
+  z-index: 1100;
+}
+#header {
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+}
+#sidebar {
+  top: 80px; 
+  right: 10px; 
+}
+#footer {
+  bottom: 0; 
+  left: 0; 
+}
+
+.week-rolling-header {
+  background: #FFF; 
+  margin: 0; 
+  padding: 0;
+}
+
+.focused_day {
+  width: auto;
+}
+.unfocused_day {
+  width: 8%;
+}
+  .unfocused_day.week_hours,
+  .unfocused_day.day-0, 
+  .unfocused_day.day-6 {
+    width: 28px; 
+  }
+
+/* fixed position means that infinite length task list doesn't get to scrolls YIKES */
+
+ul.task-list {
+  height: 30em; 
+  overflow: auto;
+}
+
+/* fixed week header? */
+
+#content .rolling-active,
+.rolling-active {
+  position: fixed; 
+  width: 70%; 
+  top: 82px; 
+  left: 10px; 
+  z-index: 1075;
+}
+.rolling-inactive tr.week-dayname-header {
+  display: none;
+}
+#weeks-buffer {
+  background: #FFFFFF; 
+  height: 13px; 
+  width: 72%; 
+  z-index: 1050;
+  position: fixed; 
+  top: 70px; 
+  left: 0px; 
+}
+
+/* Week view hide hack for deadline checkbox and appointment time */
+.week .event.deadline input[type=checkbox], 
+.week .event.appointment span.time
+{
+}
