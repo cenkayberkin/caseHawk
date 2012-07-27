@@ -68,7 +68,7 @@ ul, ol, p { margin: 0 0 1em; }
 	padding: 0; 
 	width: auto; 
   height: 70px;  
-	background: url(/images/header-bg.png) repeat-x left top; 
+	background: url(/assets/header-bg.png) repeat-x left top; 
   position: relative;
 }
 	#header h1 { 
@@ -84,7 +84,7 @@ ul, ol, p { margin: 0 0 1em; }
     font-weight: bold;
     text-transform: lowercase; 
     font-variant: small-caps;
-    background: url(/images/header-inner-2.png) no-repeat right top;
+    background: url(/assets/header-inner-2.png) no-repeat right top;
 	}
 
 #logbox {
@@ -137,7 +137,7 @@ ul, ol, p { margin: 0 0 1em; }
     display: block; 
     height: 30px; line-height: 30px; 
     padding: 0 15px; 
-    background: #FFF url(/images/nav-button-bg.png) repeat-x left bottom; 
+    background: #FFF url(/assets/nav-button-bg.png) repeat-x left bottom; 
   }
   #nav ul li span.current {
     background-image: none; 
@@ -419,14 +419,14 @@ ul, ol, p { margin: 0 0 1em; }
 
 }
 .flashnotice {
-  background-image: url('../images/icons/information.png');
+  background-image: url('/assets/icons/information.png');
 }
 .flasherror {
-  background-image: url('../images/icons/exclamation.png');
+  background-image: url('/assets/icons/exclamation.png');
   color: #CF0902;
 }
 .flashsuccess {
-  background-image: url('../images/success.png');
+  background-image: url('/assets/success.png');
   color: #7CEB64;
 }
 .flashdebug {
@@ -582,7 +582,7 @@ ul, ol, p { margin: 0 0 1em; }
   font-family: "Helvetica Neue", Helvetica, "Bitstream Vera Sans", Arial, sans-serif; 
   font-size: 1em; 
   width: 95%; 
-  background: #FFF url('../images/textarea-desc-bg.png') no-repeat center center; 
+  background: #FFF url('/assets/textarea-desc-bg.png') no-repeat center center; 
   border: 1px inset #CCC;
   border-style: 
 }
@@ -619,7 +619,7 @@ ul, ol, p { margin: 0 0 1em; }
 	font-family: Palatino, Georgia, "New Century Schoolbook", "Bitstream Vera Serif", Utopia, "Times New Roman", times, serif; 
 	color: #FF3932; 
 	border: 0 none; 
-	background: url('../images/submit-bg.jpg') no-repeat center center; 
+	background: url('/assets/submit-bg.jpg') no-repeat center center; 
 	font-weight: bold; font-size: 1.6em; 
 	text-align: center;
 	height: 80px; width: 300px; 
@@ -628,7 +628,7 @@ ul, ol, p { margin: 0 0 1em; }
 	cursor: pointer; 
 }
 #survey_submit:hover {
-	background: url('../images/submit-bg-hover.jpg') no-repeat center center; 
+	background: url('/assets/submit-bg-hover.jpg') no-repeat center center; 
 	color: #FF3932;  
 }
 
@@ -701,7 +701,7 @@ ul, ol, p { margin: 0 0 1em; }
 }
 h2.clickable {
   background-color: transparent; 
-  background-image: url(/images/icons/plus-minus.png);
+  background-image: url(/assets/icons/plus-minus.png);
   background-repeat: no-repeat; 
   background-position: 0px 0px;
   padding-bottom: 0.5em;  

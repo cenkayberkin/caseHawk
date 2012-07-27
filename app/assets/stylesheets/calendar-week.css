@@ -11,7 +11,7 @@
   height: 40px; 
   margin: 0 auto;
   padding: 0.5em 0; 
-  background: #EEE url('../images/loading.gif') no-repeat center center;
+  background: #EEE url('/assets/loading.gif') no-repeat center center;
 }
 .week .viewport {
 }

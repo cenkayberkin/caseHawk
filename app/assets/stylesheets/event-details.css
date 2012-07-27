@@ -29,7 +29,7 @@ li.event .event-details {
 }
   .event-details .event_saving {
     padding-right: 20px; 
-    background: url(/images/indicator.gif) no-repeat right center;
+    background: url(/assets/indicator.gif) no-repeat right center;
   }
 .event-details .event_data {
   margin: 0 0 1em;
