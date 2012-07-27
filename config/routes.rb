@@ -10,7 +10,6 @@ Subscriptions::Application.routes.draw do
   # Routes for the public site
   constraints MainSite do
     # Homepage
-    root :to => "calendars#show"
     
     # Account Signup Routes
     match '/signup' => 'accounts#plans', :as => 'plans'
@@ -26,7 +25,7 @@ Subscriptions::Application.routes.draw do
     match '/content/:action' => 'content'
   end
 
-  root :to => "accounts#dashboard"
+  root :to => "calendars#show"
 
   devise_for :users
 
