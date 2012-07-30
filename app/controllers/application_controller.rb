@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
     end
     
     def tags
-      current_user.tags
+      current_user.account.tags
     end
 
     def set_affiliate_cookie

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :account
+  has_many   :recent_tags
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable, :registerable and :timeoutable
