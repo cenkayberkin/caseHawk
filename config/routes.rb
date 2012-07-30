@@ -44,6 +44,8 @@ Subscriptions::Application.routes.draw do
     end
   end
 
+  resources :tags
+  resources :taggings
   resources :calendars
   resources :weeks
   resources :events

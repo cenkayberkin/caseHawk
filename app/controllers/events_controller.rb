@@ -39,7 +39,7 @@ class EventsController < ApplicationController
       @event.completed_by = current_user
     end
     @event.creator = current_user # Flag this revision as being created by this user
-    @saved = @event.save
+    @event.save
     
     respond_to do |format|
       format.js do

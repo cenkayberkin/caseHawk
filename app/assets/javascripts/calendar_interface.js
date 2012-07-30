@@ -119,10 +119,10 @@ $(function(){
   $('#facebox .event_delete .confirm').live('click', function() {
     var eventID = $(this).attr("rel"); 
     // Call the delete function on this event
-    $.post(
-      "/events/destroy", 
-      { id: eventID }, 
-      function(result) {
+    $.ajax({
+      url: '/events/' + eventID,
+      type: 'DELETE',
+      success: function(result) {
         // Remove the appropriate event
         var event = $("#" + eventID)
         var day = event.parents("td.day")
@@ -133,7 +133,7 @@ $(function(){
         jQuery(document).trigger('close.facebox'); 
         // redraw page
       }
-    ); 
+    }); 
   }); 
   // Close the delete control
   $('#facebox .event_delete .cancel').live('click', function() { $('#facebox .event_delete_confirm').slideUp(); })
