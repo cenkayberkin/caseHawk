@@ -5,6 +5,7 @@ Event = {
     else
       Event.retrieve(options, callback)
   },
+
   retrieve: function(options, callback){
     $.getJSON("/events/", options, function(events){
       $.each(events, function(_,event){
@@ -12,6 +13,7 @@ Event = {
       })
     })
   },
+  
   updateParams: function(options){
     var params = {}
     $.each(options, function(key,value){
@@ -20,6 +22,7 @@ Event = {
     params['_method'] = "PUT"
     return params
   },
+  
   update: function(event, options, callback){
     event = Event.instantiate($(event))
     if(typeof(callback) == undefined) callback = function(){}
@@ -33,9 +36,10 @@ Event = {
        "json"
     )
   },
+  
   cachedInstances: [],
-  instantiate: function(record, skipCache){
 
+  instantiate: function(record, skipCache){
     // if this is a jQuery object just return the actual element
     if(record.jquery)
       return Event.instantiate(record[0], skipCache)
@@ -76,7 +80,6 @@ Event = {
   },
 
   draw: function(html){
-
     var originalDay, newDay, dayContext
 
     // check whether this event already exists
@@ -105,7 +108,6 @@ Event = {
         rangeStartDay.setDate(rangeStartDay.getDate() + 1)
       }
     }
-
 
     // add the event to the new day
     // TODO:
