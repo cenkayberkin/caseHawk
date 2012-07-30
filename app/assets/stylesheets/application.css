@@ -330,6 +330,11 @@ ul, ol, p { margin: 0 0 1em; }
       font-weight: bold; 
     }
 
+    #login_form p:last-child {
+      margin: 0;
+      border-bottom: 0;
+    }
+
   #login_form .form_field {
     padding: 0.25em; 
   }
