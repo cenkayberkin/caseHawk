@@ -21,6 +21,7 @@ gem 'jquery-rails'
 gem 'rails3_acts_as_paranoid'
 gem 'acts_as_versioned'
 gem 'ssl_requirement'
+gem 'has_scope'
 
 gem 'saas-kit'
 gem 'devise-encryptable'
