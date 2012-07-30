@@ -185,21 +185,17 @@ $(function(){
       url: postUrl, 
       data: { method: "create", event_id: eventID, tag_name: selectedValue }, 
       success: function(result) {
-        var newTag = $("<li></li>").hide();           
-        newTag
-          .html(selectedValue)
-          .attr('id', "tagging_" + result.record.id)
-          .attr('data-tag-name', selectedValue)
-          .attr('data-tag-id', result.record.tag_id)
-          .append(
-            $("<a></a>")
-              .html("x")
-              .addClass("tag_remove")
-              .attr("rel", result.record.id)
-          )
-          // stick this <li> into the bottom of the <ul>
-          .insertBefore("li.new_tag")
-          .fadeIn("normal")
+        var newTag = $("<li></li>").hide();
+
+        newTag.html(selectedValue).append(
+          $("<a></a>").html("x").addClass("tag_remove").attr("rel", result.record.id)
+        )
+
+        newTag.attr('id', "tagging_" + result.record.id)
+              .attr('data-tag-name', selectedValue)
+              .attr('data-tag-id', result.record.tag_id)
+          
+        newTag.insertBefore("li.new_tag").fadeIn("normal")
       }
     });  
   }
