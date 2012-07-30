@@ -44,12 +44,14 @@ Subscriptions::Application.routes.draw do
     end
   end
 
-  resources :tags
-  resources :taggings
-  resources :recent_tags
+  match '/calendar' => 'calendars#show'
+
   resources :calendars
   resources :weeks
   resources :events
+  resources :tags
+  resources :taggings
+  resources :recent_tags
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
