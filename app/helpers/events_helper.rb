@@ -55,7 +55,7 @@ module EventsHelper
     conditional_checkbox(event) +
     link_to(event_line_text(event), 
       event_path(event), 
-      { :rel => "facebox", 
+      { :onclick => "jQuery.facebox({ ajax: '" + event_path(event) + "' }); return false;", 
         :class => "event-title", 
         :title => title })
   end
@@ -68,7 +68,7 @@ module EventsHelper
     conditional_checkbox(event) +
     link_to(agenda_event_line_text(event), 
       event_path(event), 
-      { :rel => "facebox", 
+      { :onclick => "jQuery.facebox({ ajax: '" + event_path(event) + "' }); return false;",
         :class => "event-title", 
         :title => title })   
   end

@@ -61,10 +61,6 @@ $(function(){
         }
       } 
     })
-  $(".collidable li.event").live('mouseout', 
-    function(){
-      $('.hourslice').css("background-color", "white")
-    }); 
 
   // support ajax completion of completable events
   $("li[data-completable=true] input[type=checkbox]")
@@ -335,16 +331,12 @@ $(function(){
           }
         )
       })        
-      
   }
   
   functionsThatNeedToBeReexecutedWhenFaceboxLoads()
+  
   $(document).bind("reveal.facebox", functionsThatNeedToBeReexecutedWhenFaceboxLoads)
   $(document).bind("reveal.facebox", function(){
     $("form#new_event input").blur()
   })
-  
-
-  $('a[rel*=facebox]').facebox()
-
 })

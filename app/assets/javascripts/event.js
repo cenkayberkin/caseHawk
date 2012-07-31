@@ -114,15 +114,13 @@ Event = {
     //   - append the event html into all the days it hits
     //   - refresh all affected days
     newDay.each(function(){
-      $(html)
-        .prependTo(
+      $(html).prependTo(
           $(this).find(
             dayContext == 'day-full' ?
               "ul" :
               "ul." + $(html).attr("data-type").toLowerCase() + "s"
           )
-        )
-        .effect("highlight", { color : "#d7fcd7"}, 3000)
+        ).effect("highlight", { color : "#d7fcd7"}, 3000)
     })
 
     // timed events need to have their day redrawn
