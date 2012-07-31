@@ -48,9 +48,9 @@ module EventsHelper
   end
   
   def event_line_html(event)
-    title =  "#{event.timed? ? event.starts_at.to_s(:simple) + 
+    title =  "#{event.timed? ? l(event.starts_at, :format => :simple) + 
       (event.ends_at_time.blank? ? "" : "&#8212;" + 
-      event.ends_at.to_s(:simple)) : ""}: #{event.name}" +
+      l(event.ends_at, :format => :simple)) : ""}: #{event.name}" +
       event_tags(event)
     conditional_checkbox(event) +
     link_to(event_line_text(event), 
@@ -61,9 +61,9 @@ module EventsHelper
   end
   
   def agenda_event_line_html(event)
-    title =  "#{event.timed? ? event.starts_at.to_s(:simple) + 
+    title =  "#{event.timed? ? l(event.starts_at, :format =>:simple) + 
       (event.ends_at_time.blank? ? "" : "&#8212;" + 
-      event.ends_at.to_s(:simple)) : ""} #{event.name}" +
+      l(event.ends_at, :format => :simple)) : ""} #{event.name}" +
       event_tags(event)
     conditional_checkbox(event) +
     link_to(agenda_event_line_text(event), 
@@ -75,16 +75,16 @@ module EventsHelper
   
   def event_line_text(event)
     if event.timed?
-      content_tag :span, event.starts_at.to_s(:simple) + " ", { :class => "time" }
+      content_tag :span, l(event.starts_at, :format => :simple) + " ", { :class => "time" }
     end.to_s +
     event.name +
     event_tags(event)
   end
   
   def agenda_event_line_text(event)
-    (content_tag :span, event.starts_at.to_date.to_s(:us_short) + " ", { :class => "date" }).to_s + 
+    (content_tag :span, l(event.starts_at.to_date, :format =>:us_short) + " ", { :class => "date" }).to_s + 
     if event.timed?
-      content_tag :span, event.starts_at.to_s(:simple) + " ", { :class => "time" }
+      content_tag :span, l(event.starts_at, :format =>:simple) + " ", { :class => "time" }
     end.to_s +
     event.name  
   end
