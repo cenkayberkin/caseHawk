@@ -58,7 +58,7 @@ class EventsController < ApplicationController
     def new_event(atts = {})
 
       event = case params[:event] && params[:event][:type]
-                when 'AllDay'       then AllDay.new(atts)
+                when 'AllDay'       then AllDay.new(atts.except(:type))
                 when 'Appointment'  then Appointment.new(atts.except(:type))
                 when 'CourtDate'    then CourtDate.new(atts.except(:type))
                 when 'Deadline'     then Deadline.new(atts.except(:type))
