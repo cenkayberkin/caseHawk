@@ -123,6 +123,8 @@ $(function() {
         var event = $("#" + eventID)
         var day = event.parents("td.day")
         event.remove(); 
+        // hide modal
+        $('#event-modal').trigger('reveal:close')
         // refresh the day
         Day.refresh(day)
         // redraw page

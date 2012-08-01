@@ -50,8 +50,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event.update_attribute :modified_by_id, current_user.id
-    super
+    @event.destroy
   end
   
   protected
