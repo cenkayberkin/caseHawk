@@ -1,4 +1,4 @@
-$(function(){
+$(function() {
 
   // expand a single day within the week view
   $(".day_focus_link").live('click', function(){
@@ -338,5 +338,14 @@ $(function(){
   $(document).bind("reveal.facebox", functionsThatNeedToBeReexecutedWhenFaceboxLoads)
   $(document).bind("reveal.facebox", function(){
     $("form#new_event input").blur()
+  })
+
+  $(document.body).on('click', 'a.event-title', function(e) {
+    $.get($(this).attr('href'), function(data) {
+      $('#event-modal .content').html(data)
+      $('#event-modal').reveal()
+    })
+
+    return false;
   })
 })

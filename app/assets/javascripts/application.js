@@ -14,7 +14,6 @@ function rfc3339(dateUS) {
 
 /* allow jQuery to work with Rails' respond_to */
 $.ajaxSetup({ 'beforeSend': function(xhr) {
-  xhr.setRequestHeader('Accept', 'text/javascript')
   xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'))
 }})
 

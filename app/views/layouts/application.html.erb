@@ -10,8 +10,8 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'reset-fonts.css', 'application.css', 
-                            'event-search.css', 
-                            'facebox.css', 
+                            'event-search.css',
+                            'reveal.css',
                             'jquery-ui-custom/jquery-ui-1.7.2.custom.css', 
                             'jquery-ui-tweaks.css',
                             'jquery.autocomplete.css', 
@@ -54,6 +54,12 @@
       </div>
     </div>
 
+    <div id="event-modal" class="reveal-modal">
+      <a class="close-reveal-modal">&#215;</a>
+    
+      <div class='content'>
+    </div>
+
     <%= javascript_include_tag 'jquery-1.7.1.min',
                                'application',
                                'yui_datemath',
@@ -65,8 +71,8 @@
                                'new_event_form',
                                'calendar_interface',
                                'search',
+                               'jquery.reveal',
                                'jquery.jeditable.min',
-                               'facebox',
                                'jquery-ui-1.8.22.custom.min',
                                'jquery.timepicker',
                                'jquery.form_prompt',

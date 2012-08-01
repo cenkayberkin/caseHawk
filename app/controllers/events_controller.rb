@@ -20,8 +20,7 @@ class EventsController < ApplicationController
 
   def show
     respond_to do |format|
-      format.html
-      format.js do
+      format.html do
         render :action => :show, :layout => false
       end
     end
