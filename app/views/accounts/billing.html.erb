@@ -3,7 +3,7 @@
 <% if @subscription.state == 'trial' %>
   <% if @subscription.next_renewal_at > Time.now %>
     <p>
-      Thank you for trying <%= Saas::Config.app_name %>!  Your trial account will expire in <%= pluralize(@subscription.trial_days, 'day', 'days') %>, at which time you will no longer have access to your account.  To maintain access to your account, enter your credit card information below.  Your first charge will happen on <%= @subscription.next_renewal_at.to_s(:long_day) %>.
+    Thank you for trying <%= Saas::Config.app_name %>!  Your trial account will expire in <%= pluralize(@subscription.trial_days, 'day', 'days') %>, at which time you will no longer have access to your account.  To maintain access to your account, enter your credit card information below.  Your first charge will happen on <%= l(@subscription.next_renewal_at, :format => :long_day) %>.
     </p>
   <% else %>
     Thank you for trying <%= Saas::Config.app_name %>!  Your trial account has expired.  To regain access to your account, enter your credit card information below.  Your first charge will happen immediately, and you will be billed monthly thereafter.
@@ -16,11 +16,11 @@
   
   <% if @subscription.state == 'trial' %>
     <label>Trial expiration date:</label>
-    <%= @subscription.next_renewal_at.to_s(:long_day) %>
+    <%= l(@subscription.next_renewal_at, :format => :long_day) %>
   <% else %>
     <% if @subscription.amount > 0 %>
       <label>Next charge date:</label>
-      <%= @subscription.next_renewal_at.to_s(:long_day) %>
+      <%= l(@subscription.next_renewal_at, :format => :long_day) %>
       <br/>
       <label>Next charge amount:</label>
       <%= number_to_currency @subscription.amount %>

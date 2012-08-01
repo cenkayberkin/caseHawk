@@ -11,13 +11,13 @@
   <div class="field_wrapper ends_at">end</div>
 </div>
 <div class="event_field form_field event_field_dates">
-  <%= f.hidden_field :starts_at_date, :value => @date.to_s(:short_day_month_first), :label => false %>
-  <%= f.hidden_field :ends_at_date, :value => @date.to_s(:short_day_month_first), :label => false %> 
+  <%= f.hidden_field :starts_at_date, :value => l(@date, :format => :short_day_month_first), :label => false %>
+  <%= f.hidden_field :ends_at_date, :value => l(@date, :format =>:short_day_month_first), :label => false %> 
   <div class="field_wrapper starts_at">
-    <div id="event_starts_at_datepicker" rel="start" class="event_starts_at editable editable_date" data-field-name="starts_at_date"><%= @date.to_s(:short_day_month_first) %></div>
+    <div id="event_starts_at_datepicker" rel="start" class="event_starts_at editable editable_date" data-field-name="starts_at_date"><%= l(@date, :format => :short_day_month_first) %></div>
   </div>
   <div class="field_wrapper ends_at">
-    <div id="event_ends_at_datepicker" rel="end" class="event_ends_at editable editable_date" data-field-name="ends_at_date"><%= @date.to_s(:short_day_month_first) %></div>
+    <div id="event_ends_at_datepicker" rel="end" class="event_ends_at editable editable_date" data-field-name="ends_at_date"><%= l(@date, :format => :short_day_month_first) %></div>
   </div>
 </div>  
 <div class="event_field form_field event_field_times">

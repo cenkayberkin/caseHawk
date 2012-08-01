@@ -10,7 +10,7 @@
   </tr>
   <tr>
     <th>Created</th>
-    <td><%= @account.created_at.to_s(:short_day) %></td>
+    <td><%= l(@account.created_at, :format => :short_day) %></td>
   </tr>
   <tr>
     <th>Plan</th>

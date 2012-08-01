@@ -23,7 +23,7 @@
   <% if event.completable? %>
     <% if event.completed_at %>
       <li class="completable" title="Completed!">
-        Completed on <%= event.completed_at.to_s(:mdth) %> by <%= event.completed_by.try(:name).to_s %>
+        Completed on <%= l(event.completed_at, :format =>:mdth) %> by <%= event.completed_by.try(:name).to_s %>
       </li>
     <% else %>
       <li class="completable">
