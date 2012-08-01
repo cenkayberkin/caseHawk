@@ -67,3 +67,5 @@ module Subscriptions
     end
   end
 end
+
+require 'core_extensions'
