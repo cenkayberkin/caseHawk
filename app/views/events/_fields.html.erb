@@ -1,7 +1,7 @@
 <%= error_messages_for :event %>
 <div class="event_field form_field event_field_name">
   <label for="event_name">New</label>
-  <%= f.text_field :name, :placeholder => "Start typing to add tags...", :label => false %>
+  <%= f.text_field :name, :placeholder => "Event title", :label => false %>
 </div>
 <div class="event_field form_field event_field_type">
   <%= select :event, :type, event_types, {:selected => 'Appointment'}, :class => "new_event_type", :label => false %>
@@ -39,7 +39,7 @@
 <ul class="tags"></ul>
 <div class="event_field form_field event_field_tags">
   <label for="tag_entry" class="event_field_tags_add">Tag</label>
-  <%= text_field_tag :tag_entry, nil, :placeholder => "Start typing to add tags...", :label => false %>
+  <%= text_field_tag :tag_entry, nil, :placeholder => "Tags (separated by tab)", :label => false %>
 </div>
 <div class="event_field form_field event_field_remind"><%= f.check_box :remind, :label => false %> <label for="event_remind">Notify</label></div>
 <%= submit_tag "Add Event" %>
