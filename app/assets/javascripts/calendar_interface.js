@@ -336,7 +336,9 @@ $(function() {
   $(document.body).on('click', 'a.event-title', function(e) {
     $.get($(this).attr('href'), function(data) {
       $('#event-modal .content').html(data)
-      $('#event-modal').reveal()
+      $('#event-modal').reveal({
+        animationspeed: 50 
+      })
 
       setupEventModal()
     })
