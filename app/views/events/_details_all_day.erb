@@ -1,0 +1,11 @@
+<li class="event_date">
+  <span rel="<%= event.id %>" data-field-name="starts_at_date" id="event-starts_at_date-<%= event.id%>" class="event_starts_date editable editable_date"
+    ><%= event.starts_at.to_date.to_s(:short_day_month_first) %></span>
+  <% if event.starts_at.to_date < event.ends_at.to_date %>
+    <span class="event_time_separator">
+      &#8211;
+    </span>
+    <span rel="<%= event.id %>" data-field-name="ends_at_date" id="event-ends_at_date-<%= event.id%>" class="event_ends_date editable editable_date"
+      ><%= event.ends_at.to_date.to_s(:short_day_month_first) %></span>
+  <% end %>
+</li>
