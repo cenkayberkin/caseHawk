@@ -80,13 +80,13 @@ $(function() {
       })
     })
 
-  $("#facebox .tag span.name").live('click', function(){
+  $("#event-modal .tag span.name").live('click', function(){
     Calendar.loadAgenda($(this).text())
   })
 
   // function to call on editable callbacks
   var updateSavedEvent = function(result){
-    $("#facebox h3").addClass("event_saving")
+    $("#event-modal h3").addClass("event_saving")
     var savedEvent = result.record
 
     // I'm sorry that I'm special casing this but I need different behavior for dates
@@ -105,14 +105,14 @@ $(function() {
 
     Event.instantiate($(result.html)[0], 'skip_cache').draw(result.html)
 
-    setTimeout('$("#facebox h3").removeClass("event_saving")', 1250)
+    setTimeout('$("#event-modal h3").removeClass("event_saving")', 1250)
     $(this).effect("highlight", { color : "#d7fcd7"}, 3000)
   }
 
   // ************ Event Details Delete Control ************ //
-  // Need to control the event deletion from event details facebox
-  $('#facebox .event_delete .delete').live('click', function() { $('#facebox .event_delete_confirm').slideToggle(); }); 
-  $('#facebox .event_delete .confirm').live('click', function() {
+  // Need to control the event deletion from event details event-modal
+  $('#event-modal .event_delete .delete').live('click', function() { $('#event-modal .event_delete_confirm').slideToggle(); }); 
+  $('#event-modal .event_delete .confirm').live('click', function() {
     var eventID = $(this).attr("rel"); 
     // Call the delete function on this event
     $.ajax({
@@ -125,14 +125,12 @@ $(function() {
         event.remove(); 
         // refresh the day
         Day.refresh(day)
-        // Close the facebox
-        jQuery(document).trigger('close.facebox'); 
         // redraw page
       }
     }); 
   }); 
   // Close the delete control
-  $('#facebox .event_delete .cancel').live('click', function() { $('#facebox .event_delete_confirm').slideUp(); })
+  $('#event-modal .event_delete .cancel').live('click', function() { $('#event-modal .event_delete_confirm').slideUp(); })
   // ************ Event Details Delete FIN ************ //
   // ************ Event Details Tags Control ************ //
   // Need to build the tag interface for existing events
@@ -145,14 +143,14 @@ $(function() {
     tagForm
       .appendTo(container)
       .fadeIn(); 
-    $('#facebox #new_tag')
+    $('#event-modal #new_tag')
       .autocomplete("/tags", {
         matchContains: true,
         autoFill: false,
         minChars: 0    
       })
       .result(function(_,_,selectedValue){ 
-        var event_id = $('#facebox li.event')
+        var event_id = $('#event-modal li.event')
         eventTagResult(selectedValue); 
       })
       .change(function(){ 
@@ -164,9 +162,9 @@ $(function() {
   // Check for existing match then send the tag to the server
   // Show a new tag li on successful save
   function eventTagResult(selectedValue){
-    var tags     = $("#facebox").find("ul.tags")
+    var tags     = $("#event-modal").find("ul.tags")
     var existing = tags.find("li[data-tag-name="+selectedValue+"]")
-    var eventID  = $("#facebox .event-details").attr("data-event-id"); 
+    var eventID  = $("#event-modal .event-details").attr("data-event-id"); 
     // clear the search box and start over
     $('#new_tag').val('').focus()
     // do nothing if this tag already exists
@@ -196,7 +194,7 @@ $(function() {
     });  
   }
   // Remove an existing tag
-  $('#facebox .tag_remove').live('click', function() {
+  $('#event-modal .tag_remove').live('click', function() {
     var self = $(this)
     var postUrl = "/taggings/" + self.attr("rel"); 
     $.ajax({
@@ -212,11 +210,11 @@ $(function() {
   }); 
   // ************ Event Details Tags FIN ************ //
 
-  var functionsThatNeedToBeReexecutedWhenFaceboxLoads = function(){
+  var setupEventModal = function(){
     // Moved a bunch of functions out of here, replacing them in non-reloaded wrapper
     // Changing click -> live(click,) etc. 
     // Editable event titles
-    $('#facebox .editable_text')
+    $('#event-modal .editable_text')
       .each(function(){
         var editable = $(this)
         var event = Event.instantiate($("#"+editable.attr("rel")))
@@ -237,20 +235,20 @@ $(function() {
       })
     
     // Editable Event Time to Slider 
-    $('#facebox .Deadline .event_time.editable').one('click', function() {
+    $('#event-modal .Deadline .event_time.editable').one('click', function() {
       $('#new_event .slider_start')
         .clone()
-        .appendTo('#facebox .event_time')
-      $('#facebox select.slider_start')
+        .appendTo('#event-modal .event_time')
+      $('#event-modal select.slider_start')
         .val($.trim($('.event_time .event_starts_at').attr('data-field-value')))
-        .attr("id", "facebox_slider_start")
-      $('#facebox select.slider_start')
+        .attr("id", "event-modal_slider_start")
+      $('#event-modal select.slider_start')
         .selectToUISlider({
           labels: 5, 
           sliderOptions: {
             change:function(e, ui) {
-              startsAtTime = $('#facebox select.slider_start').val()
-              var event = Event.instantiate($("#" + $("#facebox .event-details").attr("data-event-id")))
+              startsAtTime = $('#event-modal select.slider_start').val()
+              var event = Event.instantiate($("#" + $("#event-modal .event-details").attr("data-event-id")))
               Event.update(
                 event,
                 {
@@ -258,36 +256,36 @@ $(function() {
                 },
                 function(result) {
                   updateSavedEvent.apply(
-                      $("#facebox .event_starts_at"), 
+                      $("#event-modal .event_starts_at"), 
                     [result]
                   )
                 }
               )
-              $('#facebox .event_starts_at').html(startsAtTime)
+              $('#event-modal .event_starts_at').html(startsAtTime)
             }
           }
         })
         .hide()      
     })
     
-    $('#facebox .Appointment .event_time.editable, #facebox .CourtDate .event_time.editable').one('click', function() {
+    $('#event-modal .Appointment .event_time.editable, #event-modal .CourtDate .event_time.editable').one('click', function() {
       $('#new_event .slider_start, #new_event .slider_end')
         .clone()
-        .appendTo('#facebox .event_time')
-      $('#facebox select.slider_start')
+        .appendTo('#event-modal .event_time')
+      $('#event-modal select.slider_start')
         .val($.trim($('.event_time .event_starts_at').attr('data-field-value')))
-        .attr("id", "facebox_slider_start")
-      $('#facebox select.slider_end')
+        .attr("id", "event-modal_slider_start")
+      $('#event-modal select.slider_end')
         .val($.trim($('.event_time .event_ends_at').attr('data-field-value')))
-        .attr("id", "facebox_slider_end")
-      $('#facebox select.slider_start, #facebox select.slider_end')
+        .attr("id", "event-modal_slider_end")
+      $('#event-modal select.slider_start, #event-modal select.slider_end')
         .selectToUISlider({
           labels: 5, 
           sliderOptions: {
             change:function(e, ui) {
-              startsAtTime = $('#facebox select.slider_start').val()
-              endsAtTime = $('#facebox select.slider_end').val()
-              var event = Event.instantiate($("#" + $("#facebox .event-details").attr("data-event-id")))
+              startsAtTime = $('#event-modal select.slider_start').val()
+              endsAtTime = $('#event-modal select.slider_end').val()
+              var event = Event.instantiate($("#" + $("#event-modal .event-details").attr("data-event-id")))
               Event.update(
                 event,
                 {
@@ -297,15 +295,15 @@ $(function() {
                 function(result) {
                   updateSavedEvent.apply(
                     ui.value == ui.values[0] ?
-                      $("#facebox .event_starts_at") :
-                      $("#facebox .event_ends_at"), 
+                      $("#event-modal .event_starts_at") :
+                      $("#event-modal .event_ends_at"), 
                     [result]
                   )
                 }
               )
 
-              $('#facebox .event_starts_at').html(startsAtTime)
-              $('#facebox .event_ends_at').html(endsAtTime)
+              $('#event-modal .event_starts_at').html(startsAtTime)
+              $('#event-modal .event_ends_at').html(endsAtTime)
             }
           }
         })
@@ -313,7 +311,7 @@ $(function() {
     })
     
     // Editable Event Date
-    $('#facebox .editable_date')
+    $('#event-modal .editable_date')
       .each(function() {
         var editable = $(this)
         var event = Event.instantiate($("#" + editable.attr("rel")))
@@ -333,17 +331,14 @@ $(function() {
       })        
   }
   
-  functionsThatNeedToBeReexecutedWhenFaceboxLoads()
+  setupEventModal()
   
-  $(document).bind("reveal.facebox", functionsThatNeedToBeReexecutedWhenFaceboxLoads)
-  $(document).bind("reveal.facebox", function(){
-    $("form#new_event input").blur()
-  })
-
   $(document.body).on('click', 'a.event-title', function(e) {
     $.get($(this).attr('href'), function(data) {
       $('#event-modal .content').html(data)
       $('#event-modal').reveal()
+
+      setupEventModal()
     })
 
     return false;
