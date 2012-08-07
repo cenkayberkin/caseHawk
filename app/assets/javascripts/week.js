@@ -105,7 +105,6 @@ Week = {
     $.get(
       "/weeks/"+formattedDate, {},
       function(result) {
-
         newWeek = $(result)
         $("#weeks").append(newWeek)
 
@@ -168,9 +167,10 @@ Week = {
 
     var start_px = Math.min(
                      earliest ?
-                       parseFloat($(earliest).css("top")) : 100000000 ,
-                     8*60 // 8:00 am
-                   ) -30
+                       parseFloat($(earliest).find('li').data('starts-at-time')) * 60 :
+                       100000000, 8*60 // 8:00 am
+                   ) -60
+
     var end_px   = Math.max(
                      latest ?
                        parseFloat($(latest).css("top")) + parseFloat($(latest).css("height"))
@@ -178,9 +178,9 @@ Week = {
                      17*60 // 5:00 pm
                    ) +30
 
-    $(week).find(".day-hours, .day-full").css({
-      "margin-top": "-"+start_px+"px",
-      "height": end_px+'px'
+    $(week).find(".day-hours").css({
+      "margin-top": "-" + start_px + "px",
+      "height": end_px + 'px'
     })
   },
 
