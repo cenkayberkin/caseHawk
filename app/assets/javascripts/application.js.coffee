@@ -47,15 +47,16 @@ $.fn.reset = (fn) ->
 
   this
 
-$.ajaxSetup beforeSend: (xhr) ->
-  xhr.setRequestHeader 'X-CSRF-Token', $('meta[name=csrf-token]').attr('content')
+$ ->
 
-$.fn.form_prompt and $('input[placeholder], textarea[placeholder]').each(->
-  return  if $(this).parents('.form-prompt-wrapper').length
-  
-  $(this).form_prompt $(this).attr('placeholder')
-)
+  $.ajaxSetup beforeSend: (xhr) ->
+    xhr.setRequestHeader 'X-CSRF-Token', $('meta[name=csrf-token]').attr('content')
 
-$('form').reset ->
-  $.each this, ->
-    @reset()
+  $.fn.form_prompt and $('input[placeholder], textarea[placeholder]').each(->
+    return  if $(this).parents('.form-prompt-wrapper').length
+    
+    $(this).form_prompt $(this).attr('placeholder')
+  )
+
+  $('form').reset ->
+    $.each this, @reset()
