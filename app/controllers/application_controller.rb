@@ -45,6 +45,7 @@ class ApplicationController < ActionController::Base
     # Redirect to the billing page if the user needs to enter
     # payment info before being able to use the app
     def collect_billing_info
+      return
       return if self.class.to_s.match(/^Devise/) # Don't prevent logins, etc.
       return unless account = current_account # Nothing to do if there is no account
       return if !(sub = account.subscription) || sub.state.nil?

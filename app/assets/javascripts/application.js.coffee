@@ -1,7 +1,7 @@
-debug = ->
-  console.debug.apply(console, arguments_)
+window.debug = ->
+  console.debug.apply(console, arguments)
 
-rfc3339 = (dateUS) ->
+window.rfc3339 = (dateUS) ->
   dateUS.substr(6, 4) + '-' + dateUS.substr(0, 2) + '-' + dateUS.substr(3, 2)
 
 unless Array.indexOf
@@ -48,7 +48,6 @@ $.fn.reset = (fn) ->
   this
 
 $ ->
-
   $.ajaxSetup beforeSend: (xhr) ->
     xhr.setRequestHeader 'X-CSRF-Token', $('meta[name=csrf-token]').attr('content')
 
