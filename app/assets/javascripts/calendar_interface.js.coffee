@@ -83,7 +83,7 @@ window.updateSavedEvent = (result) ->
 
   Event.instantiate($(result.html)[0], 'skip_cache').draw(result.html)
 
-  setTimeout("$('#event-modal h3').removeClass('event-saving')", 1250)
+  setTimeout("$('#event-modal h3').removeClass('event_saving')", 1250)
   $(@).effect('highlight', { color: '#d7fcd7' }, 3000)
 
 window.eventTagResult = (selectedValue) ->
@@ -181,7 +181,7 @@ $ ->
 
         $('#event-modal').trigger('reveal:close')
 
-        Day.refresh(day)
+        new Day(day).refresh
     })
 
     return false

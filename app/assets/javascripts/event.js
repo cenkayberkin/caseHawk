@@ -126,10 +126,10 @@ Event = {
     // timed events need to have their day redrawn
     if('allday' != dayContext){
       // redraw the original
-      Day.refresh(newDay)
+      new Day(newDay).refresh()
       // and new days
       if(originalDay && originalDay[0] && originalDay[0] != newDay[0])
-        Day.refresh(originalDay)
+        new Day(originalDay).refresh()
     }
 
     return this;

@@ -128,7 +128,7 @@ Week = {
     Week.updateRollingHeaders()
     // initialize each day
     week.find("tr.viewport .day").each(function(){
-      Day.init($(this))
+      new Day($(this))
     })
     // adjust the top and bottom of this week
     Week.adjustViewport($(week))
