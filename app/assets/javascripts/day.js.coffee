@@ -36,7 +36,7 @@ class Day
       $(event).css({ top: @top(event) + 'px', height: @height(event) + 'px' })
 
   clicks: ->
-    date      = @.attr('data-date')
+    date      = @.data('date')
     nice_date = new Date(date.replace(/-/g, '/'))
 
     $(document).on 'click', '[data-date=' + date + ']', ->

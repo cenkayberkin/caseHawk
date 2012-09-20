@@ -9,21 +9,21 @@ class Event
     return @cachedInstances[id] if !skipCache && id && @cachedInstances[id]
 
     $.extend record, {
-      starts_at: $(record).attr('data-starts-at'),
-      ends_at:   $(record).attr('data-ends-at'),
-      type:      $(record).attr('data-type'),
-      id:        $(record).attr('data-event-id'),
-      name:      $(record).attr('data-name')
+      starts_at: $(record).data('starts-at')
+      ends_at:   $(record).data('ends-at')
+      type:      $(record).data('type')
+      id:        $(record).data('event-id')
+      name:      $(record).data('name')
+    }
+
+    $.extend record, {
+      url:     '/events/' + record.id
+      display: @displayFor(record)
+      draw:    @draw
     }
 
     record.start = new Date(record.starts_at)
     record.end   = if Date.parse(record.ends_at) then new Date(record.ends_at) else DateMath.add(record.start, 'minutes', 15)
-
-    $.extend record, {
-      url:     '/events/' + record.id,
-      display: @displayFor(record),
-      draw:    @draw
-    }
 
     @cachedInstances[record.id] = record
 
@@ -83,7 +83,7 @@ class Event
         rangeStartDay.setDate(rangeStartDay.getDate() + 1)
 
     newDay.each ->
-      parent = $(@).find((if dayContext is 'day-full' then 'ul' else 'ul.' + $(html).attr('data-type').toLowerCase() + 's'))
+      parent = $(@).find((if dayContext is 'day-full' then 'ul' else 'ul.' + $(html).data('type').toLowerCase() + 's'))
       
       $(html).prependTo(parent).effect 'highlight',
         color: '#d7fcd7'
@@ -103,31 +103,5 @@ class Event
       else
         ->
           @name
-
-  validateDate: (record, active) ->
-    active = 'start' if active == null
-    
-    if active == 'start' && record.end < recored.start
-      record.end.setTime(record.start.getTime())
-
-    if active == 'end' && record.start > record.end
-      record.start.setTime(record.end.getTime())
-
-    record.starts_at = record.start.strftime()
-    record.ends_at   = record.end.strftime()
-
-  validateTime: (record, active) ->
-    active = 'start' if active == null
-
-    timeOffset = 1000 * 60 * 15
-
-    if active == 'start' && record.end < record.start
-      record.end.setTime(record.start.getTime() + timeOffset)
-
-    if active == 'end' && record.start > record.end
-      record.start.setTime(record.end.getTime() - timeOffset)
-
-    record.starts_at = record.start.strftime()
-    record.ends_at   = record.end.strftime()
 
 window.Event = Event

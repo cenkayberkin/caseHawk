@@ -4,7 +4,7 @@ $(function(){
   $("#datepicker").datepicker({
     changeMonth: true,
     changeYear: true,
-    defaultDate: new Date($('#weeks').attr('data-first-week')),
+    defaultDate: new Date($('#weeks').data('first-week')),
     onSelect: function(dateText, inst) {
       window.location.href = "/calendar/?date=" + rfc3339(dateText)
     }
@@ -51,7 +51,7 @@ $(function(){
           validateEventFormDates(editable.attr("rel"));           
         },
         { 
-          name        : "event["+editable.attr("data-field-name")+"]",
+          name        : "event["+editable.data("field-name")+"]",
           type        : 'datepicker', 
           tooltip     : 'Click to Edit',
           submit      : 'OK',

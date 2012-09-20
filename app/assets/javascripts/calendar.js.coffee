@@ -35,4 +35,6 @@ class Calendar
     $.post '/recent_tags/' + tag, { '_method': 'PUT' }
 
 $ ->
-  `Week.loadFirst(); $('table.week-events').each(Week.init())`
+  Week.loadFirst()
+
+  $('table.week-events').each(Week.init)

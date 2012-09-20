@@ -3,7 +3,7 @@ window.setupEventModal = ->
     event = new Event($('#' + $(@).attr('rel')))
 
     $(@).editable(event.url, {
-      name       : 'event[' + $(@).attr('data-field-name') + ']',
+      name       : 'event[' + $(@).data('field-name') + ']',
       tooltip    : 'Click to Edit',
       submit     : 'OK',
       onblur     : 'ignore',
@@ -16,13 +16,13 @@ window.setupEventModal = ->
 
   $('#event-modal .Deadline .event_time.editable').one 'click', ->
     $('#new_event .slider_start').clone().appendTo('#event-modal .event_time')
-    $('#event-modal select.slider_start').val($.trim($('.event_time .event_starts_at').attr('data-field-value'))).attr('id', 'event-modal_slider_start')
+    $('#event-modal select.slider_start').val($.trim($('.event_time .event_starts_at').data('field-value'))).attr('id', 'event-modal_slider_start')
     $('#event-modal select.slider_start').selectToUISlider({
       labels: 5,
       sliderOptions: {
         change: (e, ui) ->
           startsAtTime = $('#event-modal select.slider_start').val()
-          event        = new Event($('#' + $('#event-modal .event-dtails').attr('data-event-id')))
+          event        = new Event($('#' + $('#event-modal .event-dtails').data('event-id')))
 
           Event.update(event, { starts_at_time: startsAtTime }, (result) ->
             updateSavedEvent.apply($('#event-modal .event_starts_at'), [result])
@@ -34,15 +34,15 @@ window.setupEventModal = ->
 
   $('#event-modal .Appointment .event_time.editable, #event-modal .CourtDate .event_time.editable').one 'click', ->
     $('#new_event .slider_start, #new_event .slider_end').clone().appendTo('#event-modal .event_time')
-    $('#event-modal select.slider_start').val($.trim($('.event_time .event_starts_at').attr('data-field-value'))).attr('id', 'event-modal_slider_start')
-    $('#event-modal select.slider_end').val($.trim($('.event_time .event_ends_at').attr('data-field-value'))).attr('id', 'event-modal_slider_end')
+    $('#event-modal select.slider_start').val($.trim($('.event_time .event_starts_at').data('field-value'))).attr('id', 'event-modal_slider_start')
+    $('#event-modal select.slider_end').val($.trim($('.event_time .event_ends_at').data('field-value'))).attr('id', 'event-modal_slider_end')
     $('#event-modal select.slider_start, #event-modal select.slider_end').selectToUISlider({
       labels: 5,
       sliderOptions: {
         change: (e, ui) ->
           startsAtTime = $('#event-modal select.slider_start').val()
           endsAtTime   = $('#event-modal select.slider_end').val()
-          event        = new Event($('#' + $('#event-modal .event-details').attr('data-event-id')))
+          event        = new Event($('#' + $('#event-modal .event-details').data('event-id')))
 
           Event.update(event, { starts_at_time: startsAtTime, ends_at_time: endsAtTime }, (result) ->
             modal = if ui.value == ui.values[0] then $('#event-modal .event_starts_at') else $('#event-modal .event_ends_at')
@@ -59,7 +59,7 @@ window.setupEventModal = ->
     event = new Event($('#' + $(@).attr('rel')))
 
     $(@).editable(event.url, {
-      name:        'event[' + $(@).attr('data-field-name') + ']',
+      name:        'event[' + $(@).data('field-name') + ']',
       type:        'datepicker',
       tooltip:     'Click to Edit',
       submit:      'OK',
@@ -71,7 +71,7 @@ window.setupEventModal = ->
 
 window.updateSavedEvent = (result) ->
   savedEvent    = result.record
-  dataFieldName = $(@).attr('data-field-name')
+  dataFieldName = $(@).data('field-name')
 
   $('event-modal h3').addClass('event_saving')
 
@@ -79,7 +79,7 @@ window.updateSavedEvent = (result) ->
     atDate = new Date(savedEvent[dataFieldName])
     $(@).html(atDate.strftime("%B %e, %Y"))
   else
-    $(@).html(savedEvent[$(@).attr('data-field-name')])
+    $(@).html(savedEvent[$(@).data('field-name')])
 
   new Event($(result.html)[0], 'skip_cache').draw(result.html)
 
@@ -89,7 +89,7 @@ window.updateSavedEvent = (result) ->
 window.eventTagResult = (selectedValue) ->
   tags     = $('#event-modal').find('ul.tags')
   existing = tags.find('li[data-tag-name=' + selectedValue + ']')
-  eventID  = $('#event-modal .event-details').attr('data-event-id')
+  eventID  = $('#event-modal .event-details').data('event-id')
 
   $('#new_tag').val('').focus()
 
@@ -114,7 +114,7 @@ window.eventTagResult = (selectedValue) ->
 
 $ ->
   $(document).on 'click', '.day_focus_link', ->
-    date                  = $(@).attr('data-date')
+    date                  = $(@).data('date')
     focused_cell_selector = 'td[data-date=' + date + '], th[data-date=' + date + ']'
     focus_on_new_day      = !$(@).is('.focused_day')
 
@@ -140,7 +140,7 @@ $ ->
 
     $('#' + year + '-w' + week + '-timerow-' + hour + min).css('background-color', '#e3e6f9')
 
-    until hour + min == endStamp
+    while hour + min != endStamp && hour + min != '2400'
       $('#' + year + '-w' + week + '-timerow-' + hour + min).css('background-color', '#e3e6f9')
 
       if min == '45'

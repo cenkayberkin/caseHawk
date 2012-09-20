@@ -71,7 +71,7 @@ Week = {
 
     if(0 == $("table.week-events").length){
       Week.load(
-        new Date($('#weeks').attr('data-first-week')),
+        new Date($('#weeks').data('first-week')),
         function(){ Week.loadNext(5) } // load the second week right away
       )
       Week.setupEndlessScroll()
@@ -84,7 +84,7 @@ Week = {
 
     Week.load(
       DateMath.add(
-        (new Date($("#weeks .day:last").attr("data-date").replace(/-/g,'/'))),
+        (new Date($("#weeks .day:last").data("date").replace(/-/g,'/'))),
         'W',
         1
       ),
@@ -110,6 +110,7 @@ Week = {
 
         // need to adjust week for event collision, viewport, etc.
         Week.init(newWeek)
+
         // need to adjust week for event collision, viewport, etc.
         if(after)
           Function == after.constructor && after()
@@ -190,7 +191,7 @@ Week = {
 
     $(week).find(".viewport .day").each(function(dayIndex){
       var day = $(this)
-      var dayParts = day.attr('data-date').split('-')
+      var dayParts = day.data('date').split('-')
       var dayString = parseFloat(dayParts[2])
       var topMargin = parseFloat(day.find('.collidable').css('margin-top'))
  
