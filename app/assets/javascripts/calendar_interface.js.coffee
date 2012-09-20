@@ -1,6 +1,6 @@
 window.setupEventModal = ->
   $('#event-modal .editable_text').each ->
-    event = Event.instantiate($('#' + $(@).attr('rel')))
+    event = new Event($('#' + $(@).attr('rel')))
 
     $(@).editable(event.url, {
       name       : 'event[' + $(@).attr('data-field-name') + ']',
@@ -22,7 +22,7 @@ window.setupEventModal = ->
       sliderOptions: {
         change: (e, ui) ->
           startsAtTime = $('#event-modal select.slider_start').val()
-          event        = Event.instantiate($('#' + $('#event-modal .event-dtails').attr('data-event-id')))
+          event        = new Event($('#' + $('#event-modal .event-dtails').attr('data-event-id')))
 
           Event.update(event, { starts_at_time: startsAtTime }, (result) ->
             updateSavedEvent.apply($('#event-modal .event_starts_at'), [result])
@@ -42,7 +42,7 @@ window.setupEventModal = ->
         change: (e, ui) ->
           startsAtTime = $('#event-modal select.slider_start').val()
           endsAtTime   = $('#event-modal select.slider_end').val()
-          event        = Event.instantiate($('#' + $('#event-modal .event-details').attr('data-event-id')))
+          event        = new Event($('#' + $('#event-modal .event-details').attr('data-event-id')))
 
           Event.update(event, { starts_at_time: startsAtTime, ends_at_time: endsAtTime }, (result) ->
             modal = if ui.value == ui.values[0] then $('#event-modal .event_starts_at') else $('#event-modal .event_ends_at')
@@ -56,7 +56,7 @@ window.setupEventModal = ->
     }).hide()
 
   $('#event-modal .editable_data').each ->
-    event = Event.instantiate($('#' + $(@).attr('rel')))
+    event = new Event($('#' + $(@).attr('rel')))
 
     $(@).editable(event.url, {
       name:        'event[' + $(@).attr('data-field-name') + ']',
@@ -79,9 +79,9 @@ window.updateSavedEvent = (result) ->
     atDate = new Date(savedEvent[dataFieldName])
     $(@).html(atDate.strftime("%B %e, %Y"))
   else
-    $(@).html(savedEvent[@.attr('data-field-name')])
+    $(@).html(savedEvent[$(@).attr('data-field-name')])
 
-  Event.instantiate($(result.html)[0], 'skip_cache').draw(result.html)
+  new Event($(result.html)[0], 'skip_cache').draw(result.html)
 
   setTimeout("$('#event-modal h3').removeClass('event_saving')", 1250)
   $(@).effect('highlight', { color: '#d7fcd7' }, 3000)
@@ -128,7 +128,7 @@ $ ->
     return false
 
   $(document).on 'mouseover', '.collidable li.event', ->
-    event    = Event.instantiate($(@))
+    event    = new Event($(@))
     year     = '' + event.start.getFullYear()
     week     = '' + DateMath.getWeekNumber(event.start)
     week    -= 1
@@ -166,6 +166,9 @@ $ ->
     Calendar.loadAgenda($(@).text())
 
     return false
+
+  $(document).on 'click', '#event-modal .event_delete .delete', ->
+    $('#event-modal .event_delete_confirm').slideToggle()
 
   $(document).on 'click', '#event-modal .event_delete .confirm', ->
     eventID = $(@).attr('rel')

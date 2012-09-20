@@ -27,11 +27,10 @@ $(function(){
        '/events/',
        form.serialize(),
        function(result){
-         Event.instantiate(
-                $(result.html)[0], 'skip_cache'
-              )
-              .draw(result.html)
-         form
+        var ev = new Event($(result.html)[0], 'skip_cache')
+        ev.draw(result.html)
+         
+        form
           .reset()
           .find("tags li")
             .remove()

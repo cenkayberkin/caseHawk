@@ -22,7 +22,6 @@ class Day
 
   refresh: ->
     if @timed
-      @day.find('.collidable > .event').remove()
       Week.adjustViewport(@day.parents('.week'))
 
   clearBoxes: ->
@@ -32,7 +31,7 @@ class Day
     element = if element then element else '.viewport .event'
 
     $(element).each =>
-      event = Event.instantiate(@)
+      event = new Event(@)
 
       $(event).css({ top: @top(event) + 'px', height: @height(event) + 'px' })
 
@@ -53,7 +52,7 @@ class Day
       eventList = $(@)
 
       events = eventList.find('.event').map( ->
-        Event.instantiate(@)
+        new Event(@)
       ).sort((a, b) ->
         if a.starts_at == b.starts_at
           if a.ends_at < b.ends_at then 1 else -1
@@ -102,22 +101,22 @@ class Day
           return false
 
   top: (event) ->
-    e = Event.instantiate(event)
+    e = new Event(event)
     60 * e.start.getHours() + e.start.getMinutes()
 
   height: (event) ->
-    e = Event.instantiate(event)
+    e = new Event(event)
     @timeDifferentInPixels(if e.end && e.start then e.end - e.start else 0)
 
   firstStart: (events) ->
     Math.min.apply(null, $.map(events, (event) ->
-      e = Event.instantiate(event)
+      e = new Event(event)
       if e.start then +e.start else 999999999999
     ))
 
   lastEnd: (events) ->
     Math.max.apply(null, $.map(events, (event) ->
-      e = Event.instantiate(event)
+      e = new Event(event)
       if e.end then +e.end else 0
     ))
 

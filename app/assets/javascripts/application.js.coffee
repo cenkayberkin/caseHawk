@@ -56,6 +56,3 @@ $ ->
     
     $(this).form_prompt $(this).attr('placeholder')
   )
-
-  $('form').reset ->
-    $.each this, @reset()
