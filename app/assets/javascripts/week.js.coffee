@@ -7,26 +7,24 @@ class Week
 
     @initHeader()
     @updateRollingHeaders()
-    
+
     @week.find('tr.viewport .day').each ->
       new Day($(@))
 
-    @adjustViewport()
+    Week.adjustViewport(@week)
     @drawInDatepicker()
 
-  @load: (date, after) ->
+  @load: (date) ->
     formattedDate = date.strftime("%Y-%m-%d")
 
     return if @loadedWeeks.indexOf(formattedDate) > -1
 
     @loadedWeeks.push(formattedDate)
 
-    $.get '/weeks/' + formattedDate, {}, (result) ->
-      newWeek = $(result)
-      $('#weeks').append(newWeek)
+    $.get '/weeks/' + formattedDate, (result) ->
+      $('#weeks').append(result)
 
-      new Week(newWeek)
-      Function == after.constructor && after() if after
+      @constructor($(result))
     , 'html'
 
   @loadFirst: ->
@@ -43,6 +41,25 @@ class Week
 
     @load DateMath.add((new Date($('#weeks .day:last').data('date').replace(/-/g, '/'))), 'W', 1), ->
       Week.loadNext(howMany - 1)
+
+  @adjustViewport: (week) ->
+    boxes = $(week).find('.viewport .collision_box')
+
+    earliest = boxes.sort((a, b) ->
+      (if parseFloat($(a).css('top')) > parseFloat($(b).css('top')) then 1 else -1)
+    )[0]
+    
+    latest = boxes.sort((a, b) ->
+      (if parseFloat($(a).css('top')) + parseFloat($(a).css('height')) < parseFloat($(b).css('top')) + parseFloat($(b).css('height')) then 1 else -1)
+    )[0]
+
+    start_px = Math.min((if earliest then parseFloat($(earliest).find('li').data('starts-at-time')) * 60 else 100000000), 8 * 60) - 60
+    end_px   = Math.max((if latest then parseFloat($(latest).css('top')) + parseFloat($(latest).css('height')) else 0), 17 * 60) + 30
+    
+    $(week).find('.day-hours').css {
+      'margin-top': '-' + start_px + 'px'
+      'height': end_px + 'px'
+    }
 
   @setupEndlessScroll: ->
     $(document).endlessScroll({
@@ -83,25 +100,6 @@ class Week
     $('table.week-rolling-header').removeClass('rolling-active').addClass('rolling-inactive')
     
     header.addClass('rolling-active').removeClass('rolling-inactive')
-
-  adjustViewport: ->
-    boxes = $(@week).find('.viewport .collision_box')
-
-    earliest = boxes.sort((a, b) ->
-      (if parseFloat($(a).css('top')) > parseFloat($(b).css('top')) then 1 else -1)
-    )[0]
-    
-    latest = boxes.sort((a, b) ->
-      (if parseFloat($(a).css('top')) + parseFloat($(a).css('height')) < parseFloat($(b).css('top')) + parseFloat($(b).css('height')) then 1 else -1)
-    )[0]
-
-    start_px = Math.min((if earliest then parseFloat($(earliest).find('li').data('starts-at-time')) * 60 else 100000000), 8 * 60) - 60
-    end_px   = Math.max((if latest then parseFloat($(latest).css('top')) + parseFloat($(latest).css('height')) else 0), 17 * 60) + 30
-    
-    $(@).find('.day-hours').css {
-      'margin-top': '-' + start_px + 'px'
-      'height':     end_px + 'px'
-    }
 
   drawInDatepicker: ->
     that = @
