@@ -90,8 +90,8 @@ class Event
       , 3000
 
     unless 'allday' is dayContext
-      new Day(newDay).refresh()
-      new Day(originalDay).refresh() if originalDay and originalDay[0] and originalDay[0] isnt newDay[0]
+      new Day.refresh(newDay)
+      new Day.refresh(originalDay) if originalDay and originalDay[0] and originalDay[0] isnt newDay[0]
 
     return @
 

@@ -37,4 +37,5 @@ class Calendar
 $ ->
   Week.loadFirst()
 
-  $('table.week-events').each(Week.init)
+  $('table.week-events').each ->
+    new Week($(@))
