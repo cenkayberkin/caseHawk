@@ -69,7 +69,7 @@ class Week
     if headers.length == 1
       @changeWeekHeader($('table.week-rolling-header:first'))
 
-    $(document).scroll ->
+    $(document).scroll =>
       scroll = $(document).scrollTop()
 
       if scroll <= headers[0].enter_rolling
