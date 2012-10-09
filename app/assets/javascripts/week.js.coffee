@@ -19,14 +19,13 @@ class Week
 
     return if @loadedWeeks.indexOf(formattedDate) > -1
 
-    @loadedWeeks.push(formattedDate)
+    $.get '/weeks/' + formattedDate,
+      (result) ->
+        $('#weeks').append(result)
+        @constructor($(result))
+        Week.loadedWeeks.push(formattedDate)
 
-    $.get '/weeks/' + formattedDate, (result) ->
-      $('#weeks').append(result)
-
-      @constructor($(result))
-
-      after() if after && Function == after.constructor 
+        after() if after && Function == after.constructor 
     , 'html'
 
   @loadFirst: ->
