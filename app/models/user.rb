@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :encryptable, :authentication_keys => [:email, :account_id]
 
   # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_protected :account_id
 
   # Putting Devise validations here rather than using :validatable in the call to #devise
@@ -21,11 +22,6 @@ class User < ActiveRecord::Base
     v.validates_confirmation_of :password
     v.validates_length_of       :password, :within => 7..40
   end
-
-  scope :active, :conditions => "active = 1"
-  scope :of_account, proc { |acct|
-    { :conditions => [" account_id = ? ", acct] }
-  }
 
   protected
 
