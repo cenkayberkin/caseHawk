@@ -4,7 +4,7 @@ class Day
 
   constructor: (day) ->
     return if day.length == 0
-   
+
     @day = $(day)
 
     if Day.timed(@day)
@@ -34,7 +34,7 @@ class Day
 
     $(elements).each (index, element) =>
       event = new Event($(element))
-      
+
       $(event).css({ top: @top(event) + 'px', height: @height(event) + 'px' })
 
   clicks: ->
@@ -55,7 +55,7 @@ class Day
 
       events = eventList.find('.event').map ->
         new Event($(@))
-     
+
       events.sort((a, b) ->
         if a.starts_at == b.starts_at
           if a.ends_at < b.ends_at then 1 else -1
@@ -95,7 +95,7 @@ class Day
 
         $(box).append $('<li></li>').addClass('event-overflow').addClass('overflow').css('top', lastPosition + 'px').append($('<a></a>').html((if shouldHide.length is 1 then (shouldHide.length) + ' events &raquo;' else (shouldHide.length) + ' more &raquo;')).click( ->
           $(@).parents('.collision_box').css({ height: 'auto' }).addClass('collision_box_overflow').find('.event').show().end().end().hide()
-          
+
           false
         ))
 
