@@ -14,7 +14,7 @@ class Week
     Week.adjustViewport(@week)
     @drawInDatepicker()
 
-  @load: (date) ->
+  @load: (date, after) ->
     formattedDate = date.strftime("%Y-%m-%d")
 
     return if @loadedWeeks.indexOf(formattedDate) > -1
@@ -25,6 +25,8 @@ class Week
       $('#weeks').append(result)
 
       @constructor($(result))
+
+      after() if after && Function == after.constructor 
     , 'html'
 
   @loadFirst: ->
