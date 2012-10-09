@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   with_options :if => :password_required? do |v|
     v.validates_presence_of     :password
     v.validates_confirmation_of :password
-    v.validates_length_of       :password, :within => 7..40
+    v.validates_length_of       :password, :within => 6..240
   end
 
   protected
