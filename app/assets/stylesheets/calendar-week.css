@@ -13,7 +13,9 @@
   padding: 0.5em 0; 
   background: #EEE url('/assets/loading.gif') no-repeat center center;
 }
-.week .viewport {
+
+div.week {
+  overflow: hidden;
 }
 
 h2.week-date {
