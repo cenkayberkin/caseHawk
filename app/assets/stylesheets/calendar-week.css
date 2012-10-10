@@ -14,7 +14,7 @@
   background: #EEE url('/assets/loading.gif') no-repeat center center;
 }
 
-div.week {
+table.week.week-events {
   overflow: hidden;
 }
 
