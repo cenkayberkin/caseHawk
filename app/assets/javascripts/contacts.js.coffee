@@ -18,5 +18,8 @@ $ ->
 
     return false
 
+  $(document).on 'click', '#sidebar-slideout form .actions a', ->
+    $('#sidebar-slideout').hide('slide', { direction: 'right' })
+
   $(document).on 'ajax:success', '#sidebar-slideout form', ->
     $('#sidebar-slideout').hide('slide', { direction: 'right' })

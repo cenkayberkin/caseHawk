@@ -11,5 +11,8 @@
     <%= f.text_area :comment, :rows => 5 %>
   </fieldset>
 
-  <%= f.submit 'Save' %>
+  <div class='actions'>
+    <%= f.submit 'Save' %>
+    <%= link_to 'Cancel', '#' %>
+  </div>
 <% end %>
