@@ -21,6 +21,14 @@
 
   <div class='section contacts hidden'>
     <div class='sidebar_block'>
+      <form>
+        <div class='form_field search_field_tag'>
+          <label for='search_tag' class='search_field_tag'>Search</label>
+          <input type='text' value='' size='30' placeholder='Start typing to search contacts...' autocomplete='OFF'>
+        </div>
+      </form>
+    </div>
+    <div class='sidebar_block'>
       <ul class='contacts'>
         <% current_user.recent_contacts.each do |contact| %>
           <li><%= link_to contact.name, edit_contact_path(contact) %></li>
