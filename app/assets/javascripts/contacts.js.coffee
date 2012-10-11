@@ -14,10 +14,9 @@ $ ->
 
   $(document).on 'click', '#sidebar a.add-contact', ->
     $.get $(@).attr('href'), (result) ->
-      $('#add-contact-modal .content').html(result)
-      $('#add-contact-modal').reveal { animationspeed: 50 }
+      $('#sidebar-slideout').html(result).show('slide', { direction: 'right' })
 
     return false
 
-  $(document).on 'ajax:success', '#add-contact-modal form', ->
-    $('#add-contact-modal').trigger('reveal:close')
+  $(document).on 'ajax:success', '#sidebar-slideout form', ->
+    $('#sidebar-slideout').hide('slide', { direction: 'right' })

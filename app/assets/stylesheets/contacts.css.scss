@@ -18,25 +18,27 @@
     background: #73A3D3;
   }
 
-#add-contact-modal .content {
-  font-size: 12px;
+#sidebar-slideout form fieldset {
+  margin: 0 0 10px 0;
 }
 
-  #add-contact-modal form fieldset {
-    margin: 0 0 10px 0;
-  }
-  
-  #add-contact-modal form label {
-    display: block;
-    margin: 0 0 10px 0;
-  }
+#sidebar-slideout form label {
+  display: block;
+  margin: 0 0 10px 0;
+}
 
-  #add-contact-modal form .name {
-    overflow: hidden;
-    margin: 0 0 10px 0;
+#sidebar-slideout form input[type=text],
+#sidebar-slideout form textarea {
+  padding: 5px;
+}
+
+#sidebar-slideout form .name {
+  overflow: hidden;
+  margin: 0 0 10px 0;
+}
+
+  #sidebar-slideout form .name input {
+    float: left;
+    margin-right: 10px;
+    width: 100px;
   }
-  
-    #add-contact-modal form .name input {
-      margin-right: 10px;
-      width: 100px;
-    }

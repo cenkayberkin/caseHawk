@@ -40,6 +40,9 @@
           <%= yield :sidebar_nav %>
         </div>
 
+        <div id="sidebar-slideout">
+        </div>
+
         <div id="sidebar">
           <% if flash[:notice] || flash[:error] %>
             <div id="notices" class="sidebar_block">
@@ -57,12 +60,6 @@
 
     <div id="event-modal" class="reveal-modal">
       <a class="close-reveal-modal">&#215;</a>
-    
-      <div class='content'></div>
-    </div>
-
-    <div id='add-contact-modal' class='reveal-modal'>
-      <a class='close-reveal-modal'>&#215;</a>
     
       <div class='content'></div>
     </div>
