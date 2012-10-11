@@ -12,7 +12,7 @@ $ ->
 
     return false
 
-  $(document).on 'click', '#sidebar a.add-contact', ->
+  $(document).on 'click', '#sidebar a.add-contact, #sidebar ul.contacts a', ->
     $.get $(@).attr('href'), (result) ->
       $('#sidebar-slideout').html(result).show('slide', { direction: 'right' })
 

@@ -21,9 +21,9 @@
 
   <div class='section contacts hidden'>
     <div class='sidebar_block'>
-      <ul>
+      <ul class='contacts'>
         <% current_user.recent_contacts.each do |contact| %>
-          <li><%= contact.first_name %> <%= contact.last_name %></li>
+          <li><%= link_to contact.name, edit_contact_path(contact) %></li>
         <% end %>
       </ul>
     </div>

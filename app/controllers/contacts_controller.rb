@@ -9,8 +9,36 @@ class ContactsController < ApplicationController
     end
   end
 
+  def edit
+    @contact = Contact.find(params[:id])
+    
+    respond_to do |format|
+      format.html { render :action => :edit, :layout => false }
+    end
+  end
+
   def create
     @contact = current_user.contacts.new(params[:contact])
+
+    respond_to do |format|
+      if @contact.save
+        format.html do
+          if request.xhr?
+            render :nothing => true, :status => :created
+          end
+        end
+      else
+        format.html do
+          if request.xhr?
+            render :json => @contact.errors, :status => :unprocessable_entity
+          end
+        end
+      end
+    end
+  end
+
+  def update
+    @contact = Contact.find(params[:id])
 
     respond_to do |format|
       if @contact.save
