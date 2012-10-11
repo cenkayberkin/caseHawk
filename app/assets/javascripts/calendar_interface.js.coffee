@@ -239,13 +239,4 @@ $ ->
 
     return false
 
-  $(document).on 'click', '#sidebar-nav ul li a', ->
-    $(@).parents('ul').find('a').removeClass('selected')
-    $(@).addClass('selected')
-
-    $('#sidebar .section').hide()
-    $('#sidebar').find('.section[data-section="' + $(@).data('section') + '"]').show()
-
-    return false
-
   setupEventModal()

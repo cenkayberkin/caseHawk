@@ -1,0 +1,17 @@
+<h2>New contact</h2>
+
+<%= form_for @contact, :remote => true do |f| %>
+  <fieldset>
+    <%= f.label 'Name' %>
+
+    <div class='name'>
+      <%= f.text_field :first_name, :placeholder => 'First Name' %>
+      <%= f.text_field :last_name, :placeholder => 'Last Name' %>
+    </div>
+
+    <%= f.label :comment, 'Comments' %>
+    <%= f.text_area :comment, :rows => 5 %>
+  </fieldset>
+
+  <%= f.submit 'Save' %>
+<% end %>

@@ -14,9 +14,17 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.js {
-          render :json => { success: true }
-        }
+        format.html do
+          if request.xhr?
+            render :nothing => true, :status => :created
+          end
+        end
+      else
+        format.html do
+          if request.xhr?
+            render :json => @contact.errors, :status => :unprocessable_entity
+          end
+        end
       end
     end
   end

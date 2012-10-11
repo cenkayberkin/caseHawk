@@ -1,0 +1,26 @@
+// Place all the styles related to the Contacts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#add-contact-modal .content {
+  font-size: 12px;
+}
+
+  #add-contact-modal form fieldset {
+    margin: 0 0 10px 0;
+  }
+  
+  #add-contact-modal form label {
+    display: block;
+    margin: 0 0 10px 0;
+  }
+
+  #add-contact-modal form .name {
+    overflow: hidden;
+    margin: 0 0 10px 0;
+  }
+  
+    #add-contact-modal form .name input {
+      margin-right: 10px;
+      width: 100px;
+    }
