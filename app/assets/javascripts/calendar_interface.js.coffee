@@ -115,15 +115,16 @@ window.eventTagResult = (selectedValue) ->
 $ ->
   $(document).on 'click', '.day_focus_link', ->
     date                  = $(@).data('date')
+    week                  = $(@).parents('.week')
     focused_cell_selector = 'td[data-date=' + date + '], th[data-date=' + date + ']'
     focus_on_new_day      = !$(@).is('.focused_day')
 
-    $(@).parents('.week').find('.focused_day, .unfocused_day').removeClass('.focused_day, .unfocused_day')
+    week.find('.focused_day, .unfocused_day').removeClass('focused_day unfocused_day')
 
     if focus_on_new_day
-      $(@).parents('.week').find('.focused_day, .unfocused_day').removeClass('.focused_day, .unfocused_day')
-      $(@).parents('.week').find(focused_cell_selector).addClass('focused_day')
-      $(@).parents('.week').find('th:not(.focused_day), td:not(.focused_day)').addClass('unfocused_day')
+      week.find('.focused_day, .unfocused_day').removeClass('focused_day unfocused_day')
+      week.find(focused_cell_selector).addClass('focused_day')
+      week.find('th:not(.focused_day), td:not(.focused_day)').addClass('unfocused_day')
 
     return false
 
