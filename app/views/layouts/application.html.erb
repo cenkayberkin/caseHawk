@@ -15,7 +15,8 @@
                             'ui-lightness/jquery-ui-1.9.0.custom.min.css', 
                             'jquery-ui-tweaks.css',
                             'ui.slider.extras.css',
-                            'event-search' 
+                            'event-search',
+                            'contacts'
     %>
 		<%= yield :head %>
   </head>
@@ -64,25 +65,12 @@
       <div class='content'></div>
     </div>
 
-    <%= javascript_include_tag 'vendor/jquery-1.7.1.min',
-                               'vendor/jquery.reveal',
-                               'vendor/jquery.jeditable.min',
-                               'vendor/jquery-ui-1.9.0.custom.min',
-                               'vendor/jquery.timepicker',
-                               'vendor/jquery.form_prompt',
-                               'vendor/jquery.jeditable.timepicker',
-                               'vendor/jquery.pageless',
-                               'vendor/jquery.jeditable.datepicker',
-                               'vendor/jquery.selecttouislider',
-                               'vendor/yui_datemath',
-                               'vendor/strftime-min',
-                               'application',
-                               'event',
-                               'day',
-                               'week',
-                               'calendar',
-                               'new_event_form',
-                               'calendar_interface',
-                               'search' %>
+    <div id='add-contact-modal' class='reveal-modal'>
+      <a class='close-reveal-modal'>&#215;</a>
+    
+      <div class='content'></div>
+    </div>
+
+    <%= javascript_include_tag :application %>
   </body>
 </html>
