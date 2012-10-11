@@ -52,6 +52,7 @@ Subscriptions::Application.routes.draw do
   resources :tags
   resources :taggings
   resources :recent_tags
+  resources :contacts
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
