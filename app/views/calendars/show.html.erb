@@ -22,7 +22,7 @@
   <div class='section contacts hidden'>
     <div class='sidebar_block'>
       <ul>
-        <% current_user.contacts.each do |contact| %>
+        <% current_user.recent_contacts.each do |contact| %>
           <li><%= contact.first_name %> <%= contact.last_name %></li>
         <% end %>
       </ul>

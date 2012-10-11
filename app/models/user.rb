@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
     v.validates_length_of       :password, :within => 6..240
   end
 
+  def recent_contacts
+    contacts.all(:order => 'updated_at DESC')
+  end
+
   protected
 
     # Checks whether a password is needed or not. For validations only.
