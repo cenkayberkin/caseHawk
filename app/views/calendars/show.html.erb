@@ -4,10 +4,28 @@
   <%= stylesheet_link_tag 'event-details' %>
 <% end %>
 
+<% content_for :sidebar_nav do %>
+  <ul>
+    <li><a data-section='calendar' class='selected' href="#">Calendar</a></li>
+    <li><a data-section='contacts' href="#">Contacts</a></li>
+    <li><a data-section='cases' href="#">Cases</a></li>
+  </ul>
+<% end %>
+
 <% content_for :sidebar do %>
-  <%= render :partial => 'cal_search' %>
-  <%= render :partial => 'mini_cal' %>
-  <%= render :partial => 'events/new_form' %>
+  <div data-section='calendar' class='section'>
+    <%= render :partial => 'cal_search' %>
+    <%= render :partial => 'mini_cal' %>
+    <%= render :partial => 'events/new_form' %>
+  </div>
+
+  <div data-section='contacts' class='section'>
+    <p>This would show contacts.</p>
+  </div>
+
+  <div data-section='cases' class='section'>
+    <p>This would show cases.</p>
+  </div>
 <% end %>
 
 <div id="week">

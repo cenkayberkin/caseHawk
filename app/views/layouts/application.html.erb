@@ -32,17 +32,22 @@
     <div id="page">
       <div id="content">
         <div id="main">
-
           <%= yield %>
-
         </div>
+
+        <div id="sidebar-nav">
+          <%= yield :sidebar_nav %>
+        </div>
+
         <div id="sidebar">
           <% if flash[:notice] || flash[:error] %>
             <div id="notices" class="sidebar_block">
               <%= flash_notices %>
             </div>
           <% end %>
+
           <%= yield :sidebar %>
+          
           <p class="copyright">
             Copyright &copy; 2006 &ndash; <%= l(Date.today, :format => :year) %> <a href="http://lawfortress.com">CaseHawk by Lawfortress LLC</a>            
           </p>
