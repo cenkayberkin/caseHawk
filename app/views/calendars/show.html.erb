@@ -13,19 +13,13 @@
 <% end %>
 
 <% content_for :sidebar do %>
-  <div data-section='calendar' class='section'>
+  <div class='section calendar'>
     <%= render :partial => 'cal_search' %>
     <%= render :partial => 'mini_cal' %>
     <%= render :partial => 'events/new_form' %>
   </div>
 
-  <div data-section='contacts' class='section hidden'>
-    <div class='sidebar_block'>
-      <h3>Your contacts</h3>
-
-      <%= link_to 'Add contact', new_contact_path, :class => 'add-contact' %>
-    </div>
-
+  <div class='section contacts hidden'>
     <div class='sidebar_block'>
       <ul>
         <% current_user.contacts.each do |contact| %>
@@ -33,9 +27,11 @@
         <% end %>
       </ul>
     </div>
+
+    <%= link_to 'Add contact', new_contact_path, :class => 'add-contact' %>
   </div>
 
-  <div data-section='cases' class='section hidden'>
+  <div class='section cases hidden'>
     <p>This would show cases.</p>
   </div>
 <% end %>

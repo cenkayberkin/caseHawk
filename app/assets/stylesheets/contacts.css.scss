@@ -2,6 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#sidebar .section.contacts a.add-contact {
+  display: block;
+  margin: 10px auto 0 auto;
+  width: 150px;
+  text-transform: uppercase;
+  text-align: center; 
+  font-weight: bold;
+  color: #73A3D3;
+}
+
+  #sidebar .section.contacts a.add-contact:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+    background: #73A3D3;
+  }
+
 #add-contact-modal .content {
   font-size: 12px;
 }

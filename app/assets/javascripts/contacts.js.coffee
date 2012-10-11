@@ -8,7 +8,7 @@ $ ->
     $(@).addClass('selected')
 
     $('#sidebar .section').hide()
-    $('#sidebar').find('.section[data-section="' + $(@).data('section') + '"]').show()
+    $('#sidebar').find('.section.' + $(@).data('section')).show()
 
     return false
 
