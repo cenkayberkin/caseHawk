@@ -203,16 +203,14 @@ $ ->
     tagForm.hide()
     tagForm.appendTo(container).fadeIn()
 
-    $('#event-modal #new_tag').autocomplete('/tags', {
-      matchContains: true,
-      autoFill:      false,
-      minChars:      0
-    }).result (selectedValue) ->
-      event_id = $('#event-modal li.event')
-      eventTagResult(selectedValue)
-    .change ->
-      eventTagResult($(@).val())
-    .focus()
+    $('#event-modal #new_tag').autocomplete
+      source: '/tags'
+      minLength: 0
+      select: (ev, ui) ->
+        event_id = $('#event-modal li.event')
+        eventTagResult(ui.item.value)
+      change: ->
+        eventTagResult($(@).val())
 
     return false
 

@@ -10,7 +10,7 @@ class Calendar
     list.html("<h3>Search Results for <span class='search_term'>" + tag + "</span></h3>")
     list.append("<ul class='results'></ul>")
 
-    $.getJSON '/events', { tags: tag, context: 'agenda_' }, (results) ->
+    $.getJSON '/events', { tags: tag, context: 'agenda_' }, (results) =>
       spinner.hide()
 
       if !results.length
@@ -23,7 +23,7 @@ class Calendar
       $('table.week li.event').removeClass('result')
 
       $.each results, (_, result) ->
-        event = Event.instantiate($(result)[0], 'skip_cache')
+        event = new Event($(result)[0], 'skip_cache')
 
         $('#cal_search_results ul').append(event)
         $('table.week li.event#' + event.id).addClass('search_result')
@@ -39,3 +39,5 @@ $ ->
 
   $('table.week-events').each ->
     new Week($(@))
+
+window.Calendar = Calendar
