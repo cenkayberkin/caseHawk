@@ -37,8 +37,14 @@
     </fieldset>
   </div>
 
-  <div class='actions'>
-    <%= f.submit 'Save' %>
-    <%= link_to 'Cancel', '#' %>
+  <ul class='actions'>
+    <li><%= link_to 'Cancel', :class => 'cancel' %></li>
+    <li><%= f.submit 'Save' %></li>
+
+    <% if params[:action] == 'edit' %>
+      <li><%= link_to 'Delete', { :controller => 'contacts', :action => 'destroy', :id => @contact },
+          :class => 'delete', :method => :delete, :remote => true,
+          :confirm => 'Are you sure you want to delete this contact?' %></li>
+    <% end %>
   </div>
 <% end %>

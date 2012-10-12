@@ -58,4 +58,16 @@ class ContactsController < ApplicationController
       end
     end
   end
+
+  def destroy
+    Contact.find(params[:id]).destroy
+
+    respond_to do |format|
+      format.html do
+        if request.xhr?
+          render :partial => 'contacts/recent'
+        end
+      end
+    end
+  end
 end
