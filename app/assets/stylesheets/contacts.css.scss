@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#sidebar .section.contacts ul.contacts {
+  overflow-y: scroll;
+  max-height: 250px;
+}
+
 #sidebar .section.contacts a.add-contact {
   display: block;
   margin: 10px auto 0 auto;
@@ -48,6 +53,12 @@
         width: 100px;
       }
 
-      #sidebar-slideout form .fields fieldset .phone-numbers .phone-number {
-        display: block;
+      #sidebar-slideout form .fields fieldset .email-addresses,
+      #sidebar-slideout form .fields fieldset .phone-numbers {
+        margin: 0 0 10px 0;
       }
+      
+        #sidebar-slideout form .fields fieldset .email-addresses .email-address,
+        #sidebar-slideout form .fields fieldset .phone-numbers .phone-number {
+          display: block;
+        }

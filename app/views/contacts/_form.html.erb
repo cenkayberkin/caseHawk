@@ -13,6 +13,17 @@
     </fieldset>
 
     <fieldset>
+      <div class='email-addresses'>
+        <%= f.label 'Email Addresses' %>
+
+        <%= f.fields_for :email_addresses do |e| %>
+          <div class='email-address'>
+            <%= e.text_field :email, :placeholder => 'Email Address' %>
+            <%= e.select :label, options_for_select([ 'Main', 'Backup'], e.object.label) %>
+          </div>
+        <% end %>
+      </div>
+
       <div class='phone-numbers'>
         <%= f.label 'Phone Numbers' %>
 
