@@ -3,6 +3,7 @@ class ContactsController < ApplicationController
 
   def new
     @contact = Contact.new
+    @contact.phone_numbers.build
 
     respond_to do |format|
       format.html { render :action => :new, :layout => false }
@@ -41,7 +42,7 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params[:id])
 
     respond_to do |format|
-      if @contact.save
+      if @contact.update_attributes(params[:contact])
         format.html do
           if request.xhr?
             render :nothing => true, :status => :created

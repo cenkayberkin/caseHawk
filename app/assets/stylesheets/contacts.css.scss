@@ -18,27 +18,36 @@
     background: #73A3D3;
   }
 
-#sidebar-slideout form fieldset {
-  margin: 0 0 10px 0;
-}
-
-#sidebar-slideout form label {
-  display: block;
-  margin: 0 0 10px 0;
-}
-
-#sidebar-slideout form input[type=text],
-#sidebar-slideout form textarea {
-  padding: 5px;
-}
-
-#sidebar-slideout form .name {
+#sidebar-slideout .fields {
   overflow: hidden;
-  margin: 0 0 10px 0;
 }
 
-  #sidebar-slideout form .name input {
+  #sidebar-slideout form .fields fieldset {
     float: left;
-    margin-right: 10px;
-    width: 100px;
+    margin: 0 0 10px 0;
   }
+
+    #sidebar-slideout form .fields fieldset label {
+      display: block;
+      margin: 0 0 10px 0;
+    }
+
+    #sidebar-slideout form .fields fieldset input[type=text],
+    #sidebar-slideout form .fields fieldset textarea {
+      padding: 5px;
+    }
+
+    #sidebar-slideout form .fields fieldset .name {
+      overflow: hidden;
+      margin: 0 0 10px 0;
+    }
+
+      #sidebar-slideout form .fields fieldset .name input {
+        float: left;
+        margin-right: 10px;
+        width: 100px;
+      }
+
+      #sidebar-slideout form .fields fieldset .phone-numbers .phone-number {
+        display: block;
+      }
