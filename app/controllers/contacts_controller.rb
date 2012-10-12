@@ -26,7 +26,7 @@ class ContactsController < ApplicationController
       if @contact.save
         format.html do
           if request.xhr?
-            render :nothing => true, :status => :created
+            render :partial => 'contacts/recent'
           end
         end
       else
@@ -46,7 +46,7 @@ class ContactsController < ApplicationController
       if @contact.update_attributes(params[:contact])
         format.html do
           if request.xhr?
-            render :nothing => true, :status => :created
+            render :partial => 'contacts/recent'
           end
         end
       else

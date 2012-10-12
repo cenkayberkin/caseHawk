@@ -21,5 +21,6 @@ $ ->
   $(document).on 'click', '#sidebar-slideout form .actions a', ->
     $('#sidebar-slideout').hide('slide', { direction: 'right' })
 
-  $(document).on 'ajax:success', '#sidebar-slideout form', ->
+  $(document).on 'ajax:success', '#sidebar-slideout form', (xhr, data, status) ->
     $('#sidebar-slideout').hide('slide', { direction: 'right' })
+    $('#sidebar ul.contacts').replaceWith(data)

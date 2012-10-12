@@ -29,11 +29,7 @@
       </form>
     </div>
     <div class='sidebar_block'>
-      <ul class='contacts'>
-        <% current_user.recent_contacts.each do |contact| %>
-          <li><%= link_to contact.name, edit_contact_path(contact) %></li>
-        <% end %>
-      </ul>
+      <%= render :partial => 'contacts/recent' %>
     </div>
 
     <%= link_to 'Add contact', new_contact_path, :class => 'add-contact' %>
