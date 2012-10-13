@@ -23,18 +23,25 @@
     background: #73A3D3;
   }
 
-#sidebar-slideout .fields {
+#sidebar-slideout form .fields .contact {
   overflow: hidden;
 }
 
   #sidebar-slideout form .fields fieldset {
-    float: left;
     margin: 0 0 10px 0;
   }
+  
+    #sidebar-slideout form .fields .contact fieldset {
+      float: left;
+    }
 
     #sidebar-slideout form .fields fieldset label {
       display: block;
       margin: 0 0 10px 0;
+    }
+
+    #sidebar-slideout form .fields fieldset input.small {
+      width: 50px;
     }
 
     #sidebar-slideout form .fields fieldset input[type=text],

@@ -4,6 +4,7 @@ class ContactsController < ApplicationController
   def new
     @contact = Contact.new
     @contact.phone_numbers.build
+    @contact.addresses.build
     @contact.email_addresses.build
 
     respond_to do |format|
