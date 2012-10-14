@@ -33,7 +33,7 @@ class ContactsController < ApplicationController
       else
         format.html do
           if request.xhr?
-            render :json => @contact.errors, :status => :unprocessable_entity
+            render :json => @contact.errors.full_messages, :status => :unprocessable_entity
           end
         end
       end
@@ -53,7 +53,7 @@ class ContactsController < ApplicationController
       else
         format.html do
           if request.xhr?
-            render :json => @contact.errors, :status => :unprocessable_entity
+            render :json => @contact.errors.full_messages, :status => :unprocessable_entity
           end
         end
       end

@@ -44,6 +44,9 @@ $ ->
     $('#sidebar-slideout').hide('slide', { direction: 'right' })
     $('#sidebar ul.contacts').replaceWith(data)
 
+  $(document).on 'ajax:error', '#sidebar-slideout form', (xhr, data, status) ->
+    $('#sidebar-slideout p.errors').text(JSON.parse(data.responseText).join(', '))
+
   $(document).on 'ajax:success', '#sidebar-slideout form .actions a.delete', (xhr, data, status) ->
     $('#sidebar-slideout').hide('slide', { direction: 'right' })
     $('#sidebar ul.contacts').replaceWith(data)

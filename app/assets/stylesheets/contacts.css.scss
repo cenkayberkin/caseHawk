@@ -49,6 +49,11 @@
         background: #73A3D3;
       }
 
+#sidebar-slideout p.errors {
+  font-weight: bold;
+  color: red;
+}
+
 #sidebar-slideout form .fields {
   margin: 0 0 10px 0;
   padding: 10px;
