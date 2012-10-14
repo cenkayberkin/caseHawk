@@ -219,6 +219,7 @@ li.event.allday .event-title { width: auto; }
   width: 100%; 
 }
 #sidebar {
+  overflow-y: scroll;
   top: 80px; 
   right: 25px; 
   bottom: 10px;
