@@ -1,46 +1,50 @@
 <%= form_for @contact, :remote => true do |f| %>
+  <ul class='form-navigation'>
+    <li><a data-section='summary' class='selected' href='#'>Summary</a></li>
+    <li><a data-section='contact' href='#'>Contact Information</a></li>
+    <li><a data-section='addresses' href='#'>Addresses</a></li>
+  </ul>
+
   <div class='fields'>
-    <div class='contact'>
-      <fieldset>
-        <%= f.label 'Name' %>
+    <fieldset class='section summary'>
+      <%= f.label 'Name' %>
 
-        <div class='name'>
-          <%= f.text_field :first_name, :placeholder => 'First Name' %>
-          <%= f.text_field :last_name, :placeholder => 'Last Name' %>
-        </div>
+      <div class='name'>
+        <%= f.text_field :first_name, :placeholder => 'First Name' %>
+        <%= f.text_field :last_name, :placeholder => 'Last Name' %>
+      </div>
 
-        <%= f.label :comment, 'Comments' %>
-        <%= f.text_area :comment, :rows => 5 %>
-      </fieldset>
+      <%= f.label :comment, 'Comments' %>
+      <%= f.text_area :comment, :rows => 5 %>
+    </fieldset>
 
-      <fieldset>
-        <div class='email-addresses'>
-          <%= f.label 'Email Addresses' %>
+    <fieldset class='section contact hidden'>
+      <div class='email-addresses'>
+        <%= f.label 'Email Addresses' %>
 
-          <%= f.fields_for :email_addresses do |e| %>
-            <div class='email-address'>
-              <%= e.text_field :email, :placeholder => 'Email Address' %>
+        <%= f.fields_for :email_addresses do |e| %>
+          <div class='email-address'>
+            <%= e.text_field :email, :placeholder => 'Email Address' %>
 
-              <%= e.select :label, options_for_select([ 'Main', 'Backup'], e.object.label) %>
-            </div>
-          <% end %>
-        </div>
+            <%= e.select :label, options_for_select([ 'Main', 'Backup'], e.object.label) %>
+          </div>
+        <% end %>
+      </div>
 
-        <div class='phone-numbers'>
-          <%= f.label 'Phone Numbers' %>
+      <div class='phone-numbers'>
+        <%= f.label 'Phone Numbers' %>
 
-          <%= f.fields_for :phone_numbers do |p| %>
-            <div class='phone-number'>
-              <%= p.text_field :number, :placeholder => 'Phone Number' %>
+        <%= f.fields_for :phone_numbers do |p| %>
+          <div class='phone-number'>
+            <%= p.text_field :number, :placeholder => 'Phone Number' %>
 
-              <%= p.select :label, options_for_select([ 'Cell', 'Home', 'Work', 'Fax' ], p.object.label) %>
-            </div>
-          <% end %>
-        </div>
-      </fieldset>
-    </div>
+            <%= p.select :label, options_for_select([ 'Cell', 'Home', 'Work', 'Fax' ], p.object.label) %>
+          </div>
+        <% end %>
+      </div>
+    </fieldset>
 
-    <fieldset>
+    <fieldset class='section addresses hidden'>
       <div class='addresses'>
         <%= f.label 'Addresses' %>
 

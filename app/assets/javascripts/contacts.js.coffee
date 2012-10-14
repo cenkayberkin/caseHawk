@@ -12,6 +12,15 @@ $ ->
 
     return false
 
+  $(document).on 'click', '#sidebar-slideout ul.form-navigation li a', ->
+    $(@).parents('ul').find('a').removeClass('selected')
+    $(@).addClass('selected')
+
+    $('#sidebar-slideout .section').hide()
+    $('#sidebar-slideout').find('.section.' + $(@).data('section')).show()
+
+    return false
+
   $(document).on 'click', '#sidebar a.add-contact, #sidebar ul.contacts a', ->
     $.get $(@).attr('href'), (result) ->
       $('#sidebar-slideout').html(result).show('slide', { direction: 'right' })
