@@ -31,7 +31,7 @@ $ ->
     time   = new Date().getTime()
     regexp = new RegExp($(@).data('id'), 'g')
 
-    $(@).after($(@).data('fields').replace(regexp, time))
+    $(@).parents('ul').append($(@).data('fields').replace(regexp, time))
 
     return false
 

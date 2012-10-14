@@ -1,5 +1,5 @@
-<div class='email-address'>
-  <%= f.text_field :email, :placeholder => 'Email Address' %>
+<li class='email-address'>
+  <%= f.text_field :email, :placeholder => 'Email Address', :class => 'medium' %>
 
   <%= f.select :label, options_for_select([ 'Main', 'Backup'], f.object.label) %>
-</div>
+</li>
