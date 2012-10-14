@@ -54,9 +54,6 @@
   padding: 10px;
   background: #ffffff;
   border: 1px solid #dddddd;
-  border-bottom-left-radius: 8px;
-  -moz-border-bottom-left-radius: 8px;
-  -webkit-border-bottom-left-radius: 8px;
 }
 
   #sidebar-slideout form .fields fieldset {
@@ -102,12 +99,16 @@
           display: block;
         }
 
-#sidebar-slideout ul.actions li {
-  display: inline-block;
-  margin: 0 10px 0 0;
+#sidebar-slideout ul.actions {
+  margin: 0;
 }
 
-  #sidebar-slideout ul.actions li a.delete {
-    color: #B32914;
-    font-weight: bold;
+  #sidebar-slideout ul.actions li {
+    display: inline-block;
+    margin: 0 10px 0 0;
   }
+
+    #sidebar-slideout ul.actions li a.delete {
+      color: #B32914;
+      font-weight: bold;
+    }
