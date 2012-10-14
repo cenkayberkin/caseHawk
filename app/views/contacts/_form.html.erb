@@ -10,8 +10,8 @@
       <%= f.label 'Name' %>
 
       <div class='name'>
-        <%= f.text_field :first_name, :placeholder => 'First Name' %>
-        <%= f.text_field :last_name, :placeholder => 'Last Name' %>
+        <%= f.text_field :first_name, :placeholder => 'First Name', :class => 'medium' %>
+        <%= f.text_field :last_name, :placeholder => 'Last Name', :class => 'medium' %>
       </div>
 
       <%= f.label :comment, 'Comments' %>
@@ -20,44 +20,34 @@
 
     <fieldset class='section contact hidden'>
       <div class='email-addresses'>
-        <%= f.label 'Email Addresses' %>
+        <h4>Email Addresses</h4>
 
-        <%= f.fields_for :email_addresses do |e| %>
-          <div class='email-address'>
-            <%= e.text_field :email, :placeholder => 'Email Address' %>
+        <%= link_to_add_fields 'Add email address', f, :email_addresses %>
 
-            <%= e.select :label, options_for_select([ 'Main', 'Backup'], e.object.label) %>
-          </div>
+        <%= f.fields_for :email_addresses do |builder| %>
+          <%= render :partial => 'email_address_fields', :locals => { :f => builder } %>
         <% end %>
       </div>
 
       <div class='phone-numbers'>
-        <%= f.label 'Phone Numbers' %>
+        <h4>Phone Numbers</h4>
 
-        <%= f.fields_for :phone_numbers do |p| %>
-          <div class='phone-number'>
-            <%= p.text_field :number, :placeholder => 'Phone Number' %>
-
-            <%= p.select :label, options_for_select([ 'Cell', 'Home', 'Work', 'Fax' ], p.object.label) %>
-          </div>
+        <%= link_to_add_fields 'Add phone numbers', f, :phone_numbers %>
+        
+        <%= f.fields_for :phone_numbers do |builder| %>
+          <%= render :partial => 'phone_number_fields', :locals => { :f => builder } %>
         <% end %>
       </div>
     </fieldset>
 
     <fieldset class='section addresses hidden'>
       <div class='addresses'>
-        <%= f.label 'Addresses' %>
+        <h4>Addresses</h4>
 
-        <%= f.fields_for :addresses do |a| %>
-          <div class='address'>
-            <%= a.text_field :street, :placeholder => '123 Main St.' %>
-            <%= a.text_field :unit, :placeholder => '45L', :class => 'small' %>
-            <br />
-            <%= a.text_field :city, :placeholder => 'Seattle' %>
-            <%= a.text_field :state, :placeholder => 'WA', :class => 'small' %>
-            <%= a.text_field :postal_code, :placeholder => '98104', :class => 'small' %>
-            <%= a.select :label, options_for_select([ 'Home', 'Work' ], a.object.label) %>
-          </div>
+        <%= link_to_add_fields 'Add address', f, :addresses %>
+        
+        <%= f.fields_for :addresses do |builder| %>
+          <%= render :partial => 'address_fields', :locals => { :f => builder } %>
         <% end %>
       </div>
     </fieldset>

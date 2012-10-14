@@ -27,6 +27,14 @@ $ ->
 
     return false
 
+  $(document).on 'click', '#sidebar-slideout .add_fields', ->
+    time   = new Date().getTime()
+    regexp = new RegExp($(@).data('id'), 'g')
+
+    $(@).after($(@).data('fields').replace(regexp, time))
+
+    return false
+
   $(document).on 'click', '#sidebar-slideout form .actions a.cancel', ->
     $('#sidebar-slideout').hide('slide', { direction: 'right' })
 

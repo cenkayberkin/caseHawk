@@ -61,7 +61,7 @@
   }
   
     #sidebar-slideout form .fields .contact fieldset {
-      float: left;
+      overflow: hidden;
     }
 
     #sidebar-slideout form .fields fieldset label {
@@ -71,6 +71,11 @@
 
     #sidebar-slideout form .fields fieldset input.small {
       width: 50px;
+    }
+
+
+    #sidebar-slideout form .fields fieldset input.medium {
+      width: 100px;
     }
 
     #sidebar-slideout form .fields fieldset input[type=text],
@@ -86,11 +91,11 @@
       #sidebar-slideout form .fields fieldset .name input {
         float: left;
         margin-right: 10px;
-        width: 100px;
       }
 
       #sidebar-slideout form .fields fieldset .email-addresses,
       #sidebar-slideout form .fields fieldset .phone-numbers {
+        float: left;
         margin: 0 0 10px 0;
       }
       
