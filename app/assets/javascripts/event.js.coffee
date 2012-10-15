@@ -43,7 +43,7 @@ class Event
       $.each events, (event) ->
         callback(event)
 
-  updateParams: (options) ->
+  @updateParams: (options) ->
     params = {}
 
     $.each options, (key, value) ->
@@ -53,14 +53,14 @@ class Event
 
     return params
 
-  update: (event, options, callback) ->
+  @update: (event, options, callback) ->
     event    = new Event($(event))
     callback = (->) if typeof(callback) == undefined
 
-    $.post event.url, @updateParams(options), (result) ->
+    $.post event.url, Event.updateParams(options), (result) ->
       event = new Event(result, 'skipCache')
       callback.apply(event, [ event, result ])
-    , json
+    , 'json'
 
   draw: (html) ->
     originalEvent = $('li.event[data-event-id=' + @id + ']')
