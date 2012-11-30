@@ -1,5 +1,11 @@
 <ul class='contacts'>
   <% current_user.recent_contacts.each do |contact| %>
-    <li><%= link_to contact.name, edit_contact_path(contact) %></li>
+    <li>
+      <%= link_to "#{contact.name}:", edit_contact_path(contact) %>
+
+      <ul>
+        <li><%= contact.email_addresses.first.email %></li>
+        <li><%= contact.phone_numbers.first.number %></li>
+      </ul>
   <% end %>
 </ul>

@@ -19,4 +19,12 @@ class Contact < ActiveRecord::Base
   def name
     "#{first_name} #{last_name}"
   end
+
+  def main_email_address
+    email_addresses.where(:label => 'Main').first
+  end
+
+  def home_phone_number
+    phone_numbers.where(:label => 'Home').first
+  end
 end
