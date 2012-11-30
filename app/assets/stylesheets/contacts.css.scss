@@ -47,12 +47,32 @@
 }
 
 #sidebar-slideout {
+  a.cancel {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #999999;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   ul.actions {
     margin: 0;
 
     li {
       display: inline-block;
       margin: 0 10px 0 0;
+
+      &.waiting {
+        color: #999999;
+      }
+
+      &.saving {
+        display: none;
+        color: #999999;
+      }
 
       a.delete {
         color: #b32914;
@@ -109,7 +129,7 @@
               &:first-child {
                 font-weight: bold;
               }
-              
+
               span.label {
                 color: #999999;
               }

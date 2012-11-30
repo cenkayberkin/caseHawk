@@ -32,7 +32,7 @@
 
       <ul>
         <li>Addresses</li>
-        
+
         <% @contact.addresses.each do |address| %>
           <li>
             <span class='label'>[<%= address.label %>]</span>
@@ -92,10 +92,10 @@
   </div>
 
   <ul class='actions'>
-    <li><%= link_to 'Cancel', '#', :class => 'cancel' %></li>
-    <li><%= f.submit 'Save' %></li>
-
     <% if params[:action] == 'edit' %>
+      <li class='waiting'>Waiting for edits</li>
+      <li class='saving'>Saving</li>
+
       <li><%= link_to 'Delete', { :controller => 'contacts', :action => 'destroy', :id => @contact },
           :class => 'delete', :method => :delete, :remote => true,
           :confirm => 'Are you sure you want to delete this contact?' %></li>
