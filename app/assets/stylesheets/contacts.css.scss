@@ -2,153 +2,157 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#sidebar .section.contacts ul.contacts {
-  overflow-y: scroll;
-  max-height: 250px;
+#sidebar .section.contacts {
+  ul.contacts {
+    overflow-y: scroll;
+    max-height: 250px;
 
-  li {
-    margin: 0 0 5px 0;
-    padding: 0 0 5px 0;
-    border-bottom: 1px solid #eeeeee;
-
-    a {
-      display: block;
+    li {
       margin: 0 0 5px 0;
-    }
+      padding: 0 0 5px 0;
+      border-bottom: 1px solid #eeeeee;
 
-    ul {
-      margin: 0;
+      a {
+        display: block;
+        margin: 0 0 5px 0;
+      }
+
+      ul {
+        margin: 0;
+
+        li {
+          margin: 0;
+          padding: 0;
+          border: 0;
+        }
+      }
+    }
+  }
+
+  a.add-contact {
+    display: block;
+    margin: 10px auto 0 auto;
+    width: 150px;
+    text-transform: uppercase;
+    text-align: center; 
+    font-weight: bold;
+    color: #73A3D3;
+
+    &:hover {
+      color: #FFFFFF;
+      text-decoration: none;
+      background: #73A3D3;
+    }
+  }
+}
+
+#sidebar-slideout {
+  ul.actions {
+    margin: 0;
+
+    li {
+      display: inline-block;
+      margin: 0 10px 0 0;
+
+      a.delete {
+        color: #b32914;
+        font-weight: bold;
+      }
+    }
+  }
+
+  p.errors {
+    font-weight: bold;
+    color: red;
+  }
+
+  form {
+    ul.form-navigation {
+      margin: 20px 0;
 
       li {
-        margin: 0;
-        padding: 0;
-        border: 0;
+        display: inline-block;
+        margin: 0 5px 0 0;
+        color: #333;
+
+        a {
+          padding: 5px 7px;
+          color: #333333;
+          background: #eeeeee;
+          border-radius: 8px;
+          -moz-border-radius: 8px;
+          -webkit-border-radius: 8px;
+
+          &:hover, &.selected {
+            color: #ffffff;
+            text-decoration: none;
+            background: #73a3d3;
+          }
+        }
       }
     }
-  }
-}
 
-#sidebar .section.contacts a.add-contact {
-  display: block;
-  margin: 10px auto 0 auto;
-  width: 150px;
-  text-transform: uppercase;
-  text-align: center; 
-  font-weight: bold;
-  color: #73A3D3;
-}
-
-  #sidebar .section.contacts a.add-contact:hover {
-    color: #FFFFFF;
-    text-decoration: none;
-    background: #73A3D3;
-  }
-
-#sidebar-slideout form ul.form-navigation {
-  margin: 20px 0;
-}
-
-  #sidebar-slideout form ul.form-navigation li {
-    display: inline-block;
-    margin: 0 5px 0 0;
-    color: #333;
-  }
-
-    #sidebar-slideout form ul.form-navigation li a {
-      padding: 5px 7px;
-      color: #333333;
-      background: #eeeeee;
-      border-radius: 8px;
-      -moz-border-radius: 8px;
-      -webkit-border-radius: 8px;
-    }
-    
-      #sidebar-slideout form ul.form-navigation li a:hover,
-      #sidebar-slideout form ul.form-navigation li a.selected {
-        color: #ffffff;
-        text-decoration: none;
-        background: #73A3D3;
-      }
-
-#sidebar-slideout p.errors {
-  font-weight: bold;
-  color: red;
-}
-
-#sidebar-slideout form .fields {
-  margin: 0 0 10px 0;
-  padding: 10px;
-  background: #ffffff;
-  border: 1px solid #dddddd;
-}
-
-  #sidebar-slideout form .fields fieldset {
-  }
-  
-    #sidebar-slideout form .fields .contact fieldset {
-      overflow: hidden;
-    }
-
-    #sidebar-slideout form .fields fieldset ul li {
+    .fields {
       margin: 0 0 10px 0;
-    }
+      padding: 10px;
+      background: #ffffff;
+      border: 1px solid #dddddd;
 
-    #sidebar-slideout form .fields fieldset label {
-      display: block;
-      margin: 0 0 10px 0;
-    }
+      fieldset {
+        ul {
+          li {
+            margin: 0 0 10px 0;
+          }
+        }
 
-    #sidebar-slideout form .fields fieldset input.small {
-      width: 50px;
-    }
+        label {
+          display: block;
+          margin: 0 0 10px 0;
+        }
 
+        input.small {
+          width: 50px;
+        }
 
-    #sidebar-slideout form .fields fieldset input.medium {
-      width: 150px;
-    }
+        input.medium {
+          width: 150px;
+        }
 
-    #sidebar-slideout form .fields fieldset input[type=text],
-    #sidebar-slideout form .fields fieldset textarea {
-      padding: 5px;
-    }
+        input[type=text], textarea {
+          padding: 5px;
+        }
 
-    #sidebar-slideout form .fields fieldset .name {
-      overflow: hidden;
-      margin: 0 0 10px 0;
-    }
+        .name {
+          overflow: hidden;
+          margin: 0 0 10px 0;
 
-      #sidebar-slideout form .fields fieldset .name input {
-        float: left;
-        margin-right: 10px;
-      }
+          input {
+            float: left;
+            margin-right: 10px;
+          }
+        }
 
-      #sidebar-slideout form .fields fieldset .email-addresses,
-      #sidebar-slideout form .fields fieldset .phone-numbers {
-        float: left;
-        margin: 0 0 10px 0;
-      }
-      
-        #sidebar-slideout form .fields fieldset .email-addresses {
+        .email-addresses, .phone-numbers {
+          float: left;
+          margin: 0 0 10px 0;
+
+          .email-address, .phone-number {
+            display: block;
+          }
+        }
+
+        .email-addresses {
           margin-right: 10px;
           padding-right: 10px;
           border-right: 1px solid #dddddd;
         }
+      }
 
-        #sidebar-slideout form .fields fieldset .email-addresses .email-address,
-        #sidebar-slideout form .fields fieldset .phone-numbers .phone-number {
-          display: block;
+      .contact {
+        fieldset {
+          overflow: hidden;
         }
-
-#sidebar-slideout ul.actions {
-  margin: 0;
-}
-
-  #sidebar-slideout ul.actions li {
-    display: inline-block;
-    margin: 0 10px 0 0;
-  }
-
-    #sidebar-slideout ul.actions li a.delete {
-      color: #B32914;
-      font-weight: bold;
+      }
     }
+  }
+}
