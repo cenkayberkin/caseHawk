@@ -99,6 +99,32 @@
       border: 1px solid #dddddd;
 
       fieldset {
+        &.summary {
+          h3 {
+            color: #333333;
+          }
+
+          ul {
+            li {
+              &:first-child {
+                font-weight: bold;
+              }
+              
+              span.label {
+                color: #999999;
+              }
+            }
+          }
+
+          .contact {
+            overflow: hidden;
+          }
+        }
+
+        &.contact {
+          overflow: hidden;
+        }
+
         ul {
           li {
             margin: 0 0 10px 0;
@@ -145,12 +171,6 @@
           margin-right: 10px;
           padding-right: 10px;
           border-right: 1px solid #dddddd;
-        }
-      }
-
-      .contact {
-        fieldset {
-          overflow: hidden;
         }
       }
     }

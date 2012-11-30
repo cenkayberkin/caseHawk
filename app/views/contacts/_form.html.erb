@@ -1,6 +1,7 @@
 <%= form_for @contact, :remote => true do |f| %>
   <ul class='form-navigation'>
     <li><a data-section='summary' class='selected' href='#'>Summary</a></li>
+    <li><a data-section='basic' href='#'>Basic Information</a></li>
     <li><a data-section='contact' href='#'>Contact Information</a></li>
     <li><a data-section='addresses' href='#'>Addresses</a></li>
   </ul>
@@ -9,6 +10,41 @@
 
   <div class='fields'>
     <fieldset class='section summary'>
+      <h3><%= @contact.name %></h3>
+
+      <div class='contact'>
+        <ul class='email-addresses'>
+          <li>Email Addresses</li>
+
+          <% @contact.email_addresses.each do |email| %>
+            <li><span class='label'>[<%= email.label %>]</span> <%= mail_to email.email, email.email %></li>
+          <% end %>
+        </ul>
+
+        <ul class='phone-numbers'>
+          <li>Phone Numbers</li>
+
+          <% @contact.phone_numbers.each do |number| %>
+            <li><span class='label'>[<%= number.label %>]</span> <%= number.number %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <ul>
+        <li>Addresses</li>
+        
+        <% @contact.addresses.each do |address| %>
+          <li>
+            <span class='label'>[<%= address.label %>]</span>
+            <%= address.street %> <%= address.unit %> <%= address.city %>, <%= address.state %> <%= address.postal_code %>
+          </li>
+        <% end %>
+      </ul>
+
+      <p><%= @contact.comment %></p>
+    </fieldset>
+
+    <fieldset class='section basic hidden'>
       <%= f.label 'Name' %>
 
       <div class='name'>
