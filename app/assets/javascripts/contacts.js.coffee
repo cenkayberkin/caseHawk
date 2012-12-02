@@ -50,18 +50,14 @@ $ ->
 
   $(document).on 'blur', '#sidebar-slideout form input, #sidebar-slideout form textarea', ->
     $(@).parents('form').submit()
-    $('#sidebar-slideout ul.actions li.saving').css('display', 'inline')
-    $('#sidebar-slideout ul.actions li.waiting').hide()
 
   $(document).on 'ajax:success', '#sidebar-slideout form', (xhr, data, status) ->
     $('#sidebar ul.contacts').replaceWith(data)
-    $('#sidebar-slideout ul.actions li.saving').hide()
-    $('#sidebar-slideout ul.actions li.waiting').css('display', 'inline')
+    $('#sidebar-slideout ul.actions li.saved').css('display', 'inline-block').effect "highlight", 3000, ->
+      $(this).hide()
 
   $(document).on 'ajax:error', '#sidebar-slideout form', (xhr, data, status) ->
     $('#sidebar-slideout p.errors').text(JSON.parse(data.responseText).join(', '))
-    $('#sidebar-slideout ul.actions li.saving').hide()
-    $('#sidebar-slideout ul.actions li.waiting').css('display', 'inline')
 
   $(document).on 'ajax:success', '#sidebar-slideout form .actions a.delete', (xhr, data, status) ->
     $('#sidebar-slideout').hide('slide', { direction: 'right' })

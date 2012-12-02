@@ -93,12 +93,11 @@
 
   <ul class='actions'>
     <% if params[:action] == 'edit' %>
-      <li class='waiting'>Waiting for edits</li>
-      <li class='saving'>Saving</li>
-
       <li><%= link_to 'Delete', { :controller => 'contacts', :action => 'destroy', :id => @contact },
           :class => 'delete', :method => :delete, :remote => true,
           :confirm => 'Are you sure you want to delete this contact?' %></li>
+
+      <li class='saved'>Saved</li>
     <% end %>
   </div>
 <% end %>

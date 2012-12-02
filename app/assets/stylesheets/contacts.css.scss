@@ -11,21 +11,6 @@
       margin: 0 0 5px 0;
       padding: 0 0 5px 0;
       border-bottom: 1px solid #eeeeee;
-
-      a {
-        display: block;
-        margin: 0 0 5px 0;
-      }
-
-      ul {
-        margin: 0;
-
-        li {
-          margin: 0;
-          padding: 0;
-          border: 0;
-        }
-      }
     }
   }
 
@@ -69,7 +54,7 @@
         color: #999999;
       }
 
-      &.saving {
+      &.saved {
         display: none;
         color: #999999;
       }
