@@ -51,6 +51,9 @@ $ ->
   $(document).on 'blur', '#sidebar-slideout form input, #sidebar-slideout form textarea', ->
     $(@).parents('form').submit()
 
+  $(document).on 'change', '#sidebar-slideout form select', ->
+    $(@).parents('form').submit()
+
   $(document).on 'ajax:success', '#sidebar-slideout form', (xhr, data, status) ->
     $('#sidebar ul.contacts').replaceWith(data)
     $('#sidebar-slideout ul.actions li.saved').css('display', 'inline-block').effect "highlight", 3000, ->

@@ -1,3 +1,49 @@
 // Place all the styles related to the Cases controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#sidebar-slideout {
+  form {
+    .fields {
+      .section.case {
+        .status {
+          overflow: hidden;
+
+          .title {
+            float: left;
+            margin: 0 10px 0 0;
+          }
+
+          .current-status {
+            float: left;
+          }
+        }
+
+        .details, .important {
+          margin: 10px 0 0 0;
+          padding: 10px 0 0 0;
+          border-top: 1px solid #dddddd;
+
+          &.details {
+            overflow: hidden;
+
+            .case-number, .general {
+              float: left;
+              margin: 0 10px 0 0;
+            }
+          }
+
+          .referral, .legal-plans {
+            overflow: hidden;
+            margin: 0 0 10px 0;
+
+            label, select, input {
+              margin: 0 10px 0 0;
+              float: left;
+            }
+          }
+        }
+      }
+    }
+  }
+}

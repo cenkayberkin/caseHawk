@@ -12,9 +12,43 @@
     </fieldset>
 
     <fieldset class='section case hidden'>
-      <%= f.label :title %>
+      <div class='status'>
+        <div class='title'>
+          <%= f.label :title %>
+          <%= f.text_field :title, :placeholder => 'Case Title', :class => 'medium' %>
+        </div>
 
-      <%= f.text_field :title, :placeholder => 'Case Title', :class => 'medium' %>
+        <div class='current-status'>
+          <%= f.label :current_status %>
+          <%= f.select :current_status, options_for_select([ 'NFA' ], f.object.current_status) %>
+        </div>
+      </div>
+
+      <div class='details'>
+        <div class='case-number'>
+          <%= f.label :case_number_details %>
+          <%= f.text_field :case_number_details, :class => 'medium' %>
+        </div>
+
+        <div class='general'>
+          <%= f.label :general_case_details %>
+          <%= f.text_field :general_case_details, :class => 'medium' %>
+        </div>
+      </div>
+
+      <div class='important'>
+        <div class='referral'>
+          <%= f.label :referral %>
+          <%= f.select :referral, options_for_select([ 'None', 'KCBA', 'Google', 'Sadick', 'Personal', 'Other' ], f.object.referral) %>
+          <%= f.text_field :referral_details, :class => 'medium' %>
+        </div>
+
+        <div class='legal-plans'>
+          <%= f.label :legal_plan %>
+          <%= f.select :legal_plan, options_for_select([ 'None', 'ARAG', 'Hyatt', 'PPL', 'CLC', 'Other' ], f.object.referral) %>
+          <%= f.text_field :legal_plan, :class => 'medium' %>
+        </div>
+      </div>
     </fieldset>
 
     <fieldset class='section contacts hidden'>
