@@ -42,7 +42,7 @@ class CasesController < ApplicationController
     @case = Case.find(params[:id])
 
     respond_to do |format|
-      if @case.save
+      if @case.update_attributes(params[:case])
         format.html do
           if request.xhr?
             render :partial => 'cases/recent'
