@@ -7,8 +7,8 @@ $ ->
     $(@).parents('ul').find('a').removeClass('selected')
     $(@).addClass('selected')
 
-    $('#sidebar .section').hide()
-    $('#sidebar').find('.section.' + $(@).data('section')).show()
+    $('#sidebar .section').addClass('hidden')
+    $('#sidebar').find('.section.' + $(@).data('section')).removeClass('hidden')
 
     return false
 
@@ -55,7 +55,7 @@ $ ->
     $(@).parents('form').submit()
 
   $(document).on 'ajax:success', '#sidebar-slideout form', (xhr, data, status) ->
-    $('#sidebar ul.contacts').replaceWith(data)
+    $('#sidebar .section:not(.hidden) ul').replaceWith(data)
     $('#sidebar-slideout ul.actions li.saved').css('display', 'inline-block').effect "highlight", 3000, ->
       $(this).hide()
 
