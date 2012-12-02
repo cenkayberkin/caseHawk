@@ -5,9 +5,11 @@ class Contact < ActiveRecord::Base
                   :email_addresses_attributes
 
   belongs_to :user
+  has_many   :case_contacts
   has_many   :phone_numbers
   has_many   :email_addresses
   has_many   :addresses, :as => :addressable
+  has_many   :cases, :through => :case_contacts
 
   validates :first_name, :presence => true
   validates :last_name,  :presence => true

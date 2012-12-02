@@ -26,7 +26,7 @@ $ ->
 
   # Clicking 'Add Contact' does a GET request using the URL from the link
   # clicked, then puts the result into the slide-out & shows it.
-  $(document).on 'click', '#sidebar a.add-contact, #sidebar ul.contacts a', ->
+  $(document).on 'click', '#sidebar a.add, #sidebar ul.contacts li a, #sidebar ul.cases li a', ->
     $.get $(@).attr('href'), (result) ->
       $('#sidebar-slideout').html(result).show('slide', { direction: 'right' })
 

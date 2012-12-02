@@ -1,0 +1,5 @@
+<ul class='cases'>
+  <% current_user.recent_cases.each do |c| %>
+    <li><%= link_to c.title, edit_case_path(c) %></li>
+  <% end %>
+</ul>

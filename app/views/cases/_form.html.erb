@@ -1,0 +1,33 @@
+<%= form_for @case, :remote => true do |f| %>
+  <ul class='form-navigation'>
+    <li><a data-section='summary' class='selected' href='#'>Summary</a></li>
+    <li><a data-section='case' href='#'>Case Information</a></li>
+    <li><a data-section='contacts' href='#'>Contacts</a></li>
+  </ul>
+
+  <p class='errors'></p>
+
+  <div class='fields'>
+    <fieldset class='section summary'>
+    </fieldset>
+
+    <fieldset class='section case hidden'>
+      <%= f.label :title %>
+
+      <%= f.text_field :title, :placeholder => 'Case Title', :class => 'medium' %>
+    </fieldset>
+
+    <fieldset class='section contacts hidden'>
+    </fieldset>
+  </div>
+
+  <ul class='actions'>
+    <% if params[:action] == 'edit' %>
+      <li><%= link_to 'Delete', { :controller => 'cases', :action => 'destroy', :id => @case },
+          :class => 'delete', :method => :delete, :remote => true,
+          :confirm => 'Are you sure you want to delete this case?' %></li>
+
+      <li class='saved'>Saved</li>
+    <% end %>
+  </div>
+<% end %>
