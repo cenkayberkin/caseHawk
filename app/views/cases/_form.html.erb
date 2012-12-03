@@ -9,6 +9,18 @@
 
   <div class='fields'>
     <fieldset class='section summary'>
+      <h3><%= @case.title %> (<%= @case.current_status %>)</h3>
+
+      <p><strong>Case Number Details:</strong> <%= @case.case_number_details %></p>
+      <p><strong>General Case Details:</strong> <%= @case.general_case_details %></p>
+
+      <div class='important'>
+        <p><strong>Referral:</strong> <%= @case.referral %></p>
+        <p><%= @case.referral_details %></p>
+
+        <p><strong>Legal Plan:</strong> <%= @case.legal_plan %></p>
+        <p><%= @case.legal_plan_details %></p>
+      </div>
     </fieldset>
 
     <fieldset class='section case hidden'>
@@ -45,8 +57,8 @@
 
         <div class='legal-plans'>
           <%= f.label :legal_plan %>
-          <%= f.select :legal_plan, options_for_select([ 'None', 'ARAG', 'Hyatt', 'PPL', 'CLC', 'Other' ], f.object.referral) %>
-          <%= f.text_field :legal_plan, :class => 'medium' %>
+          <%= f.select :legal_plan, options_for_select([ 'None', 'ARAG', 'Hyatt', 'PPL', 'CLC', 'Other' ], f.object.legal_plan) %>
+          <%= f.text_field :legal_plan_details, :class => 'medium' %>
         </div>
       </div>
     </fieldset>

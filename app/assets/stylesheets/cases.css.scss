@@ -5,6 +5,18 @@
 #sidebar-slideout {
   form {
     .fields {
+      strong {
+        font-weight: bold;
+      }
+
+      .section.summary {
+        .important {
+          margin: 10px 0 0 0;
+          padding: 10px 0 0 0;
+          border-top: 1px solid #dddddd;
+        }
+      }
+
       .section.case {
         .status {
           overflow: hidden;
