@@ -16,9 +16,9 @@ $ ->
     $.each contacts, (index, el) ->
       return if validates == false
 
-      validates = $(el).find('.role').val() && $(el).find('.contact_id').val()
+      validates = false if $(el).find('input.role').val() == '' or $(el).find('input.contact_id').val() == ''
 
-    validates
+    return validates
 
   $(document).on 'click', '#sidebar-nav ul li a', ->
     $(@).parents('ul').find('a').removeClass('selected')

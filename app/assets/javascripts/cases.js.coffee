@@ -9,6 +9,6 @@ $ ->
       source: '/contacts.json'
       select: (event, ui) ->
         $(@).val(ui.item.label)
-        $(@).parent().find('input[type=hidden]').val(ui.item.value)
+        $(@).parents('li.contact').find('input.contact_id').val(ui.item.value)
 
         return false
