@@ -1,0 +1,19 @@
+<li class='contact'>
+  <%= f.hidden_field :contact_id, :class => 'contact_id' %>
+
+  <div class='role'>
+    <%= f.label 'Role' %>
+
+    <%= f.text_field :role, :placeholder => 'Role', :class => 'role small' %>
+  </div>
+
+  <div class='name'>
+    <%= f.label 'Contact' %>
+
+    <% if f.object.new_record? %>
+      <%= text_field_tag 'contact_name', nil, :placeholder => 'Name', :class => 'medium' %>
+    <% else %>
+      <%= text_field_tag 'contact_name', f.object.contact.name, :placeholder => 'Name', :class => 'medium' %>
+    <% end %>
+  </div>
+</li>

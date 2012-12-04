@@ -5,15 +5,33 @@
 #sidebar-slideout {
   form {
     .fields {
+      fieldset {
+        max-height: 300px;
+        overflow-y: scroll;
+      }
+
       strong {
         font-weight: bold;
       }
 
       .section.summary {
-        .important {
-          margin: 10px 0 0 0;
-          padding: 10px 0 0 0;
-          border-top: 1px solid #dddddd;
+        overflow: hidden;
+
+        .info {
+          float: left;
+          margin: 0 10px 0 0;
+          padding: 0 10px 0 0;
+          border-right: 1px solid #dddddd;
+
+          .important {
+            margin: 10px 0 0 0;
+            padding: 10px 0 0 0;
+            border-top: 1px solid #dddddd;
+          }
+        }
+
+        .contacts {
+          float: left;
         }
       }
 
@@ -51,6 +69,24 @@
 
             label, select, input {
               margin: 0 10px 0 0;
+              float: left;
+            }
+          }
+        }
+      }
+
+      .section.contacts {
+        ul {
+          li.contact {
+            overflow: hidden;
+            border-bottom: 1px solid #dddddd;
+
+            .role {
+              float: left;
+              margin: 0 10px 0 0;
+            }
+
+            .name {
               float: left;
             }
           }

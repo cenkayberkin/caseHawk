@@ -12,17 +12,33 @@
       <% if @case.new_record? %>
         <p>You will see a summary once the case is created.</p>
       <% else %>
-        <h3><%= @case.title %> (<%= @case.current_status %>)</h3>
+        <div class='info'>
+          <h3><%= @case.title %> (<%= @case.current_status %>)</h3>
 
-        <p><strong>Case Number Details:</strong> <%= @case.case_number_details %></p>
-        <p><strong>General Case Details:</strong> <%= @case.general_case_details %></p>
+          <p><strong>Case Number Details:</strong> <%= @case.case_number_details %></p>
+          <p><strong>General Case Details:</strong> <%= @case.general_case_details %></p>
 
-        <div class='important'>
-          <p><strong>Referral:</strong> <%= @case.referral %></p>
-          <p><%= @case.referral_details %></p>
+          <div class='important'>
+            <p><strong>Referral:</strong> <%= @case.referral %></p>
+            <p><%= @case.referral_details %></p>
 
-          <p><strong>Legal Plan:</strong> <%= @case.legal_plan %></p>
-          <p><%= @case.legal_plan_details %></p>
+            <p><strong>Legal Plan:</strong> <%= @case.legal_plan %></p>
+            <p><%= @case.legal_plan_details %></p>
+          </div>
+        </div>
+
+        <div class='contacts'>
+          <ul>
+            <% if @case.case_contacts.empty? || @case.case_contacts.first.new_record? %>
+              <li>No contacts associated with this case.</li>
+            <% else %>
+              <li>Contacts</li>
+
+              <% @case.case_contacts.each do |cc| %>
+                <li><strong><%= cc.role %>:</strong> <%= cc.contact.name %></li>
+              <% end %>
+            <% end %>
+          </ul>
         </div>
       <% end %>
     </fieldset>
@@ -68,6 +84,13 @@
     </fieldset>
 
     <fieldset class='section contacts hidden'>
+      <ul>
+        <li><%= link_to_add_fields 'Add contact', f, :case_contacts, 'contact_fields' %></li>
+
+        <%= f.fields_for :case_contacts do |builder| %>
+          <%= render :partial => 'contact_fields', :locals => { :f => builder } %>
+        <% end %>
+      </ul>
     </fieldset>
   </div>
 

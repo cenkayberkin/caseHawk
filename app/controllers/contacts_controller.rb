@@ -1,6 +1,16 @@
 class ContactsController < ApplicationController
   before_filter :authenticate_user!
 
+  def index
+    @contacts = current_user.contacts
+
+    respond_to do |format|
+      format.json do
+        render :json => @contacts.map { |c| { value: c.id, label: c.first_name + ' ' + c.last_name } }
+      end
+    end
+  end
+
   def new
     @contact = Contact.new
     @contact.phone_numbers.build
@@ -14,7 +24,7 @@ class ContactsController < ApplicationController
 
   def edit
     @contact = Contact.find(params[:id])
-    
+
     respond_to do |format|
       format.html { render :action => :edit, :layout => false }
     end
@@ -25,9 +35,12 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html do
+        format.json do
           if request.xhr?
-            render :partial => 'contacts/recent'
+            render :json => {
+              recent: render_to_string(:partial => 'recent', :formats => [ :html ]),
+              html: render_to_string(:action => 'new', :layout => false, :formats => [ :html ])
+            }
           end
         end
       else
@@ -45,9 +58,11 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
-        format.html do
+        format.json do
           if request.xhr?
-            render :partial => 'contacts/recent'
+            render :json => {
+              recent: render_to_string(:partial => 'recent', :formats => [ :html ])
+            }
           end
         end
       else

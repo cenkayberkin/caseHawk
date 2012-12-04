@@ -3,6 +3,23 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
+  formValidates = ->
+    validates = true
+    validates = validateCaseContacts()
+
+    return validates
+
+  validateCaseContacts = ->
+    contacts  = $('.section.contacts').find('li.contact')
+    validates = true
+
+    $.each contacts, (index, el) ->
+      return if validates == false
+
+      validates = $(el).find('.role').val() && $(el).find('.contact_id').val()
+
+    validates
+
   $(document).on 'click', '#sidebar-nav ul li a', ->
     $(@).parents('ul').find('a').removeClass('selected')
     $(@).addClass('selected')
@@ -49,13 +66,15 @@ $ ->
     return false
 
   $(document).on 'blur', '#sidebar-slideout form input, #sidebar-slideout form textarea', ->
-    $(@).parents('form').submit()
+    $(@).parents('form').submit() if formValidates()
 
   $(document).on 'change', '#sidebar-slideout form select', ->
-    $(@).parents('form').submit()
+    $(@).parents('form').submit() if formValidates()
 
   $(document).on 'ajax:success', '#sidebar-slideout form', (xhr, data, status) ->
-    $('#sidebar .section:not(.hidden) ul').replaceWith(data)
+    $('#sidebar .section:not(.hidden) ul').replaceWith(data.recent)
+    $('#sidebar-slideout').html(data.html) if data.html
+
     $('#sidebar-slideout ul.actions li.saved').css('display', 'inline-block').effect "highlight", 3000, ->
       $(this).hide()
 
@@ -64,4 +83,4 @@ $ ->
 
   $(document).on 'ajax:success', '#sidebar-slideout form .actions a.delete', (xhr, data, status) ->
     $('#sidebar-slideout').hide('slide', { direction: 'right' })
-    $('#sidebar ul.contacts').replaceWith(data)
+    $('#sidebar .section:not(.hidden) ul').replaceWith(data)
