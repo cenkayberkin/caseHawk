@@ -16,7 +16,8 @@ $ ->
     $.each contacts, (index, el) ->
       return if validates == false
 
-      validates = false if $(el).find('input.role').val() == '' or $(el).find('input.contact_id').val() == ''
+      validates = false if $(el).find('input.role').val() == ''
+      validates = false if $(el).find('input.contact_id').val() == ''
 
     return validates
 
