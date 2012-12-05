@@ -1,0 +1,183 @@
+// Place all the styles related to the Contacts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#sidebar .section {
+  ul.contacts {
+    overflow-y: scroll;
+    max-height: 250px;
+
+    li {
+      margin: 0 0 5px 0;
+      padding: 0 0 5px 0;
+      border-bottom: 1px solid #eeeeee;
+    }
+  }
+
+  a.add {
+    display: block;
+    margin: 10px auto 0 auto;
+    width: 150px;
+    text-transform: uppercase;
+    text-align: center; 
+    font-weight: bold;
+    color: #73A3D3;
+
+    &:hover {
+      color: #FFFFFF;
+      text-decoration: none;
+      background: #73A3D3;
+    }
+  }
+}
+
+#sidebar-slideout {
+  a.cancel {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #999999;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  ul.actions {
+    margin: 0;
+
+    li {
+      display: inline-block;
+      margin: 0 10px 0 0;
+
+      &.waiting {
+        color: #999999;
+      }
+
+      &.saved {
+        display: none;
+        color: #999999;
+      }
+
+      a.delete {
+        color: #b32914;
+        font-weight: bold;
+      }
+    }
+  }
+
+  p.errors {
+    font-weight: bold;
+    color: red;
+  }
+
+  form {
+    ul.form-navigation {
+      margin: 20px 0;
+
+      li {
+        display: inline-block;
+        margin: 0 5px 0 0;
+        color: #333;
+
+        a {
+          padding: 5px 7px;
+          color: #333333;
+          background: #eeeeee;
+          border-radius: 8px;
+          -moz-border-radius: 8px;
+          -webkit-border-radius: 8px;
+
+          &:hover, &.selected {
+            color: #ffffff;
+            text-decoration: none;
+            background: #73a3d3;
+          }
+        }
+      }
+    }
+
+    .fields {
+      margin: 0 0 10px 0;
+      padding: 10px;
+      background: #ffffff;
+      border: 1px solid #dddddd;
+
+      fieldset {
+        &.summary {
+          h3 {
+            color: #333333;
+          }
+
+          ul {
+            li {
+              &:first-child {
+                font-weight: bold;
+              }
+
+              span.label {
+                color: #999999;
+              }
+            }
+          }
+
+          .contact {
+            overflow: hidden;
+          }
+        }
+
+        &.contact {
+          overflow: hidden;
+        }
+
+        ul {
+          li {
+            margin: 0 0 10px 0;
+          }
+        }
+
+        label {
+          display: block;
+          margin: 0 0 10px 0;
+        }
+
+        input.small {
+          width: 50px;
+        }
+
+        input.medium {
+          width: 150px;
+        }
+
+        input[type=text], textarea {
+          padding: 5px;
+        }
+
+        .name {
+          overflow: hidden;
+          margin: 0 0 10px 0;
+
+          input {
+            float: left;
+            margin-right: 10px;
+          }
+        }
+
+        .email-addresses, .phone-numbers {
+          float: left;
+          margin: 0 0 10px 0;
+
+          .email-address, .phone-number {
+            display: block;
+          }
+        }
+
+        .email-addresses {
+          margin-right: 10px;
+          padding-right: 10px;
+          border-right: 1px solid #dddddd;
+        }
+      }
+    }
+  }
+}

@@ -12,11 +12,11 @@
     <%= stylesheet_link_tag 'reset-fonts.css', 'application.css', 
                             'event-search.css',
                             'reveal.css',
-                            'jquery-ui-custom/jquery-ui-1.7.2.custom.css', 
+                            'ui-lightness/jquery-ui-1.9.0.custom.min.css', 
                             'jquery-ui-tweaks.css',
-                            'jquery.autocomplete.css', 
                             'ui.slider.extras.css',
-                            'event-search' 
+                            'event-search',
+                            'contacts', 'cases'
     %>
 		<%= yield :head %>
   </head>
@@ -33,23 +33,27 @@
     <div id="page">
       <div id="content">
         <div id="main">
-
           <%= yield %>
-
         </div>
+
+        <div id="sidebar-nav">
+          <%= yield :sidebar_nav %>
+        </div>
+
+        <div id="sidebar-slideout">
+        </div>
+
         <div id="sidebar">
           <% if flash[:notice] || flash[:error] %>
             <div id="notices" class="sidebar_block">
               <%= flash_notices %>
             </div>
           <% end %>
+
           <%= yield :sidebar %>
-          <p class="copyright">
-            Copyright &copy; 2006 &ndash; <%= l(Date.today, :format => :year) %> <a href="http://lawfortress.com">CaseHawk by Lawfortress LLC</a>            
-          </p>
         </div>
+        
         <div class="something">
-          
         </div>        
       </div>
     </div>
@@ -57,29 +61,9 @@
     <div id="event-modal" class="reveal-modal">
       <a class="close-reveal-modal">&#215;</a>
     
-      <div class='content'>
+      <div class='content'></div>
     </div>
 
-    <%= javascript_include_tag 'vendor/jquery-1.7.1.min',
-                               'vendor/jquery.reveal',
-                               'vendor/jquery.jeditable.min',
-                               'vendor/jquery-ui-1.8.22.custom.min',
-                               'vendor/jquery.timepicker',
-                               'vendor/jquery.form_prompt',
-                               'vendor/jquery.jeditable.timepicker',
-                               'vendor/jquery.pageless',
-                               'vendor/jquery.jeditable.datepicker',
-                               'vendor/jquery.autocomplete.min',
-                               'vendor/jquery.selecttouislider',
-                               'vendor/yui_datemath',
-                               'vendor/strftime-min',
-                               'application',
-                               'event',
-                               'day',
-                               'week',
-                               'calendar',
-                               'new_event_form',
-                               'calendar_interface',
-                               'search' %>
+    <%= javascript_include_tag :application %>
   </body>
 </html>

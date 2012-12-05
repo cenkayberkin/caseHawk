@@ -2,14 +2,14 @@ $ ->
   $('#search_tag').submit ->
     false
 
-  $('#cal_search #event_tag_search').autocomplete('/tags?by_taggable_type=Event', {
-    autoFill: false
-    minChars: 0
-  }).result (selectedValue) ->
-    (new Calendar).loadAgenda(selectedValue)
+  $('#cal_search #event_tag_search').autocomplete
+    source: '/tags?by_taggable_type=Event'
+    minLength: 0
+    select: (ev, ui) ->
+      (new Calendar).loadAgenda(ui.item.value)
 
-    $('#mini_cal table').slideUp()
-    $('#new_event').children(':gt(0)').slide()
+      $('#mini_cal table').slideUp()
+      $('#new_event').children(':gt(0)').slideDown()
 
   $('#mini_cal').click ->
     $('#mini_cal table').show()

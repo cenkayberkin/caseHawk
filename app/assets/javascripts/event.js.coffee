@@ -22,8 +22,11 @@ class Event
       draw:    @draw
     }
 
-    record.start = new Date(record.starts_at)
-    record.end   = if Date.parse(record.ends_at) then new Date(record.ends_at) else DateMath.add(record.start, 'minutes', 15)
+    start        = new Date(record.starts_at)
+    record.start = new Date(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate(), start.getUTCHours(), start.getUTCMinutes(), start.getUTCSeconds())
+    
+    end        = if Date.parse(record.ends_at) then new Date(record.ends_at) else DateMath.add(record.start, 'minutes', 15)
+    record.end = new Date(end.getUTCFullYear(), end.getUTCMonth(), end.getUTCDate(), end.getUTCHours(), end.getUTCMinutes(), end.getUTCSeconds())
 
     @cachedInstances[record.id] = record
 
@@ -40,7 +43,7 @@ class Event
       $.each events, (event) ->
         callback(event)
 
-  updateParams: (options) ->
+  @updateParams: (options) ->
     params = {}
 
     $.each options, (key, value) ->
@@ -50,14 +53,14 @@ class Event
 
     return params
 
-  update: (event, options, callback) ->
+  @update: (event, options, callback) ->
     event    = new Event($(event))
     callback = (->) if typeof(callback) == undefined
 
-    $.post event.url, @updateParams(options), (result) ->
+    $.post event.url, Event.updateParams(options), (result) ->
       event = new Event(result, 'skipCache')
       callback.apply(event, [ event, result ])
-    , json
+    , 'json'
 
   draw: (html) ->
     originalEvent = $('li.event[data-event-id=' + @id + ']')

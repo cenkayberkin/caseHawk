@@ -4,10 +4,54 @@
   <%= stylesheet_link_tag 'event-details' %>
 <% end %>
 
+<% content_for :sidebar_nav do %>
+  <ul>
+    <li><a data-section='calendar' class='selected' href="#">Calendar</a></li>
+    <li><a data-section='contacts' href="#">Contacts</a></li>
+    <li><a data-section='cases' href="#">Cases</a></li>
+  </ul>
+<% end %>
+
 <% content_for :sidebar do %>
-  <%= render :partial => 'cal_search' %>
-  <%= render :partial => 'mini_cal' %>
-  <%= render :partial => 'events/new_form' %>
+  <div class='section calendar'>
+    <%= render :partial => 'cal_search' %>
+    <%= render :partial => 'mini_cal' %>
+    <%= render :partial => 'events/new_form' %>
+  </div>
+
+  <div class='section contacts hidden'>
+    <div class='sidebar_block'>
+      <form>
+        <div class='form_field search_field_tag'>
+          <label for='search_tag' class='search_field_tag'>Search</label>
+          <input type='text' value='' size='30' placeholder='Start typing to search contacts...' autocomplete='OFF'>
+        </div>
+      </form>
+    </div>
+
+    <div class='sidebar_block'>
+      <%= render :partial => 'contacts/recent' %>
+    </div>
+
+    <%= link_to 'Add contact', new_contact_path, :class => 'add' %>
+  </div>
+
+  <div class='section cases hidden'>
+    <div class='sidebar_block'>
+      <form>
+        <div class='form_field search_field_tag'>
+          <label for='search_tag' class='search_field_tag'>Search</label>
+          <input type='text' value='' size='30' placeholder='Start typing to search contacts...' autocomplete='OFF'>
+        </div>
+      </form>
+    </div>
+    
+    <div class='sidebar_block'>
+      <%= render :partial => 'cases/recent' %>
+    </div>
+
+    <%= link_to 'Add case', new_case_path, :class => 'add' %>
+  </div>
 <% end %>
 
 <div id="week">

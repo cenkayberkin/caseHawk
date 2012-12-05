@@ -1,3 +1,21 @@
+#= require vendor/jquery-1.7.1.min
+#= require vendor/jquery-ui-1.9.0.custom.min
+#= require vendor/jquery.reveal
+#= require vendor/jquery.jeditable
+#= require vendor/jquery.jeditable.timepicker
+#= require vendor/jquery.jeditable.datepicker
+#= require vendor/jquery.timepicker
+#= require vendor/jquery.form_prompt
+#= require vendor/jquery.pageless
+#= require vendor/jquery.selecttouislider
+#= require vendor/yui_datemath
+#= require vendor/strftime-min
+
+#= require jquery_ujs
+
+#= require_self
+#= require_tree
+
 window.debug = ->
   console.debug.apply(console, arguments)
 

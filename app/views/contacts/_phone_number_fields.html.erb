@@ -1,0 +1,5 @@
+<li class='phone-number'>
+  <%= f.text_field :number, :placeholder => 'Phone Number', :class => 'medium' %>
+
+  <%= f.select :label, options_for_select([ 'Cell', 'Home', 'Work', 'Fax' ], f.object.label) %>
+</li>

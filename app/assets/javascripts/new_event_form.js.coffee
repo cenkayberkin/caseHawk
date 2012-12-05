@@ -132,14 +132,13 @@ $ ->
         $('.event_field #event_remind').removeAttr 'disabled'
         $('.event_field_remind').removeClass 'inactive'
 
-  $('#tag_entry').autocomplete(tag_url,
-    matchContains: true
-    autoFill: false
-    minChars: 0
-  ).result((selectedValue) ->
-    tagResult selectedValue
-  ).change ->
-    tagResult $(this).val()
+  $('#tag_entry').autocomplete
+    source: tag_url
+    minLength: 0
+    select: (ev, ui) ->
+      tagResult ui.item.value
+    change: ->
+      tagResult $(@).val()
 
   $('form#new_event').reset ->
     $(this).find('ul.tags').find('li').remove()

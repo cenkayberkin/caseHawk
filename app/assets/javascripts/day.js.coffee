@@ -93,11 +93,18 @@ class Day
       if tooLate.length > 0
         shouldHide.hide()
 
-        $(box).append $('<li></li>').addClass('event-overflow').addClass('overflow').css('top', lastPosition + 'px').append($('<a></a>').html((if shouldHide.length is 1 then (shouldHide.length) + ' events &raquo;' else (shouldHide.length) + ' more &raquo;')).click( ->
-          $(@).parents('.collision_box').css({ height: 'auto' }).addClass('collision_box_overflow').find('.event').show().end().end().hide()
+        top = parseInt($(box).find('.event:first').css('top')) + lastPosition
+        li  = $("<li class='event-overflow overflow' style='top: " + top + "px'></li>")
+        a   = $("<a></a>").html((if shouldHide.length is 1 then (shouldHide.length) + ' events &raquo;' else (shouldHide.length) + ' more &raquo;'))
+
+        $(box).append(li.append(a))
+
+        $(a).click ->
+          $(@).parents('.collision_box').css({ height: 'auto' }).addClass('collision_box_overflow')
+          $(@).parents('.collision_box').find('li.event').show()
+          $(@).hide()
 
           false
-        ))
 
   top: (event) ->
     return 60 * event.start.getHours() + event.start.getMinutes()

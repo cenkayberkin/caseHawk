@@ -1,0 +1,97 @@
+// Place all the styles related to the Cases controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#sidebar-slideout {
+  form {
+    .fields {
+      fieldset {
+        max-height: 300px;
+        overflow-y: scroll;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+
+      .section.summary {
+        overflow: hidden;
+
+        .info {
+          float: left;
+          margin: 0 10px 0 0;
+          padding: 0 10px 0 0;
+          border-right: 1px solid #dddddd;
+
+          .important {
+            margin: 10px 0 0 0;
+            padding: 10px 0 0 0;
+            border-top: 1px solid #dddddd;
+          }
+        }
+
+        .contacts {
+          float: left;
+        }
+      }
+
+      .section.case {
+        .status {
+          overflow: hidden;
+
+          .title {
+            float: left;
+            margin: 0 10px 0 0;
+          }
+
+          .current-status {
+            float: left;
+          }
+        }
+
+        .details, .important {
+          margin: 10px 0 0 0;
+          padding: 10px 0 0 0;
+          border-top: 1px solid #dddddd;
+
+          &.details {
+            overflow: hidden;
+
+            .case-number, .general {
+              float: left;
+              margin: 0 10px 0 0;
+            }
+          }
+
+          .referral, .legal-plans {
+            overflow: hidden;
+            margin: 0 0 10px 0;
+
+            label, select, input {
+              margin: 0 10px 0 0;
+              float: left;
+            }
+          }
+        }
+      }
+
+      .section.contacts {
+        ul {
+          li.contact {
+            overflow: hidden;
+            border-bottom: 1px solid #dddddd;
+
+            .role {
+              float: left;
+              margin: 0 10px 0 0;
+            }
+
+            .name {
+              float: left;
+            }
+          }
+        }
+      }
+    }
+  }
+}

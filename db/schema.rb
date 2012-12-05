@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726220501) do
+ActiveRecord::Schema.define(:version => 20121202192934) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,47 @@ ActiveRecord::Schema.define(:version => 20120726220501) do
     t.datetime "deleted_at"
     t.integer  "completed_by"
     t.integer  "version"
+  end
+
+  create_table "case_contacts", :force => true do |t|
+    t.integer  "case_id"
+    t.integer  "contact_id"
+    t.string   "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "cases", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "current_status"
+    t.text     "case_number_details"
+    t.text     "general_case_details"
+    t.string   "referral"
+    t.text     "referral_details"
+    t.string   "legal_plan"
+    t.text     "legal_plan_details"
+    t.string   "important_date"
+    t.text     "important_date_details"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.text     "comment"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
+  create_table "email_addresses", :force => true do |t|
+    t.string   "email"
+    t.string   "label"
+    t.integer  "contact_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "event_versions", :force => true do |t|
@@ -104,6 +145,14 @@ ActiveRecord::Schema.define(:version => 20120726220501) do
     t.string   "name",       :limit => 50
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
+  end
+
+  create_table "phone_numbers", :force => true do |t|
+    t.string   "number"
+    t.string   "label"
+    t.integer  "contact_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "recent_tags", :force => true do |t|

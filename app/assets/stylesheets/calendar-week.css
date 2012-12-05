@@ -13,7 +13,9 @@
   padding: 0.5em 0; 
   background: #EEE url('/assets/loading.gif') no-repeat center center;
 }
-.week .viewport {
+
+table.week.week-events {
+  overflow: hidden;
 }
 
 h2.week-date {
@@ -217,8 +219,10 @@ li.event.allday .event-title { width: auto; }
   width: 100%; 
 }
 #sidebar {
+  overflow-y: scroll;
   top: 80px; 
-  right: 10px; 
+  right: 25px; 
+  bottom: 10px;
 }
 #footer {
   bottom: 0; 

@@ -1,0 +1,106 @@
+<%= form_for @case, :remote => true do |f| %>
+  <ul class='form-navigation'>
+    <li><a data-section='summary' class='selected' href='#'>Summary</a></li>
+    <li><a data-section='case' href='#'>Case Information</a></li>
+    <li><a data-section='contacts' href='#'>Contacts</a></li>
+  </ul>
+
+  <p class='errors'></p>
+
+  <div class='fields'>
+    <fieldset class='section summary'>
+      <% if @case.new_record? %>
+        <p>You will see a summary once the case is created.</p>
+      <% else %>
+        <div class='info'>
+          <h3><%= @case.title %> (<%= @case.current_status %>)</h3>
+
+          <p><strong>Case Number Details:</strong> <%= @case.case_number_details %></p>
+          <p><strong>General Case Details:</strong> <%= @case.general_case_details %></p>
+
+          <div class='important'>
+            <p><strong>Referral:</strong> <%= @case.referral %></p>
+            <p><%= @case.referral_details %></p>
+
+            <p><strong>Legal Plan:</strong> <%= @case.legal_plan %></p>
+            <p><%= @case.legal_plan_details %></p>
+          </div>
+        </div>
+
+        <div class='contacts'>
+          <ul>
+            <% if @case.case_contacts.empty? || @case.case_contacts.first.new_record? %>
+              <li>No contacts associated with this case.</li>
+            <% else %>
+              <li>Contacts</li>
+
+              <% @case.case_contacts.each do |cc| %>
+                <li><strong><%= cc.role %>:</strong> <%= cc.contact.name %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </fieldset>
+
+    <fieldset class='section case hidden'>
+      <div class='status'>
+        <div class='title'>
+          <%= f.label :title %>
+          <%= f.text_field :title, :placeholder => 'Case Title', :class => 'medium' %>
+        </div>
+
+        <div class='current-status'>
+          <%= f.label :current_status %>
+          <%= f.select :current_status, options_for_select([ 'NFA' ], f.object.current_status) %>
+        </div>
+      </div>
+
+      <div class='details'>
+        <div class='case-number'>
+          <%= f.label :case_number_details %>
+          <%= f.text_field :case_number_details, :class => 'medium' %>
+        </div>
+
+        <div class='general'>
+          <%= f.label :general_case_details %>
+          <%= f.text_field :general_case_details, :class => 'medium' %>
+        </div>
+      </div>
+
+      <div class='important'>
+        <div class='referral'>
+          <%= f.label :referral %>
+          <%= f.select :referral, options_for_select([ 'None', 'KCBA', 'Google', 'Sadick', 'Personal', 'Other' ], f.object.referral) %>
+          <%= f.text_field :referral_details, :class => 'medium' %>
+        </div>
+
+        <div class='legal-plans'>
+          <%= f.label :legal_plan %>
+          <%= f.select :legal_plan, options_for_select([ 'None', 'ARAG', 'Hyatt', 'PPL', 'CLC', 'Other' ], f.object.legal_plan) %>
+          <%= f.text_field :legal_plan_details, :class => 'medium' %>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class='section contacts hidden'>
+      <ul>
+        <li><%= link_to_add_fields 'Add contact', f, :case_contacts, 'contact_fields' %></li>
+
+        <%= f.fields_for :case_contacts do |builder| %>
+          <%= render :partial => 'contact_fields', :locals => { :f => builder } %>
+        <% end %>
+      </ul>
+    </fieldset>
+  </div>
+
+  <ul class='actions'>
+    <% if params[:action] == 'edit' %>
+      <li><%= link_to 'Delete', { :controller => 'cases', :action => 'destroy', :id => @case },
+          :class => 'delete', :method => :delete, :remote => true,
+          :confirm => 'Are you sure you want to delete this case?' %></li>
+
+      <li class='saved'>Saved</li>
+    <% end %>
+  </div>
+<% end %>

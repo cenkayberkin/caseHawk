@@ -13,6 +13,7 @@
 }
 
 .ui-datepicker { 
+  display: none;
   z-index: 10001; 
 }
 

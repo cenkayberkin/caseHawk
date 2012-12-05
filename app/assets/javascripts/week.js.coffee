@@ -22,7 +22,7 @@ class Week
     $.get '/weeks/' + formattedDate,
       (result) ->
         $('#weeks').append(result)
-        @constructor($(result))
+        new Week($("#weeks div.week:last"))
         Week.loadedWeeks.push(formattedDate)
 
         after() if after && Function == after.constructor
@@ -57,7 +57,7 @@ class Week
     start_px = Math.min((if earliest then parseFloat($(earliest).find('li').data('starts-at-time')) * 60 else 100000000), 8 * 60) - 60
     end_px   = Math.max((if latest then parseFloat($(latest).css('top')) + parseFloat($(latest).css('height')) else 0), 17 * 60) + 30
 
-    $(week).find('.day-hours').css {
+    $(week).find('.day-hours, .day-full').css {
       'margin-top': '-' + start_px + 'px'
       'height': end_px + 'px'
     }

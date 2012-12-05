@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   belongs_to :account
   has_many   :recent_tags
+  has_many   :contacts
+  has_many   :cases
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable, :registerable and :timeoutable
@@ -21,6 +23,14 @@ class User < ActiveRecord::Base
     v.validates_presence_of     :password
     v.validates_confirmation_of :password
     v.validates_length_of       :password, :within => 6..240
+  end
+
+  def recent_contacts
+    contacts.all(:order => 'updated_at DESC')
+  end
+
+  def recent_cases
+    cases.all(:order => 'updated_at DESC')
   end
 
   protected

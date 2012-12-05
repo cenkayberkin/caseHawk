@@ -1,0 +1,9 @@
+<li class='address'>
+  <%= f.text_field :street, :placeholder => '123 Main St.' %>
+  <%= f.text_field :unit, :placeholder => '45L', :class => 'small' %>
+  <br />
+  <%= f.text_field :city, :placeholder => 'Seattle' %>
+  <%= f.text_field :state, :placeholder => 'WA', :class => 'small' %>
+  <%= f.text_field :postal_code, :placeholder => '98104', :class => 'small' %>
+  <%= f.select :label, options_for_select([ 'Home', 'Work' ], f.object.label) %>
+</li>

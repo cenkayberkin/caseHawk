@@ -1,0 +1,107 @@
+<%= form_for @contact, :remote => true do |f| %>
+  <ul class='form-navigation'>
+    <li><a data-section='summary' class='selected' href='#'>Summary</a></li>
+    <li><a data-section='basic' href='#'>Basic Information</a></li>
+    <li><a data-section='contact' href='#'>Contact Information</a></li>
+    <li><a data-section='addresses' href='#'>Addresses</a></li>
+  </ul>
+
+  <p class='errors'></p>
+
+  <div class='fields'>
+    <fieldset class='section summary'>
+      <% if @contact.new_record? %>
+        <p>You will see a summary once the contact is created.</p>
+      <% else %>
+        <h3><%= @contact.name %></h3>
+
+        <div class='contact'>
+          <ul class='email-addresses'>
+            <li>Email Addresses</li>
+
+            <% @contact.email_addresses.each do |email| %>
+              <li><span class='label'>[<%= email.label %>]</span> <%= mail_to email.email, email.email %></li>
+            <% end %>
+          </ul>
+
+          <ul class='phone-numbers'>
+            <li>Phone Numbers</li>
+
+            <% @contact.phone_numbers.each do |number| %>
+              <li><span class='label'>[<%= number.label %>]</span> <%= number.number %></li>
+            <% end %>
+          </ul>
+        </div>
+
+        <ul>
+          <li>Addresses</li>
+
+          <% @contact.addresses.each do |address| %>
+            <li>
+              <span class='label'>[<%= address.label %>]</span>
+              <%= address.street %> <%= address.unit %> <%= address.city %>, <%= address.state %> <%= address.postal_code %>
+            </li>
+          <% end %>
+        </ul>
+
+        <p><%= @contact.comment %></p>
+      <% end %>
+    </fieldset>
+
+    <fieldset class='section basic hidden'>
+      <%= f.label 'Name' %>
+
+      <div class='name'>
+        <%= f.text_field :first_name, :placeholder => 'First Name', :class => 'medium' %>
+        <%= f.text_field :last_name, :placeholder => 'Last Name', :class => 'medium' %>
+      </div>
+
+      <%= f.label :comment, 'Comments' %>
+      <%= f.text_area :comment, :cols => 62, :rows => 5 %>
+    </fieldset>
+
+    <fieldset class='section contact hidden'>
+      <ul class='email-addresses'>
+        <li><h4>Email Addresses</h4></li>
+
+        <li><%= link_to_add_fields 'Add email address', f, :email_addresses %></li>
+
+        <%= f.fields_for :email_addresses do |builder| %>
+          <%= render :partial => 'email_address_fields', :locals => { :f => builder } %>
+        <% end %>
+      </ul>
+
+      <ul class='phone-numbers'>
+        <li><h4>Phone Numbers</h4></li>
+
+        <li><%= link_to_add_fields 'Add phone numbers', f, :phone_numbers %></li>
+
+        <%= f.fields_for :phone_numbers do |builder| %>
+          <%= render :partial => 'phone_number_fields', :locals => { :f => builder } %>
+        <% end %>
+      </ul>
+    </fieldset>
+
+    <fieldset class='section addresses hidden'>
+      <ul class='addresses'>
+        <li><h4>Addresses</h4></li>
+
+        <li><%= link_to_add_fields 'Add address', f, :addresses %></li>
+
+        <%= f.fields_for :addresses do |builder| %>
+          <%= render :partial => 'address_fields', :locals => { :f => builder } %>
+        <% end %>
+      </ul>
+    </fieldset>
+  </div>
+
+  <ul class='actions'>
+    <% if params[:action] == 'edit' %>
+      <li><%= link_to 'Delete', { :controller => 'contacts', :action => 'destroy', :id => @contact },
+          :class => 'delete', :method => :delete, :remote => true,
+          :confirm => 'Are you sure you want to delete this contact?' %></li>
+
+      <li class='saved'>Saved</li>
+    <% end %>
+  </div>
+<% end %>
