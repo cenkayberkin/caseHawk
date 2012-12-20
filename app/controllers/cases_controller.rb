@@ -58,7 +58,8 @@ class CasesController < ApplicationController
         format.json do
           if request.xhr?
             render :json => {
-              recent: render_to_string(:partial => 'recent', :formats => [ :html ])
+              recent: render_to_string(:partial => 'recent', :formats => [ :html ]),
+              summary: render_to_string(:partial => 'summary', :formats => [ :html ], :locals => { :kase => @case })
             }
           end
         end
