@@ -10,10 +10,8 @@
   <div class='name'>
     <%= f.label 'Contact' %>
 
-    <% if f.object.new_record? %>
-      <%= text_field_tag 'contact_name', nil, :placeholder => 'Name', :class => 'medium' %>
-    <% else %>
-      <%= text_field_tag 'contact_name', f.object.contact.name, :placeholder => 'Name', :class => 'medium' %>
+    <%= fields_for :contact do |builder| %>
+      <%= builder.select :name, options_from_collection_for_select(current_user.contacts, 'id', 'name') %>
     <% end %>
   </div>
 </li>

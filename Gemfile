@@ -17,6 +17,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'select2-rails'
 
 gem 'rails3_acts_as_paranoid'
 gem 'acts_as_versioned'

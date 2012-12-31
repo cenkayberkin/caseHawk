@@ -47,6 +47,8 @@ $ ->
   $(document).on 'click', '#sidebar a.add, #sidebar ul.contacts li a, #sidebar ul.cases li a', ->
     $.get $(@).attr('href'), (result) ->
       $('#sidebar-slideout').html(result).show('slide', { direction: 'right' })
+      $('select#contact_name').select2().on 'change', (e) ->
+        $(@).parents('li.contact').find('input.contact_id').val(e.val)
 
     return false
 
@@ -76,6 +78,9 @@ $ ->
     $('#sidebar .section:not(.hidden) ul').replaceWith(data.recent)
     $('#sidebar-slideout').html(data.html) if data.html
     $('#sidebar-slideout .summary').html(data.summary) if data.summary
+
+    $('select#contact_name').select2().on 'change', (e) ->
+      $(@).parents('li.contact').find('input.contact_id').val(e.val)
 
     $('#sidebar-slideout ul.actions li.saved').css('display', 'inline-block').effect "highlight", 3000, ->
       $(this).hide()
