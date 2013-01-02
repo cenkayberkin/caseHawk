@@ -1,4 +1,5 @@
 <li class='contact'>
+  <%= f.hidden_field '_destroy' %>
   <%= f.hidden_field :contact_id, :class => 'contact_id' %>
 
   <div class='role'>
@@ -14,4 +15,6 @@
       <%= builder.select :name, options_from_collection_for_select(current_user.contacts, 'id', 'name') %>
     <% end %>
   </div>
+
+  <%= link_to 'x', '#', :class => 'delete' %>
 </li>

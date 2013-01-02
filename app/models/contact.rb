@@ -11,9 +11,9 @@ class Contact < ActiveRecord::Base
   has_many   :addresses, :as => :addressable
   has_many   :cases, :through => :case_contacts
 
-  accepts_nested_attributes_for :phone_numbers
-  accepts_nested_attributes_for :addresses
-  accepts_nested_attributes_for :email_addresses
+  accepts_nested_attributes_for :phone_numbers, :allow_destroy => true
+  accepts_nested_attributes_for :addresses, :allow_destroy => true
+  accepts_nested_attributes_for :email_addresses, :allow_destroy => true
 
   def name
     "#{first_name} #{last_name}"

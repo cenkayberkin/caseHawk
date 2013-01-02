@@ -68,6 +68,14 @@ $ ->
 
     return false
 
+  $(document).on 'click', '#sidebar-slideout a.delete', ->
+    $(@).parents('li').find('[id*=_destroy]').val(true)
+    $(@).parents('form').submit() if formValidates()
+
+    $(@).parents('li').remove()
+
+    false
+
   $(document).on 'blur', '#sidebar-slideout form input, #sidebar-slideout form textarea', ->
     $(@).parents('form').submit() if formValidates()
 

@@ -1,7 +1,14 @@
 <ul class='contacts'>
   <% current_user.recent_contacts.each do |contact| %>
     <li>
-      <%= link_to "#{contact.name}:", edit_contact_path(contact) %> <%= number_to_phone(contact.phone_numbers.first.number) %> <%= mail_to contact.email_addresses.first.email, contact.email_addresses.first.email.truncate(15), :title => contact.email_addresses.first.email %>
+      <%= link_to "#{contact.name}:", edit_contact_path(contact) %>
+      <%= number_to_phone(contact.phone_numbers.first.number) if contact.phone_numbers.present? %>
+
+      <% if contact.email_addresses.present? %>
+        <%= mail_to contact.email_addresses.first.email,
+            contact.email_addresses.first.email.truncate(15),
+            :title => contact.email_addresses.first.email %>
+      <% end %>
     </li>
   <% end %>
 </ul>

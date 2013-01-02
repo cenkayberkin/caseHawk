@@ -6,9 +6,9 @@ class Case < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :case_contacts
+  has_many :case_contacts, :dependent => :destroy
   has_many :contacts, :through => :case_contacts
 
-  accepts_nested_attributes_for :case_contacts
-  accepts_nested_attributes_for :contacts
+  accepts_nested_attributes_for :case_contacts, :allow_destroy => true
+  accepts_nested_attributes_for :contacts, :allow_destroy => true
 end
