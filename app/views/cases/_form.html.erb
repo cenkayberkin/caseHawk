@@ -19,6 +19,11 @@
           <%= f.text_field :title, :placeholder => 'Case Title', :class => 'medium' %>
         </div>
 
+        <div class='type'>
+          <%= f.label :case_type %>
+          <%= f.text_field :case_type, :placeholder => 'Type', :class => 'small' %>
+        </div>
+
         <div class='current-status'>
           <%= f.label :current_status %>
           <%= f.select :current_status, options_for_select([ 'NFA' ], f.object.current_status) %>

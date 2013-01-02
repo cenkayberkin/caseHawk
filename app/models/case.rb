@@ -1,5 +1,5 @@
 class Case < ActiveRecord::Base
-  attr_accessible :title, :current_status,
+  attr_accessible :title, :case_type, :current_status,
                   :case_number_details, :general_case_details,
                   :referral, :referral_details, :legal_plan, :legal_plan_details,
                   :case_contacts_attributes, :contacts_attributes
