@@ -65,6 +65,8 @@ $ ->
     regexp = new RegExp($(@).data('id'), 'g')
 
     $(@).parents('ul').append($(@).data('fields').replace(regexp, time))
+    $('select#contact_name').select2().on 'change', (e) ->
+      $(@).parents('li.contact').find('input.contact_id').val(e.val)
 
     return false
 
