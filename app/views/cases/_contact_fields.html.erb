@@ -5,7 +5,7 @@
   <div class='role'>
     <%= f.label 'Role' %>
 
-    <%= f.text_field :role, :placeholder => 'Role', :class => 'role small' %>
+    <%= f.select :role, current_account.roles, :placeholder => 'Role', :class => 'role small' %>
   </div>
 
   <div class='name'>
