@@ -45,8 +45,14 @@ $ ->
   # Clicking 'Add Contact' does a GET request using the URL from the link
   # clicked, then puts the result into the slide-out & shows it.
   $(document).on 'click', '#sidebar a.add, #sidebar ul.contacts li a, #sidebar ul.cases li a', ->
+    link = $(@)
+
     $.get $(@).attr('href'), (result) ->
       $('#sidebar-slideout').html(result).show('slide', { direction: 'right' })
+
+      if link.hasClass('add') && link.hasClass('case')
+        $('#sidebar-slideout a[data-section="contacts"]').click()
+
       $('select#contact_name').select2().on 'change', (e) ->
         $(@).parents('li.contact').find('input.contact_id').val(e.val)
 
