@@ -19,6 +19,14 @@ class Contact < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def name_and_email
+    if main_email_address.present?
+      "#{name} (#{main_email_address})"
+    else
+      name
+    end
+  end
+
   def main_email_address
     email_addresses.where(:label => 'Main').first
   end

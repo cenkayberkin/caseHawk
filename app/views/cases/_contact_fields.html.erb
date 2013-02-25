@@ -12,7 +12,7 @@
     <%= f.label 'Contact' %>
 
     <%= fields_for :contact do |builder| %>
-      <%= builder.select :name, options_from_collection_for_select(current_user.contacts, 'id', 'name') %>
+      <%= builder.select :name, options_from_collection_for_select(current_user.contacts, 'id', 'name_and_email') %>
     <% end %>
   </div>
 
