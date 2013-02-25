@@ -21,6 +21,27 @@ $ ->
 
     return validates
 
+  $(document).on 'submit', '#search_cases, #search_contacts', ->
+    false
+
+  $(document).on 'keyup', '#search_cases input', ->
+    value = $(@).val();
+
+    $('ul.cases li').each ->
+      if $(@).find('a').text().search(value) > -1
+        $(@).show()
+      else
+        $(@).hide()
+
+  $(document).on 'keyup', '#search_contacts input', ->
+    value = $(@).val();
+
+    $('ul.contacts li').each ->
+      if $(@).find('a').text().search(value) > -1
+        $(@).show()
+      else
+        $(@).hide()
+
   $(document).on 'click', '#sidebar-nav ul li a', ->
     $(@).parents('ul').find('a').removeClass('selected')
     $(@).addClass('selected')
