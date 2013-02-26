@@ -6,6 +6,7 @@ $ ->
   formValidates = ->
     validates = true
     validates = validateCaseContacts()
+    validates = validatesNotes()
 
     return validates
 
@@ -18,6 +19,18 @@ $ ->
 
       validates = false if $(el).find('input.role').val() == ''
       validates = false if $(el).find('input.contact_id').val() == ''
+
+    return validates
+
+  validatesNotes = ->
+    notes     = $('.section.notes .notes').find('li.note')
+    validates = true
+
+    $.each notes, (index, el) ->
+      return if validates == false
+
+      validates = false if $(el).find('input').val() == ''
+      validates = false if $(el).find('textarea').val() == ''
 
     return validates
 
@@ -87,13 +100,26 @@ $ ->
 
   # Clicking a link to add a new field should append a "starter" set
   # of fields to to the form.
-  $(document).on 'click', '#sidebar-slideout .add_fields', ->
+  $(document).on 'click', '#sidebar-slideout .section.contacts .add_fields', ->
     time   = new Date().getTime()
     regexp = new RegExp($(@).data('id'), 'g')
 
     $(@).parents('ul').append($(@).data('fields').replace(regexp, time))
     $('select#contact_name').select2().on 'change', (e) ->
       $(@).parents('li.contact').find('input.contact_id').val(e.val)
+
+    return false
+
+  # Clicking a link to add a new field should append a "starter" set
+  # of fields to to the form.
+  $(document).on 'click', '#sidebar-slideout .section.notes .add_fields', ->
+    time   = new Date().getTime()
+    regexp = new RegExp($(@).data('id'), 'g')
+
+
+    $(@).parents('.section').find('.notes li.note').hide()
+    $(@).parents('.section').find('.notes').append($(@).data('fields').replace(regexp, time))
+    $(@).parents('.section').find('.notes li.note:last').show()
 
     return false
 
@@ -104,6 +130,12 @@ $ ->
     $(@).parents('li').remove()
 
     false
+
+  $(document).on 'click', '#sidebar-slideout .section.notes .list a.note', ->
+    id = $(@).data('id')
+
+    $(@).parents('.section').find('li.note').hide()
+    $(@).parents('.section').find('li.note[data-id=' + id + ']').show()
 
   $(document).on 'blur', '#sidebar-slideout form input, #sidebar-slideout form textarea', ->
     $(@).parents('form').submit() if formValidates()

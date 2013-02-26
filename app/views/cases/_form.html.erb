@@ -3,6 +3,7 @@
     <li><a data-section='summary' class='selected' href='#'>Summary</a></li>
     <li><a data-section='case' href='#'>Case Information</a></li>
     <li><a data-section='contacts' href='#'>Contacts</a></li>
+    <li><a data-section='notes' href='#'>Notes</a></li>
   </ul>
 
   <p class='errors'></p>
@@ -53,6 +54,10 @@
           <%= render :partial => 'contact_fields', :locals => { :f => builder } %>
         <% end %>
       </ul>
+    </fieldset>
+
+    <fieldset class='section notes hidden'>
+      <%= render :partial => 'notes', :locals => { :kase => @case, :f => f } %>
     </fieldset>
   </div>
 
