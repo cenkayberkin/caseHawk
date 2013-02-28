@@ -24,14 +24,14 @@ class Event
 
     start        = new Date(record.starts_at)
     record.start = new Date(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate(), start.getUTCHours(), start.getUTCMinutes(), start.getUTCSeconds())
-    
+
     end        = if Date.parse(record.ends_at) then new Date(record.ends_at) else DateMath.add(record.start, 'minutes', 15)
     record.end = new Date(end.getUTCFullYear(), end.getUTCMonth(), end.getUTCDate(), end.getUTCHours(), end.getUTCMinutes(), end.getUTCSeconds())
 
     @cachedInstances[record.id] = record
 
     return record
-  
+
   find: (options, callback) ->
     if options.constructor == Number
       @retrieve { id: options }, callback
@@ -87,8 +87,8 @@ class Event
 
     newDay.each ->
       parent = $(@).find((if dayContext is 'day-full' then 'ul' else 'ul.' + $(html).data('type').toLowerCase() + 's'))
-      
-      $(html).prependTo(parent).effect 'highlight',
+
+      parent.prepend(html).effect 'highlight',
         color: '#d7fcd7'
       , 3000
 
