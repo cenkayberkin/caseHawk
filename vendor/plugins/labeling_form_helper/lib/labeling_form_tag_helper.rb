@@ -8,7 +8,7 @@ module ActionView::Helpers::FormTagHelper
   # so we would get double labels including them in the list.
   def self.labelable #:nodoc:
     public_instance_methods.
-    reject { |h| h =~ /form|field_set|submit|hidden|password|file/ || h =~ /_with(out)?_label/ }.
+    reject { |h| h =~ /form|field_set|submit|hidden|hidden_field|password|file/ || h =~ /_with(out)?_label/ }.
     map { |x| x.to_sym }
   end
   
