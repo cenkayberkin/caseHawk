@@ -21,7 +21,7 @@ class Contact < ActiveRecord::Base
 
   def name_and_email
     if main_email_address.present?
-      "#{name} (#{main_email_address})"
+      "#{name} (#{main_email_address.email})"
     else
       name
     end
