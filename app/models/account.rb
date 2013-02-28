@@ -5,9 +5,12 @@ class Account < ActiveRecord::Base
   has_many :tags
   has_many :events
 
+  has_many :note_template_categories
+
   serialize :roles, Array
 
   accepts_nested_attributes_for :admin
+  accepts_nested_attributes_for :note_template_categories
 
   #
   # Set up the account to own subscriptions. An alternative would be to
@@ -29,7 +32,7 @@ class Account < ActiveRecord::Base
   validates_associated :admin, :on => :create
   validate :valid_domain?
 
-  attr_accessible :name, :domain, :admin_attributes, :roles_raw
+  attr_accessible :name, :domain, :admin_attributes, :roles_raw, :note_template_categories_attributes
 
   acts_as_paranoid
 

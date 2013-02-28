@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226210514) do
+ActiveRecord::Schema.define(:version => 20130228181329) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -146,6 +146,20 @@ ActiveRecord::Schema.define(:version => 20130226210514) do
     t.string   "name",       :limit => 50
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
+  end
+
+  create_table "note_template_categories", :force => true do |t|
+    t.integer  "account_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "note_templates", :force => true do |t|
+    t.integer  "note_template_category_id"
+    t.string   "template"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "notes", :force => true do |t|
