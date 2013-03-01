@@ -1,0 +1,32 @@
+<% if kase.new_record? %>
+  <p>You will see a summary once the case is created.</p>
+<% else %>
+  <div class='info'>
+    <h3><%= kase.title %> (<%= kase.current_status %>)</h3>
+
+    <p><strong>Case Number Details:</strong> <%= kase.case_number_details %></p>
+    <p><strong>General Case Details:</strong> <%= kase.general_case_details %></p>
+
+    <div class='important'>
+      <p><strong>Referral:</strong> <%= kase.referral %></p>
+      <p><%= kase.referral_details %></p>
+
+      <p><strong>Legal Plan:</strong> <%= kase.legal_plan %></p>
+      <p><%= kase.legal_plan_details %></p>
+    </div>
+  </div>
+
+  <div class='contacts'>
+    <ul>
+      <% if kase.case_contacts.empty? || kase.case_contacts.first.new_record? %>
+        <li>No contacts associated with this case.</li>
+      <% else %>
+        <li>Contacts</li>
+
+        <% kase.case_contacts.each do |cc| %>
+          <li><strong><%= cc.role %>:</strong> <%= cc.contact.name %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

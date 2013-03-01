@@ -75,6 +75,7 @@ $ ->
   $(document).on 'ajax:success', '#sidebar-slideout form', (xhr, data, status) ->
     $('#sidebar .section:not(.hidden) ul').replaceWith(data.recent)
     $('#sidebar-slideout').html(data.html) if data.html
+    $('#sidebar-slideout .summary').html(data.summary) if data.summary
 
     $('#sidebar-slideout ul.actions li.saved').css('display', 'inline-block').effect "highlight", 3000, ->
       $(this).hide()

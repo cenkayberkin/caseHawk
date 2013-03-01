@@ -10,42 +10,7 @@
 
   <div class='fields'>
     <fieldset class='section summary'>
-      <% if @contact.new_record? %>
-        <p>You will see a summary once the contact is created.</p>
-      <% else %>
-        <h3><%= @contact.name %></h3>
-
-        <div class='contact'>
-          <ul class='email-addresses'>
-            <li>Email Addresses</li>
-
-            <% @contact.email_addresses.each do |email| %>
-              <li><span class='label'>[<%= email.label %>]</span> <%= mail_to email.email, email.email %></li>
-            <% end %>
-          </ul>
-
-          <ul class='phone-numbers'>
-            <li>Phone Numbers</li>
-
-            <% @contact.phone_numbers.each do |number| %>
-              <li><span class='label'>[<%= number.label %>]</span> <%= number.number %></li>
-            <% end %>
-          </ul>
-        </div>
-
-        <ul>
-          <li>Addresses</li>
-
-          <% @contact.addresses.each do |address| %>
-            <li>
-              <span class='label'>[<%= address.label %>]</span>
-              <%= address.street %> <%= address.unit %> <%= address.city %>, <%= address.state %> <%= address.postal_code %>
-            </li>
-          <% end %>
-        </ul>
-
-        <p><%= @contact.comment %></p>
-      <% end %>
+      <%= render :partial => 'summary', :locals => { :contact => @contact } %>
     </fieldset>
 
     <fieldset class='section basic hidden'>
