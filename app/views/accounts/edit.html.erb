@@ -2,6 +2,20 @@
 
 <%= form_for @account, :url => { :action => 'update' }, :html => { :method => :put } do |f| %>
   <%= f.error_messages %>
-  <%= f.text_field :name %>
+
+  <fieldset>
+    <%= f.label :name %>
+
+    <%= f.text_field :name %>
+  </fieldset>
+
+  <fieldset>
+    <%= f.label :roles %>
+
+    <p>Roles should be separated by commas.</p>
+
+    <%= f.text_area :roles_raw, :size => '50x5' %>
+  </fieldset>
+
   <%= submit_or_cancel :action => 'show' %>
 <% end %>

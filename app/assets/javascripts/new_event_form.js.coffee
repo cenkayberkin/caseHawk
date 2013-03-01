@@ -1,11 +1,11 @@
 window.validateEventFormDates = (active) ->
   active = 'start'  unless active
-  
+
   startDate = new Date($('#event_starts_at_datepicker').html() + ' ' + $('#event_starts_at_time').val())
   endDate = new Date($('#event_ends_at_datepicker').html() + ' ' + $('#event_ends_at_time').val())
   debug 'S', startDate
   debug 'E', endDate
-  
+
   if active is 'start' and endDate < startDate
     endDate = new Date(startDate)
     endDate.setHours endDate.getHours() + 2
@@ -16,19 +16,19 @@ window.validateEventFormDates = (active) ->
     startDate.setHours startDate.getHours() - 2
     $('#event_starts_at_datepicker').html startDate.strftime('%B %e, %Y')
     $('#event_starts_at_time').val startDate.strftime('%i:%M %p')
-  
+
   $('#event_starts_at_date').val startDate.strftime('%B %e, %Y')
   $('#event_ends_at_date').val endDate.strftime('%B %e, %Y')
 
 $ ->
   validateEventFormDates = (active) ->
     active = 'start'  unless active
-    
+
     startDate = new Date($('#event_starts_at_datepicker').html() + ' ' + $('#event_starts_at_time').val())
     endDate = new Date($('#event_ends_at_datepicker').html() + ' ' + $('#event_ends_at_time').val())
     debug 'S', startDate
     debug 'E', endDate
-    
+
     if active is 'start' and endDate < startDate
       endDate = new Date(startDate)
       endDate.setHours endDate.getHours() + 2
@@ -39,7 +39,7 @@ $ ->
       startDate.setHours startDate.getHours() - 2
       $('#event_starts_at_datepicker').html startDate.strftime('%B %e, %Y')
       $('#event_starts_at_time').val startDate.strftime('%i:%M %p')
-    
+
     $('#event_starts_at_date').val startDate.strftime('%B %e, %Y')
     $('#event_ends_at_date').val endDate.strftime('%B %e, %Y')
 
@@ -50,11 +50,11 @@ $ ->
     existing = tags.find('li').filter(->
       selectedValue is $(this).attr('rel')
     )
-    
+
     $('#tag_entry').val('').focus()
 
     return  if existing.length
-    
+
     newTag = $('<li></li>').hide()
     newTag.html(selectedValue).attr('rel', selectedValue).append($('<a></a>').html('x').click(->
       newTag.fadeOut 'normal', ->

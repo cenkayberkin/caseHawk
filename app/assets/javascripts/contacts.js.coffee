@@ -6,6 +6,7 @@ $ ->
   formValidates = ->
     validates = true
     validates = validateCaseContacts()
+    validates = validatesNotes()
 
     return validates
 
@@ -20,6 +21,39 @@ $ ->
       validates = false if $(el).find('input.contact_id').val() == ''
 
     return validates
+
+  validatesNotes = ->
+    notes     = $('.section.notes .notes').find('li.note')
+    validates = true
+
+    $.each notes, (index, el) ->
+      return if validates == false
+
+      validates = false if $(el).find('input').val() == ''
+      validates = false if $(el).find('textarea').val() == ''
+
+    return validates
+
+  $(document).on 'submit', '#search_cases, #search_contacts', ->
+    false
+
+  $(document).on 'keyup', '#search_cases input', ->
+    value = $(@).val();
+
+    $('ul.cases li').each ->
+      if $(@).find('a').text().search(value) > -1
+        $(@).show()
+      else
+        $(@).hide()
+
+  $(document).on 'keyup', '#search_contacts input', ->
+    value = $(@).val();
+
+    $('ul.contacts li').each ->
+      if $(@).find('a').text().search(value) > -1
+        $(@).show()
+      else
+        $(@).hide()
 
   $(document).on 'click', '#sidebar-nav ul li a', ->
     $(@).parents('ul').find('a').removeClass('selected')
@@ -45,8 +79,16 @@ $ ->
   # Clicking 'Add Contact' does a GET request using the URL from the link
   # clicked, then puts the result into the slide-out & shows it.
   $(document).on 'click', '#sidebar a.add, #sidebar ul.contacts li a, #sidebar ul.cases li a', ->
+    link = $(@)
+
     $.get $(@).attr('href'), (result) ->
       $('#sidebar-slideout').html(result).show('slide', { direction: 'right' })
+
+      if link.hasClass('add') && link.hasClass('case')
+        $('#sidebar-slideout a[data-section="contacts"]').click()
+
+      $('select#contact_name').select2().on 'change', (e) ->
+        $(@).parents('li.contact').find('input.contact_id').val(e.val)
 
     return false
 
@@ -58,13 +100,45 @@ $ ->
 
   # Clicking a link to add a new field should append a "starter" set
   # of fields to to the form.
-  $(document).on 'click', '#sidebar-slideout .add_fields', ->
+  $(document).on 'click', '#sidebar-slideout .section.contacts .add_fields', ->
     time   = new Date().getTime()
     regexp = new RegExp($(@).data('id'), 'g')
 
     $(@).parents('ul').append($(@).data('fields').replace(regexp, time))
+    $('select#contact_name').select2().on 'change', (e) ->
+      $(@).parents('li.contact').find('input.contact_id').val(e.val)
 
     return false
+
+  # Clicking a link to add a new field should append a "starter" set
+  # of fields to to the form.
+  $(document).on 'click', '#sidebar-slideout .section.notes .add_fields', ->
+    time   = new Date().getTime()
+    regexp = new RegExp($(@).data('id'), 'g')
+
+
+    $(@).parents('.section').find('.notes li.note').hide()
+    $(@).parents('.section').find('.notes').append($(@).data('fields').replace(regexp, time))
+    $(@).parents('.section').find('.notes li.note:last').show()
+
+    return false
+
+  $(document).on 'click', '#sidebar-slideout a.delete', ->
+    $(@).parents('li').find('[id*=_destroy]').val(true)
+    $(@).parents('form').submit() if formValidates()
+
+    $(@).parents('li').remove()
+
+    false
+
+  $(document).on 'click', '#sidebar-slideout .section.notes .list a.note', ->
+    id = $(@).data('id')
+
+    $(@).parents('.section').find('li.note').hide()
+    $(@).parents('.section').find('li.note[data-id=' + id + ']').show()
+
+  $(document).on 'change', '#sidebar-slideout .section.notes select.templates', ->
+    $(@).parents('.note').find('textarea').append($(@).find(':selected').text())
 
   $(document).on 'blur', '#sidebar-slideout form input, #sidebar-slideout form textarea', ->
     $(@).parents('form').submit() if formValidates()
@@ -76,6 +150,9 @@ $ ->
     $('#sidebar .section:not(.hidden) ul').replaceWith(data.recent)
     $('#sidebar-slideout').html(data.html) if data.html
     $('#sidebar-slideout .summary').html(data.summary) if data.summary
+
+    $('select#contact_name').select2().on 'change', (e) ->
+      $(@).parents('li.contact').find('input.contact_id').val(e.val)
 
     $('#sidebar-slideout ul.actions li.saved').css('display', 'inline-block').effect "highlight", 3000, ->
       $(this).hide()

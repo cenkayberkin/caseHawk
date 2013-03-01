@@ -1,0 +1,19 @@
+<div class='list'>
+  <%= link_to_add_fields 'Add note', f, :notes, 'note_fields' %>
+
+  <ul>
+    <% kase.notes.each do |note| %>
+      <li>
+        <%= link_to note.title, '#', :class => 'note', :'data-id' => note.id %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class='notes'>
+  <ul>
+    <%= f.fields_for :notes do |builder| %>
+      <%= render :partial => 'note_fields', :locals => { :f => builder } %>
+    <% end %>
+  </ul>
+</div>

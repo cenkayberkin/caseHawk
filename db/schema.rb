@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121202192934) do
+ActiveRecord::Schema.define(:version => 20130228181329) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20121202192934) do
     t.datetime "updated_at"
     t.string   "full_domain"
     t.datetime "deleted_at"
+    t.text     "contact_roles"
+    t.text     "roles"
   end
 
   add_index "accounts", ["full_domain"], :name => "index_accounts_on_full_domain"
@@ -66,8 +68,6 @@ ActiveRecord::Schema.define(:version => 20121202192934) do
     t.integer  "user_id"
     t.string   "title"
     t.string   "current_status"
-    t.text     "case_number_details"
-    t.text     "general_case_details"
     t.string   "referral"
     t.text     "referral_details"
     t.string   "legal_plan"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20121202192934) do
     t.text     "important_date_details"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+    t.string   "case_type"
   end
 
   create_table "contacts", :force => true do |t|
@@ -145,6 +146,28 @@ ActiveRecord::Schema.define(:version => 20121202192934) do
     t.string   "name",       :limit => 50
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
+  end
+
+  create_table "note_template_categories", :force => true do |t|
+    t.integer  "account_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "note_templates", :force => true do |t|
+    t.integer  "note_template_category_id"
+    t.string   "template"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "notes", :force => true do |t|
+    t.integer  "case_id"
+    t.text     "notes"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "title"
   end
 
   create_table "phone_numbers", :force => true do |t|

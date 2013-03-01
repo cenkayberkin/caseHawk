@@ -1,5 +1,7 @@
 <li class='phone-number'>
+  <%= f.hidden_field '_destroy' %>
   <%= f.text_field :number, :placeholder => 'Phone Number', :class => 'medium' %>
-
   <%= f.select :label, options_for_select([ 'Cell', 'Home', 'Work', 'Fax' ], f.object.label) %>
+
+  <%= link_to 'x', '#', :class => 'delete' %>
 </li>

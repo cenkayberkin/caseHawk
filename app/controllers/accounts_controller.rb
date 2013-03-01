@@ -50,10 +50,10 @@ class AccountsController < ApplicationController
         else
           @address.first_name = @creditcard.first_name
           @address.last_name = @creditcard.last_name
-          
+
           (@creditcard.valid? & @address.valid?) && @subscription.store_card(@creditcard, :billing_address => @address.to_activemerchant, :ip => request.remote_ip)
         end
-        
+
         if result
           flash[:notice] = "Your billing information has been updated."
           redirect_to :action => "billing"

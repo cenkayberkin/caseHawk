@@ -12,6 +12,7 @@
 #= require vendor/strftime-min
 
 #= require jquery_ujs
+#= require select2
 
 #= require_self
 #= require_tree
@@ -35,13 +36,13 @@ unless Array.indexOf
 String::underscore = ->
   under = []
   split = @split(/([A-Z][a-z]*)/)
-  
+
   i = 0
   while i < split.length
     under.push split[i].toLowerCase()  if split[i]
- 
+
     i++
-  
+
   under.join '_'
 
 
@@ -49,15 +50,15 @@ String::camelcase = ->
   parts = @split(/[ _-]+/)
   len = parts.length
   camelized = ''
-  
+
   return parts[0]  if len is 1
-  
+
   i = 0
   while i < len
     camelized += parts[i].charAt(0).toUpperCase() + parts[i].substring(1)
-    
+
     i++
-  
+
   camelized
 
 $.fn.reset = (fn) ->
@@ -71,6 +72,6 @@ $ ->
 
   $.fn.form_prompt and $('input[placeholder], textarea[placeholder]').each(->
     return  if $(this).parents('.form-prompt-wrapper').length
-    
+
     $(this).form_prompt $(this).attr('placeholder')
   )

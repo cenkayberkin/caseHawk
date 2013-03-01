@@ -1,0 +1,33 @@
+#sidebar-slideout {
+  form {
+    .section.notes {
+      overflow: hidden;
+      overflow-y: scroll;
+
+      .list {
+        float: left;
+        margin: 0 10px 0 0;
+        padding: 0 10px 0 0;
+        border-right: 1px solid #dddddd;
+
+        ul {
+          margin-top: 5px;
+          padding-top: 5px;
+          border-top: 1px solid #dddddd;
+
+          li {
+            margin: 0;
+          }
+        }
+      }
+
+      .notes {
+        float: left;
+
+        .note {
+          display: none;
+        }
+      }
+    }
+  }
+}

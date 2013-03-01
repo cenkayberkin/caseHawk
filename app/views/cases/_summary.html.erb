@@ -2,10 +2,7 @@
   <p>You will see a summary once the case is created.</p>
 <% else %>
   <div class='info'>
-    <h3><%= kase.title %> (<%= kase.current_status %>)</h3>
-
-    <p><strong>Case Number Details:</strong> <%= kase.case_number_details %></p>
-    <p><strong>General Case Details:</strong> <%= kase.general_case_details %></p>
+    <h3><%= kase.title %> - <%= kase.case_type %> (<%= kase.current_status %>)</h3>
 
     <div class='important'>
       <p><strong>Referral:</strong> <%= kase.referral %></p>

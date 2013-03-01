@@ -3,6 +3,7 @@
     <li><a data-section='summary' class='selected' href='#'>Summary</a></li>
     <li><a data-section='case' href='#'>Case Information</a></li>
     <li><a data-section='contacts' href='#'>Contacts</a></li>
+    <li><a data-section='notes' href='#'>Notes</a></li>
   </ul>
 
   <p class='errors'></p>
@@ -19,21 +20,14 @@
           <%= f.text_field :title, :placeholder => 'Case Title', :class => 'medium' %>
         </div>
 
+        <div class='type'>
+          <%= f.label :case_type %>
+          <%= f.text_field :case_type, :placeholder => 'Type', :class => 'small' %>
+        </div>
+
         <div class='current-status'>
           <%= f.label :current_status %>
           <%= f.select :current_status, options_for_select([ 'NFA' ], f.object.current_status) %>
-        </div>
-      </div>
-
-      <div class='details'>
-        <div class='case-number'>
-          <%= f.label :case_number_details %>
-          <%= f.text_field :case_number_details, :class => 'medium' %>
-        </div>
-
-        <div class='general'>
-          <%= f.label :general_case_details %>
-          <%= f.text_field :general_case_details, :class => 'medium' %>
         </div>
       </div>
 
@@ -60,6 +54,10 @@
           <%= render :partial => 'contact_fields', :locals => { :f => builder } %>
         <% end %>
       </ul>
+    </fieldset>
+
+    <fieldset class='section notes hidden'>
+      <%= render :partial => 'notes', :locals => { :kase => @case, :f => f } %>
     </fieldset>
   </div>
 

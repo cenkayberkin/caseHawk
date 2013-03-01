@@ -1,0 +1,26 @@
+form.edit_account {
+
+}
+
+  form.edit_account fieldset {
+    margin-bottom: 10px;
+  }
+
+    form.edit_account fieldset label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    form.edit_account fieldset p {
+      margin-bottom: 0;
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 12px;
+      color: #666666;
+    }
+
+    form.edit_account fieldset input,
+    form.edit_account fieldset textarea {
+      padding: 5px;
+    }
