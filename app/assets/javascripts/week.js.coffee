@@ -25,7 +25,7 @@ class Week
         new Week($("#weeks div.week:last"))
         Week.loadedWeeks.push(formattedDate)
 
-        after() if after && Function == after.constructor 
+        after() if after && Function == after.constructor
     , 'html'
 
   @loadFirst: ->
@@ -49,7 +49,7 @@ class Week
     earliest = boxes.sort((a, b) ->
       (if parseFloat($(a).css('top')) > parseFloat($(b).css('top')) then 1 else -1)
     )[0]
-    
+
     latest = boxes.sort((a, b) ->
       (if parseFloat($(a).css('top')) + parseFloat($(a).css('height')) < parseFloat($(b).css('top')) + parseFloat($(b).css('height')) then 1 else -1)
     )[0]
@@ -99,14 +99,14 @@ class Week
 
   changeWeekHeader: (header) ->
     $('table.week-rolling-header').removeClass('rolling-active').addClass('rolling-inactive')
-    
+
     header.addClass('rolling-active').removeClass('rolling-inactive')
 
   drawInDatepicker: ->
     that = @
     datePicker = $('#datepicker')
     selectedMonth = parseFloat($('#datepicker .ui-datepicker-month').val())
-    
+
     $(@week).find('.viewport .day').each (index) ->
       dayParts  = $(@).data('date').split('-')
       dayString = parseFloat($(@)[2])
