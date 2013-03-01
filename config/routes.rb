@@ -1,6 +1,6 @@
 class MainSite
   def self.matches?(request)
-    request.subdomain.blank? || request.subdomain == 'www'
+    request.subdomain.blank? || request.subdomain == 'www' || request.subdomain == 'casehawk'
   end
 end
 
@@ -10,7 +10,7 @@ Subscriptions::Application.routes.draw do
   # Routes for the public site
   constraints MainSite do
     # Homepage
-    
+
     # Account Signup Routes
     match '/signup' => 'accounts#plans', :as => 'plans'
     match '/signup/d/:discount' => 'accounts#plans'
@@ -18,7 +18,7 @@ Subscriptions::Application.routes.draw do
     match '/signup/create/:discount' => 'accounts#create', :as => 'create', :defaults => { :discount => nil }
     match '/signup/:plan/:discount' => 'accounts#new', :as => 'new_account'
     match '/signup/:plan' => 'accounts#new', :as => 'new_account'
-    
+
     # Catch-all that just loads views from app/views/content/* ...
     # e.g, http://yoursite.com/content/about -> app/views/content/about.html.erb
     #
@@ -33,7 +33,7 @@ Subscriptions::Application.routes.draw do
   # Account / User Management Routes
   #
   resources :users
-  resource :account do 
+  resource :account do
     member do
       get :dashboard, :thanks, :plans, :canceled
       match 'billing' => "accounts#billing"
