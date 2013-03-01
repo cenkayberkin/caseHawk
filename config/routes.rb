@@ -1,6 +1,6 @@
 class MainSite
   def self.matches?(request)
-    request.subdomain.blank? || request.subdomain == 'www' || request.subdomain == 'casehawk'
+    request.subdomain.blank? || request.subdomain == 'www' || request.subdomain == 'demo'
   end
 end
 
