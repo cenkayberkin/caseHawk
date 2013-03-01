@@ -647,7 +647,6 @@ ul, ol, p { margin: 0 0 1em; }
   width: 95%;
   background: #FFF url('/assets/textarea-desc-bg.png') no-repeat center center;
   border: 1px inset #CCC;
-  border-style:
 }
 .survey_textarea textarea:focus {
   background: #FFF;
