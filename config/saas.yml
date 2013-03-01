@@ -1,7 +1,7 @@
 defaults: &defaults
   app_name: Casehawk
-  from_email: demo@casehawk.com
-  base_domain: herokuapp.com
+  from_email: support@casehawk.net
+  base_domain: casehawk.net
   currency: USD # Only used for PayPal
 
   gateway: bogus
