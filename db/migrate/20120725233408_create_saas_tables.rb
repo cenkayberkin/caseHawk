@@ -65,6 +65,7 @@ class CreateSaasTables < ActiveRecord::Migration
       t.integer  "renewal_period",                                :default => 1
       t.decimal  "setup_amount",   :precision => 10, :scale => 2
       t.integer  "trial_period",                                  :default => 1
+      t.string   "trial_interval",                                :default => 'months'
       t.integer  "user_limit"
     end
 
