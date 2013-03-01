@@ -3,7 +3,7 @@ source 'https://railskits.com/gems/21c6e42c-663a-4ddf-7dec-424e16391895'
 source 'http://rubygems.org'
 
 gem 'rails', '~>3.2'
-gem 'mysql2'
+gem 'pg', group: :production
 
 group :assets do
   gem 'coffee-rails',   '~> 3.2.1'
@@ -28,6 +28,7 @@ gem 'saas-kit'
 gem 'devise-encryptable'
 
 group :test, :development do
+  gem 'mysql2'
   gem 'mocha'
   gem 'rspec-rails', '~> 2.8.1'
   gem 'webrat'
