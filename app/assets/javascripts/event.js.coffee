@@ -70,7 +70,6 @@ class Event
       originalEvent.remove()
 
     dayContext = if $(html).data('timed') == true then 'day-full' else 'allday'
-
     newDay = $('.week-' + dayContext + ' td.day[data-date=' + @start.strftime("%G-%m-%d") + ']')
 
     if 'AllDay' is @type
@@ -93,8 +92,8 @@ class Event
       , 3000
 
     unless 'allday' is dayContext
-      new Day.refresh(newDay)
-      new Day.refresh(originalDay) if originalDay and originalDay[0] and originalDay[0] isnt newDay[0]
+      new Day(newDay).refresh()
+      new Day(originalDay).refresh() if originalDay and originalDay[0] and originalDay[0] isnt newDay[0]
 
     return @
 

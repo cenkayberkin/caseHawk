@@ -15,12 +15,14 @@ class Day
 
     @clicks()
 
-  @refresh: (day) ->
-    if Day.timed(day)
-      Week.adjustViewport(day.parents('.week'))
-
   @timed: (day) ->
     day.parent().is('.week-day-full')
+
+  refresh: ->
+    if Day.timed(@day)
+      @day.find(".collidable > .event").remove()
+
+      Week.adjustViewport(@day.parents('.week'))
 
   allday: ->
     @day.parent().is('.week-allday')
@@ -60,9 +62,11 @@ class Day
         if a.starts_at == b.starts_at
           if a.ends_at < b.ends_at then 1 else -1
         else
-          if a.starts_at < b.starts_at then 1 else -1
+          if a.starts_at > b.starts_at then 1 else -1
       ).map ->
         return @
+
+      console.log events
 
       latestEventSoFar = events.length && events[0]
 
