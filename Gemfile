@@ -27,8 +27,6 @@ gem 'has_scope'
 gem 'saas-kit'
 gem 'devise-encryptable'
 
-gem 'unicorn'
-
 group :test, :development do
   gem 'mysql2'
   gem 'mocha'
