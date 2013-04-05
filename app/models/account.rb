@@ -10,7 +10,8 @@ class Account < ActiveRecord::Base
   serialize :roles, Array
 
   accepts_nested_attributes_for :admin
-  accepts_nested_attributes_for :note_template_categories
+  accepts_nested_attributes_for :note_template_categories, :allow_destroy => true,
+                                :reject_if => proc { |a| a['name'].blank? }
 
   #
   # Set up the account to own subscriptions. An alternative would be to

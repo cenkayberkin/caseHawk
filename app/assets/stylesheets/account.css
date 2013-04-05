@@ -6,6 +6,24 @@ form.edit_account {
     margin-bottom: 10px;
   }
 
+    form.edit_account a.delete {
+      color: #b32914;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    form.edit_account fieldset ul {
+      margin: 0 0 25px 0;
+    }
+
+      form.edit_account fieldset ul li {
+        margin: 0 0 10px 0;
+      }
+
+      form.edit_account fieldset ul li ul {
+        margin: 10px 0 25px 25px;
+      }
+
     form.edit_account fieldset label {
       display: block;
       margin-bottom: 5px;

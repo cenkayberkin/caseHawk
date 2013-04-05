@@ -41,6 +41,7 @@ Subscriptions::Application.routes.draw do
       match 'plan' => "accounts#plan"
       match 'plan_paypal' => "accounts#plan_paypal"
       match 'cancel' => "accounts#cancel"
+      match 'settings' => "accounts#settings"
     end
   end
 

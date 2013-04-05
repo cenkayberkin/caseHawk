@@ -154,6 +154,9 @@ class AccountsController < ApplicationController
   def dashboard
   end
 
+  def settings
+  end
+
   protected
 
     def resource
