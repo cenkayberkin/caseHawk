@@ -1,8 +1,10 @@
 <li class='note' data-id='<%= f.object.id %>'>
   <%= f.label "Use a template to generate boilerplate text" %>
+
   <%= grouped_collection_select :nil, nil, current_account.note_template_categories,
       :note_templates, :name, :id, :template,
-      { :include_blank => true }, { :class => 'templates' } %>
+      { :include_blank => 'Select a template' },
+      { :class => 'templates' } %>
 
   <%= f.label :title %>
   <%= f.text_field :title %>

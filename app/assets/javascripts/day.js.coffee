@@ -66,8 +66,6 @@ class Day
       ).map ->
         return @
 
-      console.log events
-
       latestEventSoFar = events.length && events[0]
 
       $.each events, (index, event) =>

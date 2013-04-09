@@ -138,7 +138,10 @@ $ ->
     $(@).parents('.section').find('li.note[data-id=' + id + ']').show()
 
   $(document).on 'change', '#sidebar-slideout .section.notes select.templates', ->
-    $(@).parents('.note').find('textarea').append($(@).find(':selected').text())
+    if $(@).val()
+      $(@).parents('.note').find('textarea').append($(@).find(':selected').text())
+
+    $(@).val('')
 
   $(document).on 'blur', '#sidebar-slideout form input, #sidebar-slideout form textarea', ->
     $(@).parents('form').submit() if formValidates()
