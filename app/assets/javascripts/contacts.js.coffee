@@ -166,3 +166,10 @@ $ ->
   $(document).on 'ajax:success', '#sidebar-slideout form .actions a.delete', (xhr, data, status) ->
     $('#sidebar-slideout').hide('slide', { direction: 'right' })
     $('#sidebar .section:not(.hidden) ul').replaceWith(data)
+
+  # Assuming the form validates, save it every 2 minutes.
+  setInterval ->
+    if $('form.edit_case').is(':visible')
+      $('form.edit_case').submit() if formValidates()
+      console.log 'saved'
+  , 120000
