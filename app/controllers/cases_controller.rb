@@ -2,7 +2,7 @@ class CasesController < ApplicationController
   before_filter :authenticate_user!
 
   def new
-    @case = Case.new
+    @case = current_user.cases.create
     @case.case_contacts.build
 
     if params[:contact_id].present?
@@ -10,7 +10,7 @@ class CasesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render :action => :new, :layout => false }
+      format.html { render :action => :edit, :layout => false }
     end
   end
 

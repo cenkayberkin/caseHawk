@@ -145,9 +145,6 @@ $ ->
     $('#sidebar-slideout').html(data.html) if data.html
     $('#sidebar-slideout .summary').html(data.summary) if data.summary
 
-    $('select#contact_name').select2().on 'change', (e) ->
-      $(@).parents('li.contact').find('input.contact_id').val(e.val)
-
     $('#sidebar-slideout ul.actions li.saved').css('display', 'inline-block').effect "highlight", 3000, ->
       $(this).hide()
 
@@ -172,6 +169,8 @@ $ ->
 
   $(document).on 'ajax:success', '#sidebar-slideout a.add_contact', (xhr, data, status) ->
     $('#sidebar-slideout .section.contacts').html(data)
+    $('select#contact_name').select2().on 'change', (e) ->
+      $(@).parents('li.contact').find('input.contact_id').val(e.val)
 
     false
 

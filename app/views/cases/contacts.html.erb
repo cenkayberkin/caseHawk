@@ -1,5 +1,5 @@
 <ul>
-  <li><%= link_to 'Add contact', contacts_case_path(format: :html), :class => 'add_contact', :remote => true %></li>
+  <li><%= link_to 'Add contact', contacts_case_path(@case, format: :html), :class => 'add_contact', :remote => true %></li>
 
   <%= fields_for @case do |f| %>
     <%= f.fields_for :case_contacts do |builder| %>
