@@ -1,0 +1,13 @@
+credentials: &credentials
+  adapter: postgresql
+  host: localhost
+  username: rails
+  password: asdfasdf
+
+development:
+  <<: *credentials
+  database: casehawk_development
+
+test:
+  <<: *credentials
+  database: casehawk_test
