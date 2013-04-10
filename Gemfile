@@ -27,11 +27,12 @@ gem 'has_scope'
 gem 'saas-kit'
 gem 'devise-encryptable'
 
+gem 'faker'
+
 group :test, :development do
   gem 'mysql2'
   gem 'mocha'
   gem 'rspec-rails', '~> 2.8.1'
   gem 'webrat'
   gem 'factory_girl_rails'
-  gem 'faker'
 end

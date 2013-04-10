@@ -11,6 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+
 ActiveRecord::Schema.define(:version => 20130410041035) do
 
   create_table "accounts", :force => true do |t|
@@ -55,6 +56,46 @@ ActiveRecord::Schema.define(:version => 20130410041035) do
     t.datetime "deleted_at"
     t.integer  "completed_by"
     t.integer  "version"
+  end
+
+  create_table "case_contacts", :force => true do |t|
+    t.integer  "case_id"
+    t.integer  "contact_id"
+    t.string   "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "cases", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "current_status"
+    t.string   "referral"
+    t.text     "referral_details"
+    t.string   "legal_plan"
+    t.text     "legal_plan_details"
+    t.string   "important_date"
+    t.text     "important_date_details"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.string   "case_type"
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.text     "comment"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
+  create_table "email_addresses", :force => true do |t|
+    t.string   "email"
+    t.string   "label"
+    t.integer  "contact_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "case_contacts", :force => true do |t|
@@ -147,6 +188,36 @@ ActiveRecord::Schema.define(:version => 20130410041035) do
     t.string   "name",       :limit => 50
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
+  end
+
+  create_table "note_template_categories", :force => true do |t|
+    t.integer  "account_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "note_templates", :force => true do |t|
+    t.integer  "note_template_category_id"
+    t.string   "template"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "notes", :force => true do |t|
+    t.integer  "case_id"
+    t.text     "notes"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "title"
+  end
+
+  create_table "phone_numbers", :force => true do |t|
+    t.string   "number"
+    t.string   "label"
+    t.integer  "contact_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "note_template_categories", :force => true do |t|
