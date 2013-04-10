@@ -1,0 +1,3 @@
+<%= fields_for @case do |f| %>
+  <%= render :partial => 'notes', :locals => { :f => f, :kase => @case } %>
+<% end %>

@@ -49,7 +49,7 @@
 
     <fieldset class='section contacts hidden'>
       <ul>
-        <li><%= link_to_add_fields 'Add contact', f, :case_contacts, 'contact_fields' %></li>
+        <li><%= link_to 'Add contact', contacts_case_path(format: :html), :class => 'add_contact', :remote => true %></li>
 
         <%= f.fields_for :case_contacts do |builder| %>
           <%= render :partial => 'contact_fields', :locals => { :f => builder } %>

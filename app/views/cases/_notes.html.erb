@@ -1,5 +1,5 @@
 <div class='list'>
-  <%= link_to_add_fields 'Add note', f, :notes, 'note_fields' %>
+  <%= link_to 'Add note', notes_case_path(format: :html), :class => 'add_note', :remote => true %>
 
   <ul>
     <% kase.notes.each do |note| %>

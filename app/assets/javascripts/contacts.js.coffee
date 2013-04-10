@@ -30,7 +30,6 @@ $ ->
       return if validates == false
 
       validates = false if $(el).find('input').val() == ''
-      validates = false if $(el).find('textarea').val() == ''
 
     return validates
 
@@ -110,19 +109,6 @@ $ ->
 
     return false
 
-  # Clicking a link to add a new field should append a "starter" set
-  # of fields to to the form.
-  $(document).on 'click', '#sidebar-slideout .section.notes .add_fields', ->
-    time   = new Date().getTime()
-    regexp = new RegExp($(@).data('id'), 'g')
-
-
-    $(@).parents('.section').find('.notes li.note').hide()
-    $(@).parents('.section').find('.notes').append($(@).data('fields').replace(regexp, time))
-    $(@).parents('.section').find('.notes li.note:last').show()
-
-    return false
-
   $(document).on 'click', '#sidebar-slideout a.delete', ->
     $(@).parents('li').find('[id*=_destroy]').val(true)
     $(@).parents('form').submit() if formValidates()
@@ -142,7 +128,7 @@ $ ->
       textarea = $(@).parents('.note').find('textarea')
       template = $(@).find(':selected').text()
 
-      textarea.prepend(template + "\n\n")
+      textarea.val(template + "\n" + textarea.val())
       textarea.focus()
       textarea.cursorTo(template.length, template.length)
 
@@ -165,16 +151,32 @@ $ ->
     $('#sidebar-slideout ul.actions li.saved').css('display', 'inline-block').effect "highlight", 3000, ->
       $(this).hide()
 
+    false
+
   $(document).on 'ajax:error', '#sidebar-slideout form', (xhr, data, status) ->
     $('#sidebar-slideout p.errors').text(JSON.parse(data.responseText).join(', '))
+
+    false
 
   $(document).on 'ajax:success', '#sidebar-slideout form .actions a.delete', (xhr, data, status) ->
     $('#sidebar-slideout').hide('slide', { direction: 'right' })
     $('#sidebar .section:not(.hidden) ul').replaceWith(data)
 
+    false
+
+  $(document).on 'ajax:success', '#sidebar-slideout a.add_note', (xhr, data, status) ->
+    $('#sidebar-slideout .section.notes').html(data)
+    $('#sidebar-slideout .section.notes ul li.note:last').show()
+
+    false
+
+  $(document).on 'ajax:success', '#sidebar-slideout a.add_contact', (xhr, data, status) ->
+    $('#sidebar-slideout .section.contacts').html(data)
+
+    false
+
   # Assuming the form validates, save it every 2 minutes.
   setInterval ->
     if $('form.edit_case').is(':visible')
       $('form.edit_case').submit() if formValidates()
-      console.log 'saved'
   , 120000

@@ -1,0 +1,9 @@
+<ul>
+  <li><%= link_to 'Add contact', contacts_case_path(format: :html), :class => 'add_contact', :remote => true %></li>
+
+  <%= fields_for @case do |f| %>
+    <%= f.fields_for :case_contacts do |builder| %>
+      <%= render :partial => 'contact_fields', :locals => { :f => builder } %>
+    <% end %>
+  <% end %>
+</ul>

@@ -12,7 +12,7 @@
     <%= f.label 'Contact' %>
 
     <%= select_tag 'contact_name',
-        options_from_collection_for_select(current_user.contacts, 'id', 'name_and_email'),
+        options_from_collection_for_select(current_user.contacts, 'id', 'name_and_email', f.object.contact_id),
         :style => 'width: 150px;' %>
   </div>
 

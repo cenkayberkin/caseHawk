@@ -54,7 +54,13 @@ Subscriptions::Application.routes.draw do
   resources :taggings
   resources :recent_tags
   resources :contacts
-  resources :cases
+
+  resources :cases do
+    member do
+      get "notes" => "cases#notes"
+      get "contacts" => "cases#contacts"
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
