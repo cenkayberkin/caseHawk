@@ -3,7 +3,7 @@
 
   <%= grouped_collection_select :nil, nil, current_account.note_template_categories,
       :note_templates, :name, :id, :template,
-      { :include_blank => 'Select a template' },
+      { :include_blank => '[ -- Quicknote -- ]' },
       { :class => 'templates' } %>
 
   <%= f.label :title %>
