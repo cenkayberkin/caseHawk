@@ -27,7 +27,8 @@
 
         <div class='current-status'>
           <%= f.label :current_status %>
-          <%= f.select :current_status, options_for_select([ 'NFA' ], f.object.current_status) %>
+
+          <%= f.select :current_status, current_account.case_statuses %>
         </div>
       </div>
 

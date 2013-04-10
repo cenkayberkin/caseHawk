@@ -6,9 +6,17 @@
   <fieldset>
     <h2>Contact roles</h2>
 
-    <%= f.label :roles_raw, 'Contact roles (comma separated)' %>
+    <%= f.label :roles_raw, '(comma separated)' %>
 
     <%= f.text_area :roles_raw, :size => '50x5' %>
+  </fieldset>
+
+  <fieldset>
+    <h2>Case statuses</h2>
+
+    <%= f.label :case_statuses_raw, '(comma separated)' %>
+
+    <%= f.text_area :case_statuses_raw, :size => '50x5' %>
   </fieldset>
 
   <fieldset>
