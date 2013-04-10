@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130228181329) do
+
+ActiveRecord::Schema.define(:version => 20130410041035) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -19,7 +20,9 @@ ActiveRecord::Schema.define(:version => 20130228181329) do
     t.datetime "updated_at"
     t.string   "full_domain"
     t.datetime "deleted_at"
+    t.text     "contact_roles"
     t.text     "roles"
+    t.text     "case_statuses"
   end
 
   add_index "accounts", ["full_domain"], :name => "index_accounts_on_full_domain"
@@ -55,52 +58,44 @@ ActiveRecord::Schema.define(:version => 20130228181329) do
     t.integer  "version"
   end
 
-  create_table "bj_config", :primary_key => "bj_config_id", :force => true do |t|
-    t.string "hostname"
-    t.string "key"
-    t.text   "value"
-    t.text   "cast"
+  create_table "case_contacts", :force => true do |t|
+    t.integer  "case_id"
+    t.integer  "contact_id"
+    t.string   "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "bj_config", ["hostname", "key"], :name => "index_bj_config_on_hostname_and_key", :unique => true
-
-  create_table "bj_job", :primary_key => "bj_job_id", :force => true do |t|
-    t.text     "command"
-    t.text     "state"
-    t.integer  "priority",       :limit => 8
-    t.text     "tag"
-    t.integer  "is_restartable", :limit => 8
-    t.text     "submitter"
-    t.text     "runner"
-    t.integer  "pid",            :limit => 8
-    t.datetime "submitted_at"
-    t.datetime "started_at"
-    t.datetime "finished_at"
-    t.text     "env"
-    t.text     "stdin"
-    t.text     "stdout"
-    t.text     "stderr"
-    t.integer  "exit_status",    :limit => 8
+  create_table "cases", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "current_status"
+    t.string   "referral"
+    t.text     "referral_details"
+    t.string   "legal_plan"
+    t.text     "legal_plan_details"
+    t.string   "important_date"
+    t.text     "important_date_details"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.string   "case_type"
   end
 
-  create_table "bj_job_archive", :primary_key => "bj_job_archive_id", :force => true do |t|
-    t.text     "command"
-    t.text     "state"
-    t.integer  "priority",       :limit => 8
-    t.text     "tag"
-    t.integer  "is_restartable", :limit => 8
-    t.text     "submitter"
-    t.text     "runner"
-    t.integer  "pid",            :limit => 8
-    t.datetime "submitted_at"
-    t.datetime "started_at"
-    t.datetime "finished_at"
-    t.datetime "archived_at"
-    t.text     "env"
-    t.text     "stdin"
-    t.text     "stdout"
-    t.text     "stderr"
-    t.integer  "exit_status",    :limit => 8
+  create_table "contacts", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.text     "comment"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
+  create_table "email_addresses", :force => true do |t|
+    t.string   "email"
+    t.string   "label"
+    t.integer  "contact_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "case_contacts", :force => true do |t|
@@ -195,38 +190,35 @@ ActiveRecord::Schema.define(:version => 20130228181329) do
     t.datetime "updated_at",               :null => false
   end
 
-  create_table "lorp_calendars", :primary_key => "cal_id", :force => true do |t|
-    t.string "name",                  :null => false
-    t.string "type",    :limit => 8,  :null => false
-    t.string "link_id",               :null => false
-    t.string "color",   :limit => 20, :null => false
+  create_table "note_template_categories", :force => true do |t|
+    t.integer  "account_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "lorp_calendars", ["name"], :name => "name"
-
-  create_table "lorp_events", :primary_key => "event_id", :force => true do |t|
-    t.string   "case_id"
-    t.integer  "user_id"
-    t.string   "creator_id",                        :null => false
-    t.string   "summary",                           :null => false
-    t.text     "description"
-    t.string   "status",      :default => "active", :null => false
-    t.datetime "dtstart",                           :null => false
-    t.datetime "dtend"
-    t.string   "rrule"
-    t.string   "location"
-    t.datetime "dtstamp",                           :null => false
-    t.string   "alarm",                             :null => false
-    t.string   "calendar_id",                       :null => false
-    t.string   "event_type",                        :null => false
-    t.boolean  "completed",   :default => false,    :null => false
-    t.boolean  "busy",        :default => true,     :null => false
-    t.string   "timezone",    :default => "SYSTEM", :null => false
-    t.datetime "updated_at",                        :null => false
-    t.datetime "created_at",                        :null => false
+  create_table "note_templates", :force => true do |t|
+    t.integer  "note_template_category_id"
+    t.string   "template"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
-  add_index "lorp_events", ["dtstart"], :name => "owner"
+  create_table "notes", :force => true do |t|
+    t.integer  "case_id"
+    t.text     "notes"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "title"
+  end
+
+  create_table "phone_numbers", :force => true do |t|
+    t.string   "number"
+    t.string   "label"
+    t.integer  "contact_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "note_template_categories", :force => true do |t|
     t.integer  "account_id"
@@ -330,7 +322,6 @@ ActiveRecord::Schema.define(:version => 20130228181329) do
     t.integer  "renewal_period",                                :default => 1
     t.decimal  "setup_amount",   :precision => 10, :scale => 2
     t.integer  "trial_period",                                  :default => 1
-    t.string   "trial_interval",                                :default => "months"
     t.integer  "user_limit"
   end
 

@@ -1,6 +1,6 @@
 # source 'https://railskits.com/gems/YOUR-ORDER-ID'
 source 'https://railskits.com/gems/21c6e42c-663a-4ddf-7dec-424e16391895'
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rails', '~>3.2'
 gem 'pg', group: :production

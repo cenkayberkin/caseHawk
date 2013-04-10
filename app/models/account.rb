@@ -8,9 +8,11 @@ class Account < ActiveRecord::Base
   has_many :note_template_categories
 
   serialize :roles, Array
+  serialize :case_statuses, Array
 
   accepts_nested_attributes_for :admin
-  accepts_nested_attributes_for :note_template_categories
+  accepts_nested_attributes_for :note_template_categories, :allow_destroy => true,
+                                :reject_if => proc { |a| a['name'].blank? }
 
   #
   # Set up the account to own subscriptions. An alternative would be to
@@ -32,7 +34,7 @@ class Account < ActiveRecord::Base
   validates_associated :admin, :on => :create
   validate :valid_domain?
 
-  attr_accessible :name, :domain, :admin_attributes, :roles_raw, :note_template_categories_attributes
+  attr_accessible :name, :domain, :admin_attributes, :roles_raw, :case_statuses_raw, :note_template_categories_attributes
 
   acts_as_paranoid
 
@@ -43,6 +45,15 @@ class Account < ActiveRecord::Base
   def roles_raw=(values)
     self.roles = []
     self.roles=values.split(",").collect(&:strip)
+  end
+
+  def case_statuses_raw
+    self.case_statuses.join(",") unless self.case_statuses.nil?
+  end
+
+  def case_statuses_raw=(values)
+    self.case_statuses = []
+    self.case_statuses=values.split(",").collect(&:strip)
   end
 
   def domain

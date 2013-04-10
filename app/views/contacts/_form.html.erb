@@ -29,7 +29,7 @@
       <ul class='email-addresses'>
         <li><h4>Email Addresses</h4></li>
 
-        <li><%= link_to_add_fields 'Add email address', f, :email_addresses %></li>
+        <li><%#= link_to_add_fields 'Add email address', f, :email_addresses %></li>
 
         <%= f.fields_for :email_addresses do |builder| %>
           <%= render :partial => 'email_address_fields', :locals => { :f => builder } %>
@@ -39,7 +39,7 @@
       <ul class='phone-numbers'>
         <li><h4>Phone Numbers</h4></li>
 
-        <li><%= link_to_add_fields 'Add phone numbers', f, :phone_numbers %></li>
+        <li><%#= link_to_add_fields 'Add phone numbers', f, :phone_numbers %></li>
 
         <%= f.fields_for :phone_numbers do |builder| %>
           <%= render :partial => 'phone_number_fields', :locals => { :f => builder } %>
@@ -51,7 +51,7 @@
       <ul class='addresses'>
         <li><h4>Addresses</h4></li>
 
-        <li><%= link_to_add_fields 'Add address', f, :addresses %></li>
+        <li><%#= link_to_add_fields 'Add address', f, :addresses %></li>
 
         <%= f.fields_for :addresses do |builder| %>
           <%= render :partial => 'address_fields', :locals => { :f => builder } %>

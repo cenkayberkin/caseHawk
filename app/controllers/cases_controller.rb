@@ -36,7 +36,7 @@ class CasesController < ApplicationController
           if request.xhr?
             render :json => {
               recent: render_to_string(:partial => 'recent', :formats => [ :html ]),
-              html: render_to_string(:action => 'new', :layout => false, :formats => [ :html ])
+              html: render_to_string(:action => 'edit', :layout => false, :formats => [ :html ])
             }
           end
         end
@@ -64,7 +64,7 @@ class CasesController < ApplicationController
           end
         end
       else
-        format.html do
+        format.json do
           if request.xhr?
             render :json => @case.errors.full_messages, :status => :unprocessable_entity
           end
@@ -83,5 +83,19 @@ class CasesController < ApplicationController
         end
       end
     end
+  end
+
+  def notes
+    @case = Case.find(params[:id])
+    @case.notes.create(:title => "New note")
+
+    render :layout => false
+  end
+
+  def contacts
+    @case = Case.find(params[:id])
+    @case.case_contacts.create(:contact_id => current_user.contacts.last.id)
+
+    render :layout => false
   end
 end

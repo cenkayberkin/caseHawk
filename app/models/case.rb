@@ -10,7 +10,9 @@ class Case < ActiveRecord::Base
   has_many :contacts, :through => :case_contacts
   has_many :notes
 
-  accepts_nested_attributes_for :case_contacts, :allow_destroy => true
-  accepts_nested_attributes_for :contacts, :allow_destroy => true
+  accepts_nested_attributes_for :case_contacts, :allow_destroy => true,
+                                :reject_if => proc { |a| a['contact_id'].blank? }
   accepts_nested_attributes_for :notes
+
+  validates_uniqueness_of :title
 end

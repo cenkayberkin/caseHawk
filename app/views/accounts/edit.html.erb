@@ -9,13 +9,5 @@
     <%= f.text_field :name %>
   </fieldset>
 
-  <fieldset>
-    <%= f.label :roles %>
-
-    <p>Roles should be separated by commas.</p>
-
-    <%= f.text_area :roles_raw, :size => '50x5' %>
-  </fieldset>
-
   <%= submit_or_cancel :action => 'show' %>
 <% end %>

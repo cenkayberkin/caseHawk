@@ -1,0 +1,9 @@
+<ul>
+  <li>
+    <%= link_to_add_fields 'Add template category', f, :note_template_categories, 'note_template_category_fields' %>
+  </li>
+
+  <%= f.fields_for :note_template_categories do |ntc| %>
+    <%= render :partial => 'note_template_category_fields', :locals => { :f => ntc } %>
+  <% end %>
+</ul>

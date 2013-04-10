@@ -1,6 +1,6 @@
 GEM
   remote: https://railskits.com/gems/21c6e42c-663a-4ddf-7dec-424e16391895/
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (3.2.12)
       actionpack (= 3.2.12)

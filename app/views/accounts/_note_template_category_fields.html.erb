@@ -1,0 +1,18 @@
+<li>
+  <%= f.hidden_field '_destroy' %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, :placeholder => 'Accounting' %>
+
+  <%= link_to 'x', '#', :class => 'delete' %>
+
+  <ul>
+    <li>
+      <%= link_to_add_fields 'Add template', f, :note_templates, 'note_template_fields' %>
+    </li>
+
+    <%= f.fields_for :note_templates do |nt| %>
+      <%= render :partial => 'note_template_fields', :locals => { :f => nt } %>
+    <% end %>
+  </ul>
+</li>

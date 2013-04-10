@@ -12,13 +12,13 @@ class ContactsController < ApplicationController
   end
 
   def new
-    @contact = Contact.new
+    @contact = current_user.contacts.create
     @contact.phone_numbers.build
     @contact.addresses.build
     @contact.email_addresses.build
 
     respond_to do |format|
-      format.html { render :action => :new, :layout => false }
+      format.html { render :action => :edit, :layout => false }
     end
   end
 

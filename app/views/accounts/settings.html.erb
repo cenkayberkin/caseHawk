@@ -1,0 +1,29 @@
+<h1>Change app settings</h1>
+
+<%= form_for current_account, :url => { :action => 'update' }, :html => { :method => :put } do |f| %>
+  <%= f.error_messages %>
+
+  <fieldset>
+    <h2>Contact roles</h2>
+
+    <%= f.label :roles_raw, '(comma separated)' %>
+
+    <%= f.text_area :roles_raw, :size => '50x5' %>
+  </fieldset>
+
+  <fieldset>
+    <h2>Case statuses</h2>
+
+    <%= f.label :case_statuses_raw, '(comma separated)' %>
+
+    <%= f.text_area :case_statuses_raw, :size => '50x5' %>
+  </fieldset>
+
+  <fieldset>
+    <h2>Note template categories</h2>
+
+    <%= render :partial => 'note_templates', :locals => { :f => f } %>
+  </fieldset>
+
+  <%= submit_or_cancel :action => 'show' %>
+<% end %>
