@@ -72,7 +72,7 @@ class Account < ActiveRecord::Base
   protected
 
     def valid_domain?
-      conditions = new_record? ? ['full_domain = ?', self.full_domain] : ['full_do    main = ? and id <> ?', self.full_domain, self.id]
+      conditions = new_record? ? ['full_domain = ?', self.full_domain] : ['full_domain = ? and id <> ?', self.full_domain, self.id]
       self.errors.add(:domain, 'is not available') if self.full_domain.blank? || self.class.count(:conditions => conditions) > 0
     end
 
