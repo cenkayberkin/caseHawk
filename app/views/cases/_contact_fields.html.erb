@@ -12,7 +12,8 @@
     <%= f.label 'Contact' %>
 
     <%= select_tag 'contact_name',
-        options_from_collection_for_select(current_user.contacts, 'id', 'name_and_email') %>
+        options_from_collection_for_select(current_user.contacts, 'id', 'name_and_email'),
+        :style => 'width: 150px;' %>
   </div>
 
   <%= link_to 'x', '#', :class => 'delete' %>
