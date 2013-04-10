@@ -139,7 +139,7 @@ $ ->
 
   $(document).on 'change', '#sidebar-slideout .section.notes select.templates', ->
     if $(@).val()
-      $(@).parents('.note').find('textarea').append($(@).find(':selected').text())
+      $(@).parents('.note').find('textarea').prepend($(@).find(':selected').text())
 
     $(@).val('')
 
