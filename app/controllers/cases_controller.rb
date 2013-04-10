@@ -36,7 +36,7 @@ class CasesController < ApplicationController
           if request.xhr?
             render :json => {
               recent: render_to_string(:partial => 'recent', :formats => [ :html ]),
-              html: render_to_string(:action => 'new', :layout => false, :formats => [ :html ])
+              html: render_to_string(:action => 'edit', :layout => false, :formats => [ :html ])
             }
           end
         end
